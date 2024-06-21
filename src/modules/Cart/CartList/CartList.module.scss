@@ -1,0 +1,16 @@
+.cartList {
+    margin-bottom: 20px;
+    div {
+        margin-bottom: 12px;
+    }
+    button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .totalPayment {
+        font-family: var(--secondary-font);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}

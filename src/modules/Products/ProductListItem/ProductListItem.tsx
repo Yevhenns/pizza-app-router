@@ -1,20 +1,20 @@
 'use client';
 
-import React, { FC, useState } from 'react';
-import ProductQuantity from './ProductQuantity/ProductQuantity';
+import { useState } from 'react';
+import { ProductQuantity } from './ProductQuantity';
 import {
   addToFavoriteAction,
   removeFromFavoriteAction,
 } from '@/redux/products/productsSlice';
 import { useAppDispatch } from '@/redux/hooks';
 import { toast } from 'react-toastify';
-import ProductFooter from './ProductFooter/ProductFooter';
+import { ProductFooter } from './ProductFooter';
+import { ProductDescription } from './ProductDescription';
+import { Icon } from '@/UI/basic/Icon';
+import { RoundButton } from '@/UI/basic/RoundButton';
 import css from './ProductListItem.module.scss';
-import ProductDescription from './ProductDescription/ProductDescription';
-import Icon from '@/UI/basic/Icon/Icon';
-import RoundButton from '@/UI/basic/RoundButton/RoundButton';
 
-interface Props {
+interface ProductListItemProps {
   item: TProduct;
   addToCart: TAddToCart;
   setFavoriteProducts: (_id: string) => boolean;
@@ -22,13 +22,13 @@ interface Props {
   isInCart: (_id: string) => boolean;
 }
 
-const ProductListItem: FC<Props> = ({
+export function ProductListItem({
   item,
   addToCart,
   setFavoriteProducts,
   favoriteProducts,
   isInCart,
-}) => {
+}: ProductListItemProps) {
   const {
     _id,
     title,
@@ -108,6 +108,4 @@ const ProductListItem: FC<Props> = ({
       />
     </article>
   );
-};
-
-export default ProductListItem;
+}

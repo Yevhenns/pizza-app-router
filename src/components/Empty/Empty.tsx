@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import css from './Empty.module.scss';
 
-interface Props {
+interface EmptyProps {
   text: string;
 }
 
-const Empty: FC<Props> = ({ text }) => {
+export function Empty({ text }: EmptyProps) {
   return (
     <div className={css.emptyCart}>
       <Image
@@ -19,6 +18,4 @@ const Empty: FC<Props> = ({ text }) => {
       <p>{text}</p>
     </div>
   );
-};
-
-export default Empty;
+}

@@ -1,11 +1,11 @@
 import React, { FC, forwardRef, HTMLProps, PropsWithRef } from 'react';
 import css from './Checkbox.module.scss';
 
-interface Props extends HTMLProps<HTMLInputElement> {
+interface CheckboxProps extends HTMLProps<HTMLInputElement> {
   label?: string;
 }
 
-const Checkbox: FC<PropsWithRef<Props>> = forwardRef(
+export const Checkbox: FC<PropsWithRef<CheckboxProps>> = forwardRef(
   ({ label, ...props }, ref) => {
     return (
       <fieldset className={css.fieldset}>
@@ -17,5 +17,3 @@ const Checkbox: FC<PropsWithRef<Props>> = forwardRef(
 );
 
 Checkbox.displayName = 'Checkbox';
-
-export default Checkbox;

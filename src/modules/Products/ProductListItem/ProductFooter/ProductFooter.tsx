@@ -1,15 +1,14 @@
 'use client';
-import React, { FC } from 'react';
-import Button from '@/UI/basic/Button/Button';
+import { Button } from '@/UI/basic/Button';
+import { Icon } from '@/UI/basic/Icon';
 import css from './ProductFooter.module.scss';
-import Icon from '@/UI/basic/Icon/Icon';
 
-interface Props extends TProductItem {
+interface ProductFooterProps extends TProductItem {
   addToCart: TAddToCart;
   isInCart: (_id: string) => boolean;
 }
 
-const ProductFooter: FC<Props> = ({
+export function ProductFooter({
   _id,
   totalQuantity,
   promotion,
@@ -17,7 +16,7 @@ const ProductFooter: FC<Props> = ({
   totalPromPrice,
   addToCart,
   isInCart,
-}) => {
+}: ProductFooterProps) {
   const isInCartBoolean = isInCart(_id);
 
   return (
@@ -48,6 +47,4 @@ const ProductFooter: FC<Props> = ({
       </Button>
     </div>
   );
-};
-
-export default ProductFooter;
+}

@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import { Icon } from '@/UI/basic/Icon';
 import css from './HeaderNavLink.module.scss';
-import Icon from '@/UI/basic/Icon/Icon';
 
 interface HeaderNavLinkProps {
   hrefProp: string;

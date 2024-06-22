@@ -1,15 +1,14 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import RoundButton from '@/UI/basic/RoundButton/RoundButton';
-import css from './CartListItem.module.scss';
 import Icon from '@/UI/basic/Icon/Icon';
+import css from './CartListItem.module.scss';
 
-interface Props {
+interface CartListItemProps {
   data: TCartItem;
   deleteCartItem: (_id: string) => void;
 }
 
-const CartListItem: FC<Props> = ({ data, deleteCartItem }) => {
+export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
   const { _id, photo, title, quantity, totalPrice } = data;
 
   return (
@@ -29,6 +28,4 @@ const CartListItem: FC<Props> = ({ data, deleteCartItem }) => {
       </RoundButton>
     </div>
   );
-};
-
-export default CartListItem;
+}

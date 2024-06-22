@@ -1,10 +1,9 @@
-import React, { FC, HTMLProps, PropsWithChildren } from 'react';
+import { HTMLProps, PropsWithChildren } from 'react';
 import css from './Heading.module.scss';
 
-interface Props extends HTMLProps<PropsWithChildren<HTMLHeadingElement>> {}
+interface HeadingProps
+  extends HTMLProps<PropsWithChildren<HTMLHeadingElement>> {}
 
-const Heading: FC<Props> = ({ children }) => {
+export function Heading({ children }: HeadingProps) {
   return <h1 className={css.heading}>{children}</h1>;
-};
-
-export default Heading;
+}

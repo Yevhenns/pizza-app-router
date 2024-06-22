@@ -6,7 +6,7 @@ interface Props extends HTMLProps<HTMLInputElement> {
   error?: string;
 }
 
-const Input: FC<PropsWithRef<Props>> = forwardRef(
+export const Input: FC<PropsWithRef<Props>> = forwardRef(
   ({ label, error, ...props }, ref) => {
     return (
       <fieldset className={css.fieldset}>
@@ -19,5 +19,3 @@ const Input: FC<PropsWithRef<Props>> = forwardRef(
 );
 
 Input.displayName = 'Input';
-
-export default Input;

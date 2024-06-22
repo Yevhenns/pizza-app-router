@@ -1,9 +1,8 @@
-import React from 'react';
-import Heading from '@/UI/basic/Heading/Heading';
-import Empty from '@/components/Empty/Empty';
+import { Heading } from '@/UI/basic/Heading';
+import { Empty } from '@/components/Empty';
 import { getFavorites, getIsLoading } from '@/redux/products/productsSlice';
 import { useAppSelector } from '@/redux/hooks';
-import ProductsList from '@/modules/Products/ProductsList';
+import { ProductsList } from '@/modules/Products';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 import { PagesWrapper } from '@/components/PagesWrapper';
 import { ToastContainer } from 'react-toastify';

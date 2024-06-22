@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/helpers/combineClasses';
+import { Icon } from '@/UI/basic/Icon';
 import css from './TabNavigator.module.scss';
-import Icon from '@/UI/basic/Icon/Icon';
 
 export function TabNavigator() {
   const pathname = usePathname();

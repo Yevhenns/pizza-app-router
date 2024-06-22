@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import { Icon } from '@/UI/basic/Icon';
 import css from './Logo.module.scss';
-import Icon from '@/UI/basic/Icon/Icon';
 
 export function Logo() {
   return (

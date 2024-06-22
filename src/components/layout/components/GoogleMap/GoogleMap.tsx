@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import GoogleMapReact from 'google-map-react';
+import { Icon } from '@/UI/basic/Icon';
 import css from './GoogleMap.module.scss';
-import Icon from '@/UI/basic/Icon/Icon';
 
 interface Props {
   lat: number;

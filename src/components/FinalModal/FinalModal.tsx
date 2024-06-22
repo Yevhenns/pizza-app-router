@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { FC } from 'react';
-import Button from '@/UI/basic/Button/Button';
+import { Button } from '@/UI/basic/Button';
 import Error500 from '../errors/Error500/Error500';
 import css from './FinalModal.module.scss';
 import { useAppSelector } from '@/redux/hooks';
@@ -12,11 +12,11 @@ import {
 } from '@/redux/cart/cartSlice';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 
-interface Props {
+interface FinalModalProps {
   finalAction: () => void;
 }
 
-const FinalModal: FC<Props> = ({ finalAction }) => {
+export function FinalModal({ finalAction }: FinalModalProps) {
   const filledCart = useAppSelector(getFilledCart);
   const sum = useAppSelector(getOrderSum);
   const isLoading = useAppSelector(getIsLoading);
@@ -61,6 +61,4 @@ const FinalModal: FC<Props> = ({ finalAction }) => {
       )}
     </div>
   );
-};
-
-export default FinalModal;
+}

@@ -1,21 +1,21 @@
-import React, { FC, useEffect } from 'react';
-import CartListItem from './CartListItem/CartListItem';
-import Button from '@/UI/basic/Button/Button';
-import css from './CartList.module.scss';
+import { useEffect } from 'react';
+import { CartListItem } from './CartListItem';
+import { Button } from '@/UI/basic/Button';
 import { useAppDispatch } from '@/redux/hooks';
 import { addOrderSum } from '@/redux/cart/cartSlice';
+import css from './CartList.module.scss';
 
-interface Props {
+interface CartListProps {
   filledCart: TCart;
   deleteCartItem: (_id: string) => void;
   deleteAllProducts: () => void;
 }
 
-const CartList: FC<Props> = ({
+export function CartList({
   filledCart,
   deleteCartItem,
   deleteAllProducts,
-}) => {
+}: CartListProps) {
   let sum = 0;
   filledCart.forEach(item => (sum += item.totalPrice));
 
@@ -42,6 +42,4 @@ const CartList: FC<Props> = ({
       </Button>
     </div>
   );
-};
-
-export default CartList;
+}

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Input from './Input';
+import { Input } from './Input';
 import '../../../styles/globals.scss';
 
 const meta: Meta<typeof Input> = {

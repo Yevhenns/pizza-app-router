@@ -1,15 +1,14 @@
 'use client';
-
-import Heading from '@/UI/basic/Heading/Heading';
+import { Heading } from '@/UI/basic/Heading';
 import { Weather } from '@/components/Weather';
-import ProductsList from '@/modules/Products/ProductsList';
+import { ProductsList } from '@/modules/Products';
 import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getPromotions } from '@/redux/products/productsSlice';
-import css from '../styles/pages/Index.module.scss';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 import { PagesWrapper } from '@/components/PagesWrapper';
 import { CarouselComponent } from '@/components/CarouselComponent';
+import css from '../styles/pages/Index.module.scss';
 
 export default function Home() {
   const promotionProducts = useAppSelector(getPromotions);

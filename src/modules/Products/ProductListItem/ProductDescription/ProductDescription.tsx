@@ -1,21 +1,21 @@
 'use client';
+
 import Image from 'next/image';
-import React, { FC } from 'react';
 import css from './ProductDescription.module.scss';
 
-interface Props {
+interface ProductDescriptionProps {
   photo: string;
   title: string;
   description: string;
   dimension: string;
 }
 
-const ProductDescription: FC<Props> = ({
+export function ProductDescription({
   photo,
   title,
   description,
   dimension,
-}) => {
+}: ProductDescriptionProps) {
   return (
     <div className={css.descriprionWrapper}>
       <Image
@@ -32,6 +32,4 @@ const ProductDescription: FC<Props> = ({
       </hgroup>
     </div>
   );
-};
-
-export default ProductDescription;
+}

@@ -1,14 +1,15 @@
 'use client';
-import React, { FC, useState, useEffect } from 'react';
-import RoundButton from '@/UI/basic/RoundButton/RoundButton';
-import css from './ProductQuantity.module.scss';
-import Icon from '@/UI/basic/Icon/Icon';
 
-interface Props {
+import { useState, useEffect } from 'react';
+import { RoundButton } from '@/UI/basic/RoundButton';
+import { Icon } from '@/UI/basic/Icon';
+import css from './ProductQuantity.module.scss';
+
+interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;
 }
 
-const ProductQuantity: FC<Props> = ({ getTotalQuantity }) => {
+export function ProductQuantity({ getTotalQuantity }: ProductQuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
   const increment = () => {
@@ -37,6 +38,4 @@ const ProductQuantity: FC<Props> = ({ getTotalQuantity }) => {
       </RoundButton>
     </div>
   );
-};
-
-export default ProductQuantity;
+}

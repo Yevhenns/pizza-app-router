@@ -1,17 +1,21 @@
-import React, { FC } from 'react';
-import Empty from '@/components/Empty/Empty';
-import CartForm from './CartForm/CartForm';
-import CartList from './CartList/CartList';
+import { Empty } from '@/components/Empty';
+import { CartForm } from './CartForm';
+import { CartList } from './CartList';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { deleteItem, getFilledCart } from '@/redux/cart/cartSlice';
 
-interface Props {
+interface CartContentProps {
   deleteAllProducts: () => void;
   openModal: () => void;
 }
 
-const CartContent: FC<Props> = ({ deleteAllProducts, openModal }) => {
+export function CartContent({
+  deleteAllProducts,
+  openModal,
+}: CartContentProps) {
   const filledCart = useAppSelector(getFilledCart);
+
+  const dispatch = useAppDispatch();
 
   const order: TOrdered = filledCart.map(item => {
     return {
@@ -19,8 +23,6 @@ const CartContent: FC<Props> = ({ deleteAllProducts, openModal }) => {
       quantity: item.quantity,
     };
   });
-
-  const dispatch = useAppDispatch();
 
   const deleteCartItem = (id: string) => {
     dispatch(deleteItem(id));
@@ -42,6 +44,4 @@ const CartContent: FC<Props> = ({ deleteAllProducts, openModal }) => {
       )}
     </>
   );
-};
-
-export default CartContent;
+}

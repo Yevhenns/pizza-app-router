@@ -1,20 +1,20 @@
-import React, { FC, HTMLProps } from 'react';
+import { HTMLProps } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
 import { sendOrder } from '@/redux/cart/cartOperations';
-import Button from '@/UI/basic/Button/Button';
-import Input from '@/UI/basic/Input/Input';
-import TextArea from '@/UI/basic/TextArea/TextArea';
-import Checkbox from '@/UI/basic/Checkbox/Checkbox';
+import { Button } from '@/UI/basic/Button';
+import { TextArea } from '@/UI/basic/TextArea';
+import { Checkbox } from '@/UI/basic/Checkbox';
 import css from './CartForm.module.scss';
+import { Input } from '@/UI/basic/Input';
 
-interface Props extends HTMLProps<HTMLFormElement> {
+interface CartFormProps extends HTMLProps<HTMLFormElement> {
   openModal: () => void;
   order: TOrdered;
 }
 
-const CartForm: FC<Props> = ({ openModal, order }) => {
+export function CartForm({ openModal, order }: CartFormProps) {
   const {
     register,
     handleSubmit,
@@ -97,6 +97,4 @@ const CartForm: FC<Props> = ({ openModal, order }) => {
       <Button type="submit">Підтвердити</Button>
     </form>
   );
-};
-
-export default CartForm;
+}

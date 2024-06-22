@@ -6,7 +6,7 @@ interface Props extends HTMLProps<HTMLTextAreaElement> {
   error?: string;
 }
 
-const TextArea: FC<PropsWithRef<Props>> = forwardRef(
+export const TextArea: FC<PropsWithRef<Props>> = forwardRef(
   ({ label, error, ...props }, ref) => {
     return (
       <fieldset className={css.fieldset}>
@@ -19,5 +19,3 @@ const TextArea: FC<PropsWithRef<Props>> = forwardRef(
 );
 
 TextArea.displayName = 'TextArea';
-
-export default TextArea;

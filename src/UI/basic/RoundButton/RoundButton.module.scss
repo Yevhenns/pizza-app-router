@@ -11,9 +11,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
     svg {
         font-size: 24px;
     }
+
     &:hover {
         scale: 1.1;
     }

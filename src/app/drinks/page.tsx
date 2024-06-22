@@ -1,6 +1,5 @@
-import React from 'react';
-import Heading from '@/UI/basic/Heading/Heading';
-import ProductsList from '@/modules/Products/ProductsList';
+import { Heading } from '@/UI/basic/Heading';
+import { ProductsList } from '@/modules/Products';
 import { useAppSelector } from '@/redux/hooks';
 import { getProductsAll, getIsLoading } from '@/redux/products/productsSlice';
 import { filterByCategory } from '@/helpers/filterByCategory';

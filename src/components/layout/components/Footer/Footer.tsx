@@ -1,6 +1,5 @@
-import React from 'react';
 import css from './Footer.module.scss';
-import Icon from '@/UI/basic/Icon/Icon';
+import { Icon } from '@/UI/basic/Icon';
 import { Container } from '@/UI/common/Container';
 import { FooterNavigation } from '../FooterNavigation';
 

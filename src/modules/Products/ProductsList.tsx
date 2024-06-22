@@ -1,17 +1,17 @@
 'use client';
-import React, { FC } from 'react';
-import ProductListItem from './ProductListItem/ProductListItem';
+
+import { ProductListItem } from './ProductListItem';
 import { addItem, getFilledCart } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getFavorites } from '@/redux/products/productsSlice';
 import { toast } from 'react-toastify';
 import css from './ProductsList.module.scss';
 
-interface Props {
+interface ProductsListProps {
   data: TProductsArr;
 }
 
-const ProductsList: FC<Props> = ({ data }) => {
+export function ProductsList({ data }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
   const filledCart = useAppSelector(getFilledCart);
@@ -79,6 +79,4 @@ const ProductsList: FC<Props> = ({ data }) => {
       })}
     </div>
   );
-};
-
-export default ProductsList;
+}

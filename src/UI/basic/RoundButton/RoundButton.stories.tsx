@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import RoundButton from './RoundButton';
-import Icon from '../Icon/Icon';
+import { RoundButton } from './RoundButton';
+import { Icon } from '../Icon';
 import '../../../styles/globals.scss';
 import * as Icons from '../Icon/Icon.stories';
 

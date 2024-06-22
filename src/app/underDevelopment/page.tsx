@@ -1,4 +1,3 @@
-import React from 'react';
 import css from '../styles/pages/UnderDevelopment.module.scss';
 
 const underDevelopment = () => {

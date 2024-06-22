@@ -1,12 +1,14 @@
-import React, { FC, forwardRef, HTMLProps, PropsWithRef } from 'react';
+import { forwardRef, HTMLProps } from 'react';
 import css from './TextArea.module.scss';
 
-interface Props extends HTMLProps<HTMLTextAreaElement> {
+interface TextAreaProps extends HTMLProps<HTMLTextAreaElement> {
   label?: string;
   error?: string;
 }
 
-export const TextArea: FC<PropsWithRef<Props>> = forwardRef(
+type Ref = HTMLTextAreaElement;
+
+export const TextArea = forwardRef<Ref, TextAreaProps>(
   ({ label, error, ...props }, ref) => {
     return (
       <fieldset className={css.fieldset}>

@@ -1,12 +1,14 @@
-import React, { FC, forwardRef, HTMLProps, PropsWithRef } from 'react';
+import { forwardRef, HTMLProps } from 'react';
 import css from './Input.module.scss';
 
-interface Props extends HTMLProps<HTMLInputElement> {
+interface InputProps extends HTMLProps<HTMLInputElement> {
   label?: string;
   error?: string;
 }
 
-export const Input: FC<PropsWithRef<Props>> = forwardRef(
+type Ref = HTMLInputElement;
+
+export const Input = forwardRef<Ref, InputProps>(
   ({ label, error, ...props }, ref) => {
     return (
       <fieldset className={css.fieldset}>

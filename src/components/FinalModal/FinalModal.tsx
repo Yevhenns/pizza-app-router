@@ -1,8 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { FC } from 'react';
 import { Button } from '@/UI/basic/Button';
 import Error500 from '../errors/Error500/Error500';
-import css from './FinalModal.module.scss';
 import { useAppSelector } from '@/redux/hooks';
 import {
   getError,
@@ -11,6 +9,7 @@ import {
   getOrderSum,
 } from '@/redux/cart/cartSlice';
 import { LoaderModal } from '@/UI/common/LoaderModal';
+import css from './FinalModal.module.scss';
 
 interface FinalModalProps {
   finalAction: () => void;

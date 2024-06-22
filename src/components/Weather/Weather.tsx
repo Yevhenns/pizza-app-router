@@ -1,9 +1,8 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import css from './Weather.module.scss';
 import { showDniproWeather } from '@/requests/api/weather';
+import css from './Weather.module.scss';
 
 export function Weather() {
   const [weather, setWeather] = useState<[] | Forecast>([]);

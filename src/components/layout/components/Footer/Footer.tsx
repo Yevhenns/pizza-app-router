@@ -1,7 +1,7 @@
-import css from './Footer.module.scss';
 import { Icon } from '@/UI/basic/Icon';
 import { Container } from '@/UI/common/Container';
 import { FooterNavigation } from '../FooterNavigation';
+import css from './Footer.module.scss';
 
 export function Footer() {
   return (

@@ -1,5 +1,4 @@
 'use client';
-
 import { ProductListItem } from './ProductListItem';
 import { addItem, getFilledCart } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';

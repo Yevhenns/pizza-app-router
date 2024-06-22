@@ -5,8 +5,10 @@
     flex-direction: column;
     gap: 10px;
     font-family: var(--secondary-font);
+
     a {
         transition: transform 250ms linear;
+
         &:hover {
             transform: scale(1.1);
         }

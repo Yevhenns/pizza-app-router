@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TextArea from './TextArea';
+import { TextArea } from './TextArea';
 import '../../../styles/globals.scss';
 
 const meta: Meta<typeof TextArea> = {

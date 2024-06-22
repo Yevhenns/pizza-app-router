@@ -6,8 +6,8 @@ import { sendOrder } from '@/redux/cart/cartOperations';
 import { Button } from '@/UI/basic/Button';
 import { TextArea } from '@/UI/basic/TextArea';
 import { Checkbox } from '@/UI/basic/Checkbox';
-import css from './CartForm.module.scss';
 import { Input } from '@/UI/basic/Input';
+import css from './CartForm.module.scss';
 
 interface CartFormProps extends HTMLProps<HTMLFormElement> {
   openModal: () => void;

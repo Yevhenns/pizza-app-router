@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import css from './FooterNavigation.module.scss';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';
+import css from './FooterNavigation.module.scss';
 
 export function FooterNavigation() {
   return (

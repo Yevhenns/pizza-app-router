@@ -1,10 +1,10 @@
 'use client';
-import React, { PropsWithChildren } from 'react';
-import css from './Layout.module.scss';
+import { PropsWithChildren } from 'react';
 import { TabNavigator } from './components/TabNavigator';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Addresses } from './components/Addresses';
+import css from './Layout.module.scss';
 
 interface LayoutProps extends PropsWithChildren {}
 

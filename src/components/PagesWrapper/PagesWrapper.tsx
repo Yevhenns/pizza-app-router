@@ -1,6 +1,5 @@
 'use client';
-
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import Head from 'next/head';
 import Error500 from '@/components/errors/Error500/Error500';
 import { useFetchProducts } from '@/hooks/useFetchProducts';

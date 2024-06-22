@@ -1,18 +1,18 @@
-import React, { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import css from './RoundButton.module.scss';
 
-interface Props {
+interface RoundButtonProps {
   children: ReactNode;
   onClick: () => void;
   disabled?: boolean;
 }
 
-export const RoundButton: FC<Props> = ({
+export function RoundButton({
   children,
   onClick,
   disabled,
   ...props
-}) => {
+}: RoundButtonProps) {
   return (
     <button
       className={css.button}
@@ -24,4 +24,4 @@ export const RoundButton: FC<Props> = ({
       {children}
     </button>
   );
-};
+}

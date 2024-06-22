@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
-import css from './Icon.module.scss';
 import { cn } from '../../../helpers/combineClasses';
+import css from './Icon.module.scss';
 
 interface IconProps {
   iconWidth: number | undefined;

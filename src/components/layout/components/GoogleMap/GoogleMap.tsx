@@ -3,12 +3,12 @@ import GoogleMapReact from 'google-map-react';
 import { Icon } from '@/UI/basic/Icon';
 import css from './GoogleMap.module.scss';
 
-interface Props {
+interface PointProps {
   lat: number;
   lng: number;
 }
 
-const Point: FC<Props> = () => (
+const Point: FC<PointProps> = () => (
   <div>
     <Icon svg="point" iconWidth={31} iconHeight={41} />
   </div>

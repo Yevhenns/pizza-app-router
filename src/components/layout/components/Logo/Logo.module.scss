@@ -2,6 +2,7 @@
 
 .logo {
   display: block;
+
   svg {
     @include mobile {
       width: 150px;

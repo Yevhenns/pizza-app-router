@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import { RoundButton } from '@/UI/basic/RoundButton';
 import { Icon } from '@/UI/basic/Icon';

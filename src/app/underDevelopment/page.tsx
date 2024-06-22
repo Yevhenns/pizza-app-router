@@ -1,4 +1,5 @@
-import css from '../styles/pages/UnderDevelopment.module.scss';
+'use client';
+import css from '../../styles/pages/UnderDevelopment.module.scss';
 
 const underDevelopment = () => {
   return (

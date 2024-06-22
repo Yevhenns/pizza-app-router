@@ -1,3 +1,4 @@
+'use client';
 import { Heading } from '@/UI/basic/Heading';
 import { ProductsList } from '@/modules/Products';
 import { useAppSelector } from '@/redux/hooks';

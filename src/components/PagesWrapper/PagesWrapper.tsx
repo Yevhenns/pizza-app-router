@@ -33,7 +33,6 @@ export function PagesWrapper({ title, children }: PagesWrapperProps) {
       </Head> */}
       <Section>
         <Container>{is500Error ? <Error500 /> : <>{children}</>}</Container>
-        <Container>{children}</Container>
       </Section>
     </>
   );

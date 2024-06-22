@@ -1,5 +1,4 @@
 'use client';
-
 import React, { PropsWithChildren } from 'react';
 import css from './Layout.module.scss';
 import { TabNavigator } from './components/TabNavigator';

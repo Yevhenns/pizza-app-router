@@ -1,3 +1,4 @@
+'use client';
 import { Heading } from '@/UI/basic/Heading';
 import { Empty } from '@/components/Empty';
 import { getFavorites, getIsLoading } from '@/redux/products/productsSlice';

@@ -1,3 +1,4 @@
+'use client';
 import { Heading } from '@/UI/basic/Heading';
 import { ProductsList } from '@/modules/Products';
 import { PagesWrapper } from '@/components/PagesWrapper';

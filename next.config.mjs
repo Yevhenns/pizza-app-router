@@ -6,6 +6,7 @@ const nextConfig = {
     BASE_URL: process.env.BASE_URL,
     WEATHER_BASE_URL: process.env.WEATHER_BASE_URL,
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,
+    DATABASE_URL: process.env.DATABASE_URL,
   },
   reactStrictMode: true,
   images: {
@@ -28,6 +29,10 @@ const nextConfig = {
         port: '',
       },
     ],
+  },
+  experimental: {
+    esmExternals: 'loose',
+    serverComponentsExternalPackages: ['mongoose'],
   },
 };
 

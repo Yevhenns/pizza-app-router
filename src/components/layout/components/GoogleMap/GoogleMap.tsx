@@ -14,7 +14,7 @@ const Point: FC<Props> = () => (
   </div>
 );
 
-export default function GoogleMaps() {
+export function GoogleMap() {
   const defaultProps = {
     center: {
       lat: 48.4211840588917,

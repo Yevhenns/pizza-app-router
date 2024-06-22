@@ -1,7 +1,9 @@
-import React, { FC } from 'react';
+'use client'
+
+import React from 'react';
 import css from './Error500.module.scss';
 
-const Error500: FC = () => {
+const Error500 = () => {
   return (
     <div className={css.modalWrapper}>
       <div className={css.modal}>

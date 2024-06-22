@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/helpers/combineClasses';
 import css from './Navigation.module.scss';
 
-const Navigation: FC = () => {
+export function Navigation() {
   const pathname = usePathname();
 
   return (
@@ -49,6 +49,4 @@ const Navigation: FC = () => {
       </Link>
     </nav>
   );
-};
-
-export default Navigation;
+}

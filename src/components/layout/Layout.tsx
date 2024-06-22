@@ -1,13 +1,15 @@
-import React, { FC, PropsWithChildren } from 'react';
-import Addresses from './components/Addresses/Addresses';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+'use client';
+
+import React, { PropsWithChildren } from 'react';
 import css from './Layout.module.scss';
-import TabNavigator from './components/TabNavigator/TabNavigator';
+import { TabNavigator } from './components/TabNavigator';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { Addresses } from './components/Addresses';
 
-interface Props extends PropsWithChildren {}
+interface LayoutProps extends PropsWithChildren {}
 
-const Layout: FC<Props> = ({ children }) => {
+export function Layout({ children }: LayoutProps) {
   return (
     <div className={css.wrapper}>
       <Header />
@@ -19,6 +21,4 @@ const Layout: FC<Props> = ({ children }) => {
       <Footer />
     </div>
   );
-};
-
-export default Layout;
+}

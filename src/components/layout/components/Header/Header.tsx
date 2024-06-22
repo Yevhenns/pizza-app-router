@@ -1,16 +1,16 @@
 'use client';
 
-import React, { FC, useEffect, useState } from 'react';
-import Logo from '../Logo/Logo';
-import Container from '@/UI/common/Container/Container';
-import PhoneNumbersSet from '../PhoneNumbersSet/PhoneNumbersSet';
-import HeaderNavLink from '../HeaderNavLink/HeaderNavLink';
-import Navigation from '../Navigation/Navigation';
+import React, { useEffect, useState } from 'react';
 import { getFilledCart } from '@/redux/cart/cartSlice';
 import { useAppSelector } from '@/redux/hooks';
 import css from './Header.module.scss';
+import { Container } from '@/UI/common/Container';
+import { HeaderNavLink } from '../HeaderNavLink';
+import { Logo } from '../Logo';
+import { Navigation } from '../Navigation';
+import { PhoneNumbersSet } from '../PhoneNumbersSet';
 
-const Header: FC = () => {
+export function Header() {
   const [itemsInCart, setItemsInCart] = useState(0);
 
   const items = useAppSelector(getFilledCart);
@@ -40,6 +40,4 @@ const Header: FC = () => {
       <Navigation />
     </header>
   );
-};
-
-export default Header;
+}

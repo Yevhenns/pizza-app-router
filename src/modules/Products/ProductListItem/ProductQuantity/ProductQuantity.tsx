@@ -1,3 +1,4 @@
+'use client';
 import React, { FC, useState, useEffect } from 'react';
 import RoundButton from '@/UI/basic/RoundButton/RoundButton';
 import css from './ProductQuantity.module.scss';

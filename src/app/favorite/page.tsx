@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Heading from '@/UI/basic/Heading/Heading';
 import Empty from '@/components/Empty/Empty';
 import { getFavorites, getIsLoading } from '@/redux/products/productsSlice';
 import { useAppSelector } from '@/redux/hooks';
 import ProductsList from '@/modules/Products/ProductsList';
-import LoaderModal from '@/UI/common/LoaderModal/LoaderModal';
-import PagesWrapper from '@/components/PagesWrapper/PagesWrapper';
+import { LoaderModal } from '@/UI/common/LoaderModal';
+import { PagesWrapper } from '@/components/PagesWrapper';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Favorite: FC = () => {
+const Favorite = () => {
   const isLoading = useAppSelector(getIsLoading);
   const favoriteProducts = useAppSelector(getFavorites);
 

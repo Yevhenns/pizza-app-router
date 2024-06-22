@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
-import Container from '@/UI/common/Container/Container';
-import FooterNavigation from '../FooterNavigation/FooterNavigation';
+import React from 'react';
 import css from './Footer.module.scss';
 import Icon from '@/UI/basic/Icon/Icon';
+import { Container } from '@/UI/common/Container';
+import { FooterNavigation } from '../FooterNavigation';
 
-const Footer: FC = () => {
+export function Footer() {
   return (
     <footer className={css.footer}>
       <Container>
@@ -37,6 +37,4 @@ const Footer: FC = () => {
       </Container>
     </footer>
   );
-};
-
-export default Footer;
+}

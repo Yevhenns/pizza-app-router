@@ -5,7 +5,7 @@ import Image from 'next/image';
 import css from './Weather.module.scss';
 import { showDniproWeather } from '@/requests/api/weather';
 
-export const Weather = () => {
+export function Weather() {
   const [weather, setWeather] = useState<[] | Forecast>([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ export const Weather = () => {
       </div>
     </div>
   );
-};
+}

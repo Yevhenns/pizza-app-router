@@ -1,13 +1,15 @@
-import React, { FC, useState } from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Heading from '@/UI/basic/Heading/Heading';
 import CartContent from '@/modules/Cart/CartContent';
 import FinalModal from '@/components/FinalModal/FinalModal';
-import PagesWrapper from '@/components/PagesWrapper/PagesWrapper';
 import { useAppDispatch } from '@/redux/hooks';
 import { deleteAllItems } from '@/redux/cart/cartSlice';
-import css from '../styles/pages/Cart.module.scss';
+import css from '../../styles/pages/Cart.module.scss';
+import { PagesWrapper } from '@/components/PagesWrapper';
 
-const Cart: FC = () => {
+const Cart = () => {
   const [open, setOpen] = useState(false);
 
   const dispatch = useAppDispatch();

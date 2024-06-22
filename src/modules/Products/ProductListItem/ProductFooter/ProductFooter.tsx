@@ -1,3 +1,4 @@
+'use client';
 import React, { FC } from 'react';
 import Button from '@/UI/basic/Button/Button';
 import css from './ProductFooter.module.scss';

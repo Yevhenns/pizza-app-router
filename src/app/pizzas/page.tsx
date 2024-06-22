@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Heading from '@/UI/basic/Heading/Heading';
 import ProductsList from '@/modules/Products/ProductsList';
-import PagesWrapper from '@/components/PagesWrapper/PagesWrapper';
-import LoaderModal from '@/UI/common/LoaderModal/LoaderModal';
+import { PagesWrapper } from '@/components/PagesWrapper';
+import { LoaderModal } from '@/UI/common/LoaderModal';
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
 import { filterByCategory } from '@/helpers/filterByCategory';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Pizzas: FC = () => {
+const Pizzas = () => {
   const products = useAppSelector(getProductsAll);
   const isLoading = useAppSelector(getIsLoading);
   const pizzas = filterByCategory(products, 'pizzas');

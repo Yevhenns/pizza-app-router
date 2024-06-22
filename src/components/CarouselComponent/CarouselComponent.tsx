@@ -1,23 +1,22 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import css from './CarouselComponent.module.scss';
 
-interface Props {
+interface CarouselImageProps {
   src: string;
   alt: string;
 }
 
-export const CarouselImage: FC<Props> = ({ src, alt }) => {
+export function CarouselImage({ src, alt }: CarouselImageProps) {
   return (
     <div className={css.item}>
       <Image src={src} alt={alt} width={1062} height={401} priority={true} />
     </div>
   );
-};
+}
 
-const CarouselComponent: FC = () => {
+export function CarouselComponent() {
   return (
     <Carousel
       autoPlay
@@ -40,6 +39,4 @@ const CarouselComponent: FC = () => {
       />
     </Carousel>
   );
-};
-
-export default CarouselComponent;
+}

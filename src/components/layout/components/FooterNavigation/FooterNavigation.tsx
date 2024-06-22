@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
 import Link from 'next/link';
-import PhoneNumbersSet from '../PhoneNumbersSet/PhoneNumbersSet';
 import css from './FooterNavigation.module.scss';
+import { PhoneNumbersSet } from '../PhoneNumbersSet';
 
-const FooterNavigation: FC = () => {
+export function FooterNavigation() {
   return (
     <div className={css.wrapper}>
       <div className={css.item}>
@@ -21,6 +20,4 @@ const FooterNavigation: FC = () => {
       <PhoneNumbersSet />
     </div>
   );
-};
-
-export default FooterNavigation;
+}

@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import { Loader } from '../Loader';
 import css from './LoaderModal.module.scss';
-import Loader from '../Loader/Loader';
 
-const LoaderModal: FC = () => {
+export function LoaderModal() {
   return (
     <div className={css.modalWrapper}>
       <div className={css.loaderWrapper}>
@@ -10,6 +9,4 @@ const LoaderModal: FC = () => {
       </div>
     </div>
   );
-};
-
-export default LoaderModal;
+}

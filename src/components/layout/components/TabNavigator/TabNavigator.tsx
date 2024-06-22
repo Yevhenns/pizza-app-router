@@ -1,13 +1,12 @@
 'use client';
 
-import React, { FC } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/helpers/combineClasses';
 import css from './TabNavigator.module.scss';
 import Icon from '@/UI/basic/Icon/Icon';
 
-const TabNavigator: FC = () => {
+export function TabNavigator() {
   const pathname = usePathname();
 
   return (
@@ -41,6 +40,4 @@ const TabNavigator: FC = () => {
       </Link>
     </nav>
   );
-};
-
-export default TabNavigator;
+}

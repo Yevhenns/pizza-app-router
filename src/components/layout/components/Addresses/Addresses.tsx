@@ -1,10 +1,9 @@
-import React, { FC } from 'react';
-import Section from '../../../../UI/common/Section/Section';
-import Container from '../../../../UI/common/Container/Container';
-import SimpleMap from '../GoogleMap/GoogleMap';
+import { GoogleMap } from '../GoogleMap';
 import css from './Addresses.module.scss';
+import { Section } from '@/UI/common/Section';
+import { Container } from '@/UI/common/Container';
 
-const Addresses: FC = () => {
+export function Addresses() {
   return (
     <Section>
       <Container>
@@ -15,11 +14,9 @@ const Addresses: FC = () => {
             <p>м. Дніпро, Зоряний бульвар 1А</p>
             <p>м. Дніпро, вулиця Титова 36</p>
           </address>
-          <SimpleMap />
+          <GoogleMap />
         </div>
       </Container>
     </Section>
   );
-};
-
-export default Addresses;
+}

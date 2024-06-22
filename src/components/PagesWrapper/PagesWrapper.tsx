@@ -1,20 +1,23 @@
-import React, { FC, PropsWithChildren } from 'react';
+'use client';
+
+import React, { PropsWithChildren } from 'react';
 import Head from 'next/head';
-import Container from '@/UI/common/Container/Container';
-import Section from '@/UI/common/Section/Section';
 import Error500 from '@/components/errors/Error500/Error500';
 import { useFetchProducts } from '@/hooks/useFetchProducts';
 import 'react-toastify/dist/ReactToastify.css';
+import { Section } from '@/UI/common/Section';
+import { Container } from '@/UI/common/Container';
 
-interface Props extends PropsWithChildren {
+interface PagesWrapperProps extends PropsWithChildren {
   title: string;
 }
-export const PagesWrapper: FC<Props> = ({ title, children }) => {
+
+export function PagesWrapper({ title, children }: PagesWrapperProps) {
   const is500Error = useFetchProducts();
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <meta
           name="description"
           content="Найсмачніша піца в Дніпрі!"
@@ -27,12 +30,11 @@ export const PagesWrapper: FC<Props> = ({ title, children }) => {
           name="keywords"
         />
         <title>{title}</title>
-      </Head>
+      </Head> */}
       <Section>
         <Container>{is500Error ? <Error500 /> : <>{children}</>}</Container>
+        <Container>{children}</Container>
       </Section>
     </>
   );
-};
-
-export default PagesWrapper;
+}

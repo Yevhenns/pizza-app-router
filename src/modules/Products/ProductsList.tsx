@@ -1,3 +1,4 @@
+'use client';
 import React, { FC } from 'react';
 import ProductListItem from './ProductListItem/ProductListItem';
 import { addItem, getFilledCart } from '@/redux/cart/cartSlice';

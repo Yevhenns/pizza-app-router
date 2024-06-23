@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface IProduct {
+export interface Products extends mongoose.Document {
   title: string;
   description: string;
   dimension: string;
@@ -11,7 +11,7 @@ export interface IProduct {
   promPrice: number;
 }
 
-const productSchema = new mongoose.Schema<IProduct>(
+const productSchema = new mongoose.Schema<Products>(
   {
     title: { type: String, required: [true, 'Введіть назву продукту'] },
     description: { type: String, required: [true, 'Введіть опис продукту'] },
@@ -33,8 +33,5 @@ const productSchema = new mongoose.Schema<IProduct>(
   }
 );
 
-const ProductModel = () => mongoose.model<IProduct>('Product1', productSchema);
-
-export default (mongoose.models?.Product1 || ProductModel()) as ReturnType<
-  typeof ProductModel
->;
+export default mongoose.models.Product ||
+  mongoose.model<Products>('Product', productSchema);

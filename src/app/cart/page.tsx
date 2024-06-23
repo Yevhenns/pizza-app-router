@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 import { Heading } from '@/UI/basic/Heading';
 import { CartContent } from '@/modules/Cart';

@@ -1,7 +1,6 @@
-'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { showDniproWeather } from '@/requests/api/weather';
+import { showDniproWeather } from './showDniproWeather';
 import css from './Weather.module.scss';
 
 export function Weather() {

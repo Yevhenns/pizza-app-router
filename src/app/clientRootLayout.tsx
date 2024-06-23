@@ -1,5 +1,4 @@
 'use client';
-
 import type { Metadata } from 'next';
 import { persist, store } from '@/redux/store';
 import { Provider } from 'react-redux';

@@ -27,11 +27,6 @@ export function Header() {
             <div className={css.phoneNumberSet}>
               <PhoneNumbersSet />
             </div>
-            {/* <HeaderNavLink
-              hrefProp={'/underDevelopment'}
-              svg="user"
-              text={'Увійти'}
-            /> */}
             <HeaderNavLink hrefProp={'/cart'} svg="basket" text={itemsInCart} />
           </div>
         </div>

@@ -15,7 +15,7 @@ export function Empty({ text }: EmptyProps) {
         height={257}
         priority={true}
       />
-      <p>{text}</p>
+      <span>{text}</span>
     </div>
   );
 }

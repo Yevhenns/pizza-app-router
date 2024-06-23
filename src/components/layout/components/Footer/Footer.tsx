@@ -4,6 +4,8 @@ import { FooterNavigation } from '../FooterNavigation';
 import css from './Footer.module.scss';
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className={css.footer}>
       <Container>
@@ -31,7 +33,8 @@ export function Footer() {
           </div>
         </div>
         <p className={css.copyright}>
-          &copy; 2023 “Nostra pizza” LLC, м. Дніпро. Всі права захищено.
+          &copy; {currentYear} “Nostra pizza” LLC, м. Дніпро. Всі права
+          захищено.
         </p>
       </Container>
     </footer>

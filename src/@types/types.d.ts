@@ -59,9 +59,7 @@ type TAddToCart = (
 type TResponse = {
   code: number;
   status: string;
-  data: {
-    result: TProductsArr;
-  };
+  data: TProductsArr;
 };
 
 type ApiResponse = {

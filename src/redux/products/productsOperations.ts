@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const BASE_URL = process.env.BASE_URL;
+const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = process.env.BASE_URL;
 
 export const getProducts = createAsyncThunk<
   TProductsArr,
@@ -12,7 +13,9 @@ export const getProducts = createAsyncThunk<
   try {
     const res = await fetch(`${BASE_URL}/api/products`);
     const data: TResponse = await res.json();
-    return data.data.result;
+    console.log(data.data);
+
+    return data.data;
   } catch (error: any) {
     return rejectWithValue(error.message);
   }

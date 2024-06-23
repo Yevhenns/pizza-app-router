@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { HTMLProps } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -18,12 +19,13 @@ export function CartForm({ openModal, order }: CartFormProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
   } = useForm<TInfo>({ mode: 'onChange' });
 
   const orderSum = useAppSelector(getOrderSum);
   const dispatch = useAppDispatch();
+  console.log(isValid);
 
   const onSubmit: SubmitHandler<TInfo> = data => {
     openModal();
@@ -44,10 +46,15 @@ export function CartForm({ openModal, order }: CartFormProps) {
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <Input
-        {...register('name', { required: "Це обов'язкове поле!" })}
+        {...register('name', {
+          required: "Це обов'язкове поле!",
+          validate: {
+            required: value => value.trim().length > 1 || "Введіть ім'я",
+          },
+        })}
         placeholder="Введіть ім'я"
         id="customer-name"
-        label="Ім'я"
+        label="* Ім'я"
         htmlFor="customer-name"
         error={errors?.name?.message}
         inputMode="text"
@@ -56,7 +63,10 @@ export function CartForm({ openModal, order }: CartFormProps) {
       <Input
         {...register('number', {
           required: "Це обов'язкове поле!",
-          minLength: 10,
+          minLength: {
+            value: 10,
+            message: 'Замало цифр',
+          },
           maxLength: {
             value: 10,
             message: 'Забагато цифр',
@@ -65,7 +75,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
         pattern="[0-9]{10}"
         placeholder="Введіть номер телефону"
         id="customer-number"
-        label="Номер телефону в форматі: 0991115533"
+        label="* Номер телефону в форматі: 0991115533"
         htmlFor="customer-number"
         type="tel"
         error={errors?.number?.message}
@@ -79,9 +89,11 @@ export function CartForm({ openModal, order }: CartFormProps) {
       />
       {delivery && (
         <Input
-          {...register('address', { required: "Це обов'язкове поле!" })}
+          {...register('address', {
+            required: "Це обов'язкове поле!",
+          })}
           id="address"
-          label="Введіть адресу"
+          label="* Введіть адресу"
           placeholder="Введіть адресу"
           htmlFor="address"
           error={errors?.address?.message}
@@ -94,7 +106,10 @@ export function CartForm({ openModal, order }: CartFormProps) {
         label="Коментар"
         htmlFor="comment"
       />
-      <Button type="submit">Підтвердити</Button>
+      <span>* обов'язкові поля</span>
+      <Button type="submit" disabled={!isValid}>
+        Підтвердити
+      </Button>
     </form>
   );
 }

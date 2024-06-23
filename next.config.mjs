@@ -7,6 +7,7 @@ const nextConfig = {
     WEATHER_BASE_URL: process.env.WEATHER_BASE_URL,
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,
     MONGODB_URI: process.env.MONGODB_URI,
+    SERVER_URL: process.env.SERVER_URL,
   },
   reactStrictMode: true,
   images: {

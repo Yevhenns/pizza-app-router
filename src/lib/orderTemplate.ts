@@ -8,7 +8,7 @@ export const orderTemplate = `
 </head>
 <body>
 <h3>Інформація про замовника</h3>
-<p>Ім'я: {{data.name}}</p>
+<p>Ім'я: {{name}}</p>
 <p>Номер телефону: {{data.number}}</p>
 <p>Адреса: {{data.address}}</p>
 <p>Коментар: {{data.comment}}</p>

@@ -23,15 +23,6 @@ export function TabNavigator() {
         <Icon svg="basket" iconWidth={34} iconHeight={34} />
       </Link>
       <Link
-        className={cn(
-          css.link,
-          pathname === '/underDevelopment' ? css.active : ''
-        )}
-        href={'/underDevelopment'}
-      >
-        <Icon svg="user" iconWidth={34} iconHeight={34} />
-      </Link>
-      <Link
         className={cn(css.link, pathname === '/favorite' ? css.active : '')}
         href={'/favorite'}
       >

@@ -25,7 +25,6 @@ export function CartForm({ openModal, order }: CartFormProps) {
 
   const orderSum = useAppSelector(getOrderSum);
   const dispatch = useAppDispatch();
-  console.log(isValid);
 
   const onSubmit: SubmitHandler<TInfo> = data => {
     openModal();

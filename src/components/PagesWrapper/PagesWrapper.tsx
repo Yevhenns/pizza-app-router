@@ -13,10 +13,6 @@ interface PagesWrapperProps extends PropsWithChildren {
 export function PagesWrapper({ children }: PagesWrapperProps) {
   const is500Error = useFetchProducts();
 
-  (async function () {
-    fetch(`${process.env.SERVER_URL}/api/healthcheck`);
-  })();
-
   return (
     <>
       <Section>

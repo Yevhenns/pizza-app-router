@@ -1,6 +1,6 @@
 import { compileOrderTemplate, sendEmail } from '@/lib/mail';
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   const body = await request.json();
   const { customerInfo, order, orderSum } = body;
   const { name, number, comment, address } = customerInfo;

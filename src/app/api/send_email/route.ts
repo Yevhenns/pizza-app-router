@@ -1,10 +1,23 @@
 import { compileOrderTemplate, sendEmail } from '@/lib/mail';
 
 export async function POST(request: Request, response: Response) {
-  await sendEmail({ body: compileOrderTemplate({ name: 'Oleg' }) });
+  const body = await request.json();
+  const { customerInfo, order, orderSum } = body;
+  const { name, number, comment, address } = customerInfo;
 
-  const data = await response.json();
-  console.log(data);
+  const emailBody = compileOrderTemplate({
+    name,
+    number,
+    comment,
+    address,
+    order,
+    orderSum,
+  });
 
-  return Response.json(data);
+  await sendEmail({ body: emailBody });
+
+  return new Response(JSON.stringify({ success: true }), {
+    status: 201,
+    headers: { 'Content-type': 'application/json' },
+  });
 }

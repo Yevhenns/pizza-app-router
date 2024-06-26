@@ -9,13 +9,13 @@ export const orderTemplate = `
 <body>
 <h3>Інформація про замовника</h3>
 <p>Ім'я: {{name}}</p>
-<p>Номер телефону: {{data.number}}</p>
-<p>Адреса: {{data.address}}</p>
-<p>Коментар: {{data.comment}}</p>
-<p>Загальна сума: {{data.sum}} грн.</p>
+<p>Номер телефону: {{number}}</p>
+<p>Адреса: {{address}}</p>
+<p>Коментар: {{comment}}</p>
+<p>Загальна сума: {{orderSum}} грн.</p>
 <h3>Замовлення</h3>
 <div>
-    {{#each data.items}}
+    {{#each order}}
         <p>{{this.title}} - {{this.quantity}} шт.</p>
     {{/each}}
 </div>

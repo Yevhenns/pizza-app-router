@@ -1,15 +1,12 @@
 ## PIZZA
 
-It's a front-end part of a full-stack single page application. Also visit a
-back-end part of the app:
-[https://github.com/YevhennsOrganization/pizza_backend.git](https://github.com/YevhennsOrganization/pizza_backend.git)
+It's a full-stack project with server components.
 
 Storybook: (https://pizza-storybook.vercel.app/)
 
 To install and run the project:
 
 ```bash
-git clone https://github.com/Yevhenns/pizza.git
 npm i
 npm run dev
 ```

@@ -63,22 +63,20 @@ type TResponse = {
 };
 
 type ApiResponse = {
-  data: {
-    location: {
-      name: string;
-    };
-    forecast: {
-      forecastday: {
-        date: string;
-        day: {
-          avgtemp_c: string;
-          condition: {
-            text: string;
-            icon: string;
-          };
+  location: {
+    name: string;
+  };
+  forecast: {
+    forecastday: {
+      date: string;
+      day: {
+        avgtemp_c: string;
+        condition: {
+          text: string;
+          icon: string;
         };
-      }[];
-    };
+      };
+    }[];
   };
 };
 

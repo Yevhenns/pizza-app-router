@@ -11,13 +11,13 @@ const rootPersistConfig = {
 };
 
 const cartPersistConfig = {
-  key: 'cart',
+  key: 'filledCart',
   storage,
   whitelist: ['filledCart'],
 };
 
 const favoritePersistConfig = {
-  key: 'products',
+  key: 'favorites',
   storage,
   whitelist: ['favorites'],
 };

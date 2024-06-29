@@ -22,6 +22,9 @@ const cartSlice = createSlice({
         (item: TCartItem) => item._id !== action.payload
       );
     },
+    checkCart(state, action: { payload: TCartItem[] }) {
+      state.filledCart = action.payload
+    },
     addInfo(state, action: { payload: TInfo }) {
       state.customerInfo = action.payload;
     },
@@ -66,6 +69,7 @@ export const getError = (state: RootState) => state.cart.error;
 
 export const { addItem } = cartSlice.actions;
 export const { deleteItem } = cartSlice.actions;
+export const { checkCart } = cartSlice.actions;
 export const { addInfo } = cartSlice.actions;
 export const { deleteAllItems } = cartSlice.actions;
 export const { addOrderSum } = cartSlice.actions;

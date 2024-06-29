@@ -36,6 +36,7 @@ const productsSlice = createSlice({
           return;
         }
         if (action.payload) {
+          
           const getByPromotion = () => {
             return action.payload.filter(
               (item: TProduct) => item.promotion === true
@@ -43,6 +44,13 @@ const productsSlice = createSlice({
           };
           state.productsAll = action.payload;
           state.promotions = getByPromotion();
+
+          const filteredFavoriteProducts = 
+            action.payload.filter(({_id : id1}) => state.favorites.some(({_id: id2}) => id1 === id2) 
+            );             
+          
+          state.favorites = filteredFavoriteProducts;
+          
           state.isLoading = false;
         }
       })

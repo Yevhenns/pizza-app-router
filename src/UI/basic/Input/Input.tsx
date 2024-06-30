@@ -16,7 +16,7 @@ export const Input = forwardRef<Ref, InputProps>(function Input(
     <fieldset className={css.fieldset}>
       <label htmlFor={props.htmlFor}>{label}</label>
       <input autoComplete="true" ref={ref} {...props} />
-      {error && <span className={css.errorMessage}>{error}</span>}
+      <div>{error && <span>{error}</span>}</div>
     </fieldset>
   );
 });

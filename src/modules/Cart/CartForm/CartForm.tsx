@@ -44,67 +44,75 @@ export function CartForm({ openModal, order }: CartFormProps) {
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        {...register('name', {
-          required: "Це обов'язкове поле!",
-          validate: {
-            required: value => value.trim().length > 1 || "Введіть ім'я",
-          },
-        })}
-        placeholder="Введіть ім'я"
-        id="customer-name"
-        label="* Ім'я"
-        htmlFor="customer-name"
-        error={errors?.name?.message}
-        inputMode="text"
-        type="text"
-      />
-      <Input
-        {...register('number', {
-          required: "Це обов'язкове поле!",
-          minLength: {
-            value: 10,
-            message: 'Замало цифр',
-          },
-          maxLength: {
-            value: 10,
-            message: 'Забагато цифр',
-          },
-        })}
-        pattern="[0-9]{10}"
-        placeholder="Введіть номер телефону"
-        id="customer-number"
-        label="* Номер телефону в форматі: 0991115533"
-        htmlFor="customer-number"
-        type="tel"
-        error={errors?.number?.message}
-        inputMode="tel"
-      />
-      <Checkbox
-        {...register('delivery')}
-        id="delivery"
-        htmlFor="delivery"
-        label="Доставка"
-      />
-      {delivery && (
+      <div>
         <Input
-          {...register('address', {
+          {...register('name', {
             required: "Це обов'язкове поле!",
+            validate: {
+              required: value => value.trim().length > 1 || "Введіть ім'я",
+            },
           })}
-          id="address"
-          label="* Введіть адресу"
-          placeholder="Введіть адресу"
-          htmlFor="address"
-          error={errors?.address?.message}
+          placeholder="Введіть ім'я"
+          id="customer-name"
+          label="* Ім'я"
+          htmlFor="customer-name"
+          error={errors?.name?.message}
+          inputMode="text"
+          type="text"
         />
-      )}
-      <TextArea
-        {...register('comment')}
-        id="comment"
-        placeholder="Введіть коментар"
-        label="Коментар"
-        htmlFor="comment"
-      />
+        <Input
+          {...register('number', {
+            required: "Це обов'язкове поле!",
+            minLength: {
+              value: 10,
+              message: 'Замало цифр',
+            },
+            maxLength: {
+              value: 10,
+              message: 'Забагато цифр',
+            },
+          })}
+          pattern="[0-9]{10}"
+          placeholder="Введіть номер телефону"
+          id="customer-number"
+          label="* Номер телефону в форматі: 0991115533"
+          htmlFor="customer-number"
+          type="tel"
+          error={errors?.number?.message}
+          inputMode="tel"
+        />
+        <Checkbox
+          {...register('delivery')}
+          id="delivery"
+          htmlFor="delivery"
+          label="Доставка"
+        />
+      </div>
+      <div>
+        {delivery && (
+          <Input
+            {...register('address', {
+              required: "Це обов'язкове поле!",
+              minLength: {
+                value: 3,
+                message: 'Введіть адресу',
+              },
+            })}
+            id="address"
+            label="* Введіть адресу"
+            placeholder="Введіть адресу"
+            htmlFor="address"
+            error={errors?.address?.message}
+          />
+        )}
+        <TextArea
+          {...register('comment')}
+          id="comment"
+          placeholder="Введіть коментар"
+          label="Коментар"
+          htmlFor="comment"
+        />
+      </div>
       <span>* обов'язкові поля</span>
       <Button type="submit" disabled={!isValid}>
         Підтвердити

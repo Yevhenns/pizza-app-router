@@ -19,7 +19,11 @@
         }
     }
 
-    .errorMessage {
-        color: red;
+    div {
+        height: 25px;
+
+        span {
+            color: red;
+        }
     }
 }

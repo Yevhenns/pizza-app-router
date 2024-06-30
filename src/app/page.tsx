@@ -18,10 +18,10 @@ export default function Home() {
     <PagesWrapper>
       <Heading>Новинки</Heading>
       {isLoading && <LoaderModal />}
-      <Weather />
       <CarouselComponent />
-      <h2 className={css.heading}>Найпопулярніші позиції</h2>
+      <h2 className={css.heading}>Акційні пропозиції</h2>
       <ProductsList data={promotionProducts} />
+      <Weather />
       <ToastContainer />
     </PagesWrapper>
   );

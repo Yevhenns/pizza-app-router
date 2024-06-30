@@ -15,7 +15,7 @@ export default function Home() {
   const isLoading = useAppSelector(getIsLoading);
 
   return (
-    <PagesWrapper title="Nostra pizza - Новинки">
+    <PagesWrapper>
       <Heading>Новинки</Heading>
       {isLoading && <LoaderModal />}
       <Weather />

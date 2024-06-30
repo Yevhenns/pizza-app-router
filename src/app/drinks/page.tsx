@@ -9,19 +9,17 @@ import { PagesWrapper } from '@/components/PagesWrapper';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Drinks = () => {
+export default function Drinks() {
   const products = useAppSelector(getProductsAll);
   const isLoading = useAppSelector(getIsLoading);
   const drinks = filterByCategory(products, 'drinks');
 
   return (
-    <PagesWrapper title="Nostra pizza - Напої">
+    <PagesWrapper>
       <Heading>Напої</Heading>
       {isLoading && <LoaderModal />}
       <ProductsList data={drinks} />
       <ToastContainer />
     </PagesWrapper>
   );
-};
-
-export default Drinks;
+}

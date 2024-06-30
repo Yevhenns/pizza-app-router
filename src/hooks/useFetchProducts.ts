@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getProducts } from '@/redux/products/productsOperations';
@@ -21,5 +20,6 @@ export const useFetchProducts = () => {
       setIs500Error(true);
     }
   }, [dispatch, error, is500Error, products.length]);
+
   return is500Error;
 };

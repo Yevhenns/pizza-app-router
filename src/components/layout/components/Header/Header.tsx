@@ -1,22 +1,29 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { getFilledCart } from '@/redux/cart/cartSlice';
+import { getFilteredCart } from '@/redux/cart/cartSlice';
 import { useAppSelector } from '@/redux/hooks';
 import { Container } from '@/UI/common/Container';
 import { HeaderNavLink } from '../HeaderNavLink';
 import { Logo } from '../Logo';
 import { Navigation } from '../Navigation';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';
+import { useEffect, useState } from 'react';
+import { getFavorites } from '@/redux/products/productsSlice';
 import css from './Header.module.scss';
 
 export function Header() {
-  const [itemsInCart, setItemsInCart] = useState(0);
+  const [cartLength, setCartLength] = useState<null | number>(null);
+  const [favoriteLength, setFavoriteLength] = useState<null | number>(null);
 
-  const items = useAppSelector(getFilledCart);
+  const cart = useAppSelector(getFilteredCart).length;
+  const favorite = useAppSelector(getFavorites).length;
 
   useEffect(() => {
-    setItemsInCart(items.length);
-  }, [items]);
+    cart > 0 && setCartLength(cart);
+  }, [cart]);
+
+  useEffect(() => {
+    favorite > 0 && setFavoriteLength(favorite);
+  }, [favorite]);
 
   return (
     <header className={css.wrapper}>
@@ -27,7 +34,12 @@ export function Header() {
             <div className={css.phoneNumberSet}>
               <PhoneNumbersSet />
             </div>
-            <HeaderNavLink hrefProp={'/cart'} svg="basket" text={itemsInCart} />
+            <HeaderNavLink
+              hrefProp={'/favorite'}
+              svg="heart"
+              text={favoriteLength}
+            />
+            <HeaderNavLink hrefProp={'/cart'} svg="basket" text={cartLength} />
           </div>
         </div>
       </Container>

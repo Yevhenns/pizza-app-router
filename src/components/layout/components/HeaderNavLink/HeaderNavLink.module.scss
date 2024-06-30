@@ -6,12 +6,16 @@
     gap: 10px;
     transition: transform 250ms linear;
     color: var(--main-color);
+    position: relative;
 
     @include mobile {
         display: none;
     }
 
     p {
+        position: absolute;
+        top: -5px;
+        right: -10px;
         font-family: var(--secondary-font);
     }
 

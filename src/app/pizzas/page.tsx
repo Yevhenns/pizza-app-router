@@ -9,18 +9,17 @@ import { filterByCategory } from '@/helpers/filterByCategory';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Pizzas = () => {
+export default function Pizzas() {
   const products = useAppSelector(getProductsAll);
   const isLoading = useAppSelector(getIsLoading);
   const pizzas = filterByCategory(products, 'pizzas');
 
   return (
-    <PagesWrapper title="Nostra pizza - Піца">
+    <PagesWrapper>
       <Heading>Піца</Heading>
       {isLoading && <LoaderModal />}
       <ProductsList data={pizzas} />
       <ToastContainer />
     </PagesWrapper>
   );
-};
-export default Pizzas;
+}

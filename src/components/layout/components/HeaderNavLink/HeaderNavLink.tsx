@@ -4,7 +4,7 @@ import css from './HeaderNavLink.module.scss';
 
 interface HeaderNavLinkProps {
   hrefProp: string;
-  text: string | number;
+  text: null | number;
   svg: TypeIcon;
 }
 export function HeaderNavLink({ hrefProp, text, svg }: HeaderNavLinkProps) {

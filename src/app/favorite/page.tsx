@@ -9,13 +9,13 @@ import { PagesWrapper } from '@/components/PagesWrapper';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Favorite = () => {
+export default function Favorite() {
   const isLoading = useAppSelector(getIsLoading);
   const favoriteProducts = useAppSelector(getFavorites);
 
   return (
-    <PagesWrapper title="Nostra pizza - Улюблене">
-      <Heading>Улюблене</Heading>
+    <PagesWrapper>
+      <Heading visible>Улюблене</Heading>
       {isLoading && <LoaderModal />}
       {favoriteProducts.length > 0 ? (
         <ProductsList data={favoriteProducts} />
@@ -25,6 +25,4 @@ const Favorite = () => {
       <ToastContainer />
     </PagesWrapper>
   );
-};
-
-export default Favorite;
+}

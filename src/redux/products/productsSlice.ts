@@ -36,7 +36,6 @@ const productsSlice = createSlice({
           return;
         }
         if (action.payload) {
-          
           const getByPromotion = () => {
             return action.payload.filter(
               (item: TProduct) => item.promotion === true
@@ -44,13 +43,10 @@ const productsSlice = createSlice({
           };
           state.productsAll = action.payload;
           state.promotions = getByPromotion();
-
-          const filteredFavoriteProducts = 
-            action.payload.filter(({_id : id1}) => state.favorites.some(({_id: id2}) => id1 === id2) 
-            );             
-          
+          const filteredFavoriteProducts = state.favorites.filter(
+            ({ _id: id1 }) => action.payload.some(({ _id: id2 }) => id1 === id2)
+          );
           state.favorites = filteredFavoriteProducts;
-          
           state.isLoading = false;
         }
       })
@@ -61,8 +57,6 @@ const productsSlice = createSlice({
       }),
 });
 
-export const { addToFavoriteAction } = productsSlice.actions;
-export const { removeFromFavoriteAction } = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
 
 export const getProductsAll = (state: RootState) => state.products.productsAll;
@@ -70,3 +64,6 @@ export const getPromotions = (state: RootState) => state.products.promotions;
 export const getFavorites = (state: RootState) => state.products.favorites;
 export const getIsLoading = (state: RootState) => state.products.isLoading;
 export const getError = (state: RootState) => state.products.error;
+
+export const { addToFavoriteAction } = productsSlice.actions;
+export const { removeFromFavoriteAction } = productsSlice.actions;

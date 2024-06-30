@@ -8,7 +8,7 @@ import { deleteAllItems } from '@/redux/cart/cartSlice';
 import { PagesWrapper } from '@/components/PagesWrapper';
 import css from '../../styles/pages/Cart.module.scss';
 
-const Cart = () => {
+export default function Cart() {
   const [open, setOpen] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ const Cart = () => {
   };
 
   return (
-    <PagesWrapper title="Nostra pizza - Кошик">
+    <PagesWrapper>
       <div className={css.cartWrapper}>
         <Heading>Кошик</Heading>
         <CartContent
@@ -34,6 +34,4 @@ const Cart = () => {
       </div>
     </PagesWrapper>
   );
-};
-
-export default Cart;
+}

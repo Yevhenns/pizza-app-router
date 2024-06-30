@@ -1,23 +1,20 @@
 import { useEffect } from 'react';
 import { CartListItem } from './CartListItem';
 import { Button } from '@/UI/basic/Button';
-import { useAppDispatch } from '@/redux/hooks';
-import { addOrderSum } from '@/redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { addOrderSum, getFilteredCart } from '@/redux/cart/cartSlice';
 import css from './CartList.module.scss';
 
 interface CartListProps {
-  filledCart: TCart;
   deleteCartItem: (_id: string) => void;
   deleteAllProducts: () => void;
 }
 
-export function CartList({
-  filledCart,
-  deleteCartItem,
-  deleteAllProducts,
-}: CartListProps) {
+export function CartList({ deleteCartItem, deleteAllProducts }: CartListProps) {
+  const filteredCart = useAppSelector(getFilteredCart);
+
   let sum = 0;
-  filledCart.forEach(item => (sum += item.totalPrice));
+  filteredCart.forEach(item => (sum += item.totalPrice));
 
   const dispatch = useAppDispatch();
 
@@ -27,7 +24,7 @@ export function CartList({
 
   return (
     <div className={css.cartList}>
-      {filledCart.map(data => {
+      {filteredCart.map(data => {
         return (
           <CartListItem
             key={data._id}

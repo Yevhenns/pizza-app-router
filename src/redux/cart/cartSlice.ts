@@ -4,6 +4,7 @@ import { RootState } from '../store';
 
 const initialState = {
   filledCart: [] as TCart,
+  filteredCart: [] as TCart,
   customerInfo: {} as TInfo,
   orderSum: 0,
   error: null as any,
@@ -16,20 +17,27 @@ const cartSlice = createSlice({
   reducers: {
     addItem(state, action: { payload: TCartItem }) {
       state.filledCart = [...state.filledCart, action.payload];
+      state.filteredCart = [...state.filteredCart, action.payload];
     },
     deleteItem(state, action: { payload: string }) {
       state.filledCart = state.filledCart.filter(
         (item: TCartItem) => item._id !== action.payload
       );
+      state.filteredCart = state.filteredCart.filter(
+        (item: TCartItem) => item._id !== action.payload
+      );
     },
-    checkCart(state, action: { payload: TCartItem[] }) {
-      state.filledCart = action.payload
+    checkCart(state, action: { payload: TProductsArr }) {
+      state.filteredCart = state.filledCart.filter(({ _id: id1 }) =>
+        action.payload.some(({ _id: id2 }) => id1 === id2)
+      );
     },
     addInfo(state, action: { payload: TInfo }) {
       state.customerInfo = action.payload;
     },
     deleteAllItems(state) {
       state.filledCart = [];
+      state.filteredCart = [];
       state.customerInfo = {} as TInfo;
     },
     addOrderSum(state, action: { payload: number }) {
@@ -62,6 +70,7 @@ const cartSlice = createSlice({
 export const cartReducer = cartSlice.reducer;
 
 export const getFilledCart = (state: RootState) => state.cart.filledCart;
+export const getFilteredCart = (state: RootState) => state.cart.filteredCart;
 export const getCustomerInfo = (state: RootState) => state.cart.customerInfo;
 export const getOrderSum = (state: RootState) => state.cart.orderSum;
 export const getIsLoading = (state: RootState) => state.cart.isLoading;

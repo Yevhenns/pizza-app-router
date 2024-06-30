@@ -2,7 +2,7 @@
 import React from 'react';
 import css from './Error500.module.scss';
 
-const Error500 = () => {
+export function Error500() {
   return (
     <div className={css.modalWrapper}>
       <div className={css.modal}>
@@ -16,6 +16,4 @@ const Error500 = () => {
       </div>
     </div>
   );
-};
-
-export default Error500;
+}

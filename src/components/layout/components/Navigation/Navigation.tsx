@@ -37,16 +37,6 @@ export function Navigation() {
       >
         Напої
       </Link>
-      <Link
-        className={cn(
-          css.link,
-          pathname === '/favorite' ? css.active : '',
-          css.hideOnMobile
-        )}
-        href={'/favorite'}
-      >
-        Улюблене
-      </Link>
     </nav>
   );
 }

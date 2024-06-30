@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Button } from '@/UI/basic/Button';
-import Error500 from '../errors/Error500/Error500';
+import { Error500 } from '../Error500/Error500';
 import { useAppSelector } from '@/redux/hooks';
 import {
   getError,
-  getFilledCart,
+  getFilteredCart,
   getIsLoading,
   getOrderSum,
 } from '@/redux/cart/cartSlice';
@@ -16,7 +16,7 @@ interface FinalModalProps {
 }
 
 export function FinalModal({ finalAction }: FinalModalProps) {
-  const filledCart = useAppSelector(getFilledCart);
+  const filteredCart = useAppSelector(getFilteredCart);
   const sum = useAppSelector(getOrderSum);
   const isLoading = useAppSelector(getIsLoading);
   const err = useAppSelector(getError);
@@ -41,7 +41,7 @@ export function FinalModal({ finalAction }: FinalModalProps) {
             </p>
             <p>Інформація про замовлення</p>
             <ul>
-              {filledCart.map(({ _id, title, quantity, totalPrice }) => {
+              {filteredCart.map(({ _id, title, quantity, totalPrice }) => {
                 return (
                   <li key={_id}>
                     <p>

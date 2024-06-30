@@ -3,6 +3,8 @@ import { deleteItem, getFilteredCart } from '@/redux/cart/cartSlice';
 import { Empty } from '@/components/Empty';
 import { CartForm } from './CartForm';
 import { CartList } from './CartList';
+import { Loader } from '@/UI/common/Loader';
+import { getIsLoading } from '@/redux/products/productsSlice';
 
 interface CartContentProps {
   deleteAllProducts: () => void;
@@ -14,6 +16,7 @@ export function CartContent({
   openModal,
 }: CartContentProps) {
   const filteredCart = useAppSelector(getFilteredCart);
+  const isLoading = useAppSelector(getIsLoading);
 
   const dispatch = useAppDispatch();
 
@@ -23,12 +26,17 @@ export function CartContent({
       quantity: item.quantity,
     };
   });
+  console.log(isLoading);
 
   const deleteCartItem = (id: string) => {
     dispatch(deleteItem(id));
   };
 
-  if (filteredCart.length === 0) {
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (filteredCart.length === 0 && !isLoading) {
     return <Empty text={'Кошик порожній!'} />;
   }
 

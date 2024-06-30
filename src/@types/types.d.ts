@@ -38,7 +38,7 @@ type TCartItem = {
   totalPrice: number;
 };
 
-type TCart = CartItem[];
+type TCart = TCartItem[];
 
 type TProductItem = {
   _id: string;

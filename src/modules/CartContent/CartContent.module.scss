@@ -1,4 +1,4 @@
-.layout{
+.layout {
     animation-duration: 0.5s;
     animation-name: animate-pop;
     animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
@@ -13,11 +13,5 @@
             opacity: 1;
             transform: scale(1, 1);
         }
-    }
-}
-
-.item {
-    img {
-        height: auto;
     }
 }

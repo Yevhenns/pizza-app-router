@@ -5,6 +5,7 @@ import { CartForm } from './CartForm';
 import { CartList } from './CartList';
 import { Loader } from '@/UI/common/Loader';
 import { getIsLoading } from '@/redux/products/productsSlice';
+import css from './CartContent.module.scss'
 
 interface CartContentProps {
   deleteAllProducts: () => void;
@@ -26,7 +27,6 @@ export function CartContent({
       quantity: item.quantity,
     };
   });
-  console.log(isLoading);
 
   const deleteCartItem = (id: string) => {
     dispatch(deleteItem(id));
@@ -41,12 +41,12 @@ export function CartContent({
   }
 
   return (
-    <>
+    <div className={css.layout}>
       <CartList
         deleteCartItem={deleteCartItem}
         deleteAllProducts={deleteAllProducts}
       />
       <CartForm openModal={openModal} order={order} />
-    </>
+    </div>
   );
 }

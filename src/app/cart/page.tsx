@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Heading } from '@/UI/basic/Heading';
-import { CartContent } from '@/modules/Cart';
+import { CartContent } from '@/modules/CartContent';
 import { FinalModal } from '@/components/FinalModal';
 import { useAppDispatch } from '@/redux/hooks';
 import { deleteAllItems } from '@/redux/cart/cartSlice';

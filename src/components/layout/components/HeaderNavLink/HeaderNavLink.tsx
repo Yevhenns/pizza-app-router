@@ -11,7 +11,7 @@ export function HeaderNavLink({ hrefProp, text, svg }: HeaderNavLinkProps) {
   return (
     <Link className={css.navLink} href={hrefProp}>
       <Icon svg={svg} iconWidth={34} iconHeight={34} />
-      <p>{text}</p>
+      {text !== 0 && <p>{text}</p>}
     </Link>
   );
 }

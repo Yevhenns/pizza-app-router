@@ -18,11 +18,11 @@ export function Header() {
   const favorite = useAppSelector(getFavorites).length;
 
   useEffect(() => {
-    cart > 0 && setCartLength(cart);
+    setCartLength(cart);
   }, [cart]);
 
   useEffect(() => {
-    favorite > 0 && setFavoriteLength(favorite);
+    setFavoriteLength(favorite);
   }, [favorite]);
 
   return (

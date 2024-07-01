@@ -42,6 +42,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
     const reqBody: TSummaryOrder = { customerInfo, order, orderSum };
     dispatch(sendOrder(reqBody));
   };
+  console.log(control._state);
 
   const delivery = watch('delivery');
 
@@ -88,15 +89,27 @@ export function CartForm({ openModal, order }: CartFormProps) {
         <Controller
           control={control}
           name="number"
+          rules={{
+            required: true,
+            minLength: 10
+            // pattern: {
+            //   value: /^(?=.*\d).{13,}$/,
+            //   message: "Please enter valid phone number"
+            // }
+          }}
           render={({ field: { onChange, onBlur, ref } }) => (
             <div className={inputCss.fieldset}>
-              <label>* Номер телефону</label><InputMask
+              <label>* Номер телефону</label>
+              <InputMask
                 placeholder="(099) 999-99-99"
                 mask="(099) 999-99-99"
                 onBlur={onBlur}
                 onChange={onChange}
                 inputRef={ref}
-                type='number' />
+                type='tel'
+                required={true}
+                minLength={3}
+              />
             </div>
           )}
         />

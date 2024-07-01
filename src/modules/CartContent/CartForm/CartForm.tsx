@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { HTMLProps } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
 import { sendOrder } from '@/redux/cart/cartOperations';
@@ -9,18 +9,21 @@ import { TextArea } from '@/UI/basic/TextArea';
 import { Checkbox } from '@/UI/basic/Checkbox';
 import { Input } from '@/UI/basic/Input';
 import css from './CartForm.module.scss';
+import InputMask from "react-input-mask";
+import inputCss from '../../../UI/basic/Input/Input.module.scss'
 
 interface CartFormProps extends HTMLProps<HTMLFormElement> {
   openModal: () => void;
   order: TOrdered;
 }
 
+
 export function CartForm({ openModal, order }: CartFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    watch,
+    watch, control
   } = useForm<TInfo>({ mode: 'onChange' });
 
   const orderSum = useAppSelector(getOrderSum);
@@ -60,7 +63,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
           inputMode="text"
           type="text"
         />
-        <Input
+        {/* <Input
           {...register('number', {
             required: "Це обов'язкове поле!",
             minLength: {
@@ -80,14 +83,28 @@ export function CartForm({ openModal, order }: CartFormProps) {
           type="tel"
           error={errors?.number?.message}
           inputMode="tel"
+        /> */}
+
+        <Controller
+          control={control}
+          name="number"
+          render={({ field: { onChange, onBlur, ref } }) => (
+            <div className={inputCss.fieldset}><label>* Номер телефону</label><InputMask
+              placeholder="(099) 999-99-99"
+              mask="(099) 999-99-99"
+              onBlur={onBlur}
+              onChange={onChange}
+              inputRef={ref} /></div>
+          )}
         />
-        <Checkbox
-          {...register('delivery')}
-          id="delivery"
-          htmlFor="delivery"
-          label="Доставка"
-        />
+
       </div>
+      <Checkbox
+        {...register('delivery')}
+        id="delivery"
+        htmlFor="delivery"
+        label="Доставка"
+      />
       <div>
         {delivery && (
           <Input
@@ -120,3 +137,5 @@ export function CartForm({ openModal, order }: CartFormProps) {
     </form>
   );
 }
+
+

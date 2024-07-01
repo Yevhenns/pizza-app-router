@@ -89,12 +89,15 @@ export function CartForm({ openModal, order }: CartFormProps) {
           control={control}
           name="number"
           render={({ field: { onChange, onBlur, ref } }) => (
-            <div className={inputCss.fieldset}><label>* Номер телефону</label><InputMask
-              placeholder="(099) 999-99-99"
-              mask="(099) 999-99-99"
-              onBlur={onBlur}
-              onChange={onChange}
-              inputRef={ref} /></div>
+            <div className={inputCss.fieldset}>
+              <label>* Номер телефону</label><InputMask
+                placeholder="(099) 999-99-99"
+                mask="(099) 999-99-99"
+                onBlur={onBlur}
+                onChange={onChange}
+                inputRef={ref}
+                type='number' />
+            </div>
           )}
         />
 

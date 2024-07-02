@@ -1,29 +1,14 @@
 'use client';
-import { getFilteredCart } from '@/redux/cart/cartSlice';
-import { useAppSelector } from '@/redux/hooks';
 import { Container } from '@/UI/common/Container';
 import { HeaderNavLink } from '../HeaderNavLink';
 import { Logo } from '../Logo';
 import { Navigation } from '../Navigation';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';
-import { useEffect, useState } from 'react';
-import { getFavorites } from '@/redux/products/productsSlice';
+import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
 import css from './Header.module.scss';
 
 export function Header() {
-  const [cartLength, setCartLength] = useState<null | number>(null);
-  const [favoriteLength, setFavoriteLength] = useState<null | number>(null);
-
-  const cart = useAppSelector(getFilteredCart).length;
-  const favorite = useAppSelector(getFavorites).length;
-
-  useEffect(() => {
-    setCartLength(cart);
-  }, [cart]);
-
-  useEffect(() => {
-    setFavoriteLength(favorite);
-  }, [favorite]);
+  const { cartLength, favoriteLength } = useGetCartAndFavoriteLength();
 
   return (
     <header className={css.wrapper}>

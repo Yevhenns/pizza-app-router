@@ -8,9 +8,9 @@ import { Button } from '@/UI/basic/Button';
 import { TextArea } from '@/UI/basic/TextArea';
 import { Checkbox } from '@/UI/basic/Checkbox';
 import { Input } from '@/UI/basic/Input';
-import InputMask from "react-input-mask";
+import InputMask from 'react-input-mask';
 import css from './CartForm.module.scss';
-import inputCss from '../../../UI/basic/Input/Input.module.scss'
+import inputCss from '../../../UI/basic/Input/Input.module.scss';
 
 interface CartFormProps extends HTMLProps<HTMLFormElement> {
   openModal: () => void;
@@ -23,7 +23,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
     handleSubmit,
     formState: { errors, isValid },
     watch,
-    control
+    control,
   } = useForm<TInfo>({ mode: 'onChange' });
 
   const orderSum = useAppSelector(getOrderSum);
@@ -69,12 +69,12 @@ export function CartForm({ openModal, order }: CartFormProps) {
           rules={{
             required: "Це обов'язкове поле!",
             validate: {
-              required: value => !value.includes('_')
+              required: value => !value.includes('_'),
             },
           }}
           render={({ field: { onChange, onBlur, ref } }) => (
             <div className={inputCss.fieldset}>
-              <label htmlFor='customer-number'>* Номер телефону</label>
+              <label htmlFor="customer-number">* Номер телефону</label>
               <InputMask
                 maskPlaceholder={null}
                 placeholder="(099) 999-99-99"
@@ -82,9 +82,8 @@ export function CartForm({ openModal, order }: CartFormProps) {
                 onBlur={onBlur}
                 onChange={onChange}
                 inputRef={ref}
-                type='tel'
+                type="tel"
                 id="customer-number"
-
               />
               <div>{errors.number && <span>{errors.number.message}</span>}</div>
             </div>
@@ -129,5 +128,3 @@ export function CartForm({ openModal, order }: CartFormProps) {
     </form>
   );
 }
-
-

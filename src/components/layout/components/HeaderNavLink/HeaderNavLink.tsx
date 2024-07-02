@@ -7,6 +7,7 @@ interface HeaderNavLinkProps {
   text: null | number;
   svg: TypeIcon;
 }
+
 export function HeaderNavLink({ hrefProp, text, svg }: HeaderNavLinkProps) {
   return (
     <Link className={css.navLink} href={hrefProp}>

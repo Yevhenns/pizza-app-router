@@ -14,9 +14,23 @@
 
     .link {
         padding: 15px;
+        position: relative;
+
+        span {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-family: var(--secondary-font);
+        }
     }
 
-    .active svg {
-        fill: var(--main-hover-color);
+    .active {
+        svg {
+            fill: var(--main-hover-color);
+        }
+
+        span {
+            color: var(--main-hover-color);
+        }
     }
 }

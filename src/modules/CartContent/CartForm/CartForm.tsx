@@ -8,8 +8,8 @@ import { Button } from '@/UI/basic/Button';
 import { TextArea } from '@/UI/basic/TextArea';
 import { Checkbox } from '@/UI/basic/Checkbox';
 import { Input } from '@/UI/basic/Input';
-import css from './CartForm.module.scss';
 import InputMask from "react-input-mask";
+import css from './CartForm.module.scss';
 import inputCss from '../../../UI/basic/Input/Input.module.scss'
 
 interface CartFormProps extends HTMLProps<HTMLFormElement> {
@@ -17,13 +17,13 @@ interface CartFormProps extends HTMLProps<HTMLFormElement> {
   order: TOrdered;
 }
 
-
 export function CartForm({ openModal, order }: CartFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    watch, control
+    watch,
+    control
   } = useForm<TInfo>({ mode: 'onChange' });
 
   const orderSum = useAppSelector(getOrderSum);
@@ -42,7 +42,6 @@ export function CartForm({ openModal, order }: CartFormProps) {
     const reqBody: TSummaryOrder = { customerInfo, order, orderSum };
     dispatch(sendOrder(reqBody));
   };
-  console.log(control._state);
 
   const delivery = watch('delivery');
 
@@ -64,56 +63,33 @@ export function CartForm({ openModal, order }: CartFormProps) {
           inputMode="text"
           type="text"
         />
-        {/* <Input
-          {...register('number', {
-            required: "Це обов'язкове поле!",
-            minLength: {
-              value: 10,
-              message: 'Замало цифр',
-            },
-            maxLength: {
-              value: 10,
-              message: 'Забагато цифр',
-            },
-          })}
-          pattern="[0-9]{10}"
-          placeholder="Введіть номер телефону"
-          id="customer-number"
-          label="* Номер телефону в форматі: 0991115533"
-          htmlFor="customer-number"
-          type="tel"
-          error={errors?.number?.message}
-          inputMode="tel"
-        /> */}
-
         <Controller
           control={control}
           name="number"
           rules={{
             required: true,
-            minLength: 10
-            // pattern: {
-            //   value: /^(?=.*\d).{13,}$/,
-            //   message: "Please enter valid phone number"
-            // }
+            validate: {
+              required: value => !value.includes('_')
+            },
           }}
           render={({ field: { onChange, onBlur, ref } }) => (
             <div className={inputCss.fieldset}>
               <label>* Номер телефону</label>
               <InputMask
+                maskPlaceholder={null}
                 placeholder="(099) 999-99-99"
                 mask="(099) 999-99-99"
                 onBlur={onBlur}
                 onChange={onChange}
                 inputRef={ref}
                 type='tel'
-                required={true}
-                minLength={3}
+                id="customer-number"
+
               />
+              <div>{errors.number && <span>{errors.number.message}</span>}</div>
             </div>
           )}
         />
-
       </div>
       <Checkbox
         {...register('delivery')}

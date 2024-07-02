@@ -67,14 +67,14 @@ export function CartForm({ openModal, order }: CartFormProps) {
           control={control}
           name="number"
           rules={{
-            required: true,
+            required: "Це обов'язкове поле!",
             validate: {
               required: value => !value.includes('_')
             },
           }}
           render={({ field: { onChange, onBlur, ref } }) => (
             <div className={inputCss.fieldset}>
-              <label>* Номер телефону</label>
+              <label htmlFor='customer-number'>* Номер телефону</label>
               <InputMask
                 maskPlaceholder={null}
                 placeholder="(099) 999-99-99"
@@ -90,13 +90,13 @@ export function CartForm({ openModal, order }: CartFormProps) {
             </div>
           )}
         />
+        <Checkbox
+          {...register('delivery')}
+          id="delivery"
+          htmlFor="delivery"
+          label="Доставка"
+        />
       </div>
-      <Checkbox
-        {...register('delivery')}
-        id="delivery"
-        htmlFor="delivery"
-        label="Доставка"
-      />
       <div>
         {delivery && (
           <Input

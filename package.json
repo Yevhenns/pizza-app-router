@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
-    "@types/react-input-mask": "^3.0.5",
     "axios": "^1.7.2",
     "google-map-react": "^2.2.1",
     "handlebars": "^4.7.8",
@@ -31,6 +30,7 @@
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-input-mask": "^3.0.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "sass": "^1.77.6",

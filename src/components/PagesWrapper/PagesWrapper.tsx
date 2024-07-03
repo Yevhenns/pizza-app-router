@@ -9,7 +9,7 @@ import { getProductsAll } from '@/redux/products/productsSlice';
 import { checkCart } from '@/redux/cart/cartSlice';
 import 'react-toastify/dist/ReactToastify.css';
 
-interface PagesWrapperProps extends PropsWithChildren {}
+interface PagesWrapperProps extends PropsWithChildren { }
 
 export function PagesWrapper({ children }: PagesWrapperProps) {
   const is500Error = useFetchProducts();
@@ -19,7 +19,9 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(checkCart(productsAll));
+    if (productsAll.length > 0) {
+      dispatch(checkCart(productsAll));
+    }
   }, [dispatch, productsAll]);
 
   return (

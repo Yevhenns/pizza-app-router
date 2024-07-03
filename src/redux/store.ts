@@ -11,9 +11,9 @@ const rootPersistConfig = {
 };
 
 const cartPersistConfig = {
-  key: 'filledCart',
+  key: 'filteredCart',
   storage,
-  whitelist: ['filledCart'],
+  whitelist: ['filteredCart'],
 };
 
 const favoritePersistConfig = {

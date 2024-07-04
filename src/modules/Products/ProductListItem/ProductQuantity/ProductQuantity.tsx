@@ -8,13 +8,13 @@ import css from './ProductQuantity.module.scss';
 interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  options?: PizzaOptions;
+  options?: PizzaOptions | [];
 }
 
 export function ProductQuantity({
   getTotalQuantity,
   handleChange,
-  options,
+  options = [],
 }: ProductQuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
@@ -44,7 +44,7 @@ export function ProductQuantity({
           <Icon svg="right" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>
-      {options && (
+      {options.length > 0 && (
         <div className={css.quantity}>
           <Checkbox
             htmlFor="options"

@@ -6,6 +6,7 @@ import css from './ProductFooter.module.scss';
 interface ProductFooterProps extends TProductItem {
   addToCart: TAddToCart;
   isInCart: (_id: string) => boolean;
+  optionsArray: string[];
 }
 
 export function ProductFooter({
@@ -16,6 +17,7 @@ export function ProductFooter({
   totalPromPrice,
   addToCart,
   isInCart,
+  optionsArray,
 }: ProductFooterProps) {
   const isInCartBoolean = isInCart(_id);
 
@@ -33,7 +35,14 @@ export function ProductFooter({
         disabled={isInCartBoolean}
         type="button"
         onClick={() =>
-          addToCart(_id, totalQuantity, promotion, totalPrice, totalPromPrice)
+          addToCart(
+            _id,
+            totalQuantity,
+            promotion,
+            totalPrice,
+            totalPromPrice,
+            optionsArray
+          )
         }
       >
         {isInCartBoolean ? (

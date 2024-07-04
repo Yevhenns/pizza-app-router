@@ -4,28 +4,13 @@ import { ChangeEvent, useState } from 'react';
 
 type ProductOptionsListProps = {
   options: PizzaOptions;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export function ProductOptionsList({ options }: ProductOptionsListProps) {
-  const [optionsArray, setOptionsArray] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsOpen(!isOpen);
-    const a = e.target.value;
-    if (isOpen) {
-      if (!optionsArray.includes(a)) {
-        setOptionsArray([...optionsArray, a]);
-        return;
-      }
-      return;
-    }
-
-    const b = optionsArray.filter(item => item.title === a);
-    setOptionsArray(b);
-  };
-  console.log(optionsArray);
-
+export function ProductOptionsList({
+  options = [],
+  handleChange,
+}: ProductOptionsListProps) {
   return (
     <div className={css.wrapper}>
       {options.map(item => {

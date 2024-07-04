@@ -1,9 +1,7 @@
 .cartList {
-    margin-bottom: 20px;
-
-    div {
-        margin-bottom: 12px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
     button {
         margin-left: auto;

@@ -14,10 +14,11 @@ export const orderTemplate = `
 <p>Коментар: {{comment}}</p>
 <p>Загальна сума: {{orderSum}} грн.</p>
 <h3>Замовлення</h3>
-<div>
+<ol>
     {{#each order}}
-        <p>{{this.title}} - {{this.quantity}} шт.</p>
+        <li>{{this.title}} - {{this.quantity}} шт.</li>       
+        <p>{{this.options}}</p>
     {{/each}}
-</div>
+</ol>
 </body>
 </html>`;

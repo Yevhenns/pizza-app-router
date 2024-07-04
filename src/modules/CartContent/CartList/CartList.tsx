@@ -33,7 +33,7 @@ export function CartList({ deleteCartItem, deleteAllProducts }: CartListProps) {
           />
         );
       })}
-      <p className={css.totalPayment}>До оплати {sum} грн</p>
+      <p className={css.totalPayment}>До cплати: {sum} грн</p>
       <Button onClick={deleteAllProducts} type="button">
         Очистити кошик
       </Button>

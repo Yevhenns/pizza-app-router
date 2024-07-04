@@ -22,7 +22,7 @@ type TInfo = {
   number: string;
 };
 
-type TOrdered = Pick<TCartItem, 'title' | 'quantity'>[];
+type TOrdered = Pick<TCartItem, 'title' | 'quantity'>[] | 'options';
 
 type TSummaryOrder = {
   customerInfo: TInfo;
@@ -36,6 +36,7 @@ type TCartItem = {
   quantity: number;
   title: string;
   totalPrice: number;
+  options: string[];
 };
 
 type TCart = TCartItem[];
@@ -53,7 +54,8 @@ type TAddToCart = (
   totalQuantity: number,
   promotion: boolean,
   totalPrice: number,
-  TotalPromPrice: number
+  TotalPromPrice: number,
+  optionsArray: string[]
 ) => void;
 
 type TResponse = {

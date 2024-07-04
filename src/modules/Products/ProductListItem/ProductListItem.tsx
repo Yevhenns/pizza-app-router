@@ -29,7 +29,7 @@ export function ProductListItem({
   setFavoriteProducts,
   favoriteProducts,
   isInCart,
-  options,
+  options = [],
 }: ProductListItemProps) {
   const {
     _id,
@@ -47,6 +47,8 @@ export function ProductListItem({
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
+  const [isOptionChosen, setIsOptionChosen] = useState(false);
+  const [optionsArray, setOptionsArray] = useState<string[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -76,9 +78,23 @@ export function ProductListItem({
     }
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleShowOptions = (e: ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
     setOptionsShown(isChecked);
+  };
+
+  const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsOptionChosen(!isOptionChosen);
+    const checked = e.target.checked;
+    const data = e.target.value;
+    if (checked && !optionsArray.includes(data)) {
+      setOptionsArray([...optionsArray, data]);
+      return;
+    }
+    if (!checked && optionsArray.includes(data)) {
+      const filteredArray = optionsArray.filter(item => item !== data);
+      setOptionsArray(filteredArray);
+    }
   };
 
   return (
@@ -106,10 +122,15 @@ export function ProductListItem({
       />
       <ProductQuantity
         getTotalQuantity={getTotalQuantity}
-        handleChange={handleChange}
+        handleChange={handleShowOptions}
         options={options}
       />
-      {optionsShown && <ProductOptionsList options={options} />}
+      {optionsShown && (
+        <ProductOptionsList
+          options={options}
+          handleChange={handleChooseOptions}
+        />
+      )}
       <ProductFooter
         _id={_id}
         totalQuantity={totalQuantity}
@@ -118,6 +139,7 @@ export function ProductListItem({
         totalPromPrice={totalPromPrice}
         addToCart={addToCart}
         isInCart={isInCart}
+        optionsArray={optionsArray}
       />
     </article>
   );

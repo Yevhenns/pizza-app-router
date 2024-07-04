@@ -23,7 +23,8 @@ export function ProductsList({ data, options }: ProductsListProps) {
     totalQuantity: number,
     promotion: boolean,
     totalPrice: number,
-    TotalPromPrice: number
+    TotalPromPrice: number,
+    chosenOptions: string[]
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
     if (chosenProduct) {
@@ -33,6 +34,7 @@ export function ProductsList({ data, options }: ProductsListProps) {
         photo: photo,
         title: title,
         quantity: totalQuantity,
+        options: chosenOptions,
         totalPrice: totalPrice,
       };
       const cartPromItem = {
@@ -40,6 +42,7 @@ export function ProductsList({ data, options }: ProductsListProps) {
         photo: photo,
         title: title,
         quantity: totalQuantity,
+        options: chosenOptions,
         totalPrice: TotalPromPrice,
       };
       if (promotion) {

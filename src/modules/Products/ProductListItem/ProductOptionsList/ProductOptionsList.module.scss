@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      font-family: var(--secondary-font);
+    }
+  }
+}

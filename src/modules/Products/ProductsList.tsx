@@ -8,9 +8,10 @@ import css from './ProductsList.module.scss';
 
 interface ProductsListProps {
   data: TProductsArr;
+  options?: PizzaOptions;
 }
 
-export function ProductsList({ data }: ProductsListProps) {
+export function ProductsList({ data, options }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
   const filteredCart = useAppSelector(getFilteredCart);
@@ -73,6 +74,7 @@ export function ProductsList({ data }: ProductsListProps) {
             setFavoriteProducts={setFavoriteProducts}
             favoriteProducts={favoriteProducts}
             isInCart={isInCart}
+            options={options}
           />
         );
       })}

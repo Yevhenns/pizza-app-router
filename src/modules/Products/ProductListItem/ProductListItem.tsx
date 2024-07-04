@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { ProductQuantity } from './ProductQuantity';
 import {
   addToFavoriteAction,
@@ -11,6 +11,7 @@ import { ProductFooter } from './ProductFooter';
 import { ProductDescription } from './ProductDescription';
 import { Icon } from '@/UI/basic/Icon';
 import { RoundButton } from '@/UI/basic/RoundButton';
+import { ProductOptionsList } from './ProductOptionsList';
 import css from './ProductListItem.module.scss';
 
 interface ProductListItemProps {
@@ -19,6 +20,7 @@ interface ProductListItemProps {
   setFavoriteProducts: (_id: string) => boolean;
   favoriteProducts: TProductsArr;
   isInCart: (_id: string) => boolean;
+  options?: PizzaOptions;
 }
 
 export function ProductListItem({
@@ -27,6 +29,7 @@ export function ProductListItem({
   setFavoriteProducts,
   favoriteProducts,
   isInCart,
+  options,
 }: ProductListItemProps) {
   const {
     _id,
@@ -43,6 +46,7 @@ export function ProductListItem({
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
+  const [optionsShown, setOptionsShown] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -72,6 +76,11 @@ export function ProductListItem({
     }
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    setOptionsShown(isChecked);
+  };
+
   return (
     <article className={css.listItem}>
       {promotion && <div className={css.promotion}>Акція</div>}
@@ -95,7 +104,12 @@ export function ProductListItem({
         description={description}
         dimension={dimension}
       />
-      <ProductQuantity getTotalQuantity={getTotalQuantity} />
+      <ProductQuantity
+        getTotalQuantity={getTotalQuantity}
+        handleChange={handleChange}
+        options={options}
+      />
+      {optionsShown && <ProductOptionsList options={options} />}
       <ProductFooter
         _id={_id}
         totalQuantity={totalQuantity}

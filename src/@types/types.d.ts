@@ -99,3 +99,15 @@ interface ForecastDay {
 }
 
 type Forecast = ForecastDay[];
+
+type PizzaOption = {
+  id: string;
+  price: number;
+  title: string;
+};
+
+type PizzaOptions = {
+  id: string;
+  price: number;
+  title: string;
+}[];

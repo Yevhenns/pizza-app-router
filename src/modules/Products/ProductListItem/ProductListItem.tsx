@@ -20,7 +20,7 @@ interface ProductListItemProps {
   setFavoriteProducts: (_id: string) => boolean;
   favoriteProducts: TProductsArr;
   isInCart: (_id: string) => boolean;
-  options?: PizzaOptions;
+  options?: Options;
 }
 
 export function ProductListItem({
@@ -40,6 +40,8 @@ export function ProductListItem({
     photo,
     promotion,
     promPrice,
+    category,
+    vegan
   } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
@@ -124,11 +126,13 @@ export function ProductListItem({
         getTotalQuantity={getTotalQuantity}
         handleChange={handleShowOptions}
         options={options}
+        category={category}
       />
       {optionsShown && (
         <ProductOptionsList
           options={options}
           handleChange={handleChooseOptions}
+          vegan={vegan}
         />
       )}
       <ProductFooter

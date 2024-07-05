@@ -1,19 +1,33 @@
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Checkbox } from '@/UI/basic/Checkbox';
 import css from './ProductOptionsList.module.scss';
-import { ChangeEvent, useState } from 'react';
 
 type ProductOptionsListProps = {
-  options: PizzaOptions;
+  options: Options;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  vegan: boolean
 };
 
 export function ProductOptionsList({
-  options = [],
+  options,
   handleChange,
+  vegan
 }: ProductOptionsListProps) {
+  const [filteredByVegan, setFilteredByVegan] = useState<Options>([]);
+
+  useEffect(() => {
+    if (!vegan) {
+      setFilteredByVegan(options);
+    }
+    if (vegan) {
+      const filteredArray = options.filter(item => item.vegan === vegan);
+      setFilteredByVegan(filteredArray);
+    }
+  }, [options, vegan])
+
   return (
     <div className={css.wrapper}>
-      {options.map(item => {
+      {filteredByVegan.map(item => {
         return (
           <div key={item.id} className={css.item}>
             <Checkbox

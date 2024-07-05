@@ -8,6 +8,7 @@ import { getIsLoading, getPromotions } from '@/redux/products/productsSlice';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 import { PagesWrapper } from '@/components/PagesWrapper';
 import { CarouselComponent } from '@/components/CarouselComponent';
+import { options } from '../options';
 import css from '../styles/pages/Index.module.scss';
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
       {isLoading && <LoaderModal />}
       <CarouselComponent />
       <h2 className={css.heading}>Акційні пропозиції</h2>
-      <ProductsList data={promotionProducts} />
+      <ProductsList data={promotionProducts} options={options} />
       <Weather />
       <ToastContainer />
     </PagesWrapper>

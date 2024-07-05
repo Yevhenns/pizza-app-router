@@ -8,6 +8,7 @@ type TProduct = {
   category: string;
   promotion: boolean;
   promPrice: number;
+  vegan: boolean;
 };
 
 type TProductsArr = TProduct[];
@@ -108,8 +109,10 @@ type PizzaOption = {
   title: string;
 };
 
-type PizzaOptions = {
+type Options = {
   id: string;
   price: number;
   title: string;
+  vegan: boolean;
 }[];
+

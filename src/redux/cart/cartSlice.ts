@@ -15,7 +15,17 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: { payload: TCartItem }) {
-      state.filteredCart = [...state.filteredCart, action.payload];
+      const existingItemIndex = state.filteredCart.findIndex(
+        item => item._id === action.payload._id
+      );
+      if (existingItemIndex !== -1) {
+        state.filteredCart[existingItemIndex].quantity +=
+          action.payload.quantity;
+        state.filteredCart[existingItemIndex].totalPrice +=
+          action.payload.totalPrice;
+      } else {
+        state.filteredCart = [...state.filteredCart, action.payload];
+      }
     },
     deleteItem(state, action: { payload: string }) {
       state.filteredCart = state.filteredCart.filter(

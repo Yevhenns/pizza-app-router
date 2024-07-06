@@ -21,7 +21,7 @@ export function CartContent({
 
   const dispatch = useAppDispatch();
 
-  const order: TOrdered = filteredCart.map(item => {
+  const order: Ordered = filteredCart.map(item => {
     return {
       title: item.title,
       quantity: item.quantity,

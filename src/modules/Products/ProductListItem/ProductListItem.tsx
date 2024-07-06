@@ -9,8 +9,6 @@ import { useAppDispatch } from '@/redux/hooks';
 import { toast } from 'react-toastify';
 import { ProductFooter } from './ProductFooter';
 import { ProductDescription } from './ProductDescription';
-import { Icon } from '@/UI/basic/Icon';
-import { RoundButton } from '@/UI/basic/RoundButton';
 import { ProductOptionsList } from './ProductOptionsList';
 import css from './ProductListItem.module.scss';
 
@@ -19,7 +17,6 @@ interface ProductListItemProps {
   addToCart: TAddToCart;
   setFavoriteProducts: (_id: string) => boolean;
   favoriteProducts: TProductsArr;
-  isInCart: (_id: string) => boolean;
   options?: Option[];
 }
 
@@ -28,7 +25,6 @@ export function ProductListItem({
   addToCart,
   setFavoriteProducts,
   favoriteProducts,
-  isInCart,
   options = [],
 }: ProductListItemProps) {
   const {
@@ -111,26 +107,15 @@ export function ProductListItem({
 
   return (
     <article className={css.listItem}>
-      {promotion && <div className={css.promotion}>Акція</div>}
-      <div className={css.favorite}>
-        <RoundButton aria-label="add to favorite" onClick={addToFavorite}>
-          {isFavorite ? (
-            <Icon
-              svg="heart-filled"
-              iconWidth={34}
-              iconHeight={34}
-              color="accent"
-            />
-          ) : (
-            <Icon svg="heart" iconWidth={34} iconHeight={34} />
-          )}
-        </RoundButton>
-      </div>
       <ProductDescription
+        _id={_id}
         photo={photo}
         title={title}
         description={description}
         dimension={dimension}
+        promotion={promotion}
+        isFavorite={isFavorite}
+        addToFavorite={addToFavorite}
       />
       <ProductQuantity
         getTotalQuantity={getTotalQuantity}
@@ -152,7 +137,6 @@ export function ProductListItem({
         totalPrice={totalPrice}
         totalPromPrice={totalPromPrice}
         addToCart={addToCart}
-        isInCart={isInCart}
         optionsArray={optionsArray}
       />
     </article>

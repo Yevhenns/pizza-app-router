@@ -1,6 +1,6 @@
 'use client';
 import { ProductListItem } from './ProductListItem';
-import { addItem, getFilteredCart } from '@/redux/cart/cartSlice';
+import { addItem } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getFavorites } from '@/redux/products/productsSlice';
 import { toast } from 'react-toastify';
@@ -14,9 +14,6 @@ interface ProductsListProps {
 export function ProductsList({ data, options }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
-  const filteredCart = useAppSelector(getFilteredCart);
-
-  const isInCart = (_id: string) => filteredCart.some(item => item._id === _id);
 
   const addToCart = (
     _id: string,
@@ -76,7 +73,6 @@ export function ProductsList({ data, options }: ProductsListProps) {
             addToCart={addToCart}
             setFavoriteProducts={setFavoriteProducts}
             favoriteProducts={favoriteProducts}
-            isInCart={isInCart}
             options={options}
           />
         );

@@ -4,7 +4,6 @@
     color: black;
     padding: 24px;
     border-radius: 10px;
-    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -14,23 +13,6 @@
     animation-duration: 0.5s;
     animation-name: animate-pop;
     animation-timing-function: cubic-bezier(.26, .53, .74, 1.48);
-
-    .promotion {
-        position: absolute;
-        top: 24px;
-        left: 24px;
-        background-color: var(--accent-color);
-        padding: 6px 12px;
-        border-radius: 12px;
-        color: var(--white-color);
-        font-family: var(--main-font);
-    }
-
-    .favorite {
-        position: absolute;
-        right: 24px;
-        top: 24px;
-    }
 
     @keyframes animate-pop {
         0% {

@@ -1,7 +1,28 @@
-.descriprionWrapper {
+.descriprionWrapper {    
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    .imageWrapper{
+        position: relative;
+    }
+
+    .promotion {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: var(--accent-color);
+        padding: 6px 12px;
+        border-radius: 12px;
+        color: var(--white-color);
+        font-family: var(--main-font);
+    }
+
+    .favorite {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
 
     img {
         margin-left: auto;

@@ -1,4 +1,4 @@
-type TProduct = {
+type Product = {
   _id: string;
   title: string;
   description: string;
@@ -11,11 +11,9 @@ type TProduct = {
   vegan: boolean;
 };
 
-type TProductsArr = TProduct[];
+// type Favorites = Pick<Product, '_id' | 'category'>[];
 
-type TFavoritesArr = Pick<TProduct, '_id' | 'category'>[];
-
-type TInfo = {
+type Info = {
   address?: string | undefined;
   comment?: string;
   delivery: boolean;
@@ -23,15 +21,15 @@ type TInfo = {
   number: string;
 };
 
-type TOrdered = Pick<TCartItem, 'title' | 'quantity'>[] | 'options';
+type Ordered = Pick<CartItem, 'title' | 'quantity' | 'options'>[];
 
-type TSummaryOrder = {
+type SummaryOrder = {
   customerInfo: TInfo;
   order: TOrdered;
   orderSum: number;
 };
 
-type TCartItem = {
+type CartItem = {
   _id: string;
   photo: string;
   quantity: number;
@@ -40,9 +38,7 @@ type TCartItem = {
   options: string[];
 };
 
-type TCart = TCartItem[];
-
-type TProductItem = {
+type ProductItem = {
   _id: string;
   totalQuantity: number;
   promotion: boolean;
@@ -50,7 +46,7 @@ type TProductItem = {
   totalPromPrice: number;
 };
 
-type TAddToCart = (
+type AddToCart = (
   _id: string,
   totalQuantity: number,
   promotion: boolean,
@@ -59,13 +55,13 @@ type TAddToCart = (
   optionsArray: string[]
 ) => void;
 
-type TResponse = {
+type ProductsResponse = {
   code: number;
   status: string;
   data: TProductsArr;
 };
 
-type ApiResponse = {
+type WeatherApiResponse = {
   location: {
     name: string;
   };
@@ -101,17 +97,9 @@ interface ForecastDay {
   icon: string;
 }
 
-type PizzaOption = {
-  id: string;
-  price: number;
-  title: string;
-};
-
 type Option = {
   id: string;
   price: number;
   title: string;
   vegan: boolean;
 };
-
-

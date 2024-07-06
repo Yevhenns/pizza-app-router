@@ -3,8 +3,8 @@ import { sendOrder } from './cartOperations';
 import { RootState } from '../store';
 
 const initialState = {
-  filteredCart: [] as TCart,
-  customerInfo: {} as TInfo,
+  filteredCart: [] as CartItem[],
+  customerInfo: {} as Info,
   orderSum: 0,
   error: null as any,
   isLoading: false,
@@ -14,7 +14,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItem(state, action: { payload: TCartItem }) {
+    addItem(state, action: { payload: CartItem }) {
       const existingItemIndex = state.filteredCart.findIndex(
         item => item._id === action.payload._id
       );
@@ -29,20 +29,20 @@ const cartSlice = createSlice({
     },
     deleteItem(state, action: { payload: string }) {
       state.filteredCart = state.filteredCart.filter(
-        (item: TCartItem) => item._id !== action.payload
+        (item: CartItem) => item._id !== action.payload
       );
     },
-    checkCart(state, action: { payload: TProductsArr }) {
+    checkCart(state, action: { payload: Product[] }) {
       state.filteredCart = state.filteredCart.filter(({ _id: id1 }) =>
         action.payload.some(({ _id: id2 }) => id1 === id2)
       );
     },
-    addInfo(state, action: { payload: TInfo }) {
+    addInfo(state, action: { payload: Info }) {
       state.customerInfo = action.payload;
     },
     deleteAllItems(state) {
       state.filteredCart = [];
-      state.customerInfo = {} as TInfo;
+      state.customerInfo = {} as Info;
     },
     addOrderSum(state, action: { payload: number }) {
       state.orderSum = action.payload;

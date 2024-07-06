@@ -13,10 +13,10 @@ import { ProductOptionsList } from './ProductOptionsList';
 import css from './ProductListItem.module.scss';
 
 interface ProductListItemProps {
-  item: TProduct;
-  addToCart: TAddToCart;
+  item: Product;
+  addToCart: AddToCart;
   setFavoriteProducts: (_id: string) => boolean;
-  favoriteProducts: TProductsArr;
+  favoriteProducts: Product[];
   options?: Option[];
 }
 
@@ -37,7 +37,7 @@ export function ProductListItem({
     promotion,
     promPrice,
     category,
-    vegan
+    vegan,
   } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
@@ -91,7 +91,7 @@ export function ProductListItem({
     if (optionData !== undefined) {
       if (checked && !optionsArray.includes(optionData)) {
         setOptionsArray([...optionsArray, optionData]);
-        setOptionsSum(optionsSum + optionData.price)
+        setOptionsSum(optionsSum + optionData.price);
       }
       if (!checked && optionsArray.includes(optionData)) {
         const filteredArray = optionsArray.filter(item => item !== optionData);
@@ -102,8 +102,8 @@ export function ProductListItem({
   };
 
   useEffect(() => {
-    !optionsShown && setOptionsArray([]), setOptionsSum(0)
-  }, [optionsShown])
+    !optionsShown && setOptionsArray([]), setOptionsSum(0);
+  }, [optionsShown]);
 
   return (
     <article className={css.listItem}>

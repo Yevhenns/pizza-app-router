@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { RoundButton } from '@/UI/basic/RoundButton';
 import { Icon } from '@/UI/basic/Icon';
 import { Checkbox } from '@/UI/basic/Checkbox';
@@ -50,7 +50,7 @@ export function ProductQuantity({
         <div className={css.quantity}>
           <Checkbox
             htmlFor="options"
-            name='options'
+            name="options"
             label="Опції"
             posRight
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}

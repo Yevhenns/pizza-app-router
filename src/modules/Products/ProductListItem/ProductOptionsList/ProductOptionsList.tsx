@@ -5,13 +5,13 @@ import css from './ProductOptionsList.module.scss';
 type ProductOptionsListProps = {
   options: Option[];
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  vegan: boolean
+  vegan: boolean;
 };
 
 export function ProductOptionsList({
   options,
   handleChange,
-  vegan
+  vegan,
 }: ProductOptionsListProps) {
   const [filteredByVegan, setFilteredByVegan] = useState<Option[]>([]);
 
@@ -23,7 +23,7 @@ export function ProductOptionsList({
       const filteredArray = options.filter(item => item.vegan === vegan);
       setFilteredByVegan(filteredArray);
     }
-  }, [options, vegan])
+  }, [options, vegan]);
 
   return (
     <div className={css.wrapper}>
@@ -32,7 +32,7 @@ export function ProductOptionsList({
           <div key={item.id} className={css.item}>
             <Checkbox
               htmlFor="option"
-              name='option'
+              name="option"
               label={item.title}
               value={item.title}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}

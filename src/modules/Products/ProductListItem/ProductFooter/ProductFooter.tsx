@@ -2,8 +2,8 @@
 import { Button } from '@/UI/basic/Button';
 import css from './ProductFooter.module.scss';
 
-interface ProductFooterProps extends TProductItem {
-  addToCart: TAddToCart;
+interface ProductFooterProps extends ProductItem {
+  addToCart: AddToCart;
   optionsArray: Option[];
 }
 
@@ -16,7 +16,7 @@ export function ProductFooter({
   addToCart,
   optionsArray,
 }: ProductFooterProps) {
-  const optionsTitles = optionsArray.map(item => item.title)
+  const optionsTitles = optionsArray.map(item => item.title);
 
   return (
     <div className={css.productFooter}>
@@ -40,7 +40,8 @@ export function ProductFooter({
             optionsTitles
           )
         }
-      >В кошик
+      >
+        В кошик
       </Button>
     </div>
   );

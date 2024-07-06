@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import css from './ProductsList.module.scss';
 
 interface ProductsListProps {
-  data: TProductsArr;
+  data: Product[];
   options?: Option[];
 }
 

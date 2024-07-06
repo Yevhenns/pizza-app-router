@@ -3,9 +3,9 @@ import { getProducts } from './productsOperations';
 import { RootState } from '../store';
 
 const initialState = {
-  productsAll: [] as TProductsArr,
-  promotions: [] as TProductsArr,
-  favorites: [] as TProductsArr,
+  productsAll: [] as Product[],
+  promotions: [] as Product[],
+  favorites: [] as Product[],
   error: null as any,
   isLoading: false,
 };
@@ -14,7 +14,7 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    addToFavoriteAction(state, action: { payload: TProduct }) {
+    addToFavoriteAction(state, action: { payload: Product }) {
       state.favorites = [...state.favorites, action.payload];
     },
     removeFromFavoriteAction(state, action: { payload: string }) {
@@ -38,7 +38,7 @@ const productsSlice = createSlice({
         if (action.payload) {
           const getByPromotion = () => {
             return action.payload.filter(
-              (item: TProduct) => item.promotion === true
+              (item: Product) => item.promotion === true
             );
           };
           state.productsAll = action.payload;

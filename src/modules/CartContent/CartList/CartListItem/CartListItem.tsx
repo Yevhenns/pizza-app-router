@@ -4,7 +4,7 @@ import { Icon } from '@/UI/basic/Icon';
 import css from './CartListItem.module.scss';
 
 interface CartListItemProps {
-  data: TCartItem;
+  data: CartItem;
   deleteCartItem: (_id: string) => void;
 }
 

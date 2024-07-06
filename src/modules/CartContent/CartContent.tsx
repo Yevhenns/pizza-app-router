@@ -18,7 +18,6 @@ export function CartContent({
 }: CartContentProps) {
   const filteredCart = useAppSelector(getFilteredCart);
   const isLoading = useAppSelector(getIsLoading);
-  console.log(filteredCart);
 
   const dispatch = useAppDispatch();
 

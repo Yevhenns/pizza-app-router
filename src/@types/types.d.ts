@@ -101,18 +101,17 @@ interface ForecastDay {
   icon: string;
 }
 
-type Forecast = ForecastDay[];
-
 type PizzaOption = {
   id: string;
   price: number;
   title: string;
 };
 
-type Options = {
+type Option = {
   id: string;
   price: number;
   title: string;
   vegan: boolean;
-}[];
+};
+
 

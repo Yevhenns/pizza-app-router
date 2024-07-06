@@ -3,7 +3,7 @@ import { Checkbox } from '@/UI/basic/Checkbox';
 import css from './ProductOptionsList.module.scss';
 
 type ProductOptionsListProps = {
-  options: Options;
+  options: Option[];
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   vegan: boolean
 };
@@ -13,7 +13,7 @@ export function ProductOptionsList({
   handleChange,
   vegan
 }: ProductOptionsListProps) {
-  const [filteredByVegan, setFilteredByVegan] = useState<Options>([]);
+  const [filteredByVegan, setFilteredByVegan] = useState<Option[]>([]);
 
   useEffect(() => {
     if (!vegan) {
@@ -31,6 +31,8 @@ export function ProductOptionsList({
         return (
           <div key={item.id} className={css.item}>
             <Checkbox
+              htmlFor="option"
+              name='option'
               label={item.title}
               value={item.title}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}

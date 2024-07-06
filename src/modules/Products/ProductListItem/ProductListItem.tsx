@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { ProductQuantity } from './ProductQuantity';
 import {
   addToFavoriteAction,
@@ -20,7 +20,7 @@ interface ProductListItemProps {
   setFavoriteProducts: (_id: string) => boolean;
   favoriteProducts: TProductsArr;
   isInCart: (_id: string) => boolean;
-  options?: Options;
+  options?: Option[];
 }
 
 export function ProductListItem({
@@ -50,14 +50,15 @@ export function ProductListItem({
   const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
   const [isOptionChosen, setIsOptionChosen] = useState(false);
-  const [optionsArray, setOptionsArray] = useState<string[]>([]);
+  const [optionsArray, setOptionsArray] = useState<Option[]>([]);
+  const [optionsSum, setOptionsSum] = useState(0);
 
   const dispatch = useAppDispatch();
 
   const getTotalQuantity = (quantity: number) => {
     setTotalQuantity(quantity);
-    setTotalPrice(price * quantity);
-    setTotalPromPrice(promPrice * quantity);
+    setTotalPrice((price + optionsSum) * quantity);
+    setTotalPromPrice((promPrice + optionsSum) * quantity);
   };
 
   const addToFavorite = () => {
@@ -88,16 +89,25 @@ export function ProductListItem({
   const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
     setIsOptionChosen(!isOptionChosen);
     const checked = e.target.checked;
-    const data = e.target.value;
-    if (checked && !optionsArray.includes(data)) {
-      setOptionsArray([...optionsArray, data]);
-      return;
-    }
-    if (!checked && optionsArray.includes(data)) {
-      const filteredArray = optionsArray.filter(item => item !== data);
-      setOptionsArray(filteredArray);
+
+    const optionData = options.find(item => item.title === e.target.value);
+
+    if (optionData !== undefined) {
+      if (checked && !optionsArray.includes(optionData)) {
+        setOptionsArray([...optionsArray, optionData]);
+        setOptionsSum(optionsSum + optionData.price)
+      }
+      if (!checked && optionsArray.includes(optionData)) {
+        const filteredArray = optionsArray.filter(item => item !== optionData);
+        setOptionsArray(filteredArray);
+        setOptionsSum(optionsSum - optionData.price);
+      }
     }
   };
+
+  useEffect(() => {
+    !optionsShown && setOptionsArray([]), setOptionsSum(0)
+  }, [optionsShown])
 
   return (
     <article className={css.listItem}>

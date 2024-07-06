@@ -8,7 +8,7 @@ import css from './ProductsList.module.scss';
 
 interface ProductsListProps {
   data: TProductsArr;
-  options?: Options;
+  options?: Option[];
 }
 
 export function ProductsList({ data, options }: ProductsListProps) {

@@ -8,7 +8,7 @@ import css from './ProductQuantity.module.scss';
 interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  options?: Options | [];
+  options?: Option[] | [];
   category: string;
 }
 
@@ -16,7 +16,7 @@ export function ProductQuantity({
   getTotalQuantity,
   handleChange,
   options = [],
-  category
+  category,
 }: ProductQuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
@@ -50,6 +50,7 @@ export function ProductQuantity({
         <div className={css.quantity}>
           <Checkbox
             htmlFor="options"
+            name='options'
             label="Опції"
             posRight
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}

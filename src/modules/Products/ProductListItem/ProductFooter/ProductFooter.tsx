@@ -6,7 +6,7 @@ import css from './ProductFooter.module.scss';
 interface ProductFooterProps extends TProductItem {
   addToCart: TAddToCart;
   isInCart: (_id: string) => boolean;
-  optionsArray: string[];
+  optionsArray: Option[];
 }
 
 export function ProductFooter({
@@ -20,6 +20,7 @@ export function ProductFooter({
   optionsArray,
 }: ProductFooterProps) {
   const isInCartBoolean = isInCart(_id);
+  const optionsTitles = optionsArray.map(item => item.title)
 
   return (
     <div className={css.productFooter}>
@@ -41,7 +42,7 @@ export function ProductFooter({
             promotion,
             totalPrice,
             totalPromPrice,
-            optionsArray
+            optionsTitles
           )
         }
       >

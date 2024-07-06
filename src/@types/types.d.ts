@@ -11,8 +11,6 @@ type Product = {
   vegan: boolean;
 };
 
-// type Favorites = Pick<Product, '_id' | 'category'>[];
-
 type Info = {
   address?: string | undefined;
   comment?: string;
@@ -90,12 +88,12 @@ type FilteredApiResponse = {
   };
 }[];
 
-interface ForecastDay {
+type ForecastDay = {
   date: string;
   avgtemp: string;
   conditionText: string;
   icon: string;
-}
+};
 
 type Option = {
   id: string;

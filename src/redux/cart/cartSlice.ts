@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { sendOrder } from './cartOperations';
 import { RootState } from '../store';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   filteredCart: [] as CartItem[],
@@ -15,21 +16,43 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: { payload: CartItem }) {
+      function areOptionsEqual(
+        options1: string[],
+        options2: string[]
+      ): boolean {
+        if (options1.length !== options2.length) {
+          return false;
+        }
+        const sortedOptions1 = [...options1].sort();
+        const sortedOptions2 = [...options2].sort();
+
+        return sortedOptions1.every(
+          (opt, index) => opt === sortedOptions2[index]
+        );
+      }
+
       const existingItemIndex = state.filteredCart.findIndex(
-        item => item._id === action.payload._id
+        item =>
+          item._id === action.payload._id &&
+          areOptionsEqual(item.options, action.payload.options)
       );
+
       if (existingItemIndex !== -1) {
         state.filteredCart[existingItemIndex].quantity +=
           action.payload.quantity;
         state.filteredCart[existingItemIndex].totalPrice +=
           action.payload.totalPrice;
       } else {
-        state.filteredCart = [...state.filteredCart, action.payload];
+        const newCartItem = {
+          ...action.payload,
+          cart_id: uuidv4(),
+        };
+        state.filteredCart = [...state.filteredCart, newCartItem];
       }
     },
     deleteItem(state, action: { payload: string }) {
       state.filteredCart = state.filteredCart.filter(
-        (item: CartItem) => item._id !== action.payload
+        (item: CartItem) => item.cart_id !== action.payload
       );
     },
     checkCart(state, action: { payload: Product[] }) {

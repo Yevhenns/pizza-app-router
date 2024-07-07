@@ -5,11 +5,11 @@ import css from './CartListItem.module.scss';
 
 interface CartListItemProps {
   data: CartItem;
-  deleteCartItem: (_id: string) => void;
+  deleteCartItem: (cart_id: string) => void;
 }
 
 export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
-  const { _id, photo, title, quantity, totalPrice, options } = data;
+  const { cart_id, photo, title, quantity, totalPrice, options } = data;
 
   return (
     <div className={css.wrapper}>
@@ -24,7 +24,7 @@ export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
         <p>{title}</p>
         <p>{quantity}</p>
         <p>{totalPrice} грн</p>
-        <RoundButton onClick={() => deleteCartItem(_id)}>
+        <RoundButton onClick={() => deleteCartItem(cart_id!)}>
           <Icon svg="remove" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>

@@ -29,8 +29,8 @@ export function CartContent({
     };
   });
 
-  const deleteCartItem = (id: string) => {
-    dispatch(deleteItem(id));
+  const deleteCartItem = (cart_id: string) => {
+    dispatch(deleteItem(cart_id));
   };
 
   if (isLoading) {

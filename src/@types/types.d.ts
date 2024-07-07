@@ -28,6 +28,7 @@ type SummaryOrder = {
 };
 
 type CartItem = {
+  cart_id?: string;
   _id: string;
   photo: string;
   quantity: number;

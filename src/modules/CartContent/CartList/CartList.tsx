@@ -6,7 +6,7 @@ import { addOrderSum, getFilteredCart } from '@/redux/cart/cartSlice';
 import css from './CartList.module.scss';
 
 interface CartListProps {
-  deleteCartItem: (_id: string) => void;
+  deleteCartItem: (cart_id: string) => void;
   deleteAllProducts: () => void;
 }
 

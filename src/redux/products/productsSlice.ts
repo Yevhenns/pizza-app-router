@@ -5,20 +5,20 @@ import { RootState } from '../store';
 const initialState = {
   productsAll: [] as Product[],
   promotions: [] as Product[],
-  favorites: [] as Product[],
+  favoriteProducts: [] as Product[],
   error: null as any,
   isLoading: false,
 };
 
 const productsSlice = createSlice({
-  name: 'products',
+  name: 'allProducts',
   initialState,
   reducers: {
     addToFavoriteAction(state, action: { payload: Product }) {
-      state.favorites = [...state.favorites, action.payload];
+      state.favoriteProducts = [...state.favoriteProducts, action.payload];
     },
     removeFromFavoriteAction(state, action: { payload: string }) {
-      state.favorites = state.favorites.filter(
+      state.favoriteProducts = state.favoriteProducts.filter(
         item => item._id !== action.payload
       );
     },
@@ -43,10 +43,10 @@ const productsSlice = createSlice({
           };
           state.productsAll = action.payload;
           state.promotions = getByPromotion();
-          const filteredFavoriteProducts = state.favorites.filter(
+          const filteredFavoriteProducts = state.favoriteProducts.filter(
             ({ _id: id1 }) => action.payload.some(({ _id: id2 }) => id1 === id2)
           );
-          state.favorites = filteredFavoriteProducts;
+          state.favoriteProducts = filteredFavoriteProducts;
           state.isLoading = false;
         }
       })
@@ -59,11 +59,13 @@ const productsSlice = createSlice({
 
 export const productsReducer = productsSlice.reducer;
 
-export const getProductsAll = (state: RootState) => state.products.productsAll;
-export const getPromotions = (state: RootState) => state.products.promotions;
-export const getFavorites = (state: RootState) => state.products.favorites;
-export const getIsLoading = (state: RootState) => state.products.isLoading;
-export const getError = (state: RootState) => state.products.error;
+export const getProductsAll = (state: RootState) =>
+  state.allProducts.productsAll;
+export const getPromotions = (state: RootState) => state.allProducts.promotions;
+export const getFavorites = (state: RootState) =>
+  state.allProducts.favoriteProducts;
+export const getIsLoading = (state: RootState) => state.allProducts.isLoading;
+export const getError = (state: RootState) => state.allProducts.error;
 
 export const { addToFavoriteAction } = productsSlice.actions;
 export const { removeFromFavoriteAction } = productsSlice.actions;

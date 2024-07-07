@@ -4,7 +4,7 @@ import { RootState } from '../store';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-  filteredCart: [] as CartItem[],
+  filteredBasket: [] as CartItem[],
   customerInfo: {} as Info,
   orderSum: 0,
   error: null as any,
@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: 'basket',
   initialState,
   reducers: {
     addItem(state, action: { payload: CartItem }) {
@@ -31,32 +31,32 @@ const cartSlice = createSlice({
         );
       }
 
-      const existingItemIndex = state.filteredCart.findIndex(
+      const existingItemIndex = state.filteredBasket.findIndex(
         item =>
           item._id === action.payload._id &&
           areOptionsEqual(item.options, action.payload.options)
       );
 
       if (existingItemIndex !== -1) {
-        state.filteredCart[existingItemIndex].quantity +=
+        state.filteredBasket[existingItemIndex].quantity +=
           action.payload.quantity;
-        state.filteredCart[existingItemIndex].totalPrice +=
+        state.filteredBasket[existingItemIndex].totalPrice +=
           action.payload.totalPrice;
       } else {
         const newCartItem = {
           ...action.payload,
           cart_id: uuidv4(),
         };
-        state.filteredCart = [...state.filteredCart, newCartItem];
+        state.filteredBasket = [...state.filteredBasket, newCartItem];
       }
     },
     deleteItem(state, action: { payload: string }) {
-      state.filteredCart = state.filteredCart.filter(
+      state.filteredBasket = state.filteredBasket.filter(
         (item: CartItem) => item.cart_id !== action.payload
       );
     },
     checkCart(state, action: { payload: Product[] }) {
-      state.filteredCart = state.filteredCart.filter(({ _id: id1 }) =>
+      state.filteredBasket = state.filteredBasket.filter(({ _id: id1 }) =>
         action.payload.some(({ _id: id2 }) => id1 === id2)
       );
     },
@@ -64,7 +64,7 @@ const cartSlice = createSlice({
       state.customerInfo = action.payload;
     },
     deleteAllItems(state) {
-      state.filteredCart = [];
+      state.filteredBasket = [];
       state.customerInfo = {} as Info;
     },
     addOrderSum(state, action: { payload: number }) {
@@ -96,11 +96,12 @@ const cartSlice = createSlice({
 
 export const cartReducer = cartSlice.reducer;
 
-export const getFilteredCart = (state: RootState) => state.cart.filteredCart;
-export const getCustomerInfo = (state: RootState) => state.cart.customerInfo;
-export const getOrderSum = (state: RootState) => state.cart.orderSum;
-export const getIsLoading = (state: RootState) => state.cart.isLoading;
-export const getError = (state: RootState) => state.cart.error;
+export const getFilteredCart = (state: RootState) =>
+  state.basket.filteredBasket;
+export const getCustomerInfo = (state: RootState) => state.basket.customerInfo;
+export const getOrderSum = (state: RootState) => state.basket.orderSum;
+export const getIsLoading = (state: RootState) => state.basket.isLoading;
+export const getError = (state: RootState) => state.basket.error;
 
 export const { addItem } = cartSlice.actions;
 export const { deleteItem } = cartSlice.actions;

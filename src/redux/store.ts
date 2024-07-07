@@ -7,24 +7,24 @@ import { productsReducer } from './products/productsSlice';
 const rootPersistConfig = {
   key: 'root',
   storage,
-  blacklist: ['cart', 'products'],
+  blacklist: ['basket', 'allProducts'],
 };
 
 const cartPersistConfig = {
-  key: 'filteredCart',
+  key: 'filteredBasket',
   storage,
-  whitelist: ['filteredCart'],
+  whitelist: ['filteredBasket'],
 };
 
 const favoritePersistConfig = {
-  key: 'favorites',
+  key: 'favoriteProducts',
   storage,
-  whitelist: ['favorites'],
+  whitelist: ['favoriteProducts'],
 };
 
 const rootReducer = combineReducers({
-  cart: persistReducer(cartPersistConfig, cartReducer),
-  products: persistReducer(favoritePersistConfig, productsReducer),
+  basket: persistReducer(cartPersistConfig, cartReducer),
+  allProducts: persistReducer(favoritePersistConfig, productsReducer),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

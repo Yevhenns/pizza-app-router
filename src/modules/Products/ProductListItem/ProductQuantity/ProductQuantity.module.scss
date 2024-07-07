@@ -2,9 +2,15 @@
     display: flex;
     align-items: center;
     margin-top: auto;
-    gap: 5px;
+    justify-content: space-between;
 
-    p {
+    .quantity {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    span {
         font-family: var(--secondary-font);
     }
 }

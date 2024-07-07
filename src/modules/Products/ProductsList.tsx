@@ -1,28 +1,27 @@
 'use client';
 import { ProductListItem } from './ProductListItem';
-import { addItem, getFilteredCart } from '@/redux/cart/cartSlice';
+import { addItem } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getFavorites } from '@/redux/products/productsSlice';
 import { toast } from 'react-toastify';
 import css from './ProductsList.module.scss';
 
 interface ProductsListProps {
-  data: TProductsArr;
+  data: Product[];
+  options?: Option[];
 }
 
-export function ProductsList({ data }: ProductsListProps) {
+export function ProductsList({ data, options }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
-  const filteredCart = useAppSelector(getFilteredCart);
-
-  const isInCart = (_id: string) => filteredCart.some(item => item._id === _id);
 
   const addToCart = (
     _id: string,
     totalQuantity: number,
     promotion: boolean,
     totalPrice: number,
-    TotalPromPrice: number
+    TotalPromPrice: number,
+    chosenOptions: string[]
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
     if (chosenProduct) {
@@ -32,6 +31,7 @@ export function ProductsList({ data }: ProductsListProps) {
         photo: photo,
         title: title,
         quantity: totalQuantity,
+        options: chosenOptions,
         totalPrice: totalPrice,
       };
       const cartPromItem = {
@@ -39,6 +39,7 @@ export function ProductsList({ data }: ProductsListProps) {
         photo: photo,
         title: title,
         quantity: totalQuantity,
+        options: chosenOptions,
         totalPrice: TotalPromPrice,
       };
       if (promotion) {
@@ -72,7 +73,7 @@ export function ProductsList({ data }: ProductsListProps) {
             addToCart={addToCart}
             setFavoriteProducts={setFavoriteProducts}
             favoriteProducts={favoriteProducts}
-            isInCart={isInCart}
+            options={options}
           />
         );
       })}

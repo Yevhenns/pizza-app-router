@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { sendOrder } from './cartOperations';
 import { RootState } from '../store';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-  filteredCart: [] as TCart,
-  customerInfo: {} as TInfo,
+  filteredCart: [] as CartItem[],
+  customerInfo: {} as Info,
   orderSum: 0,
   error: null as any,
   isLoading: false,
@@ -14,25 +15,57 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItem(state, action: { payload: TCartItem }) {
-      state.filteredCart = [...state.filteredCart, action.payload];
+    addItem(state, action: { payload: CartItem }) {
+      function areOptionsEqual(
+        options1: string[],
+        options2: string[]
+      ): boolean {
+        if (options1.length !== options2.length) {
+          return false;
+        }
+        const sortedOptions1 = [...options1].sort();
+        const sortedOptions2 = [...options2].sort();
+
+        return sortedOptions1.every(
+          (opt, index) => opt === sortedOptions2[index]
+        );
+      }
+
+      const existingItemIndex = state.filteredCart.findIndex(
+        item =>
+          item._id === action.payload._id &&
+          areOptionsEqual(item.options, action.payload.options)
+      );
+
+      if (existingItemIndex !== -1) {
+        state.filteredCart[existingItemIndex].quantity +=
+          action.payload.quantity;
+        state.filteredCart[existingItemIndex].totalPrice +=
+          action.payload.totalPrice;
+      } else {
+        const newCartItem = {
+          ...action.payload,
+          cart_id: uuidv4(),
+        };
+        state.filteredCart = [...state.filteredCart, newCartItem];
+      }
     },
     deleteItem(state, action: { payload: string }) {
       state.filteredCart = state.filteredCart.filter(
-        (item: TCartItem) => item._id !== action.payload
+        (item: CartItem) => item.cart_id !== action.payload
       );
     },
-    checkCart(state, action: { payload: TProductsArr }) {
+    checkCart(state, action: { payload: Product[] }) {
       state.filteredCart = state.filteredCart.filter(({ _id: id1 }) =>
         action.payload.some(({ _id: id2 }) => id1 === id2)
       );
     },
-    addInfo(state, action: { payload: TInfo }) {
+    addInfo(state, action: { payload: Info }) {
       state.customerInfo = action.payload;
     },
     deleteAllItems(state) {
       state.filteredCart = [];
-      state.customerInfo = {} as TInfo;
+      state.customerInfo = {} as Info;
     },
     addOrderSum(state, action: { payload: number }) {
       state.orderSum = action.payload;

@@ -1,9 +1,15 @@
-.cartListItem {
-  display: grid;
-  grid-template-columns: 50px 1fr 20px 65px 32px;
-  gap: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
+.wrapper {
   font-family: var(--secondary-font);
+  border: 1px solid tomato;
+  border-radius: 10px;
+  padding: 5px;
+
+  .cartListItem {
+    display: grid;
+    grid-template-columns: 50px 1fr 20px 65px 32px;
+    gap: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+  }
 }

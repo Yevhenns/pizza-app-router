@@ -12,7 +12,7 @@ interface compileOrderTemplateProps {
   comment?: string;
   address?: string;
   orderSum: number;
-  order: TOrdered;
+  order: Ordered;
 }
 
 export async function sendEmail({ body }: SendEmailProps) {

@@ -7,7 +7,7 @@ const BASE_URL =
 
 export const sendOrder = createAsyncThunk<
   number,
-  TSummaryOrder,
+  SummaryOrder,
   {
     rejectValue: string;
   }

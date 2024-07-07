@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { persist, store } from '@/redux/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Loader } from '@/UI/common/Loader';
 import { Layout } from '@/components/layout';
+import { WelcomeLogo } from '@/components/layout/components/WelcomeLogo';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +18,7 @@ export default function ClientRootLayout({
 }>) {
   return (
     <Provider store={store}>
-      <PersistGate loading={<Loader />} persistor={persist}>
+      <PersistGate loading={<WelcomeLogo />} persistor={persist}>
         <Layout>{children}</Layout>
       </PersistGate>
     </Provider>

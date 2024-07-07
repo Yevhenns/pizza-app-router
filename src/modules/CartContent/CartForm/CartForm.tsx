@@ -14,7 +14,7 @@ import inputCss from '../../../UI/basic/Input/Input.module.scss';
 
 interface CartFormProps extends HTMLProps<HTMLFormElement> {
   openModal: () => void;
-  order: TOrdered;
+  order: Ordered;
 }
 
 export function CartForm({ openModal, order }: CartFormProps) {
@@ -24,14 +24,14 @@ export function CartForm({ openModal, order }: CartFormProps) {
     formState: { errors, isValid },
     watch,
     control,
-  } = useForm<TInfo>({ mode: 'onChange' });
+  } = useForm<Info>({ mode: 'onChange' });
 
   const orderSum = useAppSelector(getOrderSum);
   const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<TInfo> = data => {
+  const onSubmit: SubmitHandler<Info> = data => {
     openModal();
-    const customerInfo: TInfo = {
+    const customerInfo: Info = {
       address: data.address,
       comment: data.comment,
       delivery: data.delivery,
@@ -39,7 +39,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
       number: data.number,
     };
     dispatch(addInfo(customerInfo));
-    const reqBody: TSummaryOrder = { customerInfo, order, orderSum };
+    const reqBody: SummaryOrder = { customerInfo, order, orderSum };
     dispatch(sendOrder(reqBody));
   };
 

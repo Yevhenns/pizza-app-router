@@ -4,7 +4,7 @@ import { showDniproWeather } from './showDniproWeather';
 import css from './Weather.module.scss';
 
 export function Weather() {
-  const [weather, setWeather] = useState<[] | Forecast>([]);
+  const [weather, setWeather] = useState<[] | ForecastDay[]>([]);
 
   useEffect(() => {
     showDniproWeather().then((data: FilteredApiResponse) => {

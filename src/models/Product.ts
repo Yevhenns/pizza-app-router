@@ -9,6 +9,7 @@ export interface Products extends mongoose.Document {
   category: string;
   promotion: boolean;
   promPrice: number;
+  vegan: boolean;
 }
 
 const productSchema = new mongoose.Schema<Products>(
@@ -27,6 +28,7 @@ const productSchema = new mongoose.Schema<Products>(
       type: Number,
       required: [true, 'Введіть акційну ціну продукту'],
     },
+    vegan: { type: Boolean, required: false}
   },
   {
     versionKey: false,

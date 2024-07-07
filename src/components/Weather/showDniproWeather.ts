@@ -6,7 +6,7 @@ export const showDniproWeather = async () => {
     const res = await fetch(
       `${WEATHER_BASE_URL}/forecast.json?q=Dnipropetrovsk&days=3&lang=uk&key=${WEATHER_API_KEY}`
     );
-    const data: ApiResponse = await res.json();
+    const data: WeatherApiResponse = await res.json();
     return data.forecast.forecastday;
   } catch (error: any) {
     return error.message;

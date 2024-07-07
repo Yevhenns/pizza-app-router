@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { ProductQuantity } from './ProductQuantity';
 import {
   addToFavoriteAction,
@@ -9,16 +9,15 @@ import { useAppDispatch } from '@/redux/hooks';
 import { toast } from 'react-toastify';
 import { ProductFooter } from './ProductFooter';
 import { ProductDescription } from './ProductDescription';
-import { Icon } from '@/UI/basic/Icon';
-import { RoundButton } from '@/UI/basic/RoundButton';
+import { ProductOptionsList } from './ProductOptionsList';
 import css from './ProductListItem.module.scss';
 
 interface ProductListItemProps {
-  item: TProduct;
-  addToCart: TAddToCart;
+  item: Product;
+  addToCart: AddToCart;
   setFavoriteProducts: (_id: string) => boolean;
-  favoriteProducts: TProductsArr;
-  isInCart: (_id: string) => boolean;
+  favoriteProducts: Product[];
+  options?: Option[];
 }
 
 export function ProductListItem({
@@ -26,7 +25,7 @@ export function ProductListItem({
   addToCart,
   setFavoriteProducts,
   favoriteProducts,
-  isInCart,
+  options = [],
 }: ProductListItemProps) {
   const {
     _id,
@@ -37,19 +36,25 @@ export function ProductListItem({
     photo,
     promotion,
     promPrice,
+    category,
+    vegan,
   } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
+  const [optionsShown, setOptionsShown] = useState(false);
+  const [isOptionChosen, setIsOptionChosen] = useState(false);
+  const [optionsArray, setOptionsArray] = useState<Option[]>([]);
+  const [optionsSum, setOptionsSum] = useState(0);
 
   const dispatch = useAppDispatch();
 
   const getTotalQuantity = (quantity: number) => {
     setTotalQuantity(quantity);
-    setTotalPrice(price * quantity);
-    setTotalPromPrice(promPrice * quantity);
+    setTotalPrice((price + optionsSum) * quantity);
+    setTotalPromPrice((promPrice + optionsSum) * quantity);
   };
 
   const addToFavorite = () => {
@@ -72,30 +77,59 @@ export function ProductListItem({
     }
   };
 
+  const handleShowOptions = (e: ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    setOptionsShown(isChecked);
+  };
+
+  const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsOptionChosen(!isOptionChosen);
+    const checked = e.target.checked;
+
+    const optionData = options.find(item => item.title === e.target.value);
+
+    if (optionData !== undefined) {
+      if (checked && !optionsArray.includes(optionData)) {
+        setOptionsArray([...optionsArray, optionData]);
+        setOptionsSum(optionsSum + optionData.price);
+      }
+      if (!checked && optionsArray.includes(optionData)) {
+        const filteredArray = optionsArray.filter(item => item !== optionData);
+        setOptionsArray(filteredArray);
+        setOptionsSum(optionsSum - optionData.price);
+      }
+    }
+  };
+
+  useEffect(() => {
+    !optionsShown && setOptionsArray([]), setOptionsSum(0);
+  }, [optionsShown]);
+
   return (
     <article className={css.listItem}>
-      {promotion && <div className={css.promotion}>Акція</div>}
-      <div className={css.favorite}>
-        <RoundButton aria-label="add to favorite" onClick={addToFavorite}>
-          {isFavorite ? (
-            <Icon
-              svg="heart-filled"
-              iconWidth={34}
-              iconHeight={34}
-              color="accent"
-            />
-          ) : (
-            <Icon svg="heart" iconWidth={34} iconHeight={34} />
-          )}
-        </RoundButton>
-      </div>
       <ProductDescription
+        _id={_id}
         photo={photo}
         title={title}
         description={description}
         dimension={dimension}
+        promotion={promotion}
+        isFavorite={isFavorite}
+        addToFavorite={addToFavorite}
       />
-      <ProductQuantity getTotalQuantity={getTotalQuantity} />
+      <ProductQuantity
+        getTotalQuantity={getTotalQuantity}
+        handleChange={handleShowOptions}
+        options={options}
+        category={category}
+      />
+      {optionsShown && (
+        <ProductOptionsList
+          options={options}
+          handleChange={handleChooseOptions}
+          vegan={vegan}
+        />
+      )}
       <ProductFooter
         _id={_id}
         totalQuantity={totalQuantity}
@@ -103,7 +137,7 @@ export function ProductListItem({
         totalPrice={totalPrice}
         totalPromPrice={totalPromPrice}
         addToCart={addToCart}
-        isInCart={isInCart}
+        optionsArray={optionsArray}
       />
     </article>
   );

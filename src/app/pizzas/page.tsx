@@ -7,6 +7,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
 import { filterByCategory } from '@/helpers/filterByCategory';
 import { ToastContainer } from 'react-toastify';
+import { options } from '../../options';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Pizzas() {
@@ -18,7 +19,7 @@ export default function Pizzas() {
     <PagesWrapper>
       <Heading>Піца</Heading>
       {isLoading && <LoaderModal />}
-      <ProductsList data={pizzas} />
+      <ProductsList data={pizzas} options={options} />
       <ToastContainer />
     </PagesWrapper>
   );

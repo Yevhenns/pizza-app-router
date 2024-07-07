@@ -5,7 +5,7 @@ import { CartForm } from './CartForm';
 import { CartList } from './CartList';
 import { Loader } from '@/UI/common/Loader';
 import { getIsLoading } from '@/redux/products/productsSlice';
-import css from './CartContent.module.scss'
+import css from './CartContent.module.scss';
 
 interface CartContentProps {
   deleteAllProducts: () => void;
@@ -21,15 +21,16 @@ export function CartContent({
 
   const dispatch = useAppDispatch();
 
-  const order: TOrdered = filteredCart.map(item => {
+  const order: Ordered = filteredCart.map(item => {
     return {
       title: item.title,
       quantity: item.quantity,
+      options: item.options,
     };
   });
 
-  const deleteCartItem = (id: string) => {
-    dispatch(deleteItem(id));
+  const deleteCartItem = (cart_id: string) => {
+    dispatch(deleteItem(cart_id));
   };
 
   if (isLoading) {

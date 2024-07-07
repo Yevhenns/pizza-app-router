@@ -6,7 +6,7 @@ import { addOrderSum, getFilteredCart } from '@/redux/cart/cartSlice';
 import css from './CartList.module.scss';
 
 interface CartListProps {
-  deleteCartItem: (_id: string) => void;
+  deleteCartItem: (cart_id: string) => void;
   deleteAllProducts: () => void;
 }
 
@@ -33,7 +33,7 @@ export function CartList({ deleteCartItem, deleteAllProducts }: CartListProps) {
           />
         );
       })}
-      <p className={css.totalPayment}>До оплати {sum} грн</p>
+      <p className={css.totalPayment}>До cплати: {sum} грн</p>
       <Button onClick={deleteAllProducts} type="button">
         Очистити кошик
       </Button>

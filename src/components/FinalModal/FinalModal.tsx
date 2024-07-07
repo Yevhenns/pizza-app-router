@@ -39,17 +39,22 @@ export function FinalModal({ finalAction }: FinalModalProps) {
               <br />
               очікуйте дзвінок від менеджера
             </p>
-            <p>Інформація про замовлення</p>
+            <p>Інформація про замовлення:</p>
             <ul>
-              {filteredCart.map(({ _id, title, quantity, totalPrice }) => {
-                return (
-                  <li key={_id}>
-                    <p>
-                      {title} - {quantity} шт. - {totalPrice} грн.
-                    </p>
-                  </li>
-                );
-              })}
+              {filteredCart.map(
+                ({ _id, title, quantity, totalPrice, options }) => {
+                  return (
+                    <li key={_id}>
+                      <p>
+                        {title} - {quantity} шт. - {totalPrice} грн.
+                      </p>
+                      {options.map(item => {
+                        return <p key={item}>{item}</p>;
+                      })}
+                    </li>
+                  );
+                }
+              )}
             </ul>
             <p>Загальна сума: {sum} грн.</p>
             <Button type="button" onClick={finalAction}>

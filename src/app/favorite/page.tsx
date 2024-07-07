@@ -7,6 +7,7 @@ import { ProductsList } from '@/modules/Products';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 import { PagesWrapper } from '@/components/PagesWrapper';
 import { ToastContainer } from 'react-toastify';
+import { options } from '../../options';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Favorite() {
@@ -18,7 +19,7 @@ export default function Favorite() {
       <Heading visible>Улюблене</Heading>
       {isLoading && <LoaderModal />}
       {favoriteProducts.length > 0 ? (
-        <ProductsList data={favoriteProducts} />
+        <ProductsList data={favoriteProducts} options={options} />
       ) : (
         <Empty text={'Тут нічого немає!'} />
       )}

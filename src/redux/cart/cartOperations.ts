@@ -11,7 +11,7 @@ export const sendOrder = createAsyncThunk<
   {
     rejectValue: string;
   }
->('cart/sendOrder', async (order, { rejectWithValue }) => {
+>('basket/sendOrder', async (order, { rejectWithValue }) => {
   try {
     const res = await axios.post(`${BASE_URL}/api/send_email`, order);
     return res.status;

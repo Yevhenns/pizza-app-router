@@ -15,7 +15,7 @@ const cartSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addItem(state, action: { payload: CartItem }) {
+    addItem(state, action: { payload: AddtoCartItem }) {
       function areOptionsEqual(
         options1: string[],
         options2: string[]
@@ -70,6 +70,20 @@ const cartSlice = createSlice({
     addOrderSum(state, action: { payload: number }) {
       state.orderSum = action.payload;
     },
+    setQuantityAndPrice(
+      state,
+      action: {
+        payload: { cart_id: string; quantity: number; totalPrice: number };
+      }
+    ) {
+      const existingItemIndex = state.filteredBasket.findIndex(
+        item => item.cart_id === action.payload.cart_id
+      );
+      state.filteredBasket[existingItemIndex].quantity =
+        action.payload.quantity;
+      state.filteredBasket[existingItemIndex].totalPrice =
+        action.payload.totalPrice;
+    },
   },
   extraReducers: builder =>
     builder
@@ -109,3 +123,4 @@ export const { checkCart } = cartSlice.actions;
 export const { addInfo } = cartSlice.actions;
 export const { deleteAllItems } = cartSlice.actions;
 export const { addOrderSum } = cartSlice.actions;
+export const { setQuantityAndPrice } = cartSlice.actions;

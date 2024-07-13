@@ -23,6 +23,7 @@ export function ProductQuantity({
   const increment = () => {
     setQuantity(quantity + 1);
   };
+
   const decrement = () => {
     setQuantity(quantity - 1);
   };

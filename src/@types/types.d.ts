@@ -22,13 +22,13 @@ type Info = {
 type Ordered = Pick<CartItem, 'title' | 'quantity' | 'options'>[];
 
 type SummaryOrder = {
-  customerInfo: TInfo;
-  order: TOrdered;
+  customerInfo: Info;
+  order: Ordered;
   orderSum: number;
 };
 
 type CartItem = {
-  cart_id?: string;
+  cart_id: string;
   _id: string;
   photo: string;
   quantity: number;

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { RoundButton } from '@/UI/basic/RoundButton';
 import { Icon } from '@/UI/basic/Icon';
 import css from './CartListItem.module.scss';
+import { CartListItemQuantity } from './CartListItemQuantity';
 
 interface CartListItemProps {
   data: CartItem;
@@ -22,7 +23,11 @@ export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
           priority={true}
         />
         <p>{title}</p>
-        <p>{quantity}</p>
+        <CartListItemQuantity
+          chosenQuantity={quantity}
+          cart_id={cart_id}
+          price={totalPrice}
+        />
         <p>{totalPrice} грн</p>
         <RoundButton onClick={() => deleteCartItem(cart_id!)}>
           <Icon svg="remove" iconWidth={24} iconHeight={24} color="accent" />

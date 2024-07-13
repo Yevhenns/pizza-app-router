@@ -16,7 +16,12 @@
         font-size: 24px;
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
         scale: 1.1;
+    }
+
+    &:disabled {
+        color: grey;
+        cursor: default;
     }
 }

@@ -27,6 +27,15 @@ type SummaryOrder = {
   orderSum: number;
 };
 
+type AddtoCartItem = {
+  _id: string;
+  photo: string;
+  quantity: number;
+  title: string;
+  totalPrice: number;
+  options: string[];
+};
+
 type CartItem = {
   cart_id: string;
   _id: string;

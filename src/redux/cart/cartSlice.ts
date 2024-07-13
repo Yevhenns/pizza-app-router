@@ -15,7 +15,7 @@ const cartSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addItem(state, action: { payload: CartItem }) {
+    addItem(state, action: { payload: AddtoCartItem }) {
       function areOptionsEqual(
         options1: string[],
         options2: string[]

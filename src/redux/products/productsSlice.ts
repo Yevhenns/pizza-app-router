@@ -37,9 +37,9 @@ const productsSlice = createSlice({
         }
         if (action.payload) {
           const getByPromotion = () => {
-            return action.payload.filter(
-              (item: Product) => item.promotion === true
-            );
+            return action.payload
+              .filter((item: Product) => item.promotion === true)
+              .sort((a, b) => a.title.localeCompare(b.title));
           };
           state.productsAll = action.payload;
           state.promotions = getByPromotion();

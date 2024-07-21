@@ -1,4 +1,12 @@
+@import "../../../../styles/media.mixin.scss";
+
 .wrapper {
-    height: 300px;
+    height: 276px;
     width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+
+    @include desktop {
+        width: 628px;
+    }
 }

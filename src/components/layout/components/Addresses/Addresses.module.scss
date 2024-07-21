@@ -15,10 +15,6 @@
         flex-direction: column;
         gap: 24px;
 
-        @include desktop {
-            width: 50%;
-        }
-
         @include mobile {
             gap: 12px;
         }

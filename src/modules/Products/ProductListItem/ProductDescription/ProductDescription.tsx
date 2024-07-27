@@ -5,7 +5,7 @@ import { Icon } from '@/UI/basic/Icon';
 import css from './ProductDescription.module.scss';
 
 interface ProductDescriptionProps {
-  _id: string
+  _id: string;
   photo: string;
   title: string;
   description: string;
@@ -16,7 +16,6 @@ interface ProductDescriptionProps {
 }
 
 export function ProductDescription({
-  _id,
   photo,
   title,
   description,
@@ -25,7 +24,6 @@ export function ProductDescription({
   isFavorite,
   addToFavorite,
 }: ProductDescriptionProps) {
-
   return (
     <div className={css.descriprionWrapper}>
       <div className={css.imageWrapper}>

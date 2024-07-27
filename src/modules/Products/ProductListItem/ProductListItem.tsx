@@ -45,7 +45,6 @@ export function ProductListItem({
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
-  const [isOptionChosen, setIsOptionChosen] = useState(false);
   const [optionsArray, setOptionsArray] = useState<Option[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);
 
@@ -83,7 +82,6 @@ export function ProductListItem({
   };
 
   const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsOptionChosen(!isOptionChosen);
     const checked = e.target.checked;
 
     const optionData = options.find(item => item.title === e.target.value);

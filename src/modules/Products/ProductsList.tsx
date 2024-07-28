@@ -20,7 +20,7 @@ export function ProductsList({ data, options }: ProductsListProps) {
     totalQuantity: number,
     promotion: boolean,
     totalPrice: number,
-    TotalPromPrice: number,
+    totalPromPrice: number,
     chosenOptions: string[]
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
@@ -32,21 +32,9 @@ export function ProductsList({ data, options }: ProductsListProps) {
         title: title,
         quantity: totalQuantity,
         options: chosenOptions,
-        totalPrice: totalPrice,
+        totalPrice: promotion ? totalPromPrice : totalPrice,
       };
-      const cartPromItem = {
-        _id: _id,
-        photo: photo,
-        title: title,
-        quantity: totalQuantity,
-        options: chosenOptions,
-        totalPrice: TotalPromPrice,
-      };
-      if (promotion) {
-        dispatch(addItem(cartPromItem));
-      } else {
-        dispatch(addItem(cartItem));
-      }
+      dispatch(addItem(cartItem));
       toast.success('Додано до кошика', {
         position: 'top-center',
         autoClose: 1500,

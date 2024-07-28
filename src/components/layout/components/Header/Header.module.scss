@@ -25,4 +25,38 @@
       }
     }
   }
+
+  .navLink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 250ms linear;
+    color: var(--main-color);
+    position: relative;
+
+    @include mobile {
+      display: none;
+    }
+
+    span {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      font-family: var(--secondary-font);
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  .active {
+    transform: scale(1.2);
+    svg {
+      fill: var(--accent-color);
+    }
+
+    span {
+      color: var(--accent-color);
+    }
+  }
 }

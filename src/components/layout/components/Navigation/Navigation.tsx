@@ -11,7 +11,7 @@ export function Navigation() {
       <Link
         className={cn(
           css.link,
-          pathname === '/' ? css.active : '',
+          pathname === '/' && css.active,
           css.hideOnMobile
         )}
         href={'/'}
@@ -19,19 +19,19 @@ export function Navigation() {
         Новинки
       </Link>
       <Link
-        className={cn(css.link, pathname === '/pizzas' ? css.active : '')}
+        className={cn(css.link, pathname === '/pizzas' && css.active)}
         href={'/pizzas'}
       >
         Піца
       </Link>
       <Link
-        className={cn(css.link, pathname === '/appetizers' ? css.active : '')}
+        className={cn(css.link, pathname === '/appetizers' && css.active)}
         href={'/appetizers'}
       >
         Закуски
       </Link>
       <Link
-        className={cn(css.link, pathname === '/drinks' ? css.active : '')}
+        className={cn(css.link, pathname === '/drinks' && css.active)}
         href={'/drinks'}
       >
         Напої

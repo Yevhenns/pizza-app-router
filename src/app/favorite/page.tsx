@@ -16,12 +16,12 @@ export default function Favorite() {
 
   return (
     <PagesWrapper>
-      <Heading visible>Улюблене</Heading>
+      <Heading>Улюблене</Heading>
       {isLoading && <LoaderModal />}
       {favoriteProducts.length > 0 ? (
         <ProductsList data={favoriteProducts} options={options} />
       ) : (
-        <Empty text={'Тут нічого немає!'} />
+        <Empty text={'В улюбленому нічого немає!'} />
       )}
       <ToastContainer />
     </PagesWrapper>

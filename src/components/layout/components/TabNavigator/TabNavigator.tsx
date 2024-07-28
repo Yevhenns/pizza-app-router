@@ -13,21 +13,18 @@ export function TabNavigator() {
 
   return (
     <nav className={css.wrapper}>
-      <Link
-        className={cn(css.link, pathname === '/' ? css.active : '')}
-        href={'/'}
-      >
+      <Link className={cn(css.link, pathname === '/' && css.active)} href={'/'}>
         <Icon svg="home" iconWidth={34} iconHeight={34} />
       </Link>
       <Link
-        className={cn(css.link, pathname === '/cart' ? css.active : '')}
+        className={cn(css.link, pathname === '/cart' && css.active)}
         href={'/cart'}
       >
         <Icon svg="basket" iconWidth={34} iconHeight={34} />
         {cartLength !== 0 && <span>{cartLength}</span>}
       </Link>
       <Link
-        className={cn(css.link, pathname === '/favorite' ? css.active : '')}
+        className={cn(css.link, pathname === '/favorite' && css.active)}
         href={'/favorite'}
       >
         <Icon svg="heart" iconWidth={34} iconHeight={34} />

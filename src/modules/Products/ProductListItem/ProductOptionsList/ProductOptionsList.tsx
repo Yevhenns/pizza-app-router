@@ -18,8 +18,7 @@ export function ProductOptionsList({
   useEffect(() => {
     if (!vegan) {
       setFilteredByVegan(options);
-    }
-    if (vegan) {
+    } else {
       const filteredArray = options.filter(item => item.vegan === vegan);
       setFilteredByVegan(filteredArray);
     }

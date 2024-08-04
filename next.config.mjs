@@ -15,13 +15,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
-        port: '',
-        pathname: '/dyka4vajb/image/upload/**',
       },
       {
         protocol: 'https',
         hostname: 'cdn.weatherapi.com',
-        port: '',
       },
     ],
   },

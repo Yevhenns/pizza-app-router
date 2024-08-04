@@ -21,7 +21,7 @@ export function QRCode() {
           посиланням
         </a>
       </span>
-      <Image src={'/qr.jpeg'} width={200} height={200} alt="qr code" />
+      <Image src={'/qr.jpeg'} width={200} height={200} alt="qr code" priority />
     </div>
   );
 }

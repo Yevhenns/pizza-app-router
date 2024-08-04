@@ -7,6 +7,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getPromotions } from '@/redux/products/productsSlice';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 import { PagesWrapper } from '@/components/PagesWrapper';
+import { QRCode } from '@/components/QRCode';
 import { CarouselComponent } from '@/components/CarouselComponent';
 import { options } from '../options';
 import css from '../styles/pages/Index.module.scss';
@@ -19,6 +20,7 @@ export default function Home() {
     <PagesWrapper>
       <Heading>Новинки</Heading>
       {isLoading && <LoaderModal />}
+      <QRCode />
       <CarouselComponent />
       <h2 className={css.heading}>Акційні пропозиції</h2>
       <ProductsList data={promotionProducts} options={options} />

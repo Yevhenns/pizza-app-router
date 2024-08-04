@@ -30,8 +30,9 @@ export function ProductOptionsList({
         return (
           <div key={item.id} className={css.item}>
             <Checkbox
-              htmlFor="option"
+              htmlFor={item.id}
               name="option"
+              id={item.id}
               label={item.title}
               value={item.title}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}

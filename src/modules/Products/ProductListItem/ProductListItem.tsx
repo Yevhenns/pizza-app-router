@@ -120,6 +120,7 @@ export function ProductListItem({
         handleChange={handleShowOptions}
         options={options}
         category={category}
+        _id={_id}
       />
       {optionsShown && (
         <ProductOptionsList

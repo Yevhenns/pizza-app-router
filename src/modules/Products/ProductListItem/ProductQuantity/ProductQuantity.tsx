@@ -10,6 +10,7 @@ interface ProductQuantityProps {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   options?: Option[] | [];
   category: string;
+  _id: string;
 }
 
 export function ProductQuantity({
@@ -17,6 +18,7 @@ export function ProductQuantity({
   handleChange,
   options = [],
   category,
+  _id,
 }: ProductQuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
@@ -50,8 +52,9 @@ export function ProductQuantity({
       {category === 'pizzas' && options.length > 0 && (
         <div className={css.quantity}>
           <Checkbox
-            htmlFor="options"
+            htmlFor={_id}
             name="options"
+            id={_id}
             label="Опції"
             posRight
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}

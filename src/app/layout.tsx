@@ -1,8 +1,23 @@
 import type { Metadata } from 'next';
+import { Comfortaa, Inter } from 'next/font/google';
 
 import '@/styles/globals.scss';
 
 import ClientRootLayout from './clientRootLayout';
+
+export const inter = Inter({
+  subsets: ['latin'],
+  variable: '--secondary-font',
+  display: 'swap',
+  weight: '400',
+});
+
+export const roboto_mono = Comfortaa({
+  subsets: ['latin'],
+  variable: '--main-font',
+  display: 'swap',
+  weight: '600',
+});
 
 export const metadata: Metadata = {
   title: 'Nostra Pizza',
@@ -15,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uk">
+    <html lang="uk" className={`${inter.variable} ${roboto_mono.variable}`}>
       <body>
         <ClientRootLayout>{children}</ClientRootLayout>
       </body>

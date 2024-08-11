@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import Image from 'next/image';
-import { showDniproWeather } from './showDniproWeather';
+
 import css from './Weather.module.scss';
+import { showDniproWeather } from './showDniproWeather';
 
 export function Weather() {
   const [weather, setWeather] = useState<[] | ForecastDay[]>([]);

@@ -5,8 +5,13 @@ import { Provider } from 'react-redux';
 import { persist, store } from '@/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { Layout } from '@/components/Layout';
-import { WelcomeLogo } from '@/components/Layout/components/WelcomeLogo';
+import { Addresses } from '@/components/Addresses';
+import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
+import { TabNavigator } from '@/components/TabNavigator';
+import { WelcomeLogo } from '@/components/WelcomeLogo';
+
+import css from './clientRootLayout.module.scss';
 
 export default function ClientRootLayout({
   children,
@@ -16,7 +21,15 @@ export default function ClientRootLayout({
   return (
     <Provider store={store}>
       <PersistGate loading={<WelcomeLogo />} persistor={persist}>
-        <Layout>{children}</Layout>
+        <div className={css.wrapper}>
+          <Header />
+          <main className={css.main}>
+            {children}
+            <Addresses />
+            <TabNavigator />
+          </main>
+          <Footer />
+        </div>
       </PersistGate>
     </Provider>
   );

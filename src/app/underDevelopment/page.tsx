@@ -1,5 +1,5 @@
 'use client';
-import css from '../../styles/pages/UnderDevelopment.module.scss';
+import css from './page.module.scss';
 
 export default function underDevelopment() {
   return (

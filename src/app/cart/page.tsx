@@ -6,7 +6,7 @@ import { FinalModal } from '@/components/FinalModal';
 import { useAppDispatch } from '@/redux/hooks';
 import { deleteAllItems } from '@/redux/cart/cartSlice';
 import { PagesWrapper } from '@/components/PagesWrapper';
-import css from '../../styles/pages/Cart.module.scss';
+import css from './page.module.scss';
 
 export default function Cart() {
   const [open, setOpen] = useState(false);

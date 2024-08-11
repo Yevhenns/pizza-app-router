@@ -10,7 +10,7 @@ import { PagesWrapper } from '@/components/PagesWrapper';
 import { QRCode } from '@/components/QRCode';
 import { CarouselComponent } from '@/components/CarouselComponent';
 import { options } from '../options';
-import css from '../styles/pages/Index.module.scss';
+import css from './page.module.scss';
 
 export default function Home() {
   const promotionProducts = useAppSelector(getPromotions);

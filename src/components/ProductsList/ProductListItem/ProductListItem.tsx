@@ -18,7 +18,7 @@ import { ProductQuantity } from './ProductQuantity';
 interface ProductListItemProps {
   item: Product;
   addToCart: AddToCart;
-  setFavoriteProducts: (_id: string) => boolean;
+  checkIsFavoriteProducts: (_id: string) => boolean;
   favoriteProducts: Product[];
   options?: Option[];
 }
@@ -26,7 +26,7 @@ interface ProductListItemProps {
 export function ProductListItem({
   item,
   addToCart,
-  setFavoriteProducts,
+  checkIsFavoriteProducts,
   favoriteProducts,
   options = [],
 }: ProductListItemProps) {
@@ -46,7 +46,7 @@ export function ProductListItem({
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
+  const [isFavorite, setIsFavorite] = useState(checkIsFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
   const [optionsArray, setOptionsArray] = useState<Option[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);

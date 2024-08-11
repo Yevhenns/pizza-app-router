@@ -17,8 +17,6 @@
     "^react(.*)$",
     "^next(.*)$",
     "<THIRD_PARTY_MODULES>",
-    "^@/auth/(.*)$",
-    "^@/config/(.*)$",
     "^@/app/(.*)$",
     "^@/components/(.*)$",
     "^[./]"

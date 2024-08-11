@@ -3,15 +3,16 @@ import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 
-import { Button } from '@/UI/basic/Button';
-import { Checkbox } from '@/UI/basic/Checkbox';
-import { Input } from '@/UI/basic/Input';
-import { TextArea } from '@/UI/basic/TextArea';
 import { sendOrder } from '@/redux/cart/cartOperations';
 import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
-import inputCss from '../../../UI/basic/Input/Input.module.scss';
+import { Button } from '@/components/basic/Button';
+import { Checkbox } from '@/components/basic/Checkbox';
+import { Input } from '@/components/basic/Input';
+import { TextArea } from '@/components/basic/TextArea';
+
+import inputCss from '../../../components/basic/Input/Input.module.scss';
 import css from './CartForm.module.scss';
 
 interface CartFormProps extends HTMLProps<HTMLFormElement> {

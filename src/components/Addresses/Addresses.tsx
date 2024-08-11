@@ -1,5 +1,5 @@
-import { Container } from '@/UI/common/Container';
-import { Section } from '@/UI/common/Section';
+import { Container } from '@/components/common/Container';
+import { Section } from '@/components/common/Section';
 
 import css from './Addresses.module.scss';
 import { GoogleMap } from './GoogleMap';

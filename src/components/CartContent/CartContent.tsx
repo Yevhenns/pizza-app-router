@@ -1,9 +1,9 @@
-import { Loader } from '@/UI/common/Loader';
 import { deleteItem, getFilteredCart } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getIsLoading } from '@/redux/products/productsSlice';
 
 import { Empty } from '@/components/Empty';
+import { Loader } from '@/components/common/Loader';
 
 import css from './CartContent.module.scss';
 import { CartForm } from './CartForm';

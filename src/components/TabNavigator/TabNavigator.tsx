@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Icon } from '@/UI/basic/Icon';
 import { cn } from '@/helpers/combineClasses';
 import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
+
+import { Icon } from '@/components/basic/Icon';
 
 import css from './TabNavigator.module.scss';
 

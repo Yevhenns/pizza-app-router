@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { Icon } from '@/UI/basic/Icon';
 import GoogleMapReact from 'google-map-react';
+
+import { Icon } from '@/components/basic/Icon';
 
 import css from './GoogleMap.module.scss';
 

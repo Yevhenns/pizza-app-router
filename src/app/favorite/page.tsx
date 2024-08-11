@@ -3,14 +3,14 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Heading } from '@/UI/basic/Heading';
-import { LoaderModal } from '@/UI/common/LoaderModal';
 import { useAppSelector } from '@/redux/hooks';
 import { getFavorites, getIsLoading } from '@/redux/products/productsSlice';
 
 import { Empty } from '@/components/Empty';
 import { PagesWrapper } from '@/components/PagesWrapper';
 import { ProductsList } from '@/components/ProductsList';
+import { Heading } from '@/components/basic/Heading';
+import { LoaderModal } from '@/components/common/LoaderModal';
 
 import { options } from '../../options';
 

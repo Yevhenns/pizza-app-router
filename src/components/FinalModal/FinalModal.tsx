@@ -1,6 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Button } from '@/UI/basic/Button';
-import { LoaderModal } from '@/UI/common/LoaderModal';
 import {
   getError,
   getFilteredCart,
@@ -8,6 +6,9 @@ import {
   getOrderSum,
 } from '@/redux/cart/cartSlice';
 import { useAppSelector } from '@/redux/hooks';
+
+import { Button } from '@/components/basic/Button';
+import { LoaderModal } from '@/components/common/LoaderModal';
 
 import { Error500 } from '../Error500/Error500';
 import css from './FinalModal.module.scss';

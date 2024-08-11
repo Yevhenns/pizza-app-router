@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Icon } from '@/UI/basic/Icon';
-import { Container } from '@/UI/common/Container';
 import { cn } from '@/helpers/combineClasses';
 import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
+
+import { Icon } from '@/components/basic/Icon';
+import { Container } from '@/components/common/Container';
 
 import { Logo } from '../Logo';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';

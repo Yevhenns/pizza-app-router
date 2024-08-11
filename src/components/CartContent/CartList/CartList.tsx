@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
-import { Button } from '@/UI/basic/Button';
 import { addOrderSum, getFilteredCart } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+
+import { Button } from '@/components/basic/Button';
 
 import css from './CartList.module.scss';
 import { CartListItem } from './CartListItem';

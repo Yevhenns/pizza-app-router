@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
-import { Icon } from '@/UI/basic/Icon';
-import { RoundButton } from '@/UI/basic/RoundButton';
 import { setQuantityAndPrice } from '@/redux/cart/cartSlice';
 import { useAppDispatch } from '@/redux/hooks';
+
+import { Icon } from '@/components/basic/Icon';
+import { RoundButton } from '@/components/basic/RoundButton';
 
 import css from './CartListItemQuantity.module.scss';
 

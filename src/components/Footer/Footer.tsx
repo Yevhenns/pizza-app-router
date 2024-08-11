@@ -1,5 +1,5 @@
-import { Icon } from '@/UI/basic/Icon';
-import { Container } from '@/UI/common/Container';
+import { Icon } from '@/components/basic/Icon';
+import { Container } from '@/components/common/Container';
 
 import css from './Footer.module.scss';
 import { FooterNavigation } from './FooterNavigation';

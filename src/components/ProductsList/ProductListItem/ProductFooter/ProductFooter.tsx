@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/UI/basic/Button';
+import { Button } from '@/components/basic/Button';
 
 import css from './ProductFooter.module.scss';
 

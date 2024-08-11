@@ -28,10 +28,8 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
   }, [dispatch, productsAll]);
 
   return (
-    <>
-      <Section>
-        <Container>{is500Error ? <Error500 /> : <>{children}</>}</Container>
-      </Section>
-    </>
+    <Section>
+      <Container>{is500Error ? <Error500 /> : <>{children}</>}</Container>
+    </Section>
   );
 }

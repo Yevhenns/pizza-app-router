@@ -10,6 +10,7 @@
   "jsxBracketSameLine": false,
   "arrowParens": "avoid",
   "proseWrap": "always",
+
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrder": [

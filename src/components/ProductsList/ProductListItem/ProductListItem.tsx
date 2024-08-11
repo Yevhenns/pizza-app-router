@@ -1,16 +1,19 @@
 'use client';
+
 import { ChangeEvent, useEffect, useState } from 'react';
-import { ProductQuantity } from './ProductQuantity';
+import { toast } from 'react-toastify';
+
+import { useAppDispatch } from '@/redux/hooks';
 import {
   addToFavoriteAction,
   removeFromFavoriteAction,
 } from '@/redux/products/productsSlice';
-import { useAppDispatch } from '@/redux/hooks';
-import { toast } from 'react-toastify';
-import { ProductFooter } from './ProductFooter';
+
 import { ProductDescription } from './ProductDescription';
-import { ProductOptionsList } from './ProductOptionsList';
+import { ProductFooter } from './ProductFooter';
 import css from './ProductListItem.module.scss';
+import { ProductOptionsList } from './ProductOptionsList';
+import { ProductQuantity } from './ProductQuantity';
 
 interface ProductListItemProps {
   item: Product;

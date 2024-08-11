@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
 import { cn } from '@/helpers/combineClasses';
+
 import css from './Navigation.module.scss';
 
 export function Navigation() {

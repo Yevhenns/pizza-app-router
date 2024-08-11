@@ -1,14 +1,18 @@
 'use client';
-import { Heading } from '@/UI/basic/Heading';
-import { Weather } from '@/components/Weather';
-import { ProductsList } from '@/components/ProductsList';
+
 import { ToastContainer } from 'react-toastify';
+
+import { Heading } from '@/UI/basic/Heading';
+import { LoaderModal } from '@/UI/common/LoaderModal';
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getPromotions } from '@/redux/products/productsSlice';
-import { LoaderModal } from '@/UI/common/LoaderModal';
-import { PagesWrapper } from '@/components/PagesWrapper';
-import { QRCode } from '@/components/QRCode';
+
 import { CarouselComponent } from '@/components/CarouselComponent';
+import { PagesWrapper } from '@/components/PagesWrapper';
+import { ProductsList } from '@/components/ProductsList';
+import { QRCode } from '@/components/QRCode';
+import { Weather } from '@/components/Weather';
+
 import { options } from '../options';
 import css from './page.module.scss';
 

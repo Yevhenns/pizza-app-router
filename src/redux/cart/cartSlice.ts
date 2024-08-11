@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { sendOrder } from './cartOperations';
-import { RootState } from '../store';
 import { v4 as uuidv4 } from 'uuid';
+
+import { RootState } from '../store';
+import { sendOrder } from './cartOperations';
 
 const initialState = {
   filteredBasket: [] as CartItem[],

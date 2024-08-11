@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { RoundButton } from '@/UI/basic/RoundButton';
+
 import { Icon } from '@/UI/basic/Icon';
+import { RoundButton } from '@/UI/basic/RoundButton';
+
 import css from './CartListItem.module.scss';
 import { CartListItemQuantity } from './CartListItemQuantity';
 

@@ -1,16 +1,16 @@
 .wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  justify-content: space-between;
+
+  .quantity {
     display: flex;
     align-items: center;
-    margin-top: auto;
-    justify-content: space-between;
+    gap: 5px;
+  }
 
-    .quantity {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    span {
-        font-family: var(--secondary-font);
-    }
+  span {
+    font-family: var(--secondary-font);
+  }
 }

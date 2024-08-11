@@ -1,6 +1,8 @@
-import { forwardRef, HTMLProps } from 'react';
-import css from './Checkbox.module.scss';
+import { HTMLProps, forwardRef } from 'react';
+
 import { cn } from '@/helpers/combineClasses';
+
+import css from './Checkbox.module.scss';
 
 interface CheckboxProps extends HTMLProps<HTMLInputElement> {
   label?: string;

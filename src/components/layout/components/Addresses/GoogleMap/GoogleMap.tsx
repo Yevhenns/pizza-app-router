@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import GoogleMapReact from 'google-map-react';
+
 import { Icon } from '@/UI/basic/Icon';
+import GoogleMapReact from 'google-map-react';
+
 import css from './GoogleMap.module.scss';
 
 interface PointProps {

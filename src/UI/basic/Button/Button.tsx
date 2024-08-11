@@ -1,4 +1,5 @@
 import { HTMLProps, PropsWithChildren } from 'react';
+
 import css from './Button.module.scss';
 
 interface ButtonProps extends HTMLProps<PropsWithChildren<HTMLButtonElement>> {

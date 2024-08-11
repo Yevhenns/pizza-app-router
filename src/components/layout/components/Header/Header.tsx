@@ -1,14 +1,17 @@
 'use client';
+
 import Link from 'next/link';
-import { Container } from '@/UI/common/Container';
-import { Logo } from '../Logo';
-import { Navigation } from './Navigation';
-import { PhoneNumbersSet } from '../PhoneNumbersSet';
-import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
-import css from './Header.module.scss';
 import { usePathname } from 'next/navigation';
+
 import { Icon } from '@/UI/basic/Icon';
+import { Container } from '@/UI/common/Container';
 import { cn } from '@/helpers/combineClasses';
+import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
+
+import { Logo } from '../Logo';
+import { PhoneNumbersSet } from '../PhoneNumbersSet';
+import css from './Header.module.scss';
+import { Navigation } from './Navigation';
 
 export function Header() {
   const { cartLength, favoriteLength } = useGetCartAndFavoriteLength();

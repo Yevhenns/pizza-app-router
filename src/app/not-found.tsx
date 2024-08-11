@@ -1,6 +1,9 @@
 'use client';
+
 import Link from 'next/link';
+
 import { PagesWrapper } from '@/components/PagesWrapper';
+
 import css from './not-found.module.scss';
 
 export default function NotFound() {

@@ -1,7 +1,8 @@
 import { Icon } from '@/UI/basic/Icon';
 import { Container } from '@/UI/common/Container';
-import { FooterNavigation } from './FooterNavigation';
+
 import css from './Footer.module.scss';
+import { FooterNavigation } from './FooterNavigation';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();

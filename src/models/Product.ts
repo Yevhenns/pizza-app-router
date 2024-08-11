@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema<Products>(
       type: Number,
       required: [true, 'Введіть акційну ціну продукту'],
     },
-    vegan: { type: Boolean, required: false}
+    vegan: { type: Boolean, required: false },
   },
   {
     versionKey: false,

@@ -1,16 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
 import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
-import { sendOrder } from '@/redux/cart/cartOperations';
+import InputMask from 'react-input-mask';
+
 import { Button } from '@/UI/basic/Button';
-import { TextArea } from '@/UI/basic/TextArea';
 import { Checkbox } from '@/UI/basic/Checkbox';
 import { Input } from '@/UI/basic/Input';
-import InputMask from 'react-input-mask';
-import css from './CartForm.module.scss';
+import { TextArea } from '@/UI/basic/TextArea';
+import { sendOrder } from '@/redux/cart/cartOperations';
+import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+
 import inputCss from '../../../UI/basic/Input/Input.module.scss';
+import css from './CartForm.module.scss';
 
 interface CartFormProps extends HTMLProps<HTMLFormElement> {
   openModal: () => void;

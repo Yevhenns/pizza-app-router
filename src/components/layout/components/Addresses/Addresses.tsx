@@ -1,7 +1,8 @@
-import { GoogleMap } from './GoogleMap';
-import { Section } from '@/UI/common/Section';
 import { Container } from '@/UI/common/Container';
+import { Section } from '@/UI/common/Section';
+
 import css from './Addresses.module.scss';
+import { GoogleMap } from './GoogleMap';
 
 export function Addresses() {
   return (

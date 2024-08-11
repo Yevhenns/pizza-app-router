@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import { Icon } from '@/UI/basic/Icon';
+
 import css from './Logo.module.scss';
 
 export function Logo() {

@@ -1,10 +1,13 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { cn } from '@/helpers/combineClasses';
+
 import { Icon } from '@/UI/basic/Icon';
-import css from './TabNavigator.module.scss';
+import { cn } from '@/helpers/combineClasses';
 import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
+
+import css from './TabNavigator.module.scss';
 
 export function TabNavigator() {
   const pathname = usePathname();

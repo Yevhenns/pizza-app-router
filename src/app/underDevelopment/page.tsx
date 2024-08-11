@@ -1,4 +1,5 @@
 'use client';
+
 import css from './page.module.scss';
 
 export default function underDevelopment() {

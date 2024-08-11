@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const BASE_URL =
   (process.env.NODE_ENV === 'development' && 'http://localhost:3000') ||

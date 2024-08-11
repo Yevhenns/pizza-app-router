@@ -1,29 +1,29 @@
 .fieldset {
-    font-family: var(--secondary-font);
-    border: none;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  font-family: var(--secondary-font);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
-    input {
-        width: 100%;
-        padding: 12px;
-        border-radius: 5px;
-        transition: var(--transition);
-        border: 1px solid var(--accent-color);
-        outline: none;
-        font-family: var(--main-font);
+  input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    transition: var(--transition);
+    border: 1px solid var(--accent-color);
+    outline: none;
+    font-family: var(--main-font);
 
-        &:hover {
-            box-shadow: var(--box-shadow);
-        }
+    &:hover {
+      box-shadow: var(--box-shadow);
     }
+  }
 
-    div {
-        height: 25px;
+  div {
+    height: 25px;
 
-        span {
-            color: red;
-        }
+    span {
+      color: red;
     }
+  }
 }

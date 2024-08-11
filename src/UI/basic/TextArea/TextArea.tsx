@@ -1,4 +1,5 @@
-import { forwardRef, HTMLProps } from 'react';
+import { HTMLProps, forwardRef } from 'react';
+
 import css from './TextArea.module.scss';
 
 interface TextAreaProps extends HTMLProps<HTMLTextAreaElement> {

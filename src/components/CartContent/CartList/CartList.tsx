@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
-import { CartListItem } from './CartListItem';
+
 import { Button } from '@/UI/basic/Button';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { addOrderSum, getFilteredCart } from '@/redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+
 import css from './CartList.module.scss';
+import { CartListItem } from './CartListItem';
 
 interface CartListProps {
   deleteCartItem: (cart_id: string) => void;

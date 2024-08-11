@@ -1,13 +1,16 @@
 'use client';
-import { Heading } from '@/UI/basic/Heading';
-import { ProductsList } from '@/components/ProductsList';
-import { useAppSelector } from '@/redux/hooks';
-import { getProductsAll, getIsLoading } from '@/redux/products/productsSlice';
-import { filterByCategory } from '@/helpers/filterByCategory';
+
 import { ToastContainer } from 'react-toastify';
-import { PagesWrapper } from '@/components/PagesWrapper';
-import { LoaderModal } from '@/UI/common/LoaderModal';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { Heading } from '@/UI/basic/Heading';
+import { LoaderModal } from '@/UI/common/LoaderModal';
+import { filterByCategory } from '@/helpers/filterByCategory';
+import { useAppSelector } from '@/redux/hooks';
+import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
+
+import { PagesWrapper } from '@/components/PagesWrapper';
+import { ProductsList } from '@/components/ProductsList';
 
 export default function Drinks() {
   const products = useAppSelector(getProductsAll);

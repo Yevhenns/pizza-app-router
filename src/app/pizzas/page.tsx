@@ -1,14 +1,18 @@
 'use client';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Heading } from '@/UI/basic/Heading';
-import { ProductsList } from '@/components/ProductsList';
-import { PagesWrapper } from '@/components/PagesWrapper';
 import { LoaderModal } from '@/UI/common/LoaderModal';
+import { filterByCategory } from '@/helpers/filterByCategory';
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
-import { filterByCategory } from '@/helpers/filterByCategory';
-import { ToastContainer } from 'react-toastify';
+
+import { PagesWrapper } from '@/components/PagesWrapper';
+import { ProductsList } from '@/components/ProductsList';
+
 import { options } from '../../options';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Pizzas() {
   const products = useAppSelector(getProductsAll);

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getProducts } from './productsOperations';
+
 import { RootState } from '../store';
+import { getProducts } from './productsOperations';
 
 const initialState = {
   productsAll: [] as Product[],

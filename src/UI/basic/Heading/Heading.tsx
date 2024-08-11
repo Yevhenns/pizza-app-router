@@ -1,4 +1,5 @@
 import { HTMLProps, PropsWithChildren } from 'react';
+
 import css from './Heading.module.scss';
 
 interface HeadingProps

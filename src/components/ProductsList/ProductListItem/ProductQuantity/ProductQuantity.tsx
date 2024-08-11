@@ -1,8 +1,11 @@
 'use client';
-import { useState, useEffect, ChangeEvent } from 'react';
-import { RoundButton } from '@/UI/basic/RoundButton';
-import { Icon } from '@/UI/basic/Icon';
+
+import { ChangeEvent, useEffect, useState } from 'react';
+
 import { Checkbox } from '@/UI/basic/Checkbox';
+import { Icon } from '@/UI/basic/Icon';
+import { RoundButton } from '@/UI/basic/RoundButton';
+
 import css from './ProductQuantity.module.scss';
 
 interface ProductQuantityProps {

@@ -1,11 +1,15 @@
 'use client';
+
 import { useState } from 'react';
+
 import { Heading } from '@/UI/basic/Heading';
+import { deleteAllItems } from '@/redux/cart/cartSlice';
+import { useAppDispatch } from '@/redux/hooks';
+
 import { CartContent } from '@/components/CartContent';
 import { FinalModal } from '@/components/FinalModal';
-import { useAppDispatch } from '@/redux/hooks';
-import { deleteAllItems } from '@/redux/cart/cartSlice';
 import { PagesWrapper } from '@/components/PagesWrapper';
+
 import css from './page.module.scss';
 
 export default function Cart() {

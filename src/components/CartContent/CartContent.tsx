@@ -1,11 +1,13 @@
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { Loader } from '@/UI/common/Loader';
 import { deleteItem, getFilteredCart } from '@/redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { getIsLoading } from '@/redux/products/productsSlice';
+
 import { Empty } from '@/components/Empty';
+
+import css from './CartContent.module.scss';
 import { CartForm } from './CartForm';
 import { CartList } from './CartList';
-import { Loader } from '@/UI/common/Loader';
-import { getIsLoading } from '@/redux/products/productsSlice';
-import css from './CartContent.module.scss';
 
 interface CartContentProps {
   deleteAllProducts: () => void;

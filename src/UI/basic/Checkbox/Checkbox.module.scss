@@ -1,45 +1,45 @@
 .fieldset {
-    font-family: var(--secondary-font);
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    position: relative;
+  font-family: var(--secondary-font);
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  height: 24px;
+
+  &.right {
+    flex-direction: row-reverse;
+  }
+
+  input {
+    cursor: pointer;
+    appearance: none;
+    background-color: var(--white-color);
+    font: inherit;
+    width: 24px;
     height: 24px;
+    border: 1px solid var(--accent-color);
+    border-radius: 2px;
+    display: grid;
+    place-content: center;
+    transition: var(--transition);
 
-    &.right {
-        flex-direction: row-reverse;
+    &:hover {
+      box-shadow: var(--box-shadow);
     }
+  }
 
-    input {
-        cursor: pointer;
-        appearance: none;
-        background-color: var(--white-color);
-        font: inherit;
-        width: 24px;
-        height: 24px;
-        border: 1px solid var(--accent-color);
-        border-radius: 2px;
-        display: grid;
-        place-content: center;
-        transition: var(--transition);
+  input::before {
+    box-sizing: border-box;
+    content: '';
+    width: 14px;
+    height: 14px;
+    transform: scale(0);
+    transition: var(--transition);
+    box-shadow: inset 1em 1em var(--accent-color);
+  }
 
-        &:hover {
-            box-shadow: var(--box-shadow);
-        }
-    }
-
-    input::before {
-        box-sizing: border-box;
-        content: "";
-        width: 14px;
-        height: 14px;
-        transform: scale(0);
-        transition: var(--transition);
-        box-shadow: inset 1em 1em var(--accent-color);
-    }
-
-    input:checked::before {
-        transform: scale(1);
-    }
+  input:checked::before {
+    transform: scale(1);
+  }
 }

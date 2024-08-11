@@ -1,5 +1,6 @@
-import nodemailer from 'nodemailer';
 import handlebars from 'handlebars';
+import nodemailer from 'nodemailer';
+
 import { orderTemplate } from './orderTemplate';
 
 interface SendEmailProps {

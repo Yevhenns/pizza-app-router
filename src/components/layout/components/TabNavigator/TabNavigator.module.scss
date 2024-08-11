@@ -1,36 +1,36 @@
-@import "../../../../styles/media.mixin.scss";
+@import '../../../../styles/media.mixin.scss';
 
 .wrapper {
-    position: fixed;
-    bottom: 0;
-    background: linear-gradient(90deg, #f94c25 -0.8%, #ffd465 99.28%);
-    display: flex;
-    justify-content: space-around;
-    width: 100vw;
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(90deg, #f94c25 -0.8%, #ffd465 99.28%);
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
 
-    @include not-mobile {
-        display: none;
+  @include not-mobile {
+    display: none;
+  }
+
+  .link {
+    padding: 15px;
+    position: relative;
+
+    span {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-family: var(--secondary-font);
+    }
+  }
+
+  .active {
+    svg {
+      fill: var(--main-hover-color);
     }
 
-    .link {
-        padding: 15px;
-        position: relative;
-
-        span {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            font-family: var(--secondary-font);
-        }
+    span {
+      color: var(--main-hover-color);
     }
-
-    .active {
-        svg {
-            fill: var(--main-hover-color);
-        }
-
-        span {
-            color: var(--main-hover-color);
-        }
-    }
+  }
 }

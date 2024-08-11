@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import css from './QRCode.module.scss';
 
 export function QRCode() {

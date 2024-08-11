@@ -1,14 +1,18 @@
 'use client';
-import { Heading } from '@/UI/basic/Heading';
-import { Empty } from '@/components/Empty';
-import { getFavorites, getIsLoading } from '@/redux/products/productsSlice';
-import { useAppSelector } from '@/redux/hooks';
-import { ProductsList } from '@/components/ProductsList';
-import { LoaderModal } from '@/UI/common/LoaderModal';
-import { PagesWrapper } from '@/components/PagesWrapper';
+
 import { ToastContainer } from 'react-toastify';
-import { options } from '../../options';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { Heading } from '@/UI/basic/Heading';
+import { LoaderModal } from '@/UI/common/LoaderModal';
+import { useAppSelector } from '@/redux/hooks';
+import { getFavorites, getIsLoading } from '@/redux/products/productsSlice';
+
+import { Empty } from '@/components/Empty';
+import { PagesWrapper } from '@/components/PagesWrapper';
+import { ProductsList } from '@/components/ProductsList';
+
+import { options } from '../../options';
 
 export default function Favorite() {
   const isLoading = useAppSelector(getIsLoading);

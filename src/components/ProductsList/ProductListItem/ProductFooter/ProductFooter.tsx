@@ -1,5 +1,7 @@
 'use client';
+
 import { Button } from '@/UI/basic/Button';
+
 import css from './ProductFooter.module.scss';
 
 interface ProductFooterProps extends ProductItem {

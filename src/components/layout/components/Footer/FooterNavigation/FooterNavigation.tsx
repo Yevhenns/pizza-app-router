@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { PhoneNumbersSet } from '../../PhoneNumbersSet';
 import css from './FooterNavigation.module.scss';
 

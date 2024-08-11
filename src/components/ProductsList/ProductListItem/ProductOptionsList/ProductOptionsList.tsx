@@ -1,5 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
+
 import { Checkbox } from '@/UI/basic/Checkbox';
+
 import css from './ProductOptionsList.module.scss';
 
 type ProductOptionsListProps = {

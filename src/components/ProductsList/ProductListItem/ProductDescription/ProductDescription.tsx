@@ -1,7 +1,10 @@
 'use client';
+
 import Image from 'next/image';
-import { RoundButton } from '@/UI/basic/RoundButton';
+
 import { Icon } from '@/UI/basic/Icon';
+import { RoundButton } from '@/UI/basic/RoundButton';
+
 import css from './ProductDescription.module.scss';
 
 interface ProductDescriptionProps {

@@ -1,9 +1,12 @@
 'use client';
-import { ProductListItem } from './ProductListItem';
+
+import { toast } from 'react-toastify';
+
 import { addItem } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getFavorites } from '@/redux/products/productsSlice';
-import { toast } from 'react-toastify';
+
+import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
 
 interface ProductsListProps {

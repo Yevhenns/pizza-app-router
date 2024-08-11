@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import ClientRootLayout from './clientRootLayout';
+
 import '@/styles/globals.scss';
+
+import ClientRootLayout from './clientRootLayout';
 
 export const metadata: Metadata = {
   title: 'Nostra Pizza',

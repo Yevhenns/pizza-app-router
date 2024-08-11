@@ -1,13 +1,13 @@
 .svg {
-    &.main {
-        fill: var(--main-color);
-    }
+  &.main {
+    fill: var(--main-color);
+  }
 
-    &.white {
-        fill: var(--white-color);
-    }
+  &.white {
+    fill: var(--white-color);
+  }
 
-    &.accent {
-        fill: var(--accent-color);
-    }
+  &.accent {
+    fill: var(--accent-color);
+  }
 }

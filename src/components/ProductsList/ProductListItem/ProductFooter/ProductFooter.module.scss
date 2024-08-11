@@ -1,31 +1,31 @@
 .productFooter {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    .price {
-        font-family: var(--main-font);
-        font-size: 18px;
-        color: var(--black-color);
-        font-weight: 700;
+  .price {
+    font-family: var(--main-font);
+    font-size: 18px;
+    color: var(--black-color);
+    font-weight: 700;
+  }
+
+  .priceWrapper {
+    flex-direction: column;
+
+    .promPrice {
+      font-family: var(--main-font);
+      font-size: 18px;
+      color: var(--accent-color);
+      font-weight: 700;
     }
 
-    .priceWrapper {
-        flex-direction: column;
-
-        .promPrice {
-            font-family: var(--main-font);
-            font-size: 18px;
-            color: var(--accent-color);
-            font-weight: 700;
-        }
-
-        .oldPrice {
-            font-family: var(--main-font);
-            font-size: 16px;
-            color: var(--black-color);
-            font-weight: 700;
-            text-decoration: line-through;
-        }
+    .oldPrice {
+      font-family: var(--main-font);
+      font-size: 16px;
+      color: var(--black-color);
+      font-weight: 700;
+      text-decoration: line-through;
     }
+  }
 }

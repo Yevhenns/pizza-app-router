@@ -1,7 +1,10 @@
 'use client';
-import { persist, store } from '@/redux/store';
+
 import { Provider } from 'react-redux';
+
+import { persist, store } from '@/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+
 import { Layout } from '@/components/Layout';
 import { WelcomeLogo } from '@/components/Layout/components/WelcomeLogo';
 

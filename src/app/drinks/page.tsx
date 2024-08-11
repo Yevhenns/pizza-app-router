@@ -1,6 +1,6 @@
 'use client';
 import { Heading } from '@/UI/basic/Heading';
-import { ProductsList } from '@/modules/Products';
+import { ProductsList } from '@/components/ProductsList';
 import { useAppSelector } from '@/redux/hooks';
 import { getProductsAll, getIsLoading } from '@/redux/products/productsSlice';
 import { filterByCategory } from '@/helpers/filterByCategory';

@@ -2,8 +2,8 @@
 import { persist, store } from '@/redux/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Layout } from '@/components/layout';
-import { WelcomeLogo } from '@/components/layout/components/WelcomeLogo';
+import { Layout } from '@/components/Layout';
+import { WelcomeLogo } from '@/components/Layout/components/WelcomeLogo';
 
 export default function ClientRootLayout({
   children,

@@ -1,6 +1,6 @@
 'use client';
 import { Heading } from '@/UI/basic/Heading';
-import { ProductsList } from '@/modules/Products';
+import { ProductsList } from '@/components/ProductsList';
 import { PagesWrapper } from '@/components/PagesWrapper';
 import { LoaderModal } from '@/UI/common/LoaderModal';
 import { useAppSelector } from '@/redux/hooks';

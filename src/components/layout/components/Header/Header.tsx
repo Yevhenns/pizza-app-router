@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Container } from '@/UI/common/Container';
 import { Logo } from '../Logo';
-import { Navigation } from '../Navigation';
+import { Navigation } from './Navigation';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';
 import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
 import css from './Header.module.scss';

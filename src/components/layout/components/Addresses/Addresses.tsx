@@ -1,4 +1,4 @@
-import { GoogleMap } from '../GoogleMap';
+import { GoogleMap } from './GoogleMap';
 import { Section } from '@/UI/common/Section';
 import { Container } from '@/UI/common/Container';
 import css from './Addresses.module.scss';

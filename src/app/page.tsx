@@ -1,7 +1,7 @@
 'use client';
 import { Heading } from '@/UI/basic/Heading';
 import { Weather } from '@/components/Weather';
-import { ProductsList } from '@/modules/Products';
+import { ProductsList } from '@/components/ProductsList';
 import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getPromotions } from '@/redux/products/productsSlice';

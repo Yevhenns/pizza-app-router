@@ -7,7 +7,6 @@ import { filterByCategory } from '@/helpers/filterByCategory';
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
 
-import { PagesWrapper } from '@/components/PagesWrapper';
 import { ProductsList } from '@/components/ProductsList';
 import { Heading } from '@/components/basic/Heading';
 import { LoaderModal } from '@/components/common/LoaderModal';
@@ -20,11 +19,11 @@ export default function Pizzas() {
   const pizzas = filterByCategory(products, 'pizzas');
 
   return (
-    <PagesWrapper>
+    <>
       <Heading>Піца</Heading>
       {isLoading && <LoaderModal />}
       <ProductsList data={pizzas} options={options} />
       <ToastContainer />
-    </PagesWrapper>
+    </>
   );
 }

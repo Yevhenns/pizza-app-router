@@ -19,7 +19,7 @@ export default function Favorite() {
   const favoriteProducts = useAppSelector(getFavorites);
 
   return (
-    <PagesWrapper>
+    <>
       <Heading>Улюблене</Heading>
       {isLoading && <LoaderModal />}
       {favoriteProducts.length > 0 ? (
@@ -28,6 +28,6 @@ export default function Favorite() {
         <Empty text={'В улюбленому нічого немає!'} />
       )}
       <ToastContainer />
-    </PagesWrapper>
+    </>
   );
 }

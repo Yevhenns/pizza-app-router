@@ -7,7 +7,6 @@ import { useAppDispatch } from '@/redux/hooks';
 
 import { CartContent } from '@/components/CartContent';
 import { FinalModal } from '@/components/FinalModal';
-import { PagesWrapper } from '@/components/PagesWrapper';
 import { Heading } from '@/components/basic/Heading';
 
 import css from './page.module.scss';
@@ -27,15 +26,13 @@ export default function Cart() {
   };
 
   return (
-    <PagesWrapper>
-      <div className={css.cartWrapper}>
-        <Heading>Кошик</Heading>
-        <CartContent
-          deleteAllProducts={deleteAllProducts}
-          openModal={openModal}
-        />
-        {open && <FinalModal finalAction={deleteAllProducts} />}
-      </div>
-    </PagesWrapper>
+    <div className={css.cartWrapper}>
+      <Heading>Кошик</Heading>
+      <CartContent
+        deleteAllProducts={deleteAllProducts}
+        openModal={openModal}
+      />
+      {open && <FinalModal finalAction={deleteAllProducts} />}
+    </div>
   );
 }

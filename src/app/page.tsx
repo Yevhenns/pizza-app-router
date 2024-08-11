@@ -6,7 +6,6 @@ import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getPromotions } from '@/redux/products/productsSlice';
 
 import { CarouselComponent } from '@/components/CarouselComponent';
-import { PagesWrapper } from '@/components/PagesWrapper';
 import { ProductsList } from '@/components/ProductsList';
 import { QRCode } from '@/components/QRCode';
 import { Weather } from '@/components/Weather';
@@ -21,7 +20,7 @@ export default function Home() {
   const isLoading = useAppSelector(getIsLoading);
 
   return (
-    <PagesWrapper>
+    <>
       <Heading>Новинки</Heading>
       {isLoading && <LoaderModal />}
       <QRCode />
@@ -30,6 +29,6 @@ export default function Home() {
       <ProductsList data={promotionProducts} options={options} />
       <Weather />
       <ToastContainer />
-    </PagesWrapper>
+    </>
   );
 }

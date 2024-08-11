@@ -8,6 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Addresses } from '@/components/Addresses';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import { PagesWrapper } from '@/components/PagesWrapper';
 import { TabNavigator } from '@/components/TabNavigator';
 import { WelcomeLogo } from '@/components/WelcomeLogo';
 
@@ -24,7 +25,7 @@ export default function ClientRootLayout({
         <div className={css.wrapper}>
           <Header />
           <main className={css.main}>
-            {children}
+            <PagesWrapper>{children}</PagesWrapper>
             <Addresses />
             <TabNavigator />
           </main>

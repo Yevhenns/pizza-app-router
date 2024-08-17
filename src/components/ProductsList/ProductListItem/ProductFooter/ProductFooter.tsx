@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/basic/Button';
+import { Icon } from '@/components/basic/Icon';
 
 import css from './ProductFooter.module.scss';
 
@@ -43,7 +44,8 @@ export function ProductFooter({
           )
         }
       >
-        В кошик
+        <Icon svg="basket" iconWidth={19} iconHeight={19} color="white" />В
+        кошик
       </Button>
     </div>
   );

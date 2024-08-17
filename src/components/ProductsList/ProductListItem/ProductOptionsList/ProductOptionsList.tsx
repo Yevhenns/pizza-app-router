@@ -39,7 +39,7 @@ export function ProductOptionsList({
               value={item.title}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
             />
-            <span>{item.price} грн</span>
+            <span>+ {item.price} грн</span>
           </div>
         );
       })}

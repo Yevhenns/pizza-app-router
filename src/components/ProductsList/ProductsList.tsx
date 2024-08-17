@@ -6,15 +6,15 @@ import { addItem } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getFavorites } from '@/redux/products/productsSlice';
 
+import { options } from '../../options';
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
 
 interface ProductsListProps {
   data: Product[];
-  options?: Option[];
 }
 
-export function ProductsList({ data, options }: ProductsListProps) {
+export function ProductsList({ data }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
 

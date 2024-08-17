@@ -9,7 +9,6 @@ import { QRCode } from '@/components/QRCode';
 import { Weather } from '@/components/Weather';
 import { LoaderModal } from '@/components/common/LoaderModal';
 
-import { options } from '../options';
 import css from './page.module.scss';
 
 export default function Home() {
@@ -22,7 +21,7 @@ export default function Home() {
       <QRCode />
       <CarouselComponent />
       <h2 className={css.heading}>Акційні пропозиції</h2>
-      <ProductsList data={promotionProducts} options={options} />
+      <ProductsList data={promotionProducts} />
       <Weather />
     </>
   );

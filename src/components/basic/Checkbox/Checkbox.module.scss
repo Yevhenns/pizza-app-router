@@ -3,7 +3,7 @@
   border: none;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 5px;
   position: relative;
   height: 24px;
 
@@ -31,7 +31,7 @@
 
   input::before {
     box-sizing: border-box;
-    content: '';
+    content: "";
     width: 14px;
     height: 14px;
     transform: scale(0);

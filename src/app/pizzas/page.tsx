@@ -7,8 +7,6 @@ import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
 import { ProductsList } from '@/components/ProductsList';
 import { LoaderModal } from '@/components/common/LoaderModal';
 
-import { options } from '../../options';
-
 export default function Pizzas() {
   const products = useAppSelector(getProductsAll);
   const isLoading = useAppSelector(getIsLoading);
@@ -17,7 +15,7 @@ export default function Pizzas() {
   return (
     <>
       {isLoading && <LoaderModal />}
-      <ProductsList data={pizzas} options={options} />
+      <ProductsList data={pizzas} />
     </>
   );
 }

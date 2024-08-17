@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { deleteAllItems } from '@/redux/cart/cartSlice';
 import { useAppDispatch } from '@/redux/hooks';
@@ -22,6 +24,11 @@ export default function Cart() {
   const deleteAllProducts = () => {
     dispatch(deleteAllItems());
     setOpen(false);
+    toast.warn('Кошик очищено', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
   };
 
   return (
@@ -31,6 +38,7 @@ export default function Cart() {
         openModal={openModal}
       />
       {open && <FinalModal finalAction={deleteAllProducts} />}
+      <ToastContainer />
     </div>
   );
 }

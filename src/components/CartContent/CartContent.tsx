@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import { deleteItem, getFilteredCart } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getIsLoading } from '@/redux/products/productsSlice';
@@ -33,6 +35,11 @@ export function CartContent({
 
   const deleteCartItem = (cart_id: string) => {
     dispatch(deleteItem(cart_id));
+    toast.warn('Видалено з кошика', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
   };
 
   if (isLoading) {

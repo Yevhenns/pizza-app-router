@@ -1,7 +1,5 @@
 'use client';
 
-import { ToastContainer } from 'react-toastify';
-
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getPromotions } from '@/redux/products/productsSlice';
 
@@ -26,7 +24,6 @@ export default function Home() {
       <h2 className={css.heading}>Акційні пропозиції</h2>
       <ProductsList data={promotionProducts} options={options} />
       <Weather />
-      <ToastContainer />
     </>
   );
 }

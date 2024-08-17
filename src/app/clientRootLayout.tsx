@@ -1,6 +1,8 @@
 'use client';
 
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { persist, store } from '@/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -25,7 +27,10 @@ export default function ClientRootLayout({
         <div className={css.wrapper}>
           <Header />
           <main className={css.main}>
-            <PagesWrapper>{children}</PagesWrapper>
+            <PagesWrapper>
+              {children}
+              <ToastContainer />
+            </PagesWrapper>
             <Addresses />
             <TabNavigator />
           </main>

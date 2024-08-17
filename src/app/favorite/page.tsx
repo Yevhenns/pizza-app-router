@@ -1,8 +1,5 @@
 'use client';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { useAppSelector } from '@/redux/hooks';
 import { getFavorites, getIsLoading } from '@/redux/products/productsSlice';
 
@@ -24,7 +21,6 @@ export default function Favorite() {
       ) : (
         <Empty text={'В улюбленому нічого немає!'} />
       )}
-      <ToastContainer />
     </>
   );
 }

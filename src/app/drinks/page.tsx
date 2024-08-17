@@ -1,8 +1,5 @@
 'use client';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { filterByCategory } from '@/helpers/filterByCategory';
 import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
@@ -19,7 +16,6 @@ export default function Drinks() {
     <>
       {isLoading && <LoaderModal />}
       <ProductsList data={drinks} />
-      <ToastContainer />
     </>
   );
 }

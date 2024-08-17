@@ -18,13 +18,13 @@ export function ProductsList({ data }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
 
-  const addToCart = (
-    _id: string,
-    totalQuantity: number,
-    promotion: boolean,
-    totalPrice: number,
-    totalPromPrice: number,
-    chosenOptions: string[]
+  const addToCart: AddToCart = (
+    _id,
+    totalQuantity,
+    promotion,
+    totalPrice,
+    totalPromPrice,
+    chosenOptions
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
     if (chosenProduct) {

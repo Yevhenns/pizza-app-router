@@ -1,5 +1,3 @@
-'use client';
-
 import { toast } from 'react-toastify';
 
 import { addItem } from '@/redux/cart/cartSlice';

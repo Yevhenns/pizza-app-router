@@ -1,5 +1,3 @@
-'use client';
-
 import { ChangeEvent, useEffect, useState } from 'react';
 
 import { Checkbox } from '@/components/basic/Checkbox';

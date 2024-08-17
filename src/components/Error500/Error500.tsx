@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import css from './Error500.module.scss';

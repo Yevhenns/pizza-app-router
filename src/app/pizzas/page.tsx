@@ -8,7 +8,6 @@ import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
 
 import { ProductsList } from '@/components/ProductsList';
-import { Heading } from '@/components/basic/Heading';
 import { LoaderModal } from '@/components/common/LoaderModal';
 
 import { options } from '../../options';
@@ -20,7 +19,6 @@ export default function Pizzas() {
 
   return (
     <>
-      <Heading>Піца</Heading>
       {isLoading && <LoaderModal />}
       <ProductsList data={pizzas} options={options} />
       <ToastContainer />

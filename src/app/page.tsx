@@ -9,7 +9,6 @@ import { CarouselComponent } from '@/components/CarouselComponent';
 import { ProductsList } from '@/components/ProductsList';
 import { QRCode } from '@/components/QRCode';
 import { Weather } from '@/components/Weather';
-import { Heading } from '@/components/basic/Heading';
 import { LoaderModal } from '@/components/common/LoaderModal';
 
 import { options } from '../options';
@@ -21,7 +20,6 @@ export default function Home() {
 
   return (
     <>
-      <Heading>Новинки</Heading>
       {isLoading && <LoaderModal />}
       <QRCode />
       <CarouselComponent />

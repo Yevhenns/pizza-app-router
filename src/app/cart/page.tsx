@@ -7,7 +7,6 @@ import { useAppDispatch } from '@/redux/hooks';
 
 import { CartContent } from '@/components/CartContent';
 import { FinalModal } from '@/components/FinalModal';
-import { Heading } from '@/components/basic/Heading';
 
 import css from './page.module.scss';
 
@@ -27,7 +26,6 @@ export default function Cart() {
 
   return (
     <div className={css.cartWrapper}>
-      <Heading>Кошик</Heading>
       <CartContent
         deleteAllProducts={deleteAllProducts}
         openModal={openModal}

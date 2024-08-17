@@ -8,7 +8,6 @@ import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading, getProductsAll } from '@/redux/products/productsSlice';
 
 import { ProductsList } from '@/components/ProductsList';
-import { Heading } from '@/components/basic/Heading';
 import { LoaderModal } from '@/components/common/LoaderModal';
 
 export default function Drinks() {
@@ -18,7 +17,6 @@ export default function Drinks() {
 
   return (
     <>
-      <Heading>Напої</Heading>
       {isLoading && <LoaderModal />}
       <ProductsList data={drinks} />
       <ToastContainer />

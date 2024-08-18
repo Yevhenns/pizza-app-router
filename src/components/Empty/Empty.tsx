@@ -2,9 +2,9 @@ import Image from 'next/image';
 
 import css from './Empty.module.scss';
 
-interface EmptyProps {
+type EmptyProps = {
   text: string;
-}
+};
 
 export function Empty({ text }: EmptyProps) {
   return (

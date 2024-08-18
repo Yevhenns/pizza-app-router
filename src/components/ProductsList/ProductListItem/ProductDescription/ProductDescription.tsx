@@ -5,7 +5,7 @@ import { RoundButton } from '@/components/basic/RoundButton';
 
 import css from './ProductDescription.module.scss';
 
-interface ProductDescriptionProps {
+type ProductDescriptionProps = {
   _id: string;
   photo: string;
   title: string;
@@ -14,7 +14,7 @@ interface ProductDescriptionProps {
   promotion: boolean;
   isFavorite: boolean;
   addToFavorite: () => void;
-}
+};
 
 export function ProductDescription({
   photo,

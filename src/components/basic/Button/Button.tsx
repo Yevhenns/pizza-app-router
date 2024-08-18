@@ -2,27 +2,13 @@ import { HTMLProps, PropsWithChildren } from 'react';
 
 import css from './Button.module.scss';
 
-interface ButtonProps extends HTMLProps<PropsWithChildren<HTMLButtonElement>> {
+type ButtonProps = {
   type: 'submit' | 'button';
-  onClick?: () => void;
-  disabled?: boolean;
-}
+} & HTMLProps<PropsWithChildren<HTMLButtonElement>>;
 
-export function Button({
-  disabled = false,
-  children,
-  onClick,
-  type,
-  ...props
-}: ButtonProps) {
+export function Button({ children, type, ...props }: ButtonProps) {
   return (
-    <button
-      disabled={disabled}
-      type={type}
-      className={css.button}
-      onClick={onClick}
-      {...props}
-    >
+    <button type={type} className={css.button} {...props}>
       {children}
     </button>
   );

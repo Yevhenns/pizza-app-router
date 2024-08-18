@@ -13,9 +13,9 @@ import { LoaderModal } from '@/components/common/LoaderModal';
 import { Error500 } from '../Error500/Error500';
 import css from './FinalModal.module.scss';
 
-interface FinalModalProps {
+type FinalModalProps = {
   finalAction: () => void;
-}
+};
 
 export function FinalModal({ finalAction }: FinalModalProps) {
   const filteredCart = useAppSelector(getFilteredCart);

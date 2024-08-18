@@ -1,12 +1,12 @@
 import { cn } from '../../../helpers/combineClasses';
 import css from './Icon.module.scss';
 
-interface IconProps {
+type IconProps = {
   iconWidth: number | undefined;
   iconHeight: number | undefined;
   svg: TypeIcon | undefined;
   color?: 'main' | 'white' | 'accent';
-}
+};
 
 export function Icon({
   iconWidth,

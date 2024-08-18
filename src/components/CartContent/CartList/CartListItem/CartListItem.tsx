@@ -6,10 +6,10 @@ import { RoundButton } from '@/components/basic/RoundButton';
 import css from './CartListItem.module.scss';
 import { CartListItemQuantity } from './CartListItemQuantity';
 
-interface CartListItemProps {
+type CartListItemProps = {
   data: CartItem;
   deleteCartItem: (cart_id: string) => void;
-}
+};
 
 export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
   const { cart_id, photo, title, quantity, totalPrice, options } = data;

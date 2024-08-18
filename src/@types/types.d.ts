@@ -1,4 +1,4 @@
-type Product = {
+interface Product {
   _id: string;
   title: string;
   description: string;
@@ -9,17 +9,15 @@ type Product = {
   promotion: boolean;
   promPrice: number;
   vegan: boolean;
-};
+}
 
-type Info = {
+interface Info {
   address?: string | undefined;
   comment?: string;
   delivery: boolean;
   name: string;
   number: string;
-};
-
-type Ordered = Pick<CartItem, 'title' | 'quantity' | 'options'>[];
+}
 
 type SummaryOrder = {
   customerInfo: Info;
@@ -35,6 +33,8 @@ type AddtoCartItem = {
   totalPrice: number;
   options: string[];
 };
+
+type Ordered = Pick<CartItem, 'title' | 'quantity' | 'options'>[];
 
 type CartItem = {
   cart_id: string;

@@ -2,10 +2,10 @@ import { HTMLProps, forwardRef } from 'react';
 
 import css from './TextArea.module.scss';
 
-interface TextAreaProps extends HTMLProps<HTMLTextAreaElement> {
+type TextAreaProps = {
   label?: string;
   error?: string;
-}
+} & HTMLProps<HTMLTextAreaElement>;
 
 type Ref = HTMLTextAreaElement;
 

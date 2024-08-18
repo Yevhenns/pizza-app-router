@@ -6,10 +6,10 @@ import { Icon } from '@/components/basic/Icon';
 
 import css from './GoogleMap.module.scss';
 
-interface PointProps {
+type PointProps = {
   lat: number;
   lng: number;
-}
+};
 
 const Point: FC<PointProps> = () => (
   <div>

@@ -6,13 +6,13 @@ import { RoundButton } from '@/components/basic/RoundButton';
 
 import css from './ProductQuantity.module.scss';
 
-interface ProductQuantityProps {
+type ProductQuantityProps = {
   getTotalQuantity: (quantity: number) => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   options?: Option[] | [];
   category: string;
   _id: string;
-}
+};
 
 export function ProductQuantity({
   getTotalQuantity,

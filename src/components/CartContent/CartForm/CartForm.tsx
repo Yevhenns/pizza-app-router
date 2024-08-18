@@ -15,10 +15,10 @@ import { TextArea } from '@/components/basic/TextArea';
 import inputCss from '../../../components/basic/Input/Input.module.scss';
 import css from './CartForm.module.scss';
 
-interface CartFormProps extends HTMLProps<HTMLFormElement> {
+type CartFormProps = {
   openModal: () => void;
   order: Ordered;
-}
+} & HTMLProps<HTMLFormElement>;
 
 export function CartForm({ openModal, order }: CartFormProps) {
   const {

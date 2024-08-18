@@ -8,11 +8,11 @@ import { RoundButton } from '@/components/basic/RoundButton';
 
 import css from './CartListItemQuantity.module.scss';
 
-interface CartListItemQuantityProps {
+type CartListItemQuantityProps = {
   chosenQuantity: number;
   cart_id: string;
   price: number;
-}
+};
 
 export function CartListItemQuantity({
   chosenQuantity,

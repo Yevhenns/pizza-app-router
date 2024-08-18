@@ -4,10 +4,10 @@ import { cn } from '@/helpers/combineClasses';
 
 import css from './Checkbox.module.scss';
 
-interface CheckboxProps extends HTMLProps<HTMLInputElement> {
+type CheckboxProps = {
   label?: string;
   posRight?: boolean;
-}
+} & HTMLProps<HTMLInputElement>;
 
 type Ref = HTMLInputElement;
 

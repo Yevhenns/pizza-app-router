@@ -13,13 +13,13 @@ import css from './ProductListItem.module.scss';
 import { ProductOptionsList } from './ProductOptionsList';
 import { ProductQuantity } from './ProductQuantity';
 
-interface ProductListItemProps {
+type ProductListItemProps = {
   item: Product;
   addToCart: AddToCart;
   checkIsFavoriteProducts: (_id: string) => boolean;
   favoriteProducts: Product[];
   options?: Option[];
-}
+};
 
 export function ProductListItem({
   item,

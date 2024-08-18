@@ -11,10 +11,10 @@ import css from './CartContent.module.scss';
 import { CartForm } from './CartForm';
 import { CartList } from './CartList';
 
-interface CartContentProps {
+type CartContentProps = {
   deleteAllProducts: () => void;
   openModal: () => void;
-}
+};
 
 export function CartContent({
   deleteAllProducts,

@@ -1,27 +1,18 @@
-import { ReactNode } from 'react';
+import { HTMLProps, PropsWithChildren, ReactNode } from 'react';
 
 import css from './RoundButton.module.scss';
 
-interface RoundButtonProps {
-  children: ReactNode;
-  onClick: () => void;
-  disabled?: boolean;
-}
+type RoundButtonProps = {
+  type?: 'button';
+} & HTMLProps<PropsWithChildren<HTMLButtonElement>>;
 
 export function RoundButton({
   children,
-  onClick,
-  disabled,
+  type = 'button',
   ...props
 }: RoundButtonProps) {
   return (
-    <button
-      className={css.button}
-      type="button"
-      onClick={onClick}
-      {...props}
-      disabled={disabled}
-    >
+    <button className={css.button} type={type} {...props}>
       {children}
     </button>
   );

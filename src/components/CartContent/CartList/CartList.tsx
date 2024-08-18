@@ -8,10 +8,10 @@ import { Button } from '@/components/basic/Button';
 import css from './CartList.module.scss';
 import { CartListItem } from './CartListItem';
 
-interface CartListProps {
+type CartListProps = {
   deleteCartItem: (cart_id: string) => void;
   deleteAllProducts: () => void;
-}
+};
 
 export function CartList({ deleteCartItem, deleteAllProducts }: CartListProps) {
   const filteredCart = useAppSelector(getFilteredCart);

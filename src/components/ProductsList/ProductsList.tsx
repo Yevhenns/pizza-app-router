@@ -8,9 +8,9 @@ import { options } from '../../options';
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
 
-interface ProductsListProps {
+type ProductsListProps = {
   data: Product[];
-}
+};
 
 export function ProductsList({ data }: ProductsListProps) {
   const dispatch = useAppDispatch();

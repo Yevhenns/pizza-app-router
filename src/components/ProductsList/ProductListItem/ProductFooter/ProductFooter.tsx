@@ -3,10 +3,10 @@ import { Icon } from '@/components/basic/Icon';
 
 import css from './ProductFooter.module.scss';
 
-interface ProductFooterProps extends ProductItem {
+type ProductFooterProps = {
   addToCart: AddToCart;
   optionsArray: Option[];
-}
+} & ProductItem;
 
 export function ProductFooter({
   _id,

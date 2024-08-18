@@ -5,10 +5,10 @@ import Image from 'next/image';
 
 import css from './CarouselComponent.module.scss';
 
-interface CarouselImageProps {
+type CarouselImageProps = {
   src: string;
   alt: string;
-}
+};
 
 export function CarouselImage({ src, alt }: CarouselImageProps) {
   return (

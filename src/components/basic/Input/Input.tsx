@@ -2,10 +2,10 @@ import { HTMLProps, forwardRef } from 'react';
 
 import css from './Input.module.scss';
 
-interface InputProps extends HTMLProps<HTMLInputElement> {
+type InputProps = {
   label?: string;
   error?: string;
-}
+} & HTMLProps<HTMLInputElement>;
 
 type Ref = HTMLInputElement;
 

@@ -21,7 +21,10 @@
   }
 
   &:disabled {
-    color: grey;
     cursor: default;
+  }
+
+  &:disabled svg {
+    fill: grey;
   }
 }

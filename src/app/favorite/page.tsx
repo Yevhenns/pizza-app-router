@@ -12,7 +12,7 @@ export default function Favorite() {
   return (
     <>
       {favoriteProducts.length > 0 ? (
-        <ProductsList data={favoriteProducts} />
+        <ProductsList category="favorites" />
       ) : (
         <Empty text={'В улюбленому нічого немає!'} />
       )}

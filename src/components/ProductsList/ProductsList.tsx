@@ -1,20 +1,38 @@
 import { toast } from 'react-toastify';
 
+import { filterByCategory } from '@/helpers/filterByCategory';
 import { addItem } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getFavorites } from '@/redux/products/productsSlice';
+import {
+  getFavorites,
+  getProductsAll,
+  getPromotions,
+} from '@/redux/products/productsSlice';
 
 import { options } from '../../options';
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
 
 type ProductsListProps = {
-  data: Product[];
+  category: string;
 };
 
-export function ProductsList({ data }: ProductsListProps) {
-  const dispatch = useAppDispatch();
+export function ProductsList({ category }: ProductsListProps) {
   const favoriteProducts = useAppSelector(getFavorites);
+  const products = useAppSelector(getProductsAll);
+  const promotionProducts = useAppSelector(getPromotions);
+
+  const dispatch = useAppDispatch();
+
+  const data = (() => {
+    if (category === 'promotions') {
+      return promotionProducts;
+    }
+    if (category === 'favorites') {
+      return favoriteProducts;
+    }
+    return filterByCategory(products, category);
+  })();
 
   const addToCart: AddToCart = (
     _id,

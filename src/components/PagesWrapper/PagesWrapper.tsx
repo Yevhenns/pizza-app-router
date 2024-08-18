@@ -15,7 +15,7 @@ import { LoaderModal } from '../common/LoaderModal';
 interface PagesWrapperProps extends PropsWithChildren {}
 
 export function PagesWrapper({ children }: PagesWrapperProps) {
-  const is500Error = useFetchProducts();
+  const error = useFetchProducts();
 
   const productsAll = useAppSelector(getProductsAll);
   const isLoading = useAppSelector(getIsLoading);
@@ -31,7 +31,7 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
   return (
     <Section>
       <Container>
-        {is500Error ? (
+        {error ? (
           <Error500 />
         ) : (
           <>

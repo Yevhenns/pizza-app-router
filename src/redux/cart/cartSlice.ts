@@ -118,10 +118,12 @@ export const getOrderSum = (state: RootState) => state.basket.orderSum;
 export const getIsLoading = (state: RootState) => state.basket.isLoading;
 export const getError = (state: RootState) => state.basket.error;
 
-export const { addItem } = cartSlice.actions;
-export const { deleteItem } = cartSlice.actions;
-export const { checkCart } = cartSlice.actions;
-export const { addInfo } = cartSlice.actions;
-export const { deleteAllItems } = cartSlice.actions;
-export const { addOrderSum } = cartSlice.actions;
-export const { setQuantityAndPrice } = cartSlice.actions;
+export const {
+  addItem,
+  deleteItem,
+  checkCart,
+  addInfo,
+  deleteAllItems,
+  addOrderSum,
+  setQuantityAndPrice,
+} = cartSlice.actions;

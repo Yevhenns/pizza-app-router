@@ -68,5 +68,5 @@ export const getFavorites = (state: RootState) =>
 export const getIsLoading = (state: RootState) => state.allProducts.isLoading;
 export const getError = (state: RootState) => state.allProducts.error;
 
-export const { addToFavoriteAction } = productsSlice.actions;
-export const { removeFromFavoriteAction } = productsSlice.actions;
+export const { addToFavoriteAction, removeFromFavoriteAction } =
+  productsSlice.actions;

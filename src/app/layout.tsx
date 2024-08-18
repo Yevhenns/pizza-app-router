@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { Comfortaa, Inter } from 'next/font/google';
 
-import '@/styles/globals.scss';
-
 import ClientRootLayout from './clientRootLayout';
+import './globals.scss';
 
 export const inter = Inter({
   subsets: ['latin'],

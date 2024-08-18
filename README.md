@@ -8,6 +8,8 @@ Copy .env.example, rename it to .env.local and fill the environment variables.
 
 ```bash
 npm i
+```
+```bash
 npm run dev
 ```
 

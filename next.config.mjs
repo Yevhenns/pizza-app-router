@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    BASE_URL: process.env.BASE_URL,
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,
   },
   reactStrictMode: true,

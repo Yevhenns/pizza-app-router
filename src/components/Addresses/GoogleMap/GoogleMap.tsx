@@ -26,7 +26,7 @@ export function GoogleMap() {
     zoom: 12,
   };
 
-  const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
   return (
     <div className={css.wrapper}>

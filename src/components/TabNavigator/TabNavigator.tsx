@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/helpers/combineClasses';
-import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
+import { getFilteredCart } from '@/redux/cart/cartSlice';
+import { useAppSelector } from '@/redux/hooks';
+import { getFavorites } from '@/redux/products/productsSlice';
 
 import { Icon } from '@/components/basic/Icon';
 
@@ -11,7 +13,8 @@ import css from './TabNavigator.module.scss';
 export function TabNavigator() {
   const pathname = usePathname();
 
-  const { cartLength, favoriteLength } = useGetCartAndFavoriteLength();
+  const cartLength = useAppSelector(getFilteredCart).length;
+  const favoriteLength = useAppSelector(getFavorites).length;
 
   return (
     <nav className={css.wrapper}>

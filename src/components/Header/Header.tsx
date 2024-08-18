@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/helpers/combineClasses';
-import { useGetCartAndFavoriteLength } from '@/hooks/useGetCartAndFavoriteLength';
+import { getFilteredCart } from '@/redux/cart/cartSlice';
+import { useAppSelector } from '@/redux/hooks';
+import { getFavorites } from '@/redux/products/productsSlice';
 
 import { Icon } from '@/components/basic/Icon';
 import { Container } from '@/components/common/Container';
@@ -13,8 +15,10 @@ import css from './Header.module.scss';
 import { Navigation } from './Navigation';
 
 export function Header() {
-  const { cartLength, favoriteLength } = useGetCartAndFavoriteLength();
   const pathname = usePathname();
+
+  const cartLength = useAppSelector(getFilteredCart).length;
+  const favoriteLength = useAppSelector(getFavorites).length;
 
   return (
     <header className={css.wrapper}>

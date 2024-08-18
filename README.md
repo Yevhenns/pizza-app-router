@@ -1,6 +1,6 @@
 ## NOSTRA PIZZA
 
-It's a full-stack project with React Server Components.
+A full-stack project with React Server Components.
 
 To install and run the project:
 

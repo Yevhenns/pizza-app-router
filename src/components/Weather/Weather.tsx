@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
+import { cn } from '@/helpers/combineClasses';
+
 import css from './Weather.module.scss';
 import { showDniproWeather } from './showDniproWeather';
 
@@ -31,7 +33,9 @@ export function Weather() {
             <div key={item.date} className={css.weatherListitem}>
               <p className={css.text}>{item.avgtemp} C°</p>
               <p className={css.text}>{item.date}</p>
-              <p className={css.text}>{item.conditionText}</p>
+              <p className={cn(css.text, css.condition)}>
+                {item.conditionText}
+              </p>
               <Image
                 src={item.icon}
                 alt="weather icon"

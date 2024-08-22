@@ -5,6 +5,11 @@
   width: 100%;
   border-radius: 16px;
   overflow: hidden;
+  border: 1px solid #989898;
+
+  div {
+    border-radius: 16px;
+  }
 
   @include desktop {
     width: 628px;

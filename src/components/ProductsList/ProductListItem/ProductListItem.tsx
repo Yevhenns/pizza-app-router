@@ -1,12 +1,15 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { useAppDispatch } from '@/redux/hooks';
+import { addItem } from '@/redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   addToFavoriteAction,
+  getFavorites,
   removeFromFavoriteAction,
 } from '@/redux/products/productsSlice';
 
+import { options } from '../../../options';
 import { ProductDescription } from './ProductDescription';
 import { ProductFooter } from './ProductFooter';
 import css from './ProductListItem.module.scss';
@@ -15,31 +18,14 @@ import { ProductQuantity } from './ProductQuantity';
 
 type ProductListItemProps = {
   item: Product;
-  addToCart: AddToCart;
   checkIsFavoriteProducts: (_id: string) => boolean;
-  favoriteProducts: Product[];
-  options?: Option[];
 };
 
 export function ProductListItem({
   item,
-  addToCart,
   checkIsFavoriteProducts,
-  favoriteProducts,
-  options = [],
 }: ProductListItemProps) {
-  const {
-    _id,
-    title,
-    description,
-    dimension,
-    price,
-    photo,
-    promotion,
-    promPrice,
-    category,
-    vegan,
-  } = item;
+  const { _id, price, promotion, promPrice, category, vegan } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
@@ -48,6 +34,8 @@ export function ProductListItem({
   const [optionsShown, setOptionsShown] = useState(false);
   const [optionsArray, setOptionsArray] = useState<Option[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);
+
+  const favoriteProducts = useAppSelector(getFavorites);
 
   const dispatch = useAppDispatch();
 
@@ -77,6 +65,26 @@ export function ProductListItem({
     }
   };
 
+  const optionsTitles = optionsArray.map(item => item.title);
+
+  const addToCart = () => {
+    const { photo, title, _id } = item;
+    const cartItem = {
+      _id: _id,
+      photo: photo,
+      title: title,
+      quantity: totalQuantity,
+      optionsTitles: optionsTitles,
+      totalPrice: promotion ? totalPromPrice : totalPrice,
+    };
+    dispatch(addItem(cartItem));
+    toast.success('Додано до кошика', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
+  };
+
   const handleShowOptions = (e: ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
     setOptionsShown(isChecked);
@@ -87,7 +95,7 @@ export function ProductListItem({
 
     const optionData = options.find(item => item.title === e.target.value);
 
-    if (optionData !== undefined) {
+    if (optionData) {
       if (checked && !optionsArray.includes(optionData)) {
         setOptionsArray([...optionsArray, optionData]);
         setOptionsSum(optionsSum + optionData.price);
@@ -107,12 +115,7 @@ export function ProductListItem({
   return (
     <article className={css.listItem}>
       <ProductDescription
-        _id={_id}
-        photo={photo}
-        title={title}
-        description={description}
-        dimension={dimension}
-        promotion={promotion}
+        item={item}
         isFavorite={isFavorite}
         addToFavorite={addToFavorite}
       />
@@ -131,13 +134,10 @@ export function ProductListItem({
         />
       )}
       <ProductFooter
-        _id={_id}
-        totalQuantity={totalQuantity}
         promotion={promotion}
         totalPrice={totalPrice}
         totalPromPrice={totalPromPrice}
         addToCart={addToCart}
-        optionsArray={optionsArray}
       />
     </article>
   );

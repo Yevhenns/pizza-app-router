@@ -29,7 +29,7 @@ export function CartContent({
     return {
       title: item.title,
       quantity: item.quantity,
-      options: item.options,
+      optionsTitles: item.optionsTitles,
     };
   });
 

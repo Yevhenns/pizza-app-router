@@ -44,13 +44,13 @@ export function FinalModal({ finalAction }: FinalModalProps) {
             <p>Інформація про замовлення:</p>
             <ul>
               {filteredCart.map(
-                ({ _id, title, quantity, totalPrice, options }) => {
+                ({ _id, title, quantity, totalPrice, optionsTitles }) => {
                   return (
                     <li key={_id}>
                       <p>
                         {title} - {quantity} шт. - {totalPrice} грн.
                       </p>
-                      {options.map(item => {
+                      {optionsTitles.map(item => {
                         return <p key={item}>{item}</p>;
                       })}
                     </li>

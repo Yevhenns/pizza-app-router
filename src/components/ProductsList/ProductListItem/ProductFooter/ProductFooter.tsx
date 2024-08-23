@@ -4,21 +4,18 @@ import { Icon } from '@/components/basic/Icon';
 import css from './ProductFooter.module.scss';
 
 type ProductFooterProps = {
-  addToCart: AddToCart;
-  optionsArray: Option[];
-} & ProductItem;
+  addToCart: () => void;
+  promotion: boolean;
+  totalPrice: number;
+  totalPromPrice: number;
+};
 
 export function ProductFooter({
-  _id,
-  totalQuantity,
   promotion,
   totalPrice,
   totalPromPrice,
   addToCart,
-  optionsArray,
 }: ProductFooterProps) {
-  const optionsTitles = optionsArray.map(item => item.title);
-
   return (
     <div className={css.productFooter}>
       {promotion ? (
@@ -29,19 +26,7 @@ export function ProductFooter({
       ) : (
         <p className={css.price}>{totalPrice} грн</p>
       )}
-      <Button
-        type="button"
-        onClick={() =>
-          addToCart(
-            _id,
-            totalQuantity,
-            promotion,
-            totalPrice,
-            totalPromPrice,
-            optionsTitles
-          )
-        }
-      >
+      <Button type="button" onClick={() => addToCart()}>
         <Icon svg="basket" iconWidth={19} iconHeight={19} color="white" />В
         кошик
       </Button>

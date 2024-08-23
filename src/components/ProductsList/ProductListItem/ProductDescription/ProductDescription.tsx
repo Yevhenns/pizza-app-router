@@ -6,25 +6,17 @@ import { RoundButton } from '@/components/basic/RoundButton';
 import css from './ProductDescription.module.scss';
 
 type ProductDescriptionProps = {
-  _id: string;
-  photo: string;
-  title: string;
-  description: string;
-  dimension: string;
-  promotion: boolean;
+  item: Product;
   isFavorite: boolean;
   addToFavorite: () => void;
 };
 
 export function ProductDescription({
-  photo,
-  title,
-  description,
-  dimension,
-  promotion,
+  item,
   isFavorite,
   addToFavorite,
 }: ProductDescriptionProps) {
+  const { photo, title, description, dimension, promotion } = item;
   return (
     <div className={css.descriprionWrapper}>
       <div className={css.imageWrapper}>

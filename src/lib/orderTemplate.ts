@@ -17,7 +17,7 @@ export const orderTemplate = `
 <ol>
     {{#each order}}
         <li>{{this.title}} - {{this.quantity}} шт.</li>       
-        <p>{{this.options}}</p>
+        <p>{{this.optionsTitles}}</p>
     {{/each}}
 </ol>
 </body>

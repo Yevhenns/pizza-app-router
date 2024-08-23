@@ -12,7 +12,7 @@ type CartListItemProps = {
 };
 
 export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
-  const { cart_id, photo, title, quantity, totalPrice, options } = data;
+  const { cart_id, photo, title, quantity, totalPrice, optionsTitles } = data;
 
   return (
     <div className={css.wrapper}>
@@ -35,11 +35,11 @@ export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
           <Icon svg="remove" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>
-      {options.length > 0 && (
+      {optionsTitles.length > 0 && (
         <div>
           <span>Додаткові опції:</span>
           <ul>
-            {options.map(item => {
+            {optionsTitles.map(item => {
               return <li key={item}>{item}</li>;
             })}
           </ul>

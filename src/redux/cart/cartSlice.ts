@@ -35,7 +35,7 @@ const cartSlice = createSlice({
       const existingItemIndex = state.filteredBasket.findIndex(
         item =>
           item._id === action.payload._id &&
-          areOptionsEqual(item.options, action.payload.options)
+          areOptionsEqual(item.optionsTitles, action.payload.optionsTitles)
       );
 
       if (existingItemIndex !== -1) {

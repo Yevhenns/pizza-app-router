@@ -9,7 +9,7 @@ import {
   removeFromFavoriteAction,
 } from '@/redux/products/productsSlice';
 
-import { options } from '../../../options';
+import { options } from '../../../assets/options';
 import { ProductDescription } from './ProductDescription';
 import { ProductFooter } from './ProductFooter';
 import css from './ProductListItem.module.scss';

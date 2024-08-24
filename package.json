@@ -39,7 +39,6 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
-    "husky": "^9.1.4",
     "sass": "^1.77.6",
     "typescript": "^5"
   }

@@ -1,5 +1,4 @@
-import Image from 'next/image';
-
+// import Image from 'next/image';
 import css from './QRCode.module.scss';
 
 export function QRCode() {
@@ -7,6 +6,19 @@ export function QRCode() {
     <div className={css.layout}>
       <span className={css.text}>З мобільного?</span>
       <span className={css.text}>
+        Переходьте за{' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className={css.link}
+          href={
+            'https://drive.google.com/file/d/1F9P21PQRgWR1dXr_Kqzjs8f8wLvv-p6-/view?usp=sharing'
+          }
+        >
+          посиланням
+        </a>
+      </span>
+      {/* <span className={css.text}>
         Скануйте QR-код і завантажуйте застосунок,
       </span>
       <span className={css.text}>
@@ -22,7 +34,7 @@ export function QRCode() {
           посиланням
         </a>
       </span>
-      <Image src={'/qr.jpeg'} width={200} height={200} alt="qr code" priority />
+      <Image src={'/qr.jpeg'} width={200} height={200} alt="qr code" priority /> */}
     </div>
   );
 }

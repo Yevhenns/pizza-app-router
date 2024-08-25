@@ -1,8 +1,8 @@
-## NOSTRA PIZZA
+## Description
 
 A full-stack project with React Server Components.
 
-To install and run the project:
+## Installation
 
 Copy .env.example, rename it to .env.local and fill the environment variables.
 

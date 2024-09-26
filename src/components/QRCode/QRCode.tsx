@@ -12,7 +12,7 @@ export function QRCode() {
           rel="noopener noreferrer"
           className={css.link}
           href={
-            'https://drive.google.com/file/d/1F9P21PQRgWR1dXr_Kqzjs8f8wLvv-p6-/view?usp=sharing'
+            'https://drive.google.com/drive/folders/19eDB_avqBPFiX5XsRcBlwu1bf6313EXN?usp=sharing'
           }
         >
           посиланням

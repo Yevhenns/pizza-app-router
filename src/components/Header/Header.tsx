@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/helpers/combineClasses';
+import { getUserInfo } from '@/redux/auth/authSlice';
 import { getFilteredCart } from '@/redux/cart/cartSlice';
 import { useAppSelector } from '@/redux/hooks';
 import { getFavorites } from '@/redux/products/productsSlice';
@@ -9,6 +10,7 @@ import { getFavorites } from '@/redux/products/productsSlice';
 import { Icon } from '@/components/basic/Icon';
 import { Container } from '@/components/common/Container';
 
+import { Avatar } from '../Avatar';
 import { Logo } from '../Logo';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';
 import css from './Header.module.scss';
@@ -19,6 +21,7 @@ export function Header() {
 
   const cartLength = useAppSelector(getFilteredCart).length;
   const favoriteLength = useAppSelector(getFavorites).length;
+  const userInfo = useAppSelector(getUserInfo);
 
   return (
     <header className={css.wrapper}>
@@ -36,7 +39,11 @@ export function Header() {
               )}
               href={'/login'}
             >
-              <Icon svg="user" iconWidth={34} iconHeight={34} />
+              {userInfo !== null ? (
+                <Avatar />
+              ) : (
+                <Icon svg="user" iconWidth={34} iconHeight={34} />
+              )}
             </Link>
             <Link
               className={cn(

@@ -2,7 +2,7 @@
 
 import { addUserInfo, getUserInfo, logout } from '@/redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
 import { Button } from '@/components/basic/Button';
@@ -21,6 +21,7 @@ export default function Login() {
 
   const logoutHandler = () => {
     dispatch(logout());
+    googleLogout();
   };
 
   return (

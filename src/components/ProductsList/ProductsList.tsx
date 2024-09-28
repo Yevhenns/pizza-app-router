@@ -28,20 +28,10 @@ export function ProductsList({ category }: ProductsListProps) {
     return filterByCategory(products, category);
   })();
 
-  const checkIsFavoriteProducts = (_id: string) => {
-    return favoriteProducts.some(item => item._id === _id);
-  };
-
   return (
     <div className={css.list}>
       {data.map(item => {
-        return (
-          <ProductListItem
-            key={item._id}
-            item={item}
-            checkIsFavoriteProducts={checkIsFavoriteProducts}
-          />
-        );
+        return <ProductListItem key={item._id} item={item} />;
       })}
     </div>
   );

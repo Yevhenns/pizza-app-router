@@ -2,12 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { addItem } from '@/redux/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import {
-  addToFavoriteAction,
-  getFavorites,
-  removeFromFavoriteAction,
-} from '@/redux/products/productsSlice';
+import { useAppDispatch } from '@/redux/hooks';
 
 import { options } from '../../../assets/options';
 import { ProductDescription } from './ProductDescription';
@@ -18,24 +13,17 @@ import { ProductQuantity } from './ProductQuantity';
 
 type ProductListItemProps = {
   item: Product;
-  checkIsFavoriteProducts: (_id: string) => boolean;
 };
 
-export function ProductListItem({
-  item,
-  checkIsFavoriteProducts,
-}: ProductListItemProps) {
+export function ProductListItem({ item }: ProductListItemProps) {
   const { _id, price, promotion, promPrice, category, vegan } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(checkIsFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
   const [optionsArray, setOptionsArray] = useState<Option[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);
-
-  const favoriteProducts = useAppSelector(getFavorites);
 
   const dispatch = useAppDispatch();
 
@@ -45,27 +33,7 @@ export function ProductListItem({
     setTotalPromPrice((promPrice + optionsSum) * quantity);
   };
 
-  const addToFavorite = () => {
-    if (favoriteProducts.some(item => item._id === _id)) {
-      setIsFavorite(false);
-      dispatch(removeFromFavoriteAction(_id));
-      toast.warn('Видалено з улюблених', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
-      });
-    } else {
-      setIsFavorite(true);
-      dispatch(addToFavoriteAction(item));
-      toast.success('Додано в улюблені', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
-      });
-    }
-  };
-
-  const optionsTitles = optionsArray.map(item => item.title);
+  const optionsTitles = optionsArray.map(option => option.title);
 
   const addToCart = () => {
     const { photo, title, _id } = item;
@@ -85,9 +53,8 @@ export function ProductListItem({
     });
   };
 
-  const handleShowOptions = (e: ChangeEvent<HTMLInputElement>) => {
-    const isChecked = e.target.checked;
-    setOptionsShown(isChecked);
+  const handleShowOptions = () => {
+    setOptionsShown(!optionsShown);
   };
 
   const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
@@ -109,16 +76,13 @@ export function ProductListItem({
   };
 
   useEffect(() => {
-    !optionsShown && setOptionsArray([]), setOptionsSum(0);
+    !optionsShown && setOptionsArray([]);
+    setOptionsSum(0);
   }, [optionsShown]);
 
   return (
     <article className={css.listItem}>
-      <ProductDescription
-        item={item}
-        isFavorite={isFavorite}
-        addToFavorite={addToFavorite}
-      />
+      <ProductDescription item={item} />
       <ProductQuantity
         getTotalQuantity={getTotalQuantity}
         handleChange={handleShowOptions}

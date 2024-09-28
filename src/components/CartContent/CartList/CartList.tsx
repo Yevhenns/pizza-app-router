@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { addOrderSum, getFilteredCart } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -14,16 +14,20 @@ type CartListProps = {
 };
 
 export function CartList({ deleteCartItem, deleteAllProducts }: CartListProps) {
-  const filteredCart = useAppSelector(getFilteredCart);
+  const [sum, setSum] = useState(0);
 
-  let sum = 0;
-  filteredCart.forEach(item => (sum += item.totalPrice));
+  const filteredCart = useAppSelector(getFilteredCart);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const totalSum = filteredCart.reduce(
+      (acc, item) => acc + item.totalPrice,
+      0
+    );
+    setSum(totalSum);
     dispatch(addOrderSum(sum));
-  }, [dispatch, sum]);
+  }, [dispatch, sum, filteredCart]);
 
   return (
     <div className={css.cartList}>

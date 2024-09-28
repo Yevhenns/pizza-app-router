@@ -3,6 +3,7 @@ const nextConfig = {
   env: {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,
+    CLIENTID: process.env.CLIENTID,
   },
   reactStrictMode: true,
   images: {
@@ -14,6 +15,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.weatherapi.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
       },
     ],
   },

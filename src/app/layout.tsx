@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Comfortaa, Inter } from 'next/font/google';
 
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 import ClientRootLayout from './clientRootLayout';
 import './globals.scss';
 
@@ -28,10 +30,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const CLIENTID = process.env.CLIENTID as string;
+
   return (
     <html lang="uk" className={`${inter.variable} ${roboto_mono.variable}`}>
       <body>
-        <ClientRootLayout>{children}</ClientRootLayout>
+        <GoogleOAuthProvider clientId={CLIENTID}>
+          <ClientRootLayout>{children}</ClientRootLayout>;
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

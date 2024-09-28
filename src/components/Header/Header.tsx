@@ -32,6 +32,15 @@ export function Header() {
             <Link
               className={cn(
                 css.navLink,
+                pathname === '/login' ? css.active : ''
+              )}
+              href={'/login'}
+            >
+              <Icon svg="user" iconWidth={34} iconHeight={34} />
+            </Link>
+            <Link
+              className={cn(
+                css.navLink,
                 pathname === '/favorite' ? css.active : ''
               )}
               href={'/favorite'}

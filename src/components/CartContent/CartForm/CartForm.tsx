@@ -18,7 +18,7 @@ import css from './CartForm.module.scss';
 
 type CartFormProps = {
   openModal: () => void;
-  order: Ordered;
+  order: Ordered[];
 } & HTMLProps<HTMLFormElement>;
 
 export function CartForm({ openModal, order }: CartFormProps) {

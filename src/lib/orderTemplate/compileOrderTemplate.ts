@@ -8,7 +8,7 @@ interface compileOrderTemplateProps {
   comment?: string;
   address?: string;
   orderSum: number;
-  order: Ordered;
+  order: Ordered[];
   userId?: string;
 }
 

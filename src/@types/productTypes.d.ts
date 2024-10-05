@@ -11,14 +11,6 @@ type Product = {
   vegan: boolean;
 };
 
-type ProductItem = {
-  _id: string;
-  totalQuantity: number;
-  promotion: boolean;
-  totalPrice: number;
-  totalPromPrice: number;
-};
-
 type ProductsResponse = {
   code: number;
   status: string;

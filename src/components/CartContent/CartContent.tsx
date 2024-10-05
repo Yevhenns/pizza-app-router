@@ -25,11 +25,11 @@ export function CartContent({
 
   const dispatch = useAppDispatch();
 
-  const order: Ordered = filteredCart.map(item => {
+  const order = filteredCart.map(({ title, quantity, optionsTitles }) => {
     return {
-      title: item.title,
-      quantity: item.quantity,
-      optionsTitles: item.optionsTitles,
+      title,
+      quantity,
+      optionsTitles,
     };
   });
 

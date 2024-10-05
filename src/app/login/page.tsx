@@ -29,12 +29,13 @@ export default function Login() {
       {userInfo === null ? (
         <GoogleLogin
           onSuccess={credentialResponse => {
+            console.log(credentialResponse);
+
             if (credentialResponse.credential) {
               const decoded: CustomJwtPayload = jwtDecode(
                 credentialResponse.credential
               );
               dispatch(addUserInfo(decoded));
-              console.log(decoded);
             }
           }}
           onError={() => {

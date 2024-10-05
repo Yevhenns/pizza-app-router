@@ -4,7 +4,7 @@ import Product from '@/models/Product';
 export async function GET() {
   await dbConnect();
 
-  const products = await Product.find({});
+  const products: Product[] = await Product.find({});
 
   return Response.json({ data: products });
 }

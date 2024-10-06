@@ -1,3 +1,5 @@
+import { headers } from 'next/headers';
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL =
@@ -13,7 +15,11 @@ export const getProducts = createAsyncThunk<
   }
 >('allProducts/getProductsAll', async (_, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/products`);
+    const res = await fetch(`${BASE_URL}/api/products`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     const data: ProductsResponse = await res.json();
     return data.data;
   } catch (error: any) {

@@ -5,11 +5,12 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import { cartReducer } from './cart/cartSlice';
 import { productsReducer } from './products/productsSlice';
+import { userProductsReducer } from './userOrders/userOrdersSlice';
 
 const rootPersistConfig = {
   key: 'root',
   storage,
-  blacklist: ['basket', 'allProducts', 'auth'],
+  blacklist: ['basket', 'allProducts', 'auth', 'userAllProducts'],
 };
 
 const cartPersistConfig = {
@@ -29,10 +30,16 @@ const authPersistConfig = {
   storage,
 };
 
+const userOrdersPersistConfig = {
+  key: 'userOrders',
+  storage,
+};
+
 const rootReducer = combineReducers({
   basket: persistReducer(cartPersistConfig, cartReducer),
   allProducts: persistReducer(favoritePersistConfig, productsReducer),
   auth: persistReducer(authPersistConfig, authReducer),
+  userOrders: persistReducer(userOrdersPersistConfig, userProductsReducer),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

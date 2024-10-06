@@ -8,9 +8,11 @@ export async function POST(request: Request) {
   const { customerInfo, order, orderSum } = body;
   const { name, number, comment, address, userId } = customerInfo;
 
-  await dbConnect();
+  if (userId) {
+    await dbConnect();
 
-  await UserOrder.create(body);
+    await UserOrder.create(body);
+  }
 
   const emailBody = compileOrderTemplate({
     name,
@@ -19,7 +21,6 @@ export async function POST(request: Request) {
     address,
     order,
     orderSum,
-    userId,
   });
 
   await sendEmail({ body: emailBody });

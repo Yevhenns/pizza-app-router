@@ -35,6 +35,7 @@ const userOrderSchema = new mongoose.Schema<UserOrder>(
   },
   {
     versionKey: false,
+    timestamps: true,
   }
 );
 

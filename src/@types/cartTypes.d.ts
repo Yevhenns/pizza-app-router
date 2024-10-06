@@ -27,3 +27,11 @@ type SummaryOrder = {
   order: Ordered[];
   orderSum: number;
 };
+
+type UserOrders = {
+  _id: string;
+  customerInfo: Info;
+  order: ({ _id: string } & Ordered)[];
+  orderSum: number;
+  createdAt: string;
+};

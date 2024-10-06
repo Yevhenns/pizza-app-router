@@ -1,10 +1,10 @@
 import dbConnect from '@/lib/dbConnect';
-import Product from '@/models/Product';
+import UserOrder from '@/models/UserOrder';
 
 export async function GET() {
   await dbConnect();
 
-  const products: Product[] = await Product.find({});
+  const products: SummaryOrder[] = await UserOrder.find({});
 
   return Response.json({ data: products });
 }

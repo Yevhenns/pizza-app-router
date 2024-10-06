@@ -10,8 +10,12 @@ export const orderTemplate = `
 <h3>Інформація про замовника</h3>
 <p>Ім'я: {{name}}</p>
 <p>Номер телефону: {{number}}</p>
+{{#if address}}
 <p>Адреса: {{address}}</p>
+{{/if}}
+{{#if comment}}
 <p>Коментар: {{comment}}</p>
+{{/if}}
 <p>Загальна сума: {{orderSum}} грн.</p>
 <h3>Замовлення</h3>
 <ol>

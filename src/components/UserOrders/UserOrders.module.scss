@@ -1,0 +1,50 @@
+@import "../../styles/media.mixin.scss";
+
+.userInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .order {
+    font-family: var(--secondary-font);
+    border-bottom: 1px solid tomato;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  .heading {
+    font-family: var(--main-font);
+    font-size: 24px;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+    font-family: var(--main-font);
+  }
+
+  span {
+    font-family: var(--main-font);
+    font-size: 16px;
+  }
+
+  .titleQuantity {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .orderWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .optionsWrapper {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}

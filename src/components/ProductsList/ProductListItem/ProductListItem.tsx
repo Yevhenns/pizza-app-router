@@ -38,11 +38,11 @@ export function ProductListItem({ item }: ProductListItemProps) {
   const addToCart = () => {
     const { photo, title, _id } = item;
     const cartItem = {
-      _id: _id,
-      photo: photo,
-      title: title,
+      _id,
+      photo,
+      title,
       quantity: totalQuantity,
-      optionsTitles: optionsTitles,
+      optionsTitles,
       totalPrice: promotion ? totalPromPrice : totalPrice,
     };
     dispatch(addItem(cartItem));

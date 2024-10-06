@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export interface Products extends mongoose.Document {
+export interface Product extends mongoose.Document {
   title: string;
   description: string;
   dimension: string;
@@ -12,7 +12,7 @@ export interface Products extends mongoose.Document {
   vegan: boolean;
 }
 
-const productSchema = new mongoose.Schema<Products>(
+const productSchema = new mongoose.Schema<Product>(
   {
     title: { type: String, required: [true, 'Введіть назву продукту'] },
     description: { type: String, required: [true, 'Введіть опис продукту'] },
@@ -36,4 +36,4 @@ const productSchema = new mongoose.Schema<Products>(
 );
 
 export default mongoose.models.Product ||
-  mongoose.model<Products>('Product', productSchema);
+  mongoose.model<Product>('Product', productSchema);

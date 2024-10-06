@@ -9,14 +9,16 @@ import { showDniproWeather } from './showDniproWeather';
 export async function Weather() {
   const data = await showDniproWeather();
 
-  const weather = data.forecast.forecastday.map(item => {
-    return {
-      date: formattedDate(item.date),
-      avgtemp: item.day.avgtemp_c,
-      conditionText: item.day.condition.text,
-      icon: 'https:' + item.day.condition.icon,
-    };
-  });
+  const weather =
+    data &&
+    data.forecast.forecastday.map(item => {
+      return {
+        date: formattedDate(item.date),
+        avgtemp: item.day.avgtemp_c,
+        conditionText: item.day.condition.text,
+        icon: 'https:' + item.day.condition.icon,
+      };
+    });
 
   return (
     <div className={css.wrapper}>

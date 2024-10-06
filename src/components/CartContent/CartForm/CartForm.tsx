@@ -3,6 +3,8 @@ import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 
+import { useRouter } from 'next/navigation';
+
 import { getUserInfo } from '@/redux/auth/authSlice';
 import { sendOrder } from '@/redux/cart/cartOperations';
 import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
@@ -34,6 +36,8 @@ export function CartForm({ openModal, order }: CartFormProps) {
   const userId = useAppSelector(getUserInfo)?.sub;
   const dispatch = useAppDispatch();
 
+  const router = useRouter();
+
   const onSubmit: SubmitHandler<Info> = ({
     address,
     comment,
@@ -51,6 +55,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
     dispatch(addInfo(customerInfo));
     const reqBody: SummaryOrder = { customerInfo, order, orderSum };
     dispatch(sendOrder(reqBody));
+    router.refresh();
   };
 
   const delivery = watch('delivery');

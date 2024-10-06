@@ -3,13 +3,13 @@ const BASE_URL =
     ? 'http://localhost:3000'
     : process.env.NEXT_PUBLIC_BASE_URL;
 
-export async function getProductsAll() {
+export async function getProductsAll(): Promise<ProductsResponse> {
   try {
     const res = await fetch(`${BASE_URL}/api/products`, {
       cache: 'no-store',
     });
-    const data: ProductsResponse = await res.json();
-    return data.data;
+    const data = await res.json();
+    return data;
   } catch (error: any) {
     return error.message;
   }

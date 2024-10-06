@@ -15,13 +15,12 @@ type ProductsListProps = {
 
 export async function ProductsList({ category }: ProductsListProps) {
   const products = await getProductsAll();
-  console.log(products.length);
 
   const data = (() => {
     if (category === 'promotions') {
-      return filterByPromotion(products);
+      return filterByPromotion(products.data);
     }
-    return filterByCategory(products, category);
+    return filterByCategory(products.data, category);
   })();
 
   return (

@@ -5,7 +5,9 @@ const BASE_URL =
 
 export async function getProductsAll() {
   try {
-    const res = await fetch(`${BASE_URL}/api/products`);
+    const res = await fetch(`${BASE_URL}/api/products`, {
+      cache: 'no-store',
+    });
     const data: ProductsResponse = await res.json();
     return data.data;
   } catch (error: any) {

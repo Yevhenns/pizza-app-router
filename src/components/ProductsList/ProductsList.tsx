@@ -1,3 +1,5 @@
+'use server';
+
 import {
   filterByCategory,
   filterByPromotion,
@@ -13,6 +15,7 @@ type ProductsListProps = {
 
 export async function ProductsList({ category }: ProductsListProps) {
   const products = await getProductsAll();
+  console.log(products.length);
 
   const data = (() => {
     if (category === 'promotions') {

@@ -4,6 +4,7 @@ const nextConfig = {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,
     CLIENTID: process.env.CLIENTID,
+    NEXT_PUBLIC_BASE_URL_NEST: process.env.NEXT_PUBLIC_BASE_URL_NEST,
   },
   reactStrictMode: true,
   images: {

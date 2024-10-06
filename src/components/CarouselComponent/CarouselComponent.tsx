@@ -1,3 +1,5 @@
+'use client';
+
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -10,7 +12,7 @@ type CarouselImageProps = {
   alt: string;
 };
 
-export function CarouselImage({ src, alt }: CarouselImageProps) {
+function CarouselImage({ src, alt }: CarouselImageProps) {
   return (
     <div className={css.item}>
       <Image src={src} alt={alt} width={1062} height={401} priority={true} />

@@ -1,10 +1,8 @@
-import { filterByCategory } from '@/helpers/filterByCategory';
-import { useAppSelector } from '@/redux/hooks';
 import {
-  getFavorites,
-  getProductsAll,
-  getPromotions,
-} from '@/redux/products/productsSlice';
+  filterByCategory,
+  filterByPromotion,
+} from '@/helpers/filterByCategory';
+import { getProductsAll } from '@/utils/getProductsAll';
 
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
@@ -13,17 +11,12 @@ type ProductsListProps = {
   category: string;
 };
 
-export function ProductsList({ category }: ProductsListProps) {
-  const favoriteProducts = useAppSelector(getFavorites);
-  const products = useAppSelector(getProductsAll);
-  const promotionProducts = useAppSelector(getPromotions);
+export async function ProductsList({ category }: ProductsListProps) {
+  const products = await getProductsAll();
 
   const data = (() => {
     if (category === 'promotions') {
-      return promotionProducts;
-    }
-    if (category === 'favorites') {
-      return favoriteProducts;
+      return filterByPromotion(products);
     }
     return filterByCategory(products, category);
   })();

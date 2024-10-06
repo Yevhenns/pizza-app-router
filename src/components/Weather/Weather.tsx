@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import Image from 'next/image';
 
 import { cn } from '@/helpers/combineClasses';
@@ -8,22 +6,17 @@ import { formattedDate } from '@/helpers/formattedDate';
 import css from './Weather.module.scss';
 import { showDniproWeather } from './showDniproWeather';
 
-export function Weather() {
-  const [weather, setWeather] = useState<[] | ForecastDay[]>([]);
+export async function Weather() {
+  const data = await showDniproWeather();
 
-  useEffect(() => {
-    showDniproWeather().then((data: FilteredApiResponse) => {
-      const newArray = data.map(item => {
-        return {
-          date: formattedDate(item.date),
-          avgtemp: item.day.avgtemp_c,
-          conditionText: item.day.condition.text,
-          icon: 'https:' + item.day.condition.icon,
-        };
-      });
-      setWeather(newArray);
-    });
-  }, []);
+  const weather = data.forecast.forecastday.map(item => {
+    return {
+      date: formattedDate(item.date),
+      avgtemp: item.day.avgtemp_c,
+      conditionText: item.day.condition.text,
+      icon: 'https:' + item.day.condition.icon,
+    };
+  });
 
   return (
     <div className={css.wrapper}>

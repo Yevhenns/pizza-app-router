@@ -1,5 +1,3 @@
-'use client';
-
 import { CarouselComponent } from '@/components/CarouselComponent';
 import { ProductsList } from '@/components/ProductsList';
 import { QRCode } from '@/components/QRCode';

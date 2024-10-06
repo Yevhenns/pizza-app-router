@@ -15,17 +15,20 @@ export async function ProductsList({ category }: ProductsListProps) {
   const products = await getProductsAll();
 
   const data = (() => {
-    if (category === 'promotions') {
-      return filterByPromotion(products.data);
+    if (products && products.data && products.data.length > 0) {
+      if (category === 'promotions') {
+        return filterByPromotion(products.data);
+      }
+      return filterByCategory(products.data, category);
     }
-    return filterByCategory(products.data, category);
   })();
 
   return (
     <div className={css.list}>
-      {data.map(item => {
-        return <ProductListItem key={item._id} item={item} />;
-      })}
+      {data &&
+        data.map(item => {
+          return <ProductListItem key={item._id} item={item} />;
+        })}
     </div>
   );
 }

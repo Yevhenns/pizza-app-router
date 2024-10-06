@@ -3,6 +3,8 @@ import { Comfortaa, Inter } from 'next/font/google';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
+import ReduxProvider from './ReduxProvider';
+import ToastProvider from './ToastProvider';
 import ClientRootLayout from './clientRootLayout';
 import './globals.scss';
 
@@ -36,7 +38,11 @@ export default function RootLayout({
     <html lang="uk" className={`${inter.variable} ${roboto_mono.variable}`}>
       <body>
         <GoogleOAuthProvider clientId={CLIENTID}>
-          <ClientRootLayout>{children}</ClientRootLayout>;
+          <ReduxProvider>
+            <ClientRootLayout>
+              {children} <ToastProvider />
+            </ClientRootLayout>
+          </ReduxProvider>
         </GoogleOAuthProvider>
       </body>
     </html>

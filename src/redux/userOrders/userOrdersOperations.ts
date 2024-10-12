@@ -14,8 +14,7 @@ export const getUserProducts = createAsyncThunk<
       cache: 'no-store',
     });
     const data = await res.json();
-
-    return data.data;
+    return data;
   } catch (error: any) {
     return rejectWithValue(error.message);
   }

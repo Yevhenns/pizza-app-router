@@ -38,6 +38,7 @@ export default function Login() {
       dispatch(getUserProducts(userInfo?.sub));
     }
   }, [dispatch, userInfo?.sub]);
+  console.log(userOrders);
 
   return (
     <div className={css.layout}>

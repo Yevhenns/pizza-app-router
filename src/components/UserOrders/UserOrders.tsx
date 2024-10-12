@@ -19,6 +19,7 @@ export function UserOrders({
   return (
     <div className={css.userInfoWrapper}>
       <h2 className={css.heading}>Привіт, {userInfo.name}!</h2>
+      <Button onClick={logoutHandler}>Вийти</Button>
       {userOrders.length === 0 ? (
         <span>Список замовлень порожній</span>
       ) : (
@@ -46,7 +47,6 @@ export function UserOrders({
           ))}
         </div>
       )}
-      <Button onClick={logoutHandler}>Вийти</Button>
     </div>
   );
 }

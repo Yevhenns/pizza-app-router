@@ -11,6 +11,7 @@ import {
   getIsLoading,
   getProductsAll,
 } from '@/redux/products/productsSlice';
+import { pingServer } from '@/utils/pingServer';
 
 import { Error500 } from '@/components/Error500';
 import { Container } from '@/components/common/Container';
@@ -36,6 +37,10 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
       dispatch(checkCart(productsAll));
     }
   }, [dispatch, productsAll]);
+
+  useEffect(() => {
+    pingServer();
+  }, []);
 
   return (
     <Section>

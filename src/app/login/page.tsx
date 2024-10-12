@@ -35,7 +35,7 @@ export default function Login() {
   useEffect(() => {
     if (userInfo?.sub) {
       dispatch(setUserId(userInfo?.sub));
-      dispatch(getUserProducts());
+      dispatch(getUserProducts(userInfo?.sub));
     }
   }, [dispatch, userInfo?.sub]);
 

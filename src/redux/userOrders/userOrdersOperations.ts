@@ -7,13 +7,13 @@ const BASE_URL =
 
 export const getUserProducts = createAsyncThunk<
   UserOrders[],
-  void,
+  string,
   {
     rejectValue: string;
   }
->('userProducts/getUserProductsAll', async (_, { rejectWithValue }) => {
+>('userProducts/getUserProductsAll', async (userId, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/user_orders`, {
+    const res = await fetch(`${BASE_URL}/api/user_orders?userId=${userId}`, {
       cache: 'no-store',
     });
     const data = await res.json();

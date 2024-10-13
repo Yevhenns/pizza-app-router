@@ -1,4 +1,9 @@
+import { toast } from 'react-toastify';
+
 import Image from 'next/image';
+
+import { deleteItem } from '@/redux/cart/cartSlice';
+import { useAppDispatch } from '@/redux/hooks';
 
 import { Icon } from '@/components/basic/Icon';
 import { RoundButton } from '@/components/basic/RoundButton';
@@ -8,11 +13,21 @@ import { CartListItemQuantity } from './CartListItemQuantity';
 
 type CartListItemProps = {
   data: CartItem;
-  deleteCartItem: (cart_id: string) => void;
 };
 
-export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
+export function CartListItem({ data }: CartListItemProps) {
   const { cart_id, photo, title, quantity, totalPrice, optionsTitles } = data;
+
+  const dispatch = useAppDispatch();
+
+  const deleteCartItem = () => {
+    dispatch(deleteItem(cart_id));
+    toast.warn('Видалено з кошика', {
+      position: 'top-center',
+      autoClose: 1500,
+      hideProgressBar: true,
+    });
+  };
 
   return (
     <div className={css.wrapper}>
@@ -31,7 +46,7 @@ export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
           price={totalPrice}
         />
         <p>{totalPrice} грн</p>
-        <RoundButton onClick={() => deleteCartItem(cart_id!)}>
+        <RoundButton onClick={deleteCartItem}>
           <Icon svg="remove" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>

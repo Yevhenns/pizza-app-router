@@ -1,7 +1,5 @@
-import { toast } from 'react-toastify';
-
-import { deleteItem, getFilteredCart } from '@/redux/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { getFilteredCart } from '@/redux/cart/cartSlice';
+import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading } from '@/redux/products/productsSlice';
 
 import { Empty } from '@/components/Empty';
@@ -12,18 +10,12 @@ import { CartForm } from './CartForm';
 import { CartList } from './CartList';
 
 type CartContentProps = {
-  deleteAllProducts: () => void;
   openModal: () => void;
 };
 
-export function CartContent({
-  deleteAllProducts,
-  openModal,
-}: CartContentProps) {
+export function CartContent({ openModal }: CartContentProps) {
   const filteredCart = useAppSelector(getFilteredCart);
   const isLoading = useAppSelector(getIsLoading);
-
-  const dispatch = useAppDispatch();
 
   const order = filteredCart.map(({ title, quantity, optionsTitles }) => {
     return {
@@ -32,15 +24,6 @@ export function CartContent({
       optionsTitles,
     };
   });
-
-  const deleteCartItem = (cart_id: string) => {
-    dispatch(deleteItem(cart_id));
-    toast.warn('Видалено з кошика', {
-      position: 'top-center',
-      autoClose: 1500,
-      hideProgressBar: true,
-    });
-  };
 
   if (isLoading) {
     return <Loader />;
@@ -52,10 +35,7 @@ export function CartContent({
 
   return (
     <div className={css.layout}>
-      <CartList
-        deleteCartItem={deleteCartItem}
-        deleteAllProducts={deleteAllProducts}
-      />
+      <CartList />
       <CartForm openModal={openModal} order={order} />
     </div>
   );

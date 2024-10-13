@@ -23,3 +23,11 @@ type Option = {
   title: string;
   vegan: boolean;
 };
+
+type UserOrders = {
+  _id: string;
+  customerInfo: Info;
+  order: ({ _id: string } & Ordered)[];
+  orderSum: number;
+  createdAt: string;
+};

@@ -1,4 +1,6 @@
 import { formattedDate } from '@/helpers/formattedDate';
+import { useAppSelector } from '@/redux/hooks';
+import { getUserProductsAll } from '@/redux/userOrders/userOrdersSlice';
 
 import { CustomJwtPayload } from '@/app/login/page';
 
@@ -8,14 +10,11 @@ import css from './UserOrders.module.scss';
 type UserOrdersProps = {
   logoutHandler: () => void;
   userInfo: CustomJwtPayload;
-  userOrders: UserOrders[];
 };
 
-export function UserOrders({
-  logoutHandler,
-  userInfo,
-  userOrders,
-}: UserOrdersProps) {
+export function UserOrders({ logoutHandler, userInfo }: UserOrdersProps) {
+  const userOrders = useAppSelector(getUserProductsAll);
+
   return (
     <div className={css.userInfoWrapper}>
       <h2 className={css.heading}>Привіт, {userInfo.name}!</h2>

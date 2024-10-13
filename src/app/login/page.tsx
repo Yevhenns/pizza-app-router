@@ -5,10 +5,7 @@ import { useEffect } from 'react';
 import { addUserInfo, getUserInfo, logout } from '@/redux/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getUserProducts } from '@/redux/userOrders/userOrdersOperations';
-import {
-  getUserProductsAll,
-  setUserId,
-} from '@/redux/userOrders/userOrdersSlice';
+import { setUserId } from '@/redux/userOrders/userOrdersSlice';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
@@ -23,7 +20,6 @@ export interface CustomJwtPayload extends JwtPayload {
 
 export default function Login() {
   const userInfo = useAppSelector(getUserInfo);
-  const userOrders = useAppSelector(getUserProductsAll);
 
   const dispatch = useAppDispatch();
 
@@ -58,11 +54,7 @@ export default function Login() {
           }}
         />
       ) : (
-        <UserOrders
-          logoutHandler={logoutHandler}
-          userInfo={userInfo}
-          userOrders={userOrders}
-        />
+        <UserOrders logoutHandler={logoutHandler} userInfo={userInfo} />
       )}
     </div>
   );

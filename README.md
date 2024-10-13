@@ -1,6 +1,6 @@
 ## Description
 
-A full-stack project with React Server Components.
+Full-stack app with Google auth for ordering food and receiving order via email. The user can view the order history.
 
 ## Installation
 
@@ -16,4 +16,4 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 result.
 
-Also check a [mobile application](https://github.com/Yevhenns/PizzaMobApp.git) for this project.
+Also check a [mobile application](https://github.com/Yevhenns/PizzaMobApp.git) and [back-end application](https://github.com/Yevhenns/pizza-nest.git) for this project.

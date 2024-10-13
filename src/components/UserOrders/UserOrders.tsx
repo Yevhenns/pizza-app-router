@@ -1,10 +1,14 @@
 import { formattedDate } from '@/helpers/formattedDate';
 import { useAppSelector } from '@/redux/hooks';
-import { getUserProductsAll } from '@/redux/userOrders/userOrdersSlice';
+import {
+  getIsLoading,
+  getUserProductsAll,
+} from '@/redux/userOrders/userOrdersSlice';
 
 import { CustomJwtPayload } from '@/app/login/page';
 
 import { Button } from '../basic/Button';
+import { Loader } from '../common/Loader';
 import css from './UserOrders.module.scss';
 
 type UserOrdersProps = {
@@ -14,6 +18,11 @@ type UserOrdersProps = {
 
 export function UserOrders({ logoutHandler, userInfo }: UserOrdersProps) {
   const userOrders = useAppSelector(getUserProductsAll);
+  const isLoading = useAppSelector(getIsLoading);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className={css.userInfoWrapper}>

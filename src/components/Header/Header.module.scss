@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: transform 250ms linear;
+    transition: var(--transition);
     color: var(--main-color);
     position: relative;
 

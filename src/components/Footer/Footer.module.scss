@@ -25,7 +25,7 @@
 
   .socialLink {
     display: block;
-    transition: transform 250ms linear;
+    transition: var(--transition);
 
     svg {
       font-size: 30px;

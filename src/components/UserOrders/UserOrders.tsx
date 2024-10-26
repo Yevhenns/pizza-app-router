@@ -21,7 +21,12 @@ export function UserOrders({ logoutHandler, userInfo }: UserOrdersProps) {
   const isLoading = useAppSelector(getIsLoading);
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className={css.userInfoWrapper}>
+        <Loader />
+        <span>Будь ласка зачекайте</span>
+      </div>
+    );
   }
 
   return (

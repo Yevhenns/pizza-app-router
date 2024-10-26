@@ -11,9 +11,27 @@ export function Addresses() {
         <div className={css.wrapper}>
           <address>
             <p>Наші адреси:</p>
-            <p>м. Дніпро, пр. Богдана Хмельницького 118Д</p>
-            <p>м. Дніпро, Зоряний бульвар 1А</p>
-            <p>м. Дніпро, вулиця Титова 36</p>
+            <a
+              href="https://maps.app.goo.gl/uXvE1tN8KBKD2eVKA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              м. Дніпро, пр. Богдана Хмельницького 118Д
+            </a>
+            <a
+              href="https://maps.app.goo.gl/d2CBDEjWHvkmGzHM6"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              м. Дніпро, Зоряний бульвар 1А
+            </a>
+            <a
+              href="https://maps.app.goo.gl/28DNQbpdw6RoRt7s7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              м. Дніпро, вулиця Незалежності 36
+            </a>
           </address>
           <GoogleMap />
         </div>

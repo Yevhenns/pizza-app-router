@@ -20,12 +20,21 @@
     }
   }
 
-  p {
+  p,
+  a {
     font-family: var(--main-font);
     font-size: 24px;
 
     @include mobile {
       font-size: 16px;
     }
+  }
+
+  a {
+    transition: var(--transition);
+  }
+
+  a:hover {
+    transform: scale(1.1);
   }
 }

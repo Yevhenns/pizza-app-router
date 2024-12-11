@@ -1,3 +1,7 @@
+'use client';
+
+import { APIProvider } from '@vis.gl/react-google-maps';
+
 import { Addresses } from '@/components/Addresses';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
@@ -11,15 +15,19 @@ export default function ClientRootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const API_KEY = process.env.GOOGLE_MAPS_API_KEY as string;
+
   return (
-    <div className={css.wrapper}>
-      <Header />
-      <main className={css.main}>
-        <PagesWrapper>{children}</PagesWrapper>
-        <Addresses />
-        <TabNavigator />
-      </main>
-      <Footer />
-    </div>
+    <APIProvider apiKey={API_KEY}>
+      <div className={css.wrapper}>
+        <Header />
+        <main className={css.main}>
+          <PagesWrapper>{children}</PagesWrapper>
+          <Addresses />
+          <TabNavigator />
+        </main>
+        <Footer />
+      </div>
+    </APIProvider>
   );
 }

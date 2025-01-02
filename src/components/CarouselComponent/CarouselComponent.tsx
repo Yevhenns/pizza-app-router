@@ -39,18 +39,13 @@ export function CarouselComponent() {
         showStatus={false}
       >
         <CarouselImage
-          src="https://res.cloudinary.com/dyka4vajb/image/upload/f_auto,q_auto/v1/hatamagnata/carousel/g6kopv5fswwrxi0vys6a"
+          src="https://res.cloudinary.com/dyka4vajb/image/upload/v1735822363/hatamagnata/carousel/atmd10kbcsoh83pcrv0u.webp"
           alt="Action 1"
           isVisible
         />
         <CarouselImage
-          src="https://res.cloudinary.com/dyka4vajb/image/upload/f_auto,q_auto/v1/hatamagnata/carousel/swejyzvcyuwcpeqip4sy"
+          src="https://res.cloudinary.com/dyka4vajb/image/upload/v1735822349/hatamagnata/carousel/ac59dux1vcxarfgdattf.webp"
           alt="Action 2"
-          isVisible={false}
-        />
-        <CarouselImage
-          src="https://res.cloudinary.com/dyka4vajb/image/upload/f_auto,q_auto/v1/hatamagnata/carousel/ti0wittkvf5su8nhfbdy"
-          alt="Action 3"
           isVisible={false}
         />
       </Carousel>

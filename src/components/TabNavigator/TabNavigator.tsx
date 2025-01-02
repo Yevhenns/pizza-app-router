@@ -23,12 +23,17 @@ export function TabNavigator() {
 
   return (
     <nav className={css.wrapper}>
-      <Link className={cn(css.link, pathname === '/' && css.active)} href={'/'}>
+      <Link
+        className={cn(css.link, pathname === '/' && css.active)}
+        href={'/'}
+        aria-label="home page"
+      >
         <Icon svg="home" iconWidth={34} iconHeight={34} />
       </Link>
       <Link
         className={cn(css.link, pathname === '/login' && css.active)}
         href={'/login'}
+        aria-label="login page"
       >
         {userInfo !== null ? (
           <Avatar />
@@ -39,6 +44,7 @@ export function TabNavigator() {
       <Link
         className={cn(css.link, pathname === '/cart' && css.active)}
         href={'/cart'}
+        aria-label="cart page"
       >
         <Icon svg="basket" iconWidth={34} iconHeight={34} />
         {cartLength !== 0 && <span>{cartLength}</span>}
@@ -46,6 +52,7 @@ export function TabNavigator() {
       <Link
         className={cn(css.link, pathname === '/favorite' && css.active)}
         href={'/favorite'}
+        aria-label="favorite page"
       >
         <Icon svg="heart" iconWidth={34} iconHeight={34} />
         {favoriteLength !== 0 && <span>{favoriteLength}</span>}

@@ -15,7 +15,14 @@ type CarouselImageProps = {
 function CarouselImage({ src, alt }: CarouselImageProps) {
   return (
     <div className={css.item}>
-      <Image src={src} alt={alt} width={1062} height={401} priority={true} />
+      <Image
+        src={src}
+        alt={alt}
+        width={1062}
+        height={401}
+        priority={true}
+        loading="lazy"
+      />
     </div>
   );
 }

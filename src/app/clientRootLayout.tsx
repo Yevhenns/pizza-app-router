@@ -1,5 +1,7 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 import { APIProvider } from '@vis.gl/react-google-maps';
 
 import { Addresses } from '@/components/Addresses';
@@ -17,13 +19,15 @@ export default function ClientRootLayout({
 }>) {
   const API_KEY = process.env.GOOGLE_MAPS_API_KEY as string;
 
+  const pathname = usePathname();
+
   return (
     <APIProvider apiKey={API_KEY}>
       <div className={css.wrapper}>
         <Header />
         <main className={css.main}>
           <PagesWrapper>{children}</PagesWrapper>
-          <Addresses />
+          {!pathname.includes('/admin') && <Addresses />}
           <TabNavigator />
         </main>
         <Footer />

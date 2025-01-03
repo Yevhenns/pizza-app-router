@@ -9,5 +9,5 @@ type TypeIcon =
   | 'right'
   | 'heart'
   | 'heart-filled'
-  | 'point'
-  | 'home';
+  | 'home'
+  | 'settings';

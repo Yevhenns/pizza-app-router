@@ -83,7 +83,7 @@ export function Header() {
                 href={'/admin'}
                 aria-label="admin page"
               >
-                <Icon svg="user" iconWidth={34} iconHeight={34} />
+                <Icon svg="settings" iconWidth={34} iconHeight={34} />
               </Link>
             )}
           </div>

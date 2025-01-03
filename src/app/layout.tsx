@@ -38,6 +38,12 @@ export default function RootLayout({
 
   return (
     <html lang="uk" className={`${inter.variable} ${roboto_mono.variable}`}>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="7ThJ8TZQqdaICo-gIgrqtzRaxDg5yHsr4Xi0LgGaHDM"
+        />
+      </head>
       <body>
         <GoogleOAuthProvider clientId={CLIENTID}>
           <ReduxProvider>

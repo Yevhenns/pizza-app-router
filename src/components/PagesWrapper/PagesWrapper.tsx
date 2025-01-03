@@ -1,5 +1,3 @@
-'use client';
-
 import { PropsWithChildren, useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -1,9 +1,6 @@
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL_NEST;
 
-export async function getProductsAll(): Promise<ProductsResponse> {
+export async function getProductsAll(): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}/api/products`, {
       cache: 'no-store',

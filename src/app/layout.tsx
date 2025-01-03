@@ -1,10 +1,12 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import type { Metadata } from 'next';
 import { Comfortaa, Inter } from 'next/font/google';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import ReduxProvider from './ReduxProvider';
-import ToastProvider from './ToastProvider';
 import ClientRootLayout from './clientRootLayout';
 import './globals.scss';
 
@@ -40,7 +42,8 @@ export default function RootLayout({
         <GoogleOAuthProvider clientId={CLIENTID}>
           <ReduxProvider>
             <ClientRootLayout>
-              {children} <ToastProvider />
+              {children}
+              <ToastContainer />
             </ClientRootLayout>
           </ReduxProvider>
         </GoogleOAuthProvider>

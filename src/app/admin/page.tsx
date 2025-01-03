@@ -10,6 +10,8 @@ import { getUserInfo } from '@/redux/auth/authSlice';
 import { useAppSelector } from '@/redux/hooks';
 import { getProductsAll } from '@/utils/getProductsAllNest';
 
+import { ProductsTable } from '@/components/Admin/ProductsTable';
+
 import css from './page.module.scss';
 
 export default function Admin() {
@@ -46,58 +48,7 @@ export default function Admin() {
 
   return (
     <div>
-      {products &&
-        products.map(
-          ({
-            _id,
-            photo,
-            title,
-            description,
-            price,
-            dimension,
-            category,
-            promPrice,
-            promotion,
-            vegan,
-          }) => {
-            return (
-              <div className={css.listItem} key={_id}>
-                <div className={css.columnItem}>
-                  <Image
-                    src={photo}
-                    width={100}
-                    height={100}
-                    alt="item photo"
-                  />
-                </div>
-                <div className={css.columnItem}>
-                  <p>{title}</p>
-                </div>
-                <div className={css.columnItem}>
-                  <p>{description}</p>
-                </div>
-                <div className={css.columnItem}>
-                  <p>{price}</p>
-                </div>
-                <div className={css.columnItem}>
-                  <p>{dimension}</p>
-                </div>
-                <div className={css.columnItem}>
-                  <p>{category}</p>
-                </div>
-                <div className={css.columnItem}>
-                  <p>{promPrice}</p>
-                </div>
-                <div className={css.columnItem}>
-                  {promotion ? <p>Так</p> : <p>Ні</p>}
-                </div>
-                <div className={css.columnItem}>
-                  {vegan ? <p>Так</p> : <p>Ні</p>}
-                </div>
-              </div>
-            );
-          }
-        )}
+      <ProductsTable products={products} />
     </div>
   );
 }

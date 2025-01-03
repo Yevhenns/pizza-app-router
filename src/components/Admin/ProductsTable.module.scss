@@ -1,0 +1,15 @@
+.table {
+  font-family: var(--secondary-font);
+  border-collapse: collapse;
+  tr:nth-child(even) {
+    background-color: #ffd465;
+  }
+
+  border: 1px solid #ccc;
+
+  td,
+  th {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+}

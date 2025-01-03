@@ -15,11 +15,11 @@ export async function ProductsList({ category }: ProductsListProps) {
   const products = await getProductsAll();
 
   const data = (() => {
-    if (products && products.data && products.data.length > 0) {
+    if (products && products && products.length > 0) {
       if (category === 'promotions') {
-        return filterByPromotion(products.data);
+        return filterByPromotion(products);
       }
-      return filterByCategory(products.data, category);
+      return filterByCategory(products, category);
     }
   })();
 

@@ -5,7 +5,7 @@ type IconProps = {
   iconWidth: number | undefined;
   iconHeight: number | undefined;
   svg: TypeIcon | undefined;
-  color?: 'main' | 'white' | 'accent';
+  color?: 'main' | 'white' | 'accent' | 'red' | 'green';
 };
 
 export function Icon({

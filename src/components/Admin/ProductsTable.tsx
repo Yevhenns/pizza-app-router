@@ -72,24 +72,24 @@ export function ProductsTable({ products }: ProductsTableProps) {
                   <td>{promotion ? <p>Так</p> : <p>Ні</p>}</td>
                   <td>{vegan ? <p>Так</p> : <p>Ні</p>}</td>
                   <td>
-                    <p>
+                    <div className={css.buttonsWrapper}>
                       <RoundButton>
                         <Icon
-                          svg="heart-filled"
+                          svg="edit"
                           iconWidth={34}
                           iconHeight={34}
-                          color="accent"
+                          color="green"
                         />
                       </RoundButton>
                       <RoundButton>
                         <Icon
-                          svg="heart-filled"
+                          svg="remove"
                           iconWidth={34}
                           iconHeight={34}
-                          color="accent"
+                          color="red"
                         />
                       </RoundButton>
-                    </p>
+                    </div>
                   </td>
                 </tr>
               );

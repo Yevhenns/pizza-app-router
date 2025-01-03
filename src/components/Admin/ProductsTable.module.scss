@@ -10,6 +10,11 @@
   td,
   th {
     border: 1px solid #ccc;
-    padding: 8px;
+    padding: 4px;
+  }
+
+  .buttonsWrapper {
+    display: flex;
+    gap: 8px;
   }
 }

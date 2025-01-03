@@ -10,4 +10,12 @@
   &.accent {
     fill: var(--accent-color);
   }
+
+  &.red {
+    fill: red;
+  }
+
+  &.green {
+    fill: green;
+  }
 }

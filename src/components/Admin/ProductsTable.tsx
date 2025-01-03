@@ -1,5 +1,8 @@
 import Image from 'next/image';
 
+import { Button } from '../basic/Button';
+import { Icon } from '../basic/Icon';
+import { RoundButton } from '../basic/RoundButton';
 import css from './ProductsTable.module.scss';
 
 type ProductsTableProps = {
@@ -69,7 +72,24 @@ export function ProductsTable({ products }: ProductsTableProps) {
                   <td>{promotion ? <p>Так</p> : <p>Ні</p>}</td>
                   <td>{vegan ? <p>Так</p> : <p>Ні</p>}</td>
                   <td>
-                    <p>Ред./Вид.</p>
+                    <p>
+                      <RoundButton>
+                        <Icon
+                          svg="heart-filled"
+                          iconWidth={34}
+                          iconHeight={34}
+                          color="accent"
+                        />
+                      </RoundButton>
+                      <RoundButton>
+                        <Icon
+                          svg="heart-filled"
+                          iconWidth={34}
+                          iconHeight={34}
+                          color="accent"
+                        />
+                      </RoundButton>
+                    </p>
                   </td>
                 </tr>
               );

@@ -23,6 +23,12 @@ export function Header() {
   const favoriteLength = useAppSelector(getFavorites).length;
   const userInfo = useAppSelector(getUserInfo);
 
+  const ADMIN_ID = process.env.ADMIN_ID;
+
+  const isUserAdmin = () => {
+    return userInfo?.sub === ADMIN_ID;
+  };
+
   return (
     <header className={css.wrapper}>
       <Container>
@@ -68,6 +74,18 @@ export function Header() {
               <Icon svg="basket" iconWidth={34} iconHeight={34} />
               {cartLength !== 0 && <span>{cartLength}</span>}
             </Link>
+            {isUserAdmin() && (
+              <Link
+                className={cn(
+                  css.navLink,
+                  pathname === '/admin' ? css.active : ''
+                )}
+                href={'/admin'}
+                aria-label="admin page"
+              >
+                <Icon svg="user" iconWidth={34} iconHeight={34} />
+              </Link>
+            )}
           </div>
         </div>
       </Container>

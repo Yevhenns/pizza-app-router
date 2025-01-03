@@ -5,6 +5,7 @@ const nextConfig = {
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,
     CLIENTID: process.env.CLIENTID,
     NEXT_PUBLIC_BASE_URL_NEST: process.env.NEXT_PUBLIC_BASE_URL_NEST,
+    ADMIN_ID: process.env.ADMIN_ID,
   },
   reactStrictMode: true,
   images: {

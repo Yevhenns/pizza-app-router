@@ -24,6 +24,7 @@ export default function Login() {
   const dispatch = useAppDispatch();
 
   const logoutHandler = () => {
+    dispatch(setUserId(''));
     dispatch(logout());
     googleLogout();
   };
@@ -40,8 +41,6 @@ export default function Login() {
       {userInfo === null ? (
         <GoogleLogin
           onSuccess={credentialResponse => {
-            console.log(credentialResponse);
-
             if (credentialResponse.credential) {
               const decoded: CustomJwtPayload = jwtDecode(
                 credentialResponse.credential

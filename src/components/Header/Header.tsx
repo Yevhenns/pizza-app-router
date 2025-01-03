@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/helpers/combineClasses';
+import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { getUserInfo } from '@/redux/auth/authSlice';
 import { getFilteredCart } from '@/redux/cart/cartSlice';
 import { useAppSelector } from '@/redux/hooks';
@@ -22,6 +23,8 @@ export function Header() {
   const cartLength = useAppSelector(getFilteredCart).length;
   const favoriteLength = useAppSelector(getFavorites).length;
   const userInfo = useAppSelector(getUserInfo);
+
+  const width = useWindowWidth();
 
   const ADMIN_ID = process.env.ADMIN_ID;
 
@@ -74,7 +77,7 @@ export function Header() {
               <Icon svg="basket" iconWidth={34} iconHeight={34} />
               {cartLength !== 0 && <span>{cartLength}</span>}
             </Link>
-            {isUserAdmin() && (
+            {isUserAdmin() && width > 768 && (
               <Link
                 className={cn(
                   css.navLink,

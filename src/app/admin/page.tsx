@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { getUserInfo } from '@/redux/auth/authSlice';
 import { useAppSelector } from '@/redux/hooks';
-import { getProductsAll } from '@/utils/getProductsAll';
+import { getProductsAll } from '@/utils/getProductsAllNest';
 
 import css from './page.module.scss';
 

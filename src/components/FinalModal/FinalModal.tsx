@@ -1,4 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
+import { createPortal } from 'react-dom';
+
 import {
   getError,
   getFilteredCart,
@@ -27,7 +29,7 @@ export function FinalModal({ finalAction }: FinalModalProps) {
     return <Error500 />;
   }
 
-  return (
+  return createPortal(
     <div className={css.modalWrapper}>
       {isLoading ? (
         <LoaderModal />
@@ -65,6 +67,7 @@ export function FinalModal({ finalAction }: FinalModalProps) {
           </>
         </div>
       )}
-    </div>
+    </div>,
+    document.body
   );
 }

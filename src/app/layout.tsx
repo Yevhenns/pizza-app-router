@@ -27,6 +27,20 @@ export const roboto_mono = Comfortaa({
 export const metadata: Metadata = {
   title: 'Nostra Pizza',
   description: 'Піца в місті Дніпро, Nostra-Pizza, доставка піци в Дніпрі',
+  openGraph: {
+    title: 'Next.js',
+    description: 'The React Framework for the Web',
+    url: 'https://nextjs.org',
+    siteName: 'Next.js',
+    images: [
+      {
+        url: 'https://nextjs.org/og.png',
+        width: 800,
+        height: 600,
+      },
+    ],
+    type: 'website',
+  },
 };
 
 export default function RootLayout({

@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
 
 import { getUserInfo } from '@/redux/auth/authSlice';
 import { sendOrder } from '@/redux/cart/cartOperations';
 import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useMask } from '@react-input/mask';
 
 import { Button } from '@/components/basic/Button';
 import { Checkbox } from '@/components/basic/Checkbox';
@@ -14,7 +14,6 @@ import { GoogleMapsInput } from '@/components/basic/GoogleMapsInput';
 import { Input } from '@/components/basic/Input';
 import { TextArea } from '@/components/basic/TextArea';
 
-import inputCss from '../../../components/basic/Input/Input.module.scss';
 import css from './CartForm.module.scss';
 
 type CartFormProps = {
@@ -35,6 +34,11 @@ export function CartForm({ openModal, order }: CartFormProps) {
   const orderSum = useAppSelector(getOrderSum);
   const userId = useAppSelector(getUserInfo)?.sub;
   const dispatch = useAppDispatch();
+
+  const phoneInputRef = useMask({
+    mask: '+38(___)___-__-__',
+    replacement: { _: /\d/ },
+  });
 
   const onSubmit: SubmitHandler<Info> = ({
     address,
@@ -76,31 +80,30 @@ export function CartForm({ openModal, order }: CartFormProps) {
           inputMode="text"
           type="text"
         />
+
         <Controller
-          control={control}
           name="number"
-          rules={{
-            required: "Це обов'язкове поле!",
-            validate: {
-              required: value => !value.includes('_'),
-            },
-          }}
-          render={({ field: { onChange, onBlur, ref } }) => (
-            <div className={inputCss.fieldset}>
-              <label htmlFor="customer-number">* Номер телефону</label>
-              <InputMask
-                maskPlaceholder={null}
-                placeholder="(099) 999-99-99"
-                mask="(099) 999-99-99"
-                onBlur={onBlur}
-                onChange={onChange}
-                inputRef={ref}
-                type="tel"
-                id="customer-number"
-              />
-              <div>{errors.number && <span>{errors.number.message}</span>}</div>
-            </div>
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Input
+              {...field}
+              ref={phoneInputRef}
+              placeholder="099 999 99 99"
+              id="number"
+              htmlFor="number"
+              type="tel"
+              label="* Номер телефону"
+              error={errors?.number?.message}
+            />
           )}
+          rules={{
+            required: false,
+            validate: value =>
+              value.length === 0 ||
+              value.length === 17 ||
+              'Введіть номер телефону',
+          }}
         />
         <Checkbox
           {...register('delivery')}

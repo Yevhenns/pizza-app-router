@@ -1,5 +1,5 @@
 import { ProductsList } from '@/components/ProductsList';
 
-export default function Drinks() {
+export default async function Drinks() {
   return <ProductsList category="drinks" />;
 }

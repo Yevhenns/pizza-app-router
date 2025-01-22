@@ -5,7 +5,7 @@ import { Weather } from '@/components/Weather';
 
 import css from './page.module.scss';
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <QRCode />

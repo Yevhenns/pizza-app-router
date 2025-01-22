@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: 'Nostra Pizza',
     images: [
       {
-        url: 'https://nostrra-pizzza.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdyka4vajb%2Fimage%2Fupload%2Fv1698576734%2Fhatamagnata%2Fpizzas%2Fcmzbifr7ssgugxtgnrtn.png&w=256&q=75',
+        url: 'https://res.cloudinary.com/dyka4vajb/image/upload/v1698576734/hatamagnata/pizzas/cmzbifr7ssgugxtgnrtn.png',
         width: 400,
         height: 400,
       },

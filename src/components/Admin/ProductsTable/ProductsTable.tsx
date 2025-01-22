@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import { Button } from '../basic/Button';
-import { Icon } from '../basic/Icon';
-import { RoundButton } from '../basic/RoundButton';
+import { Button } from '../../basic/Button';
+import { Icon } from '../../basic/Icon';
+import { RoundButton } from '../../basic/RoundButton';
 import css from './ProductsTable.module.scss';
 
 type ProductsTableProps = {

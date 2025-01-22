@@ -181,7 +181,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
           htmlFor="comment"
         />
       </div>
-      <span>* обов&apos;язкові поля</span>
+      <span className={css.requiredFieldsText}>* обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>
         Підтвердити
       </Button>

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
 import { getProducts } from './productsOperations';
@@ -15,10 +15,10 @@ const productsSlice = createSlice({
   name: 'allProducts',
   initialState,
   reducers: {
-    addToFavoriteAction(state, action: { payload: Product }) {
+    addToFavoriteAction(state, action: PayloadAction<Product>) {
       state.favoriteProducts = [...state.favoriteProducts, action.payload];
     },
-    removeFromFavoriteAction(state, action: { payload: string }) {
+    removeFromFavoriteAction(state, action: PayloadAction<string>) {
       state.favoriteProducts = state.favoriteProducts.filter(
         item => item._id !== action.payload
       );

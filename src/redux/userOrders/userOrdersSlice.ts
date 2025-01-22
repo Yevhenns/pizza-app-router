@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
 import { getUserProducts } from './userOrdersOperations';
@@ -14,7 +14,7 @@ const userOrdersSlice = createSlice({
   name: 'userAllProducts',
   initialState,
   reducers: {
-    setUserId(state, action: { payload: string }) {
+    setUserId(state, action: PayloadAction<string>) {
       state.userId = action.payload;
     },
   },

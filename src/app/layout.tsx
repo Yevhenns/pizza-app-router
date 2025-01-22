@@ -25,7 +25,6 @@ export const roboto_mono = Comfortaa({
 });
 
 export const metadata: Metadata = {
-  title: 'Nostra Pizza',
   description: 'Піца в місті Дніпро, Nostra-Pizza, доставка піци в Дніпрі',
   openGraph: {
     title: 'Nostra Pizza',
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

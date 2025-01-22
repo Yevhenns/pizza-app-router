@@ -1,21 +1,11 @@
-'use client';
+import { Metadata } from 'next';
 
-import { useAppSelector } from '@/redux/hooks';
-import { getFavorites } from '@/redux/products/productsSlice';
+import Favorite from '@/components/Favorite/Favorite';
 
-import { Empty } from '@/components/Empty';
-import { FavoriteList } from '@/components/ProductsList';
+export const metadata: Metadata = {
+  title: 'Nostra Pizza | Улюблене',
+};
 
-export default function Favorite() {
-  const favoriteProducts = useAppSelector(getFavorites);
-
-  return (
-    <>
-      {favoriteProducts.length > 0 ? (
-        <FavoriteList />
-      ) : (
-        <Empty text={'В улюбленому нічого немає!'} />
-      )}
-    </>
-  );
+export default async function FavoritePage() {
+  return <Favorite />;
 }

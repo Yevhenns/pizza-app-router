@@ -5,8 +5,7 @@ import {
   getUserProductsAll,
 } from '@/redux/userOrders/userOrdersSlice';
 
-import { CustomJwtPayload } from '@/app/login/page';
-
+import { CustomJwtPayload } from '../Login';
 import { Button } from '../basic/Button';
 import { Loader } from '../common/Loader';
 import css from './UserOrders.module.scss';

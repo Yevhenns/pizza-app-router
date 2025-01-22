@@ -1,5 +1,3 @@
-import { headers } from 'next/headers';
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL =

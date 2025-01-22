@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { CustomJwtPayload } from '@/app/login/page';
+import { CustomJwtPayload } from '@/components/Login';
 
 import { RootState } from '../store';
 

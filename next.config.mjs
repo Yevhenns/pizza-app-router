@@ -28,6 +28,9 @@ const nextConfig = {
     esmExternals: 'loose',
     serverComponentsExternalPackages: ['mongoose'],
   },
+  sassOptions: {
+    prependData: `@import "src/assets/styles/media.mixin.scss";`,
+  },
 };
 
 export default nextConfig;

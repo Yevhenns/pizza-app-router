@@ -28,15 +28,15 @@ export const metadata: Metadata = {
   title: 'Nostra Pizza',
   description: 'Піца в місті Дніпро, Nostra-Pizza, доставка піци в Дніпрі',
   openGraph: {
-    title: 'Next.js',
-    description: 'The React Framework for the Web',
-    url: 'https://nextjs.org',
-    siteName: 'Next.js',
+    title: 'Nostra Pizza',
+    description: 'Піца в місті Дніпро, Nostra-Pizza, доставка піци в Дніпрі',
+    url: 'https://nostrra-pizzza.vercel.app',
+    siteName: 'Nostra Pizza',
     images: [
       {
-        url: 'https://nextjs.org/og.png',
-        width: 800,
-        height: 600,
+        url: 'https://nostrra-pizzza.vercel.app/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdyka4vajb%2Fimage%2Fupload%2Fv1698576734%2Fhatamagnata%2Fpizzas%2Fcmzbifr7ssgugxtgnrtn.png&w=256&q=75',
+        width: 400,
+        height: 400,
       },
     ],
     type: 'website',

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { CustomJwtPayload } from '@/app/login/page';
 
@@ -14,7 +14,7 @@ const authSlice = createSlice({
   name: 'allProducts',
   initialState,
   reducers: {
-    addUserInfo(state, action: { payload: CustomJwtPayload }) {
+    addUserInfo(state, action: PayloadAction<CustomJwtPayload>) {
       state.userInfo = action.payload;
     },
     logout(state) {

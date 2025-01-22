@@ -1,12 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 import { RootState } from '../store';
 import { sendOrder } from './cartOperations';
 
+interface QuantityAndPrice {
+  cart_id: string;
+  quantity: number;
+  totalPrice: number;
+}
+
 const initialState = {
   filteredBasket: [] as CartItem[],
-  customerInfo: {} as Info,
+  customerInfo: {} as OrderSubmit,
   orderSum: 0,
   error: null as any,
   isLoading: false,
@@ -16,7 +22,7 @@ const cartSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addItem(state, action: { payload: AddtoCartItem }) {
+    addItem(state, action: PayloadAction<AddtoCartItem>) {
       function areOptionsEqual(
         options1: string[],
         options2: string[]
@@ -51,32 +57,27 @@ const cartSlice = createSlice({
         state.filteredBasket = [...state.filteredBasket, newCartItem];
       }
     },
-    deleteItem(state, action: { payload: string }) {
+    deleteItem(state, action: PayloadAction<string>) {
       state.filteredBasket = state.filteredBasket.filter(
         (item: CartItem) => item.cart_id !== action.payload
       );
     },
-    checkCart(state, action: { payload: Product[] }) {
+    checkCart(state, action: PayloadAction<Product[]>) {
       state.filteredBasket = state.filteredBasket.filter(({ _id: id1 }) =>
         action.payload.some(({ _id: id2 }) => id1 === id2)
       );
     },
-    addInfo(state, action: { payload: Info }) {
+    addInfo(state, action: PayloadAction<OrderSubmit>) {
       state.customerInfo = action.payload;
     },
     deleteAllItems(state) {
       state.filteredBasket = [];
-      state.customerInfo = {} as Info;
+      state.customerInfo = {} as OrderSubmit;
     },
-    addOrderSum(state, action: { payload: number }) {
+    addOrderSum(state, action: PayloadAction<number>) {
       state.orderSum = action.payload;
     },
-    setQuantityAndPrice(
-      state,
-      action: {
-        payload: { cart_id: string; quantity: number; totalPrice: number };
-      }
-    ) {
+    setQuantityAndPrice(state, action: PayloadAction<QuantityAndPrice>) {
       const existingItemIndex = state.filteredBasket.findIndex(
         item => item.cart_id === action.payload.cart_id
       );

@@ -1,21 +1,18 @@
-/* eslint-disable react/no-unescaped-entities */
 import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
-
-import { useRouter } from 'next/navigation';
 
 import { getUserInfo } from '@/redux/auth/authSlice';
 import { sendOrder } from '@/redux/cart/cartOperations';
 import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useMask } from '@react-input/mask';
 
 import { Button } from '@/components/basic/Button';
 import { Checkbox } from '@/components/basic/Checkbox';
+import { GoogleMapsInput } from '@/components/basic/GoogleMapsInput';
 import { Input } from '@/components/basic/Input';
 import { TextArea } from '@/components/basic/TextArea';
 
-import inputCss from '../../../components/basic/Input/Input.module.scss';
 import css from './CartForm.module.scss';
 
 type CartFormProps = {
@@ -29,6 +26,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
     handleSubmit,
     formState: { errors, isValid },
     watch,
+    setValue,
     control,
   } = useForm<Info>({ mode: 'onChange' });
 
@@ -36,7 +34,10 @@ export function CartForm({ openModal, order }: CartFormProps) {
   const userId = useAppSelector(getUserInfo)?.sub;
   const dispatch = useAppDispatch();
 
-  const router = useRouter();
+  const phoneInputRef = useMask({
+    mask: '+38(___)___-__-__',
+    replacement: { _: /\d/ },
+  });
 
   const onSubmit: SubmitHandler<Info> = ({
     address,
@@ -45,8 +46,8 @@ export function CartForm({ openModal, order }: CartFormProps) {
     number,
   }) => {
     openModal();
-    const customerInfo: Info = {
-      address,
+    const customerInfo: OrderSubmit = {
+      address: address?.formatted,
       comment,
       name,
       number,
@@ -55,7 +56,6 @@ export function CartForm({ openModal, order }: CartFormProps) {
     dispatch(addInfo(customerInfo));
     const reqBody: SummaryOrder = { customerInfo, order, orderSum };
     dispatch(sendOrder(reqBody));
-    router.refresh();
   };
 
   const delivery = watch('delivery');
@@ -78,31 +78,30 @@ export function CartForm({ openModal, order }: CartFormProps) {
           inputMode="text"
           type="text"
         />
+
         <Controller
-          control={control}
           name="number"
-          rules={{
-            required: "Це обов'язкове поле!",
-            validate: {
-              required: value => !value.includes('_'),
-            },
-          }}
-          render={({ field: { onChange, onBlur, ref } }) => (
-            <div className={inputCss.fieldset}>
-              <label htmlFor="customer-number">* Номер телефону</label>
-              <InputMask
-                maskPlaceholder={null}
-                placeholder="(099) 999-99-99"
-                mask="(099) 999-99-99"
-                onBlur={onBlur}
-                onChange={onChange}
-                inputRef={ref}
-                type="tel"
-                id="customer-number"
-              />
-              <div>{errors.number && <span>{errors.number.message}</span>}</div>
-            </div>
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Input
+              {...field}
+              ref={phoneInputRef}
+              placeholder="099 999 99 99"
+              id="number"
+              htmlFor="number"
+              type="tel"
+              label="* Номер телефону"
+              error={errors?.number?.message}
+            />
           )}
+          rules={{
+            required: false,
+            validate: value =>
+              value.length === 0 ||
+              value.length === 17 ||
+              'Введіть номер телефону',
+          }}
         />
         <Checkbox
           {...register('delivery')}
@@ -113,19 +112,65 @@ export function CartForm({ openModal, order }: CartFormProps) {
       </div>
       <div>
         {delivery && (
-          <Input
-            {...register('address', {
-              required: "Це обов'язкове поле!",
-              minLength: {
-                value: 3,
-                message: 'Введіть адресу',
-              },
-            })}
-            id="address"
-            label="* Введіть адресу"
-            placeholder="Введіть адресу"
-            htmlFor="address"
-            error={errors?.address?.message}
+          <Controller
+            name="address"
+            control={control}
+            defaultValue={{
+              formatted: '',
+              lat: 0,
+              lng: 0,
+              name: '',
+              city: 'Дніпро',
+            }}
+            rules={{
+              validate: value =>
+                value?.formatted?.trim() ? true : "Це обов'язкове поле!",
+            }}
+            render={({ field }) => (
+              <GoogleMapsInput
+                id="address"
+                placeholder="Введіть адресу"
+                label="* Введіть адресу"
+                htmlFor="address"
+                error={errors?.address?.message}
+                onPlaceSelect={place => {
+                  if (!place || !place.geometry) {
+                    const emptyValue = {
+                      formatted: '',
+                      lat: 0,
+                      lng: 0,
+                      name: '',
+                      city: 'Дніпро',
+                    };
+                    setValue('address', emptyValue);
+                    field.onChange(emptyValue);
+                    return;
+                  }
+                  const formattedPlace = {
+                    formatted: place.formatted_address || '',
+                    lat: place.geometry.location?.lat() || 0,
+                    lng: place.geometry.location?.lng() || 0,
+                    name: place.name || '',
+                    city: 'Дніпро',
+                  };
+                  setValue('address', formattedPlace);
+                  field.onChange(formattedPlace);
+                }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (!e.target.value) {
+                    const emptyValue = {
+                      formatted: '',
+                      lat: 0,
+                      lng: 0,
+                      name: '',
+                      city: 'Дніпро',
+                    };
+                    setValue('address', emptyValue);
+                    field.onChange(emptyValue);
+                  }
+                }}
+              />
+            )}
           />
         )}
         <TextArea
@@ -136,7 +181,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
           htmlFor="comment"
         />
       </div>
-      <span>* обов'язкові поля</span>
+      <span className={css.requiredFieldsText}>* обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>
         Підтвердити
       </Button>

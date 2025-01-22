@@ -12,7 +12,22 @@ type CartItem = {
 } & AddtoCartItem;
 
 interface Info {
-  address?: string | undefined;
+  address?: {
+    formatted: string;
+    lat: number;
+    lng: number;
+    name: string;
+    city: string;
+  };
+  comment?: string;
+  delivery?: boolean;
+  name: string;
+  number: string;
+  userId?: string;
+}
+
+interface OrderSubmit {
+  address?: string;
   comment?: string;
   delivery?: boolean;
   name: string;
@@ -23,7 +38,7 @@ interface Info {
 type Ordered = Pick<CartItem, 'title' | 'quantity' | 'optionsTitles'>;
 
 type SummaryOrder = {
-  customerInfo: Info;
+  customerInfo: OrderSubmit;
   order: Ordered[];
   orderSum: number;
 };

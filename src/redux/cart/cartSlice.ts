@@ -6,7 +6,7 @@ import { sendOrder } from './cartOperations';
 
 const initialState = {
   filteredBasket: [] as CartItem[],
-  customerInfo: {} as Info,
+  customerInfo: {} as OrderSubmit,
   orderSum: 0,
   error: null as any,
   isLoading: false,
@@ -61,12 +61,12 @@ const cartSlice = createSlice({
         action.payload.some(({ _id: id2 }) => id1 === id2)
       );
     },
-    addInfo(state, action: { payload: Info }) {
+    addInfo(state, action: { payload: OrderSubmit }) {
       state.customerInfo = action.payload;
     },
     deleteAllItems(state) {
       state.filteredBasket = [];
-      state.customerInfo = {} as Info;
+      state.customerInfo = {} as OrderSubmit;
     },
     addOrderSum(state, action: { payload: number }) {
       state.orderSum = action.payload;

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -54,10 +53,9 @@ export function CartForm({ openModal, order }: CartFormProps) {
       number,
       userId,
     };
-    // dispatch(addInfo(customerInfo));
+    dispatch(addInfo(customerInfo));
     const reqBody: SummaryOrder = { customerInfo, order, orderSum };
-    // dispatch(sendOrder(reqBody));
-    console.log(address);
+    dispatch(sendOrder(reqBody));
   };
 
   const delivery = watch('delivery');
@@ -183,7 +181,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
           htmlFor="comment"
         />
       </div>
-      <span>* обов'язкові поля</span>
+      <span>* обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>
         Підтвердити
       </Button>

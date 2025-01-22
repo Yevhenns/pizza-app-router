@@ -3,8 +3,6 @@ import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 
-import { useRouter } from 'next/navigation';
-
 import { getUserInfo } from '@/redux/auth/authSlice';
 import { sendOrder } from '@/redux/cart/cartOperations';
 import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
@@ -38,8 +36,6 @@ export function CartForm({ openModal, order }: CartFormProps) {
   const userId = useAppSelector(getUserInfo)?.sub;
   const dispatch = useAppDispatch();
 
-  const router = useRouter();
-
   const onSubmit: SubmitHandler<Info> = ({
     address,
     comment,
@@ -54,10 +50,10 @@ export function CartForm({ openModal, order }: CartFormProps) {
       number,
       userId,
     };
-    dispatch(addInfo(customerInfo));
+    // dispatch(addInfo(customerInfo));
     const reqBody: SummaryOrder = { customerInfo, order, orderSum };
-    dispatch(sendOrder(reqBody));
-    router.refresh();
+    // dispatch(sendOrder(reqBody));
+    console.log(address);
   };
 
   const delivery = watch('delivery');
@@ -127,7 +123,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
             }}
             rules={{
               validate: value =>
-                value?.formatted ? true : 'Адреса є обов’язковою',
+                value?.formatted?.trim() ? true : "Це обов'язкове поле!",
             }}
             render={({ field }) => (
               <GoogleMapsInput
@@ -137,34 +133,44 @@ export function CartForm({ openModal, order }: CartFormProps) {
                 htmlFor="address"
                 error={errors?.address?.message}
                 onPlaceSelect={place => {
-                  if (!place || !place.geometry) return;
+                  if (!place || !place.geometry) {
+                    const emptyValue = {
+                      formatted: '',
+                      lat: 0,
+                      lng: 0,
+                      name: '',
+                      city: 'Дніпро',
+                    };
+                    setValue('address', emptyValue);
+                    field.onChange(emptyValue);
+                    return;
+                  }
                   const formattedPlace = {
                     formatted: place.formatted_address || '',
                     lat: place.geometry.location?.lat() || 0,
                     lng: place.geometry.location?.lng() || 0,
                     name: place.name || '',
-                    city: 'Київ',
+                    city: 'Дніпро',
                   };
                   setValue('address', formattedPlace);
                   field.onChange(formattedPlace);
                 }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  if (!e.target.value) {
+                    const emptyValue = {
+                      formatted: '',
+                      lat: 0,
+                      lng: 0,
+                      name: '',
+                      city: 'Дніпро',
+                    };
+                    setValue('address', emptyValue);
+                    field.onChange(emptyValue);
+                  }
+                }}
               />
             )}
           />
-          // <Input
-          //   {...register('address', {
-          //     required: "Це обов'язкове поле!",
-          //     minLength: {
-          //       value: 3,
-          //       message: 'Введіть адресу',
-          //     },
-          //   })}
-          //   id="address"
-          //   label="* Введіть адресу"
-          //   placeholder="Введіть адресу"
-          //   htmlFor="address"
-          //   error={errors?.address?.message}
-          // />
         )}
         <TextArea
           {...register('comment')}

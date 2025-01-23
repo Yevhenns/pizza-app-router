@@ -12,10 +12,10 @@ import {
 import { pingServer } from '@/utils/pingServer';
 
 import { Error500 } from '@/components/Error500';
-import { Container } from '@/components/common/Container';
-import { Section } from '@/components/common/Section';
+import { Container } from '@/components/shared/Container';
+import { Section } from '@/components/shared/Section';
 
-import { LoaderModal } from '../common/LoaderModal';
+import { LoaderModal } from '../shared/LoaderModal';
 
 type PagesWrapperProps = PropsWithChildren;
 

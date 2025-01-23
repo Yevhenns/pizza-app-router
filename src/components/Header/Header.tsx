@@ -9,7 +9,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { getFavorites } from '@/redux/products/productsSlice';
 
 import { Icon } from '@/components/basic/Icon';
-import { Container } from '@/components/common/Container';
+import { Container } from '@/components/shared/Container';
 
 import { Avatar } from '../Avatar';
 import { Logo } from '../Logo';

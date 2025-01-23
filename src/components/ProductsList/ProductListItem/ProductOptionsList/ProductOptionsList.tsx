@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { Checkbox } from '@/components/basic/Checkbox';
+import { Checkbox } from '@/components/shared/Checkbox';
 
 import css from './ProductOptionsList.module.scss';
 

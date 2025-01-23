@@ -6,8 +6,8 @@ import {
 } from '@/redux/userOrders/userOrdersSlice';
 
 import { CustomJwtPayload } from '../Login';
-import { Button } from '../basic/Button';
-import { Loader } from '../common/Loader';
+import { Button } from '../shared/Button';
+import { Loader } from '../shared/Loader';
 import css from './UserOrders.module.scss';
 
 type UserOrdersProps = {

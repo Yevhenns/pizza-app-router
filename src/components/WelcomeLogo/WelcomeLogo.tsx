@@ -1,4 +1,4 @@
-import { Loader } from '@/components/common/Loader';
+import { Loader } from '@/components/shared/Loader';
 
 import { Logo } from '../Logo';
 import css from './WelcomeLogo.module.scss';

@@ -9,8 +9,8 @@ import {
 } from '@/redux/cart/cartSlice';
 import { useAppSelector } from '@/redux/hooks';
 
-import { Button } from '@/components/basic/Button';
-import { LoaderModal } from '@/components/common/LoaderModal';
+import { Button } from '@/components/shared/Button';
+import { LoaderModal } from '@/components/shared/LoaderModal';
 
 import { Error500 } from '../Error500/Error500';
 import css from './FinalModal.module.scss';

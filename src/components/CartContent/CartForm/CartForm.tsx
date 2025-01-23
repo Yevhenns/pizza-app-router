@@ -7,11 +7,11 @@ import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useMask } from '@react-input/mask';
 
-import { Button } from '@/components/basic/Button';
-import { Checkbox } from '@/components/basic/Checkbox';
-import { GoogleMapsInput } from '@/components/basic/GoogleMapsInput';
 import { Input } from '@/components/basic/Input';
 import { TextArea } from '@/components/basic/TextArea';
+import { Button } from '@/components/shared/Button';
+import { Checkbox } from '@/components/shared/Checkbox';
+import { GoogleMapsInput } from '@/components/shared/GoogleMapsInput';
 
 import css from './CartForm.module.scss';
 

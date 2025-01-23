@@ -3,7 +3,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { getIsLoading } from '@/redux/products/productsSlice';
 
 import { Empty } from '@/components/Empty';
-import { Loader } from '@/components/common/Loader';
+import { Loader } from '@/components/shared/Loader';
 
 import css from './CartContent.module.scss';
 import { CartForm } from './CartForm';

@@ -8,7 +8,7 @@ import {
 } from '@/redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
-import { Button } from '@/components/basic/Button';
+import { Button } from '@/components/shared/Button';
 
 import css from './CartList.module.scss';
 import { CartListItem } from './CartListItem';

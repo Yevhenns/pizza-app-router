@@ -1,10 +1,6 @@
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/models/Product';
 
-export const config = {
-  runtime: 'edge',
-};
-
 export async function GET() {
   await dbConnect();
 

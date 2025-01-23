@@ -1,12 +1,4 @@
 {
-  "functions": {
-    "api/(.*).ts": {
-      "runtime": "@vercel/edge"
-    },
-    "api/(.*).js": {
-      "runtime": "@vercel/edge"
-    }
-  },
   "headers": [
     {
       "source": "/api/(.*)",

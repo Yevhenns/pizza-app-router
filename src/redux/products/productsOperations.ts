@@ -17,7 +17,6 @@ export const getProducts = createAsyncThunk<
       headers: {
         'Content-Type': 'application/json',
       },
-      // cache: 'no-store',
     });
     const data: ProductsResponse = await res.json();
     return data.data;

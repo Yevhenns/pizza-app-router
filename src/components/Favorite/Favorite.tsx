@@ -3,8 +3,8 @@
 import { useAppSelector } from '@/store/hooks';
 import { getFavorites } from '@/store/products/productsSlice';
 
-import { Empty } from '@/components/Empty';
 import { FavoriteList } from '@/components/ProductsList';
+import { Empty } from '@/components/shared/Empty';
 
 export default function Favorite() {
   const favoriteProducts = useAppSelector(getFavorites);

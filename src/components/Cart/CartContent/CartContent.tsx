@@ -2,7 +2,7 @@ import { getFilteredCart } from '@/store/cart/cartSlice';
 import { useAppSelector } from '@/store/hooks';
 import { getIsLoading } from '@/store/products/productsSlice';
 
-import { Empty } from '@/components/Empty';
+import { Empty } from '@/components/shared/Empty';
 import { Loader } from '@/components/shared/Loader';
 
 import css from './CartContent.module.scss';

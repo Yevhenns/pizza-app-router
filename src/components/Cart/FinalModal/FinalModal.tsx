@@ -12,7 +12,7 @@ import { useAppSelector } from '@/store/hooks';
 import { Button } from '@/components/shared/Button';
 import { LoaderModal } from '@/components/shared/LoaderModal';
 
-import { Error500 } from '../Error500/Error500';
+import { Error500 } from '../../Error500/Error500';
 import css from './FinalModal.module.scss';
 
 type FinalModalProps = {

@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { deleteAllItems } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-import { CartContent } from '@/components/CartContent';
-import { FinalModal } from '@/components/FinalModal';
+import { CartContent } from '@/components/Cart/CartContent';
+import { FinalModal } from '@/components/Cart/FinalModal';
 
 import css from './Cart.module.scss';
 

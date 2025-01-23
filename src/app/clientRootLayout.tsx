@@ -5,10 +5,10 @@ import { usePathname } from 'next/navigation';
 import { APIProvider } from '@vis.gl/react-google-maps';
 
 import { Addresses } from '@/components/Addresses';
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
-import { PagesWrapper } from '@/components/PagesWrapper';
-import { TabNavigator } from '@/components/TabNavigator';
+import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
+import { PagesWrapper } from '@/components/layout/PagesWrapper';
+import { TabNavigator } from '@/components/layout/TabNavigator';
 
 import css from './clientRootLayout.module.scss';
 

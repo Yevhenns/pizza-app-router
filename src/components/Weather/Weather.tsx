@@ -26,10 +26,13 @@ export async function Weather() {
     <div className={css.wrapper}>
       <h2 className={css.heading}>Погода в Дніпрі</h2>
       <div className={css.weatherList}>
-        {weather.map(item => {
+        {weather.map((item, index) => {
           return (
             <div key={item.date} className={css.weatherListitem}>
               <p className={css.text}>{item.avgtemp} C°</p>
+              {index === 0 && <p className={css.text}>Сьогодні</p>}
+              {index === 1 && <p className={css.text}>Завтра</p>}
+              {index === 2 && <p className={css.text}>Післязавтра</p>}
               <p className={css.text}>{item.date}</p>
               <p className={cn(css.text, css.condition)}>
                 {item.conditionText}

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Icon } from '../shared/Icon';
+import { Icon } from '../Icon';
 import css from './Logo.module.scss';
 
 export function Logo() {

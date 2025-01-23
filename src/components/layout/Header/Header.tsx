@@ -9,11 +9,11 @@ import { useAppSelector } from '@/store/hooks';
 import { getFavorites } from '@/store/products/productsSlice';
 
 import { Container } from '@/components/shared/Container';
+import { Icon } from '@/components/shared/Icon';
+import { Logo } from '@/components/shared/Logo';
 
-import { Avatar } from '../Avatar';
-import { Logo } from '../Logo';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';
-import { Icon } from '../shared/Icon';
+import { Avatar } from './Avatar';
 import css from './Header.module.scss';
 import { Navigation } from './Navigation';
 

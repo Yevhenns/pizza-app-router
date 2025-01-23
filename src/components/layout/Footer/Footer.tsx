@@ -1,6 +1,6 @@
 import { Container } from '@/components/shared/Container';
+import { Icon } from '@/components/shared/Icon';
 
-import { Icon } from '../shared/Icon';
 import css from './Footer.module.scss';
 import { FooterNavigation } from './FooterNavigation';
 

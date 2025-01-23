@@ -1,6 +1,6 @@
 import { Loader } from '@/components/shared/Loader';
 
-import { Logo } from '../Logo';
+import { Logo } from '../shared/Logo';
 import css from './WelcomeLogo.module.scss';
 
 export function WelcomeLogo() {

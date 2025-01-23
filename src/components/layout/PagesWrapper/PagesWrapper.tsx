@@ -13,9 +13,8 @@ import { pingServer } from '@/utils/pingServer';
 
 import { Error500 } from '@/components/Error500';
 import { Container } from '@/components/shared/Container';
+import { LoaderModal } from '@/components/shared/LoaderModal';
 import { Section } from '@/components/shared/Section';
-
-import { LoaderModal } from '../shared/LoaderModal';
 
 type PagesWrapperProps = PropsWithChildren;
 

@@ -11,7 +11,7 @@ export const getUserProducts = createAsyncThunk<
 >('userProducts/getUserProductsAll', async (userId, { rejectWithValue }) => {
   try {
     const res = await fetch(`${BASE_URL}/api/user_orders?userId=${userId}`, {
-      cache: 'no-store',
+      // cache: 'no-store',
     });
     const data = await res.json();
     return data;

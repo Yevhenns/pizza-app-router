@@ -6,12 +6,11 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   await dbConnect();
 
-  const products: Product[] = await Product.find({}).limit(40);
+  const products: Product[] = await Product.find({});
 
   return new Response(JSON.stringify({ data: products }), {
     headers: {
       'Content-Type': 'application/json',
-      // 'Cache-Control': 'no-store',
     },
   });
 }

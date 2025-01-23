@@ -6,5 +6,10 @@ export async function GET() {
 
   const products: Product[] = await Product.find({}).limit(40);
 
-  return Response.json({ data: products });
+  return new Response(JSON.stringify({ data: products }), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
+    },
+  });
 }

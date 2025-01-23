@@ -7,11 +7,11 @@ import { addInfo, getOrderSum } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useMask } from '@react-input/mask';
 
-import { Input } from '@/components/basic/Input';
-import { TextArea } from '@/components/basic/TextArea';
 import { Button } from '@/components/shared/Button';
 import { Checkbox } from '@/components/shared/Checkbox';
 import { GoogleMapsInput } from '@/components/shared/GoogleMapsInput';
+import { Input } from '@/components/shared/Input';
+import { TextArea } from '@/components/shared/TextArea';
 
 import css from './CartForm.module.scss';
 

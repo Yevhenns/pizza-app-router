@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { setQuantityAndPrice } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-import { Icon } from '@/components/basic/Icon';
-import { RoundButton } from '@/components/basic/RoundButton';
+import { Icon } from '@/components/shared/Icon';
+import { RoundButton } from '@/components/shared/RoundButton';
 
 import css from './CartListItemQuantity.module.scss';
 

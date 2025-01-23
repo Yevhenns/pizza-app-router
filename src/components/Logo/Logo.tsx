@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
-import { Icon } from '@/components/basic/Icon';
-
+import { Icon } from '../shared/Icon';
 import css from './Logo.module.scss';
 
 export function Logo() {

@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { deleteItem } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-import { Icon } from '@/components/basic/Icon';
-import { RoundButton } from '@/components/basic/RoundButton';
+import { Icon } from '@/components/shared/Icon';
+import { RoundButton } from '@/components/shared/RoundButton';
 
 import css from './CartListItem.module.scss';
 import { CartListItemQuantity } from './CartListItemQuantity';

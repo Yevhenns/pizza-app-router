@@ -8,12 +8,12 @@ import { getFilteredCart } from '@/store/cart/cartSlice';
 import { useAppSelector } from '@/store/hooks';
 import { getFavorites } from '@/store/products/productsSlice';
 
-import { Icon } from '@/components/basic/Icon';
 import { Container } from '@/components/shared/Container';
 
 import { Avatar } from '../Avatar';
 import { Logo } from '../Logo';
 import { PhoneNumbersSet } from '../PhoneNumbersSet';
+import { Icon } from '../shared/Icon';
 import css from './Header.module.scss';
 import { Navigation } from './Navigation';
 

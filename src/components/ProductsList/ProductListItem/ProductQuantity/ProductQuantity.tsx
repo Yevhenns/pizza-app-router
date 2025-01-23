@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { Icon } from '@/components/basic/Icon';
-import { RoundButton } from '@/components/basic/RoundButton';
 import { Checkbox } from '@/components/shared/Checkbox';
+import { Icon } from '@/components/shared/Icon';
+import { RoundButton } from '@/components/shared/RoundButton';
 
 import css from './ProductQuantity.module.scss';
 

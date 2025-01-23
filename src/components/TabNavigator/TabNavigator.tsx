@@ -9,9 +9,8 @@ import { getFilteredCart } from '@/store/cart/cartSlice';
 import { useAppSelector } from '@/store/hooks';
 import { getFavorites } from '@/store/products/productsSlice';
 
-import { Icon } from '@/components/basic/Icon';
-
 import { Avatar } from '../Avatar';
+import { Icon } from '../shared/Icon';
 import css from './TabNavigator.module.scss';
 
 export function TabNavigator() {

@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import { Icon } from '../../basic/Icon';
-import { RoundButton } from '../../basic/RoundButton';
-import { Button } from '../../shared/Button';
+import { Icon } from '@/components/shared/Icon';
+import { RoundButton } from '@/components/shared/RoundButton';
+
 import css from './ProductsTable.module.scss';
 
 type ProductsTableProps = {

@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Pizzas() {
-  return <ProductsList category="pizzas" />;
+  return <ProductsList category="Піца" />;
 }

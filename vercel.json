@@ -1,7 +1,10 @@
 {
   "functions": {
-    "api/(.*)": {
-      "runtime": "@vercel/edge"
+    "api/(.*).ts": {
+      "runtime": "edge"
+    },
+    "api/(.*).js": {
+      "runtime": "edge"
     }
   },
   "headers": [

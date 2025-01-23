@@ -4,5 +4,10 @@
       "source": "/api/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "no-store" }]
     }
-  ]
+  ],
+  "functions": {
+    "api/(.*)": {
+      "runtime": "edge"
+    }
+  }
 }

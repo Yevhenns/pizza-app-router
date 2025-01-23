@@ -6,8 +6,8 @@ import {
   getFilteredCart,
   getIsLoading,
   getOrderSum,
-} from '@/redux/cart/cartSlice';
-import { useAppSelector } from '@/redux/hooks';
+} from '@/store/cart/cartSlice';
+import { useAppSelector } from '@/store/hooks';
 
 import { Button } from '@/components/shared/Button';
 import { LoaderModal } from '@/components/shared/LoaderModal';

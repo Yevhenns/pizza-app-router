@@ -1,14 +1,14 @@
 import { PropsWithChildren, useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { checkCart } from '@/redux/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getProducts } from '@/redux/products/productsOperations';
+import { checkCart } from '@/store/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { getProducts } from '@/store/products/productsOperations';
 import {
   getError,
   getIsLoading,
   getProductsAll,
-} from '@/redux/products/productsSlice';
+} from '@/store/products/productsSlice';
 import { pingServer } from '@/utils/pingServer';
 
 import { Error500 } from '@/components/Error500';

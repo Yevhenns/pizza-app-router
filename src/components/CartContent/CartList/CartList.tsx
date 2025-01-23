@@ -5,8 +5,8 @@ import {
   addOrderSum,
   deleteAllItems,
   getFilteredCart,
-} from '@/redux/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+} from '@/store/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import { Button } from '@/components/shared/Button';
 

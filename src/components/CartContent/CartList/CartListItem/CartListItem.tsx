@@ -2,8 +2,8 @@ import { toast } from 'react-toastify';
 
 import Image from 'next/image';
 
-import { deleteItem } from '@/redux/cart/cartSlice';
-import { useAppDispatch } from '@/redux/hooks';
+import { deleteItem } from '@/store/cart/cartSlice';
+import { useAppDispatch } from '@/store/hooks';
 
 import { Icon } from '@/components/basic/Icon';
 import { RoundButton } from '@/components/basic/RoundButton';

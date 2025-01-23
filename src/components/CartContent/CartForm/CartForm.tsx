@@ -1,10 +1,10 @@
 import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
-import { getUserInfo } from '@/redux/auth/authSlice';
-import { sendOrder } from '@/redux/cart/cartOperations';
-import { addInfo, getOrderSum } from '@/redux/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { getUserInfo } from '@/store/auth/authSlice';
+import { sendOrder } from '@/store/cart/cartOperations';
+import { addInfo, getOrderSum } from '@/store/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useMask } from '@react-input/mask';
 
 import { Input } from '@/components/basic/Input';

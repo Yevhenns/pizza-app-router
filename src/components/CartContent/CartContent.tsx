@@ -1,6 +1,6 @@
-import { getFilteredCart } from '@/redux/cart/cartSlice';
-import { useAppSelector } from '@/redux/hooks';
-import { getIsLoading } from '@/redux/products/productsSlice';
+import { getFilteredCart } from '@/store/cart/cartSlice';
+import { useAppSelector } from '@/store/hooks';
+import { getIsLoading } from '@/store/products/productsSlice';
 
 import { Empty } from '@/components/Empty';
 import { Loader } from '@/components/shared/Loader';

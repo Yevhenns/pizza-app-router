@@ -3,12 +3,12 @@ import { toast } from 'react-toastify';
 
 import Image from 'next/image';
 
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import {
   addToFavoriteAction,
   getFavorites,
   removeFromFavoriteAction,
-} from '@/redux/products/productsSlice';
+} from '@/store/products/productsSlice';
 
 import { Icon } from '@/components/basic/Icon';
 import { RoundButton } from '@/components/basic/RoundButton';

@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 
-import { addUserInfo, getUserInfo, logout } from '@/redux/auth/authSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getUserProducts } from '@/redux/userOrders/userOrdersOperations';
-import { setUserId } from '@/redux/userOrders/userOrdersSlice';
+import { addUserInfo, getUserInfo, logout } from '@/store/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { getUserProducts } from '@/store/userOrders/userOrdersOperations';
+import { setUserId } from '@/store/userOrders/userOrdersSlice';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 

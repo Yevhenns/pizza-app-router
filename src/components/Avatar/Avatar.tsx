@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { getUserInfo } from '@/redux/auth/authSlice';
-import { useAppSelector } from '@/redux/hooks';
+import { getUserInfo } from '@/store/auth/authSlice';
+import { useAppSelector } from '@/store/hooks';
 
 import css from './Avatar.module.scss';
 

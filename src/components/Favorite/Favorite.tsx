@@ -1,7 +1,7 @@
 'use client';
 
-import { useAppSelector } from '@/redux/hooks';
-import { getFavorites } from '@/redux/products/productsSlice';
+import { useAppSelector } from '@/store/hooks';
+import { getFavorites } from '@/store/products/productsSlice';
 
 import { Empty } from '@/components/Empty';
 import { FavoriteList } from '@/components/ProductsList';

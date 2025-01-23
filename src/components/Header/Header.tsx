@@ -3,10 +3,10 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from '@/helpers/combineClasses';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
-import { getUserInfo } from '@/redux/auth/authSlice';
-import { getFilteredCart } from '@/redux/cart/cartSlice';
-import { useAppSelector } from '@/redux/hooks';
-import { getFavorites } from '@/redux/products/productsSlice';
+import { getUserInfo } from '@/store/auth/authSlice';
+import { getFilteredCart } from '@/store/cart/cartSlice';
+import { useAppSelector } from '@/store/hooks';
+import { getFavorites } from '@/store/products/productsSlice';
 
 import { Icon } from '@/components/basic/Icon';
 import { Container } from '@/components/shared/Container';

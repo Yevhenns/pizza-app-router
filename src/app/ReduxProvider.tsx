@@ -2,7 +2,7 @@
 
 import { Provider } from 'react-redux';
 
-import { persist, store } from '@/redux/store';
+import { persist, store } from '@/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { WelcomeLogo } from '@/components/WelcomeLogo';

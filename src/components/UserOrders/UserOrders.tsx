@@ -1,9 +1,9 @@
 import { formattedDate } from '@/helpers/formattedDate';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/store/hooks';
 import {
   getIsLoading,
   getUserProductsAll,
-} from '@/redux/userOrders/userOrdersSlice';
+} from '@/store/userOrders/userOrdersSlice';
 
 import { CustomJwtPayload } from '../Login';
 import { Button } from '../shared/Button';

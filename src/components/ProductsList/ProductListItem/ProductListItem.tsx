@@ -3,8 +3,8 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { addItem } from '@/redux/cart/cartSlice';
-import { useAppDispatch } from '@/redux/hooks';
+import { addItem } from '@/store/cart/cartSlice';
+import { useAppDispatch } from '@/store/hooks';
 
 import { options } from '../../../assets/options';
 import { ProductDescription } from './ProductDescription';

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import { deleteAllItems } from '@/redux/cart/cartSlice';
-import { useAppDispatch } from '@/redux/hooks';
+import { deleteAllItems } from '@/store/cart/cartSlice';
+import { useAppDispatch } from '@/store/hooks';
 
 import { CartContent } from '@/components/CartContent';
 import { FinalModal } from '@/components/FinalModal';

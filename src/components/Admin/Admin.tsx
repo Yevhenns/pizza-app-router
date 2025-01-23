@@ -5,8 +5,8 @@ import { useEffect, useLayoutEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
 
 import { useWindowWidth } from '@/hooks/useWindowWidth';
-import { getUserInfo } from '@/redux/auth/authSlice';
-import { useAppSelector } from '@/redux/hooks';
+import { getUserInfo } from '@/store/auth/authSlice';
+import { useAppSelector } from '@/store/hooks';
 import { getProductsAll } from '@/utils/getProductsAllNest';
 
 import { ProductsTable } from './ProductsTable/ProductsTable';

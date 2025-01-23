@@ -1,5 +1,5 @@
-import { useAppSelector } from '@/redux/hooks';
-import { getFavorites } from '@/redux/products/productsSlice';
+import { useAppSelector } from '@/store/hooks';
+import { getFavorites } from '@/store/products/productsSlice';
 
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';

@@ -9,14 +9,11 @@ export async function GET(req: Request) {
 
   await dbConnect();
 
-  const products = userId
-    ? await UserOrder.find({ 'customerInfo.userId': userId })
-    : await UserOrder.find({});
+  const products = await UserOrder.find({ 'customerInfo.userId': userId });
 
   return new Response(JSON.stringify({ data: products }), {
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     },
   });
 }

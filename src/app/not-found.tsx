@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Nostra Pizza | 404',
 };
 
-export default async function NotFound() {
+export default function NotFound() {
   return (
     <div className={css.wrapper}>
       <h2>404 - Page Not Found</h2>

@@ -1,5 +1,3 @@
-'use client';
-
 import { markers } from '@/assets/addresses';
 import { AdvancedMarker, Map } from '@vis.gl/react-google-maps';
 

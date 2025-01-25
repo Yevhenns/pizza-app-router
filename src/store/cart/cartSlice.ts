@@ -1,6 +1,7 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
+import { createAppSlice } from '../createAppSlice';
 import { RootState } from '../store';
 import { sendOrder } from './cartOperations';
 
@@ -18,11 +19,11 @@ const initialState = {
   isLoading: false,
 };
 
-const cartSlice = createSlice({
+export const cartSlice = createAppSlice({
   name: 'basket',
   initialState,
-  reducers: {
-    addItem(state, action: PayloadAction<AddtoCartItem>) {
+  reducers: create => ({
+    addItem: create.reducer((state, action: PayloadAction<AddtoCartItem>) => {
       function areOptionsEqual(
         options1: string[],
         options2: string[]
@@ -56,37 +57,46 @@ const cartSlice = createSlice({
         };
         state.filteredBasket = [...state.filteredBasket, newCartItem];
       }
-    },
-    deleteItem(state, action: PayloadAction<string>) {
+    }),
+
+    deleteItem: create.reducer((state, action: PayloadAction<string>) => {
       state.filteredBasket = state.filteredBasket.filter(
         (item: CartItem) => item.cart_id !== action.payload
       );
-    },
-    checkCart(state, action: PayloadAction<Product[]>) {
+    }),
+
+    checkCart: create.reducer((state, action: PayloadAction<Product[]>) => {
       state.filteredBasket = state.filteredBasket.filter(({ _id: id1 }) =>
         action.payload.some(({ _id: id2 }) => id1 === id2)
       );
-    },
-    addInfo(state, action: PayloadAction<OrderSubmit>) {
+    }),
+
+    addInfo: create.reducer((state, action: PayloadAction<OrderSubmit>) => {
       state.customerInfo = action.payload;
-    },
-    deleteAllItems(state) {
+    }),
+
+    deleteAllItems: create.reducer(state => {
       state.filteredBasket = [];
       state.customerInfo = {} as OrderSubmit;
-    },
-    addOrderSum(state, action: PayloadAction<number>) {
+    }),
+
+    addOrderSum: create.reducer((state, action: PayloadAction<number>) => {
       state.orderSum = action.payload;
-    },
-    setQuantityAndPrice(state, action: PayloadAction<QuantityAndPrice>) {
-      const existingItemIndex = state.filteredBasket.findIndex(
-        item => item.cart_id === action.payload.cart_id
-      );
-      state.filteredBasket[existingItemIndex].quantity =
-        action.payload.quantity;
-      state.filteredBasket[existingItemIndex].totalPrice =
-        action.payload.totalPrice;
-    },
-  },
+    }),
+
+    setQuantityAndPrice: create.reducer(
+      (state, action: PayloadAction<QuantityAndPrice>) => {
+        const existingItemIndex = state.filteredBasket.findIndex(
+          item => item.cart_id === action.payload.cart_id
+        );
+        state.filteredBasket[existingItemIndex].quantity =
+          action.payload.quantity;
+        state.filteredBasket[existingItemIndex].totalPrice =
+          action.payload.totalPrice;
+      }
+    ),
+  }),
+
   extraReducers: builder =>
     builder
       .addCase(sendOrder.pending, state => {
@@ -108,16 +118,22 @@ const cartSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       }),
+  selectors: {
+    getFilteredCart: basket => basket.filteredBasket,
+    getCustomerInfo: basket => basket.customerInfo,
+    getOrderSum: basket => basket.orderSum,
+    getIsLoading: basket => basket.isLoading,
+    getError: basket => basket.error,
+  },
 });
 
-export const cartReducer = cartSlice.reducer;
-
-export const getFilteredCart = (state: RootState) =>
-  state.basket.filteredBasket;
-export const getCustomerInfo = (state: RootState) => state.basket.customerInfo;
-export const getOrderSum = (state: RootState) => state.basket.orderSum;
-export const getIsLoading = (state: RootState) => state.basket.isLoading;
-export const getError = (state: RootState) => state.basket.error;
+export const {
+  getFilteredCart,
+  getCustomerInfo,
+  getError,
+  getIsLoading,
+  getOrderSum,
+} = cartSlice.selectors;
 
 export const {
   addItem,

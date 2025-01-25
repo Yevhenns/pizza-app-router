@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
-import { getProductsAll } from '@/utils/getProductsAllNest';
+import { getProducts } from '@/store/products/productsOperations';
 
 import { ProductsTable } from './ProductsTable/ProductsTable';
 
@@ -26,10 +26,10 @@ export default function Admin() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await getProductsAll();
+        const data = await getProducts();
         setProducts(data);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Помилка:', error);
       } finally {
         setLoading(false);
       }

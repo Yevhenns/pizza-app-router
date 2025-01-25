@@ -1,72 +1,86 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 
-import { RootState } from '../store';
+import { createAppSlice } from '../createAppSlice';
 import { getProducts } from './productsOperations';
 
 const initialState = {
   productsAll: [] as Product[],
-  promotions: [] as Product[],
   favoriteProducts: [] as Product[],
   error: null as any,
   isLoading: false,
 };
 
-const productsSlice = createSlice({
+export const productsSlice = createAppSlice({
   name: 'allProducts',
   initialState,
-  reducers: {
-    addToFavoriteAction(state, action: PayloadAction<Product>) {
-      state.favoriteProducts = [...state.favoriteProducts, action.payload];
-    },
-    removeFromFavoriteAction(state, action: PayloadAction<string>) {
-      state.favoriteProducts = state.favoriteProducts.filter(
-        item => item._id !== action.payload
-      );
-    },
-  },
-  extraReducers: builder =>
-    builder
-      .addCase(getProducts.pending, state => {
-        state.isLoading = true;
-        state.error = false;
-      })
-      .addCase(getProducts.fulfilled, (state, action) => {
-        if (!action.payload) {
-          state.error = true;
+  reducers: create => ({
+    addToFavoriteAction: create.reducer(
+      (state, action: PayloadAction<Product>) => {
+        state.favoriteProducts = [...state.favoriteProducts, action.payload];
+      }
+    ),
+
+    removeFromFavoriteAction: create.reducer(
+      (state, action: PayloadAction<string>) => {
+        state.favoriteProducts = state.favoriteProducts.filter(
+          item => item._id !== action.payload
+        );
+      }
+    ),
+
+    checkFavorites: create.reducer(
+      (state, action: PayloadAction<Product[]>) => {
+        state.favoriteProducts = state.favoriteProducts.filter(({ _id: id1 }) =>
+          action.payload.some(({ _id: id2 }) => id1 === id2)
+        );
+      }
+    ),
+
+    getAllProducts: create.asyncThunk(
+      async () => {
+        const response = await getProducts();
+
+        return response;
+      },
+      {
+        pending: state => {
+          state.isLoading = true;
+          state.error = false;
+        },
+        fulfilled: (state, action) => {
+          if (!action.payload) {
+            state.error = true;
+            state.isLoading = false;
+            return;
+          }
+          if (action.payload) {
+            state.productsAll = action.payload;
+            state.isLoading = false;
+          }
+        },
+        rejected: (state, action) => {
           state.isLoading = false;
+          state.error = action.payload;
           return;
-        }
-        if (action.payload) {
-          const getByPromotion = () => {
-            return action.payload
-              .filter((item: Product) => item.promotion === true)
-              .sort((a, b) => a.title.localeCompare(b.title));
-          };
-          state.productsAll = action.payload;
-          state.promotions = getByPromotion();
-          const filteredFavoriteProducts = state.favoriteProducts.filter(
-            ({ _id: id1 }) => action.payload.some(({ _id: id2 }) => id1 === id2)
-          );
-          state.favoriteProducts = filteredFavoriteProducts;
-          state.isLoading = false;
-        }
-      })
-      .addCase(getProducts.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-        return;
-      }),
+        },
+      }
+    ),
+  }),
+
+  selectors: {
+    getProductsAll: allProducts => allProducts.productsAll,
+    getFavorites: allProducts => allProducts.favoriteProducts,
+    getIsLoading: allProducts => allProducts.isLoading,
+    getError: allProducts => allProducts.error,
+  },
 });
 
-export const productsReducer = productsSlice.reducer;
+export const { getProductsAll, getFavorites, getIsLoading, getError } =
+  productsSlice.selectors;
 
-export const getProductsAll = (state: RootState) =>
-  state.allProducts.productsAll;
-export const getPromotions = (state: RootState) => state.allProducts.promotions;
-export const getFavorites = (state: RootState) =>
-  state.allProducts.favoriteProducts;
-export const getIsLoading = (state: RootState) => state.allProducts.isLoading;
-export const getError = (state: RootState) => state.allProducts.error;
-
-export const { addToFavoriteAction, removeFromFavoriteAction } =
-  productsSlice.actions;
+export const {
+  addToFavoriteAction,
+  removeFromFavoriteAction,
+  getAllProducts,
+  checkFavorites,
+} = productsSlice.actions;

@@ -10,7 +10,7 @@ const initialState = {
   isLoading: false,
 };
 
-const userOrdersSlice = createSlice({
+export const userOrdersSlice = createSlice({
   name: 'userAllProducts',
   initialState,
   reducers: {
@@ -44,8 +44,6 @@ const userOrdersSlice = createSlice({
         return;
       }),
 });
-
-export const userProductsReducer = userOrdersSlice.reducer;
 
 export const getUserProductsAll = (state: RootState) =>
   state.userOrders.userProductsAll;

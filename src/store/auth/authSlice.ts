@@ -1,8 +1,8 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 import { CustomJwtPayload } from '@/components/Login';
 
-import { RootState } from '../store';
+import { createAppSlice } from '../createAppSlice';
 
 const initialState = {
   userInfo: null as null | CustomJwtPayload,
@@ -10,23 +10,28 @@ const initialState = {
   isLoading: false,
 };
 
-const authSlice = createSlice({
-  name: 'allProducts',
+export const authSlice = createAppSlice({
+  name: 'auth',
   initialState,
-  reducers: {
-    addUserInfo(state, action: PayloadAction<CustomJwtPayload>) {
-      state.userInfo = action.payload;
-    },
-    logout(state) {
+  reducers: create => ({
+    addUserInfo: create.reducer(
+      (state, action: PayloadAction<CustomJwtPayload>) => {
+        state.userInfo = action.payload;
+      }
+    ),
+
+    logout: create.reducer(state => {
       state.userInfo = null;
-    },
+    }),
+  }),
+
+  selectors: {
+    getUserInfo: auth => auth.userInfo,
+    getIsLoading: auth => auth.isLoading,
+    getError: auth => auth.error,
   },
 });
 
-export const authReducer = authSlice.reducer;
-
-export const getUserInfo = (state: RootState) => state.auth.userInfo;
-export const getIsLoading = (state: RootState) => state.allProducts.isLoading;
-export const getError = (state: RootState) => state.allProducts.error;
+export const { getUserInfo, getIsLoading, getError } = authSlice.selectors;
 
 export const { addUserInfo, logout } = authSlice.actions;

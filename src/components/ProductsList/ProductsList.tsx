@@ -2,7 +2,7 @@ import {
   filterByCategory,
   filterByPromotion,
 } from '@/helpers/filterByCategory';
-import { getProductsAll } from '@/utils/getProductsAll';
+import { getProducts } from '@/store/products/productsOperations';
 
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
@@ -12,15 +12,15 @@ type ProductsListProps = {
 };
 
 export async function ProductsList({ category }: ProductsListProps) {
-  const products = await getProductsAll();
-  console.log(products);
+  const products = await getProducts();
 
   const data = (() => {
-    if (products && products.data && products.data.length > 0) {
+    if (products && products.length > 0) {
       if (category === 'promotions') {
-        return filterByPromotion(products.data);
+        return filterByPromotion(products);
+      } else {
+        return filterByCategory(products, category);
       }
-      return filterByCategory(products.data, category);
     }
   })();
 

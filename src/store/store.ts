@@ -1,11 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
 import { PERSIST, persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { authReducer } from './auth/authSlice';
-import { cartReducer } from './cart/cartSlice';
-import { productsReducer } from './products/productsSlice';
-import { userProductsReducer } from './userOrders/userOrdersSlice';
+import { authSlice } from './auth/authSlice';
+import { cartSlice } from './cart/cartSlice';
+import { productsSlice } from './products/productsSlice';
+import { userOrdersSlice } from './userOrders/userOrdersSlice';
 
 const rootPersistConfig = {
   key: 'root',
@@ -35,26 +35,39 @@ const userOrdersPersistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({
-  basket: persistReducer(cartPersistConfig, cartReducer),
-  allProducts: persistReducer(favoritePersistConfig, productsReducer),
-  auth: persistReducer(authPersistConfig, authReducer),
-  userOrders: persistReducer(userOrdersPersistConfig, userProductsReducer),
+const basketReducer = persistReducer(cartPersistConfig, cartSlice.reducer);
+const productsReducer = persistReducer(
+  favoritePersistConfig,
+  productsSlice.reducer
+);
+const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
+const userOrdersReducer = persistReducer(
+  userOrdersPersistConfig,
+  userOrdersSlice.reducer
+);
+
+const rootReducer = combineSlices({
+  basket: basketReducer,
+  allProducts: productsReducer,
+  auth: authReducer,
+  userOrders: userOrdersReducer,
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [PERSIST],
-      },
-    }),
-});
+export const makeStore = () =>
+  configureStore({
+    reducer: persistedReducer,
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [PERSIST],
+        },
+      }),
+  });
 
-export const persist = persistStore(store);
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const createPersistor = (store: AppStore) => persistStore(store);

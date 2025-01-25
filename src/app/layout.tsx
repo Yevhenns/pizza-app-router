@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import type { Metadata } from 'next';
 import { Comfortaa, Inter } from 'next/font/google';
 
+import { getProducts } from '@/store/products/productsOperations';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import ReduxProvider from './ReduxProvider';
@@ -49,6 +50,8 @@ export default async function RootLayout({
 }>) {
   const CLIENTID = process.env.CLIENTID as string;
 
+  const products = await getProducts();
+
   return (
     <html lang="uk" className={`${inter.variable} ${roboto_mono.variable}`}>
       <head>
@@ -60,7 +63,7 @@ export default async function RootLayout({
       <body>
         <GoogleOAuthProvider clientId={CLIENTID}>
           <ReduxProvider>
-            <ClientRootLayout>
+            <ClientRootLayout products={products}>
               {children}
               <ToastContainer />
             </ClientRootLayout>

@@ -6,7 +6,7 @@ import { RoundButton } from '@/components/shared/RoundButton';
 import css from './ProductsTable.module.scss';
 
 type ProductsTableProps = {
-  products: Product[] | null;
+  products: Product[];
 };
 
 export function ProductsTable({ products }: ProductsTableProps) {

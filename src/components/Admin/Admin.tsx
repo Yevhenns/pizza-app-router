@@ -7,15 +7,17 @@ import { redirect } from 'next/navigation';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
-import { getProductsAll } from '@/store/products/productsSlice';
 
 import { ProductsTable } from './ProductsTable/ProductsTable';
 
-export default function Admin() {
+type AdminProps = {
+  products: Product[];
+};
+
+export default function Admin({ products }: AdminProps) {
   const ADMIN_ID = process.env.ADMIN_ID;
 
   const userInfo = useAppSelector(getUserInfo);
-  const products = useAppSelector(getProductsAll);
 
   const width = useWindowWidth();
 

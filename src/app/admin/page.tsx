@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+import { getProducts } from '@/store/products/productsOperations';
+
 import Admin from '@/components/Admin/Admin';
 
 export const metadata: Metadata = {
@@ -7,5 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
-  return <Admin />;
+  const products = await getProducts();
+
+  return <Admin products={products} />;
 }

@@ -12,8 +12,9 @@ import { APIProvider } from '@vis.gl/react-google-maps';
 import { Addresses } from '@/components/Addresses';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
-import { PagesWrapper } from '@/components/layout/PagesWrapper';
 import { TabNavigator } from '@/components/layout/TabNavigator';
+import { Container } from '@/components/shared/Container';
+import { Section } from '@/components/shared/Section';
 
 import css from './clientRootLayout.module.scss';
 
@@ -42,7 +43,9 @@ export default function ClientRootLayout({
       <div className={css.wrapper}>
         <Header />
         <main className={css.main}>
-          <PagesWrapper>{children}</PagesWrapper>
+          <Section>
+            <Container>{children}</Container>
+          </Section>
           {!pathname.includes('/admin') && <Addresses />}
           <TabNavigator />
         </main>

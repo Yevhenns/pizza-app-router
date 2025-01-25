@@ -7,7 +7,7 @@ import { Comfortaa, Inter } from 'next/font/google';
 import { getProducts } from '@/store/products/productsOperations';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-import ClientRootLayout from '../components/layout/RootLayout';
+import SSRLayout from '../components/layout/SSRLayout';
 import { GoogleProvider } from '../providers/GoogleProvider';
 import ReduxProvider from '../providers/ReduxProvider';
 import './globals.scss';
@@ -65,10 +65,10 @@ export default async function RootLayout({
         <GoogleOAuthProvider clientId={CLIENTID}>
           <ReduxProvider>
             <GoogleProvider products={products}>
-              <ClientRootLayout>
+              <SSRLayout>
                 {children}
                 <ToastContainer />
-              </ClientRootLayout>
+              </SSRLayout>
             </GoogleProvider>
           </ReduxProvider>
         </GoogleOAuthProvider>

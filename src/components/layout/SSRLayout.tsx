@@ -5,9 +5,9 @@ import { TabNavigator } from '@/components/layout/TabNavigator';
 import { Container } from '@/components/shared/Container';
 import { Section } from '@/components/shared/Section';
 
-import css from './RootLayout.module.scss';
+import css from './SSRLayout.module.scss';
 
-export default function RootLayout({
+export default function SSRLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

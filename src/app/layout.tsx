@@ -7,9 +7,9 @@ import { Comfortaa, Inter } from 'next/font/google';
 import { getProducts } from '@/store/products/productsOperations';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-import { GoogleProvider } from './GoogleProvider';
-import ReduxProvider from './ReduxProvider';
-import ClientRootLayout from './clientRootLayout';
+import ClientRootLayout from '../components/layout/RootLayout';
+import { GoogleProvider } from '../providers/GoogleProvider';
+import ReduxProvider from '../providers/ReduxProvider';
 import './globals.scss';
 
 export const inter = Inter({

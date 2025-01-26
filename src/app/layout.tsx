@@ -60,6 +60,7 @@ export default async function RootLayout({
           name="google-site-verification"
           content="7ThJ8TZQqdaICo-gIgrqtzRaxDg5yHsr4Xi0LgGaHDM"
         />
+        <meta name="keywords" content="Піца, Закуски, Напої, Дніпро" />
       </head>
       <body>
         <GoogleOAuthProvider clientId={CLIENTID}>

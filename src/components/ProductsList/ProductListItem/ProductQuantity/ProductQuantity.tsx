@@ -50,7 +50,7 @@ export function ProductQuantity({
           <Icon svg="right" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>
-      {category === 'pizzas' && options.length > 0 && (
+      {category === 'Піца' && options.length > 0 && (
         <div className={css.quantity}>
           <Checkbox
             htmlFor={_id}

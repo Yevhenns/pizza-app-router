@@ -9,7 +9,7 @@ import css from './ProductQuantity.module.scss';
 type ProductQuantityProps = {
   getTotalQuantity: (quantity: number) => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  supplements?: Supplement[] | [];
+  supplements: Supplement[] | [];
   category: string;
   _id: string;
 };
@@ -31,6 +31,10 @@ export function ProductQuantity({
     setQuantity(quantity - 1);
   };
 
+  const isSupplementsShown = supplements.some(
+    item => item.for_category === category
+  );
+
   useEffect(() => {
     getTotalQuantity(quantity);
   }, [getTotalQuantity, quantity]);
@@ -50,7 +54,7 @@ export function ProductQuantity({
           <Icon svg="right" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>
-      {category === 'Піца' && supplements.length > 0 && (
+      {isSupplementsShown && supplements.length > 0 && (
         <div className={css.quantity}>
           <Checkbox
             htmlFor={_id}

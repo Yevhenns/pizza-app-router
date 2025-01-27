@@ -6,6 +6,11 @@
   margin-bottom: 20px;
   gap: 5px;
 
+  .titleWrapper {
+    display: flex;
+    gap: 10px;
+  }
+
   .text {
     text-align: center;
     font-family: var(--secondary-font);

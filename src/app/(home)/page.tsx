@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <>
-      <QRCode />
       <CarouselComponent />
       <h1>Новинки</h1>
       <h2 className={css.heading}>Акційні пропозиції</h2>
       <ProductsList category="promotions" />
       <Weather />
+      <QRCode />
     </>
   );
 }

@@ -10,7 +10,7 @@ export const getProducts = async () => {
       'Content-Type': 'application/json',
     },
   });
-  const result: ProductsResponse = await response.json();
+  const result: { data: Product[] } = await response.json();
 
   return result.data;
 };
@@ -22,7 +22,7 @@ export const getSupplements = async () => {
       'Content-Type': 'application/json',
     },
   });
-  const result: SupplementsResponse = await response.json();
+  const result: { data: Supplement[] } = await response.json();
 
   return result.data;
 };

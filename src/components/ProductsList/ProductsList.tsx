@@ -17,7 +17,6 @@ type ProductsListProps = {
 export async function ProductsList({ category }: ProductsListProps) {
   const products = await getProducts();
   const supplements = await getSupplements();
-  console.log(supplements);
 
   const data = (() => {
     if (products && products.length > 0) {
@@ -33,7 +32,13 @@ export async function ProductsList({ category }: ProductsListProps) {
     <div className={css.list}>
       {data &&
         data.map(item => {
-          return <ProductListItem key={item._id} item={item} />;
+          return (
+            <ProductListItem
+              key={item._id}
+              item={item}
+              supplements={supplements}
+            />
+          );
         })}
     </div>
   );

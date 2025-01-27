@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { addItem } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-import { options } from '../../../assets/options';
+// import { options } from '../../../assets/options';
 import { ProductDescription } from './ProductDescription';
 import { ProductFooter } from './ProductFooter';
 import css from './ProductListItem.module.scss';
@@ -15,16 +15,17 @@ import { ProductQuantity } from './ProductQuantity';
 
 type ProductListItemProps = {
   item: Product;
+  supplements: Supplement[];
 };
 
-export function ProductListItem({ item }: ProductListItemProps) {
+export function ProductListItem({ item, supplements }: ProductListItemProps) {
   const { _id, price, promotion, promPrice, category, vegan } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [optionsShown, setOptionsShown] = useState(false);
-  const [optionsArray, setOptionsArray] = useState<Option[]>([]);
+  const [optionsArray, setOptionsArray] = useState<Supplement[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);
 
   const dispatch = useAppDispatch();
@@ -62,7 +63,7 @@ export function ProductListItem({ item }: ProductListItemProps) {
   const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
 
-    const optionData = options.find(item => item.title === e.target.value);
+    const optionData = supplements.find(item => item.title === e.target.value);
 
     if (optionData) {
       if (checked && !optionsArray.includes(optionData)) {
@@ -88,13 +89,13 @@ export function ProductListItem({ item }: ProductListItemProps) {
       <ProductQuantity
         getTotalQuantity={getTotalQuantity}
         handleChange={handleShowOptions}
-        options={options}
+        supplements={supplements}
         category={category}
         _id={_id}
       />
       {optionsShown && (
         <ProductOptionsList
-          options={options}
+          supplements={supplements}
           handleChange={handleChooseOptions}
           vegan={vegan}
         />

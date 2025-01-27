@@ -9,7 +9,7 @@ import css from './ProductQuantity.module.scss';
 type ProductQuantityProps = {
   getTotalQuantity: (quantity: number) => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  options?: Option[] | [];
+  supplements?: Supplement[] | [];
   category: string;
   _id: string;
 };
@@ -17,7 +17,7 @@ type ProductQuantityProps = {
 export function ProductQuantity({
   getTotalQuantity,
   handleChange,
-  options = [],
+  supplements = [],
   category,
   _id,
 }: ProductQuantityProps) {
@@ -50,7 +50,7 @@ export function ProductQuantity({
           <Icon svg="right" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>
-      {category === 'Піца' && options.length > 0 && (
+      {category === 'Піца' && supplements.length > 0 && (
         <div className={css.quantity}>
           <Checkbox
             htmlFor={_id}

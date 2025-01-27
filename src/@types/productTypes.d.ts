@@ -11,23 +11,12 @@ type Product = {
   vegan: boolean;
 };
 
-type ProductsResponse = {
-  code: number;
-  status: string;
-  data: Product[];
-};
-
-type Option = {
-  id: string;
+type Supplement = {
+  _id: string;
   price: number;
   title: string;
   vegan: boolean;
-};
-
-type SupplementsResponse = {
-  code: number;
-  status: string;
-  data: Option[];
+  for_category: 'Піца';
 };
 
 type UserOrders = {

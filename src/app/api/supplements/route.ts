@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   await dbConnect();
 
-  const supplements: Option[] = await Supplement.find({});
+  const supplements: Supplement[] = await Supplement.find({});
 
   return new Response(JSON.stringify({ data: supplements }), {
     headers: {

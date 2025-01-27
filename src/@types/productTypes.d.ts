@@ -24,6 +24,12 @@ type Option = {
   vegan: boolean;
 };
 
+type SupplementsResponse = {
+  code: number;
+  status: string;
+  data: Option[];
+};
+
 type UserOrders = {
   _id: string;
   customerInfo: Info;

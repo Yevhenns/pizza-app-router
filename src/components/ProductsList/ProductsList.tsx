@@ -2,7 +2,10 @@ import {
   filterByCategory,
   filterByPromotion,
 } from '@/helpers/filterByCategory';
-import { getProducts } from '@/store/products/productsOperations';
+import {
+  getProducts,
+  getSupplements,
+} from '@/store/products/productsOperations';
 
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
@@ -13,6 +16,8 @@ type ProductsListProps = {
 
 export async function ProductsList({ category }: ProductsListProps) {
   const products = await getProducts();
+  const supplements = await getSupplements();
+  console.log(supplements);
 
   const data = (() => {
     if (products && products.length > 0) {

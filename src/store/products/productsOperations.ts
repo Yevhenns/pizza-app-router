@@ -14,3 +14,15 @@ export const getProducts = async () => {
 
   return result.data;
 };
+
+export const getSupplements = async () => {
+  const response = await fetch(`${BASE_URL}/api/supplements`, {
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const result: SupplementsResponse = await response.json();
+
+  return result.data;
+};

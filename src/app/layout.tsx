@@ -27,7 +27,8 @@ export const roboto_mono = Comfortaa({
 });
 
 export const metadata: Metadata = {
-  description: 'Піца в місті Дніпро, Nostra-Pizza, доставка піци в Дніпрі',
+  description:
+    'Піца в місті Дніпро: Nostra-Pizza – швидка доставка смачної піци в Дніпрі.',
   openGraph: {
     title: 'Nostra Pizza',
     description: 'Піца в місті Дніпро, Nostra-Pizza, доставка піци в Дніпрі',

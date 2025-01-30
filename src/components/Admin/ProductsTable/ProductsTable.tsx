@@ -1,5 +1,9 @@
 import Image from 'next/image';
 
+import { getUserInfo } from '@/store/auth/authSlice';
+import { useAppSelector } from '@/store/hooks';
+import { deleteProductById } from '@/store/products/productsOperations';
+
 import { Icon } from '@/components/shared/Icon';
 import { RoundButton } from '@/components/shared/RoundButton';
 
@@ -10,6 +14,18 @@ type ProductsTableProps = {
 };
 
 export function ProductsTable({ products }: ProductsTableProps) {
+  const user = useAppSelector(getUserInfo);
+
+  const deleteProduct = async (id: string) => {
+    try {
+      if (id && user && user.sub) {
+        await deleteProductById(id, user.sub);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <table className={css.table}>
       <thead>
@@ -81,7 +97,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
                           color="green"
                         />
                       </RoundButton>
-                      <RoundButton>
+                      <RoundButton onClick={() => deleteProduct(_id)}>
                         <Icon
                           svg="remove"
                           iconWidth={34}

@@ -8,7 +8,6 @@ export async function GET(
   { params }: { params: { userId: string } }
 ) {
   const { userId } = params;
-  console.log('userId', userId);
 
   await dbConnect();
 

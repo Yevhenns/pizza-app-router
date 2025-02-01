@@ -5,11 +5,14 @@ import Product from '@/models/Product';
 
 export const dynamic = 'force-dynamic';
 
-export async function DELETE(req: Request) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: { productId: string } }
+) {
   const ADMIN_ID = process.env.ADMIN_ID;
 
+  const { productId } = params;
   const url = new URL(req.url);
-  const productId = url.searchParams.get('productId');
   const userId = url.searchParams.get('userId');
 
   if (ADMIN_ID === userId)

@@ -30,7 +30,7 @@ export const getSupplements = async () => {
 export const deleteProductById = async (productId: string, userId: string) => {
   try {
     const res = await fetch(
-      `${BASE_URL}/api/products/${productId}?productId=${productId}&userId=${userId}`,
+      `${BASE_URL}/api/products/${productId}?userId=${userId}`,
       {
         method: 'DELETE',
         cache: 'no-store',

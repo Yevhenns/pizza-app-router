@@ -3,9 +3,12 @@ import UserOrder from '@/models/UserOrder';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: Request) {
-  const url = new URL(req.url);
-  const userId = url.searchParams.get('userId');
+export async function GET(
+  _: Request,
+  { params }: { params: { userId: string } }
+) {
+  const { userId } = params;
+  console.log('userId', userId);
 
   await dbConnect();
 

@@ -11,9 +11,11 @@ type Product = {
   vegan: boolean;
 };
 
-type ProductDto = Omit<Product, '_id' | 'price' | 'promPrice'> & {
+type ProductDto = Omit<Product, '_id' | 'price' | 'promPrice' | 'photo'> & {
   price: number | null;
   promPrice: number | null;
+  photo: string | null;
+  upLoadedPhoto?: File | null;
 };
 
 type Supplement = {

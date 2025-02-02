@@ -20,11 +20,10 @@ import { Input } from '@/components/shared/Input';
 import css from './SupplementForm.module.scss';
 
 type SupplementFormProps = {
-  title: string;
   supplements?: Supplement[];
 };
 
-export function SupplementForm({ title, supplements }: SupplementFormProps) {
+export function SupplementForm({ supplements }: SupplementFormProps) {
   const { _id: supplementId } = useParams<{ _id: string }>();
   const router = useRouter();
   useHideAdmin();
@@ -86,7 +85,6 @@ export function SupplementForm({ title, supplements }: SupplementFormProps) {
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <h3>{title}</h3>
       <Input
         {...register('title', {
           required: "Це обов'язкове поле!",

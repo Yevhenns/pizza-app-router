@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { getSupplements } from '@/store/products/productsOperations';
 
-import { SupplementForm } from '@/components/Admin/SupplementForm';
+import { SupplementForm } from '@/components/Admin/forms/SupplementForm';
 
 export const metadata: Metadata = {
   title: 'Nostra Pizza | Адмінка | Редагувати',
@@ -11,5 +11,10 @@ export const metadata: Metadata = {
 export default async function EditSupplement() {
   const supplements = await getSupplements();
 
-  return <SupplementForm supplements={supplements} title="Редагувати" />;
+  return (
+    <>
+      <h2>Редагувати</h2>
+      <SupplementForm supplements={supplements} />
+    </>
+  );
 }

@@ -1,8 +1,10 @@
 'use client';
 
+import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';
@@ -21,11 +23,13 @@ import { TextArea } from '@/components/shared/TextArea';
 import css from '../SupplementForm/SupplementForm.module.scss';
 
 type ProductFormProps = {
-  title: string;
   products?: Product[];
 };
 
-export function ProductForm({ title, products }: ProductFormProps) {
+export function ProductForm({ products }: ProductFormProps) {
+  const [selectedFile, setSelectedFile] = useState<null | File>(null);
+  console.log(selectedFile);
+
   const { _id: productId } = useParams<{ _id: string }>();
   const router = useRouter();
   useHideAdmin();
@@ -53,8 +57,8 @@ export function ProductForm({ title, products }: ProductFormProps) {
         promPrice: null,
         price: null,
         vegan: false,
-        photo:
-          'https://res.cloudinary.com/dyka4vajb/image/upload/v1698576734/hatamagnata/pizzas/cmzbifr7ssgugxtgnrtn.png',
+        photo: null,
+        upLoadedPhoto: null,
       };
 
   const {
@@ -101,9 +105,42 @@ export function ProductForm({ title, products }: ProductFormProps) {
   const promotion = watch('promotion');
   const promotionText = promotion ? 'Так' : 'Ні';
 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      if (file && file.type !== 'image/png') {
+        return toast.error('Додайте зображення .png');
+      }
+      setSelectedFile(file);
+    }
+  };
+  console.log(errors);
+
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <h3>{title}</h3>
+      {selectedFile && (
+        <Image
+          src={URL.createObjectURL(selectedFile)}
+          alt="Preview"
+          width={200}
+          height={200}
+        />
+      )}
+      {!selectedFile && product && product?.photo && (
+        <Image src={product?.photo} alt="Preview" width={200} height={200} />
+      )}
+      <label htmlFor="upLoadedPhoto">Завантажити фото:</label>
+      <input
+        {...register('upLoadedPhoto', {
+          validate: {
+            required: value => value !== null || product?.photo,
+          },
+        })}
+        type="file"
+        onChange={handleFileChange}
+        id="fileInput"
+      />
+
       <Input
         {...register('title', {
           required: "Це обов'язкове поле!",

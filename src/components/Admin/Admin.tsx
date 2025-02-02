@@ -2,7 +2,7 @@
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';
 
-import { ProductsTable } from './ProductsTable/ProductsTable';
+import { ProductsTable } from './ProductsTable';
 import { SupplementsTable } from './SupplementsTable';
 
 type AdminProps = {

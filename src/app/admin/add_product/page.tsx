@@ -1,11 +1,16 @@
 import { Metadata } from 'next';
 
-import { ProductForm } from '@/components/Admin/ProductForm';
+import { ProductForm } from '@/components/Admin/forms/ProductForm';
 
 export const metadata: Metadata = {
   title: 'Nostra Pizza | Адмінка | Створити',
 };
 
 export default function AddProduct() {
-  return <ProductForm title="Створити" />;
+  return (
+    <>
+      <h2>Створити</h2>
+      <ProductForm />
+    </>
+  );
 }

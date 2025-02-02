@@ -23,7 +23,7 @@ export default async function AdminPage() {
   return (
     <>
       <div className={css.btnWrapper}>
-        <Link href={'/'}>
+        <Link href={'admin/add_product'}>
           <Button>+ Продукт</Button>
         </Link>
         <Link href={'admin/add_supplement'}>

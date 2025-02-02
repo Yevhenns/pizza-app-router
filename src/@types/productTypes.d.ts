@@ -3,13 +3,15 @@ type Product = {
   title: string;
   description: string;
   dimension: string;
-  price: number;
+  price: number | null;
   photo: string;
   category: string;
   promotion: boolean;
-  promPrice: number;
+  promPrice: number | null;
   vegan: boolean;
 };
+
+type ProductDto = Omit<Product, '_id'>;
 
 type Supplement = {
   _id: string;

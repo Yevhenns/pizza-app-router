@@ -1,5 +1,5 @@
-import { SupplementForm } from '@/components/Admin/SupplementForm';
+import { ProductForm } from '@/components/Admin/ProductForm';
 
 export default function AddProduct() {
-  return <SupplementForm title="Створити" />;
+  return <ProductForm title="Створити" />;
 }

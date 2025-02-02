@@ -16,7 +16,7 @@ type Supplement = {
   price: number;
   title: string;
   vegan: boolean;
-  for_category: 'Піца';
+  for_category: 'Піца' | 'Закуски';
 };
 
 type UserOrders = {

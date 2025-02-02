@@ -9,8 +9,8 @@ import { useHideAdmin } from '@/hooks/useHideAdmin';
 import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import {
-  createSupplement,
-  deleteSupplementById,
+  createProduct,
+  deleteProductById,
 } from '@/store/products/productsOperations';
 
 import { Button } from '@/components/shared/Button';
@@ -33,17 +33,28 @@ export function ProductForm({ title, products }: ProductFormProps) {
   const product = products?.find(item => item._id === productId);
 
   const defaultValues: ProductDto = product
-    ? { ...product }
+    ? {
+        title: product.title,
+        category: product.category,
+        description: product.description,
+        dimension: product.dimension,
+        promotion: product.promotion,
+        promPrice: product.promPrice,
+        price: product.price,
+        vegan: product.vegan,
+        photo: product.photo,
+      }
     : {
         title: '',
         category: 'Піца',
         description: '',
         dimension: '',
-        photo: '',
         promotion: false,
         promPrice: null,
         price: null,
         vegan: false,
+        photo:
+          'https://res.cloudinary.com/dyka4vajb/image/upload/v1698576734/hatamagnata/pizzas/cmzbifr7ssgugxtgnrtn.png',
       };
 
   const {
@@ -58,30 +69,30 @@ export function ProductForm({ title, products }: ProductFormProps) {
 
   const onSubmit: SubmitHandler<ProductDto> = data => {
     console.log(data);
-    // if (!productId && user && userId) {
-    //   createSupplement(data, userId)
-    //     .then(() => {
-    //       toast.success('Товар додано');
-    //       router.refresh();
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //       toast.error('Сталася помилка');
-    //     });
-    // }
-    // if (productId && user && userId) {
-    //   createSupplement(data, userId)
-    //     .then(() => {
-    //       toast.success('Товар оновлено');
-    //       deleteSupplementById(productId, userId);
-    //       router.refresh();
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //       toast.error('Сталася помилка');
-    //     });
-    // }
-    // router.push('/admin');
+    if (!productId && user && userId) {
+      createProduct(data, userId)
+        .then(() => {
+          toast.success('Товар додано');
+          router.refresh();
+        })
+        .catch(error => {
+          console.log(error);
+          toast.error('Сталася помилка');
+        });
+    }
+    if (productId && user && userId) {
+      createProduct(data, userId)
+        .then(() => {
+          toast.success('Товар оновлено');
+          deleteProductById(productId, userId);
+          router.refresh();
+        })
+        .catch(error => {
+          console.log(error);
+          toast.error('Сталася помилка');
+        });
+    }
+    router.push('/admin');
   };
 
   const categories = ['Піца', 'Закуски', 'Напої'];
@@ -182,7 +193,7 @@ export function ProductForm({ title, products }: ProductFormProps) {
                 {...register('category')}
                 type="radio"
                 htmlFor={item}
-                name="for_category"
+                name="category"
                 id={item}
                 label={item}
                 value={item}

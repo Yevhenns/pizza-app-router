@@ -86,6 +86,22 @@ export const deleteSupplementById = async (
   }
 };
 
+export const createProduct = async (body: ProductDto, userId: string) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/products/?userId=${userId}`, {
+      method: 'POST',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    return res.status;
+  } catch (error: any) {
+    return error.message;
+  }
+};
+
 export const createSupplement = async (body: SupplementDto, userId: string) => {
   try {
     const res = await fetch(`${BASE_URL}/api/supplements/?userId=${userId}`, {

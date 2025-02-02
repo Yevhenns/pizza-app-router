@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import dbConnect from '@/lib/dbConnect';
-import Product from '@/models/Product';
+import Supplement from '@/models/Supplement';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +19,7 @@ export async function DELETE(
     try {
       await dbConnect();
 
-      const deletedProduct = await Product.findByIdAndDelete(supplementId);
+      const deletedProduct = await Supplement.findByIdAndDelete(supplementId);
 
       if (!userId) {
         return new Response(JSON.stringify({ error: 'userId не передано' }), {

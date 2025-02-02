@@ -1,4 +1,7 @@
+import { toast } from 'react-toastify';
+
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
@@ -16,10 +19,14 @@ type ProductsTableProps = {
 export function ProductsTable({ products }: ProductsTableProps) {
   const user = useAppSelector(getUserInfo);
 
+  const router = useRouter();
+
   const deleteProduct = async (id: string) => {
     try {
       if (id && user && user.sub) {
         await deleteProductById(id, user.sub);
+        toast.success('Видалено');
+        router.refresh();
       }
     } catch (e) {
       console.log(e);

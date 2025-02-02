@@ -1,3 +1,7 @@
+import { toast } from 'react-toastify';
+
+import { useRouter } from 'next/navigation';
+
 import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import { deleteSupplementById } from '@/store/products/productsOperations';
@@ -14,10 +18,14 @@ type SupplementsTableProps = {
 export function SupplementsTable({ supplements }: SupplementsTableProps) {
   const user = useAppSelector(getUserInfo);
 
+  const router = useRouter();
+
   const deleteSupplement = async (id: string) => {
     try {
       if (id && user && user.sub) {
         await deleteSupplementById(id, user.sub);
+        toast.success('Видалено');
+        router.refresh();
       }
     } catch (e) {
       console.log(e);

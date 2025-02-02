@@ -34,7 +34,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
   };
 
   return (
-    <>
+    <div className={css.tableWrapper}>
       <h2>Продукти</h2>
       <table className={css.table}>
         <thead>
@@ -122,6 +122,6 @@ export function ProductsTable({ products }: ProductsTableProps) {
             )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }

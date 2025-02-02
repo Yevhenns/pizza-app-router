@@ -1,20 +1,23 @@
-.table {
+.tableWrapper {
   font-family: var(--secondary-font);
-  border-collapse: collapse;
-  tr:nth-child(even) {
-    background-color: #ffd465;
-  }
 
-  border: 1px solid #ccc;
+  .table {
+    border-collapse: collapse;
+    tr:nth-child(even) {
+      background-color: #ffd465;
+    }
 
-  td,
-  th {
     border: 1px solid #ccc;
-    padding: 4px;
-  }
 
-  .buttonsWrapper {
-    display: flex;
-    gap: 8px;
+    td,
+    th {
+      border: 1px solid #ccc;
+      padding: 4px;
+    }
+
+    .buttonsWrapper {
+      display: flex;
+      gap: 8px;
+    }
   }
 }

@@ -33,7 +33,7 @@ export function SupplementsTable({ supplements }: SupplementsTableProps) {
   };
 
   return (
-    <>
+    <div className={css.tableWrapper}>
       <h2>Опції</h2>
       <table className={css.table}>
         <thead>
@@ -85,6 +85,6 @@ export function SupplementsTable({ supplements }: SupplementsTableProps) {
             })}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }

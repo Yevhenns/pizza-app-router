@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const BASE_URL =
   process.env.NODE_ENV === 'development'
@@ -14,7 +13,18 @@ export const sendOrder = createAsyncThunk<
   }
 >('basket/sendOrder', async (order, { rejectWithValue }) => {
   try {
-    const res = await axios.post(`${BASE_URL}/api/send_email`, order);
+    const res = await fetch(`${BASE_URL}/api/send_email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to send order');
+    }
+
     return res.status;
   } catch (error: any) {
     return rejectWithValue(error.message);

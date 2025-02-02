@@ -3,9 +3,14 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
+import { useParams, useRouter } from 'next/navigation';
+
 import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
-import { createSupplement } from '@/store/products/productsOperations';
+import {
+  createSupplement,
+  deleteSupplementById,
+} from '@/store/products/productsOperations';
 
 import { Button } from '@/components/shared/Button';
 import { Checkbox } from '@/components/shared/Checkbox';
@@ -13,13 +18,30 @@ import { Input } from '@/components/shared/Input';
 
 import css from './SupplementForm.module.scss';
 
-export function SupplementForm() {
-  const defaultValues: SupplementDto = {
-    title: '',
-    price: null,
-    for_category: 'Піца',
-    vegan: false,
-  };
+type SupplementFormProps = {
+  title: string;
+  supplements?: Supplement[];
+};
+
+export function SupplementForm({ title, supplements }: SupplementFormProps) {
+  const { _id: supplementId } = useParams<{ _id: string }>();
+  const router = useRouter();
+
+  const supplement = supplements?.find(item => item._id === supplementId);
+
+  const defaultValues: SupplementDto = supplement
+    ? {
+        title: supplement.title,
+        price: supplement.price,
+        for_category: supplement.for_category,
+        vegan: supplement.vegan,
+      }
+    : {
+        title: '',
+        price: null,
+        for_category: 'Піца',
+        vegan: false,
+      };
 
   const {
     register,
@@ -28,20 +50,41 @@ export function SupplementForm() {
   } = useForm<Supplement>({ mode: 'onChange', defaultValues });
 
   const user = useAppSelector(getUserInfo);
+  const userId = user?.sub;
 
   const onSubmit: SubmitHandler<Supplement> = data => {
     console.log(data);
-    if (user && user.sub) {
-      createSupplement(data, user.sub);
-      toast.success('Товар додано');
+    if (!supplementId && user && userId) {
+      createSupplement(data, userId)
+        .then(() => {
+          toast.success('Товар додано');
+          router.refresh();
+        })
+        .catch(error => {
+          console.log(error);
+          toast.error('Сталася помилка');
+        });
     }
+    if (supplementId && user && userId) {
+      createSupplement(data, userId)
+        .then(() => {
+          toast.success('Товар оновлено');
+          deleteSupplementById(supplementId, userId);
+          router.refresh();
+        })
+        .catch(error => {
+          console.log(error);
+          toast.error('Сталася помилка');
+        });
+    }
+    router.push('/admin');
   };
 
   const categories = ['Піца', 'Закуски'];
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <h3>Додати опцію</h3>
+      <h3>{title}</h3>
       <Input
         {...register('title', {
           required: "Це обов'язкове поле!",

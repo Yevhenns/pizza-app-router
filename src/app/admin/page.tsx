@@ -25,7 +25,7 @@ export default async function AdminPage() {
         <Link href={'/'}>
           <Button>+ Продукт</Button>
         </Link>
-        <Link href={'admin/addSupplement'}>
+        <Link href={'admin/add_supplement'}>
           <Button>+ Опція</Button>
         </Link>
       </div>

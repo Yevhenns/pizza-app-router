@@ -3,7 +3,7 @@ type Product = {
   title: string;
   description: string;
   dimension: string;
-  price: number | null;
+  price: number;
   photo: string;
   category: string;
   promotion: boolean;
@@ -11,17 +11,17 @@ type Product = {
   vegan: boolean;
 };
 
-type ProductDto = Omit<Product, '_id'>;
+type ProductDto = Omit<Product, '_id'> & { price: number | null };
 
 type Supplement = {
   _id: string;
-  price: number | null;
+  price: number;
   title: string;
   vegan: boolean;
   for_category: 'Піца' | 'Закуски';
 };
 
-type SupplementDto = Omit<Supplement, '_id'>;
+type SupplementDto = Omit<Supplement, '_id'> & { price: number | null };
 
 type UserOrders = {
   _id: string;

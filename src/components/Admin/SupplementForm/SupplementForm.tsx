@@ -14,11 +14,18 @@ import { Input } from '@/components/shared/Input';
 import css from './SupplementForm.module.scss';
 
 export function SupplementForm() {
+  const defaultValues: SupplementDto = {
+    title: '',
+    price: null,
+    for_category: 'Піца',
+    vegan: false,
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<Supplement>({ mode: 'onChange' });
+  } = useForm<Supplement>({ mode: 'onChange', defaultValues });
 
   const user = useAppSelector(getUserInfo);
 
@@ -54,10 +61,10 @@ export function SupplementForm() {
         {...register('price', {
           required: "Це обов'язкове поле!",
           validate: {
-            // required: value => value.trim().length > 1 || 'Введіть назву',
+            required: value => (value && value > 0) || 'Введіть ціну',
           },
         })}
-        placeholder="Введіть назву"
+        placeholder="Введіть ціну"
         id="price"
         label="* Ціна"
         htmlFor="price"
@@ -67,7 +74,7 @@ export function SupplementForm() {
       />
 
       <div>
-        <h3>Для категорій</h3>
+        <h3>Для категорії</h3>
         {categories.map((item, idx) => {
           return (
             <div key={idx}>
@@ -96,7 +103,9 @@ export function SupplementForm() {
       </div>
 
       <span>* обов&apos;язкові поля</span>
-      <Button type="submit">Підтвердити</Button>
+      <Button type="submit" disabled={!isValid}>
+        Підтвердити
+      </Button>
     </form>
   );
 }

@@ -4,7 +4,7 @@ export interface Supplement extends mongoose.Document {
   price: number;
   title: string;
   vegan: boolean;
-  for_category: SupplementCategory;
+  for_category: string;
 }
 
 const supplementSchema = new mongoose.Schema<Supplement>(

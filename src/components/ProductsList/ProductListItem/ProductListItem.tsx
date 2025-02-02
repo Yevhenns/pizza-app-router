@@ -65,7 +65,7 @@ export function ProductListItem({ item, supplements }: ProductListItemProps) {
 
     const optionData = supplements.find(item => item.title === e.target.value);
 
-    if (optionData) {
+    if (optionData && optionData.price) {
       if (checked && !optionsArray.includes(optionData)) {
         setOptionsArray([...optionsArray, optionData]);
         setOptionsSum(optionsSum + optionData.price);

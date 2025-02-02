@@ -11,17 +11,12 @@ type Product = {
   vegan: boolean;
 };
 
-enum SupplementCategory {
-  Pizza = 'Піца',
-  Appetizers = 'Закуски',
-}
-
 type Supplement = {
   _id: string;
-  price: number;
+  price: number | null;
   title: string;
   vegan: boolean;
-  for_category: SupplementCategory;
+  for_category: 'Піца' | 'Закуски';
 };
 
 type SupplementDto = Omit<Supplement, '_id'>;

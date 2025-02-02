@@ -51,12 +51,12 @@ export function ProductForm({ title, products }: ProductFormProps) {
     handleSubmit,
     watch,
     formState: { errors, isValid },
-  } = useForm<Product>({ mode: 'onChange', defaultValues });
+  } = useForm<ProductDto>({ mode: 'onChange', defaultValues });
 
   const user = useAppSelector(getUserInfo);
   const userId = user?.sub;
 
-  const onSubmit: SubmitHandler<Product> = data => {
+  const onSubmit: SubmitHandler<ProductDto> = data => {
     console.log(data);
     // if (!productId && user && userId) {
     //   createSupplement(data, userId)

@@ -49,12 +49,12 @@ export function SupplementForm({ title, supplements }: SupplementFormProps) {
     register,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<Supplement>({ mode: 'onChange', defaultValues });
+  } = useForm<SupplementDto>({ mode: 'onChange', defaultValues });
 
   const user = useAppSelector(getUserInfo);
   const userId = user?.sub;
 
-  const onSubmit: SubmitHandler<Supplement> = data => {
+  const onSubmit: SubmitHandler<SupplementDto> = data => {
     console.log(data);
     if (!supplementId && user && userId) {
       createSupplement(data, userId)

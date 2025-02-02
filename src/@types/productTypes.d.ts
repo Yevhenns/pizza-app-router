@@ -11,7 +11,7 @@ type Product = {
   vegan: boolean;
 };
 
-type ProductDto = Omit<Product, '_id'> & { price: number | null };
+type ProductDto = Omit<Product, '_id' | 'price'> & { price: number | null };
 
 type Supplement = {
   _id: string;
@@ -21,7 +21,9 @@ type Supplement = {
   for_category: 'Піца' | 'Закуски';
 };
 
-type SupplementDto = Omit<Supplement, '_id'> & { price: number | null };
+type SupplementDto = Omit<Supplement, '_id' | 'price'> & {
+  price: number | null;
+};
 
 type UserOrders = {
   _id: string;

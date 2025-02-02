@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { getUserInfo } from '@/store/auth/authSlice';
@@ -98,14 +99,16 @@ export function ProductsTable({ products }: ProductsTableProps) {
                     <td>{vegan ? <p>Так</p> : <p>Ні</p>}</td>
                     <td>
                       <div className={css.buttonsWrapper}>
-                        <RoundButton>
-                          <Icon
-                            svg="edit"
-                            iconWidth={34}
-                            iconHeight={34}
-                            color="green"
-                          />
-                        </RoundButton>
+                        <Link href={`/admin/edit_product/${_id}`}>
+                          <RoundButton>
+                            <Icon
+                              svg="edit"
+                              iconWidth={34}
+                              iconHeight={34}
+                              color="green"
+                            />
+                          </RoundButton>
+                        </Link>
                         <RoundButton onClick={() => deleteProduct(_id)}>
                           <Icon
                             svg="remove"

@@ -98,6 +98,7 @@ export function ProductListItem({ item, supplements }: ProductListItemProps) {
           supplements={supplements}
           handleChange={handleChooseOptions}
           vegan={vegan}
+          category={category}
         />
       )}
       <ProductFooter

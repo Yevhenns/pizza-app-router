@@ -8,23 +8,28 @@ type ProductOptionsListProps = {
   supplements: Supplement[];
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   vegan: boolean;
+  category: string;
 };
 
 export function ProductOptionsList({
   supplements,
   handleChange,
   vegan,
+  category,
 }: ProductOptionsListProps) {
   const [filteredByVegan, setFilteredByVegan] = useState<Supplement[]>([]);
 
   useEffect(() => {
+    const filteredByCAtegory = supplements.filter(
+      item => item.for_category === category
+    );
     if (!vegan) {
-      setFilteredByVegan(supplements);
+      setFilteredByVegan(filteredByCAtegory);
     } else {
       const filteredArray = supplements.filter(item => item.vegan === vegan);
       setFilteredByVegan(filteredArray);
     }
-  }, [supplements, vegan]);
+  }, [category, supplements, vegan]);
 
   return (
     <div className={css.wrapper}>

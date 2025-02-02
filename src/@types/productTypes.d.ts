@@ -7,7 +7,7 @@ type Product = {
   photo: string;
   category: string;
   promotion: boolean;
-  promPrice: number | null;
+  promPrice: number;
   vegan: boolean;
 };
 

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import { useParams, useRouter } from 'next/navigation';
 
+import { useHideAdmin } from '@/hooks/useHideAdmin';
 import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import {
@@ -26,6 +27,7 @@ type SupplementFormProps = {
 export function SupplementForm({ title, supplements }: SupplementFormProps) {
   const { _id: supplementId } = useParams<{ _id: string }>();
   const router = useRouter();
+  useHideAdmin();
 
   const supplement = supplements?.find(item => item._id === supplementId);
 

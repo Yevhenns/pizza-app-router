@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { useHideAdmin } from '@/hooks/useHideAdmin';
 import {
   getProducts,
   getSupplements,

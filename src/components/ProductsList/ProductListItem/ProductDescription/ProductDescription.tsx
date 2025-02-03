@@ -17,9 +17,13 @@ import css from './ProductDescription.module.scss';
 
 type ProductDescriptionProps = {
   item: Product;
+  preview: boolean;
 };
 
-export function ProductDescription({ item }: ProductDescriptionProps) {
+export function ProductDescription({
+  item,
+  preview = false,
+}: ProductDescriptionProps) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const { _id, photo, title, description, dimension, promotion } = item;
@@ -29,6 +33,7 @@ export function ProductDescription({ item }: ProductDescriptionProps) {
   const dispatch = useAppDispatch();
 
   const addToFavorite = () => {
+    if (preview) return;
     if (isFavorite) {
       dispatch(removeFromFavoriteAction(_id));
       toast.warn('Видалено з улюблених', {

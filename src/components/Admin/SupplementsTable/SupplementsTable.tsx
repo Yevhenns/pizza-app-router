@@ -39,6 +39,7 @@ export function SupplementsTable({ supplements }: SupplementsTableProps) {
       <table className={css.table}>
         <thead>
           <tr>
+            <th>№</th>
             <th>Назва</th>
             <th>Ціна</th>
             <th>Для категорії</th>
@@ -48,44 +49,49 @@ export function SupplementsTable({ supplements }: SupplementsTableProps) {
         </thead>
         <tbody>
           {supplements &&
-            supplements.map(({ _id, title, price, for_category, vegan }) => {
-              return (
-                <tr key={_id}>
-                  <td>
-                    <p>{title}</p>
-                  </td>
-                  <td>
-                    <p>{price}</p>
-                  </td>
-                  <td>
-                    <p>{for_category}</p>
-                  </td>
-                  <td>{vegan ? <p>Так</p> : <p>Ні</p>}</td>
-                  <td>
-                    <div className={css.buttonsWrapper}>
-                      <Link href={`/admin/edit_supplement/${_id}`}>
-                        <RoundButton>
+            supplements.map(
+              ({ _id, title, price, for_category, vegan }, index) => {
+                return (
+                  <tr key={_id}>
+                    <td>
+                      <p>{index + 1}</p>
+                    </td>
+                    <td>
+                      <p>{title}</p>
+                    </td>
+                    <td>
+                      <p>{price}</p>
+                    </td>
+                    <td>
+                      <p>{for_category}</p>
+                    </td>
+                    <td>{vegan ? <p>Так</p> : <p>Ні</p>}</td>
+                    <td>
+                      <div className={css.buttonsWrapper}>
+                        <Link href={`/admin/edit_supplement/${_id}`}>
+                          <RoundButton>
+                            <Icon
+                              svg="edit"
+                              iconWidth={34}
+                              iconHeight={34}
+                              color="green"
+                            />
+                          </RoundButton>
+                        </Link>
+                        <RoundButton onClick={() => deleteSupplement(_id)}>
                           <Icon
-                            svg="edit"
+                            svg="remove"
                             iconWidth={34}
                             iconHeight={34}
-                            color="green"
+                            color="red"
                           />
                         </RoundButton>
-                      </Link>
-                      <RoundButton onClick={() => deleteSupplement(_id)}>
-                        <Icon
-                          svg="remove"
-                          iconWidth={34}
-                          iconHeight={34}
-                          color="red"
-                        />
-                      </RoundButton>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              }
+            )}
         </tbody>
       </table>
     </div>

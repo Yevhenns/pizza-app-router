@@ -1,26 +1,29 @@
-.form {
-  font-family: var(--secondary-font);
+.formWrapper {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+  gap: 48px;
 
-  .wrapper {
-    display: flex;
-    gap: 24px;
+  .cardWrapper {
+    height: auto;
+    width: 297px;
   }
 
-  .imageWrapper {
-    display: flex;
-    gap: 24px;
-    align-items: flex-end;
-  }
-
-  .checkboxWrapper {
+  .form {
+    font-family: var(--secondary-font);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
+    width: 500px;
+
+    .wrapper {
+      display: flex;
+      gap: 24px;
+    }
+
+    .checkboxWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 }

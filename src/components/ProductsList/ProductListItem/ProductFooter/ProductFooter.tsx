@@ -8,6 +8,7 @@ type ProductFooterProps = {
   promotion: boolean;
   totalPrice: number;
   totalPromPrice: number;
+  preview: boolean;
 };
 
 export function ProductFooter({
@@ -15,7 +16,13 @@ export function ProductFooter({
   totalPrice,
   totalPromPrice,
   addToCart,
+  preview,
 }: ProductFooterProps) {
+  const addItemToCart = () => {
+    if (preview) return;
+    addToCart();
+  };
+
   return (
     <div className={css.productFooter}>
       {promotion ? (
@@ -26,7 +33,7 @@ export function ProductFooter({
       ) : (
         <p className={css.price}>{totalPrice} грн</p>
       )}
-      <Button type="button" onClick={addToCart}>
+      <Button type="button" onClick={addItemToCart}>
         <Icon svg="basket" iconWidth={19} iconHeight={19} color="white" />В
         кошик
       </Button>

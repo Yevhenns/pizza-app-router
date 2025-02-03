@@ -40,13 +40,14 @@ export function ProductsTable({ products }: ProductsTableProps) {
       <table className={css.table}>
         <thead>
           <tr>
+            <th>№</th>
             <th>Фото</th>
             <th>Назва</th>
             <th>Опис</th>
             <th>Ціна</th>
             <th>Деталі</th>
             <th>Категорія</th>
-            <th>Ціна</th>
+            <th>Знижка</th>
             <th>Знижка</th>
             <th>Веган.</th>
             <th>Дії</th>
@@ -55,20 +56,26 @@ export function ProductsTable({ products }: ProductsTableProps) {
         <tbody>
           {products &&
             products.map(
-              ({
-                _id,
-                photo,
-                title,
-                description,
-                price,
-                dimension,
-                category,
-                promPrice,
-                promotion,
-                vegan,
-              }) => {
+              (
+                {
+                  _id,
+                  photo,
+                  title,
+                  description,
+                  price,
+                  dimension,
+                  category,
+                  promPrice,
+                  promotion,
+                  vegan,
+                },
+                index
+              ) => {
                 return (
                   <tr key={_id}>
+                    <td>
+                      <p>{index + 1}</p>
+                    </td>
                     <td>
                       <Image
                         src={photo}

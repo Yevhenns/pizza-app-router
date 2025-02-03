@@ -13,10 +13,9 @@ type Product = {
 
 type ProductSchema = Omit<Product, '_id'>;
 
-type ProductDto = Omit<ProductSchema, 'price' | 'promPrice' | 'photo'> & {
+type ProductDto = Omit<ProductSchema, 'price' | 'promPrice'> & {
   price: number | null;
   promPrice: number | null;
-  photo: string | null;
 };
 
 type Supplement = {

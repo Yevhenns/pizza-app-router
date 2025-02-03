@@ -16,9 +16,14 @@ import { ProductQuantity } from './ProductQuantity';
 type ProductListItemProps = {
   item: Product;
   supplements: Supplement[];
+  preview?: boolean;
 };
 
-export function ProductListItem({ item, supplements }: ProductListItemProps) {
+export function ProductListItem({
+  item,
+  supplements,
+  preview = false,
+}: ProductListItemProps) {
   const { _id, price, promotion, promPrice, category, vegan } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
@@ -85,7 +90,7 @@ export function ProductListItem({ item, supplements }: ProductListItemProps) {
 
   return (
     <article className={css.listItem}>
-      <ProductDescription item={item} />
+      <ProductDescription item={item} preview={preview} />
       <ProductQuantity
         getTotalQuantity={getTotalQuantity}
         handleChange={handleShowOptions}
@@ -102,6 +107,7 @@ export function ProductListItem({ item, supplements }: ProductListItemProps) {
         />
       )}
       <ProductFooter
+        preview={preview}
         promotion={promotion}
         totalPrice={totalPrice}
         totalPromPrice={totalPromPrice}

@@ -25,9 +25,10 @@ import css from './ProductForm.module.scss';
 
 type ProductFormProps = {
   products?: Product[];
+  supplements: Supplement[];
 };
 
-export function ProductForm({ products }: ProductFormProps) {
+export function ProductForm({ products, supplements }: ProductFormProps) {
   const { _id: productId } = useParams<{ _id: string }>();
   const router = useRouter();
   useHideAdmin();
@@ -127,7 +128,7 @@ export function ProductForm({ products }: ProductFormProps) {
   return (
     <div className={css.formWrapper}>
       <div className={css.cardWrapper}>
-        <ProductListItem item={item} supplements={[]} preview />
+        <ProductListItem item={item} supplements={supplements} preview />
       </div>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <div>

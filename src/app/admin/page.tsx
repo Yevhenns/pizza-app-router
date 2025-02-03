@@ -21,7 +21,7 @@ export default async function AdminPage() {
 
   return (
     <>
-      <h2>Адмінка</h2>
+      <h2 className="adminPageTitle">Адмінка</h2>
       <div className={css.btnWrapper}>
         <Link href={'admin/add_product'}>
           <Button>+ Продукт</Button>

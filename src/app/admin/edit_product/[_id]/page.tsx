@@ -13,7 +13,7 @@ export default async function EditProduct() {
 
   return (
     <>
-      <h2>Редагувати</h2>
+      <h2 className="adminPageTitle">Редагувати</h2>
       <ProductForm products={products} />
     </>
   );

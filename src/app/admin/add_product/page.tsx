@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function AddProduct() {
   return (
     <>
-      <h2>Створити</h2>
+      <h2 className="adminPageTitle">Створити</h2>
       <ProductForm />
     </>
   );

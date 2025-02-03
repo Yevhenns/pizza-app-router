@@ -83,6 +83,11 @@ export function ProductListItem({
     }
   };
 
+  // const IsTheSameCategory = () => {
+  //   return supplements.some(item => item.for_category.includes(category));
+  // };
+  // console.log(IsTheSameCategory());
+
   useEffect(() => {
     !optionsShown && setOptionsArray([]);
     setOptionsSum(0);

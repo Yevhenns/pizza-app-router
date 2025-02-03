@@ -26,7 +26,9 @@ export function ProductOptionsList({
     if (!vegan) {
       setFilteredByVegan(filteredByCAtegory);
     } else {
-      const filteredArray = supplements.filter(item => item.vegan === vegan);
+      const filteredArray = filteredByCAtegory.filter(
+        item => item.vegan === vegan
+      );
       setFilteredByVegan(filteredArray);
     }
   }, [category, supplements, vegan]);

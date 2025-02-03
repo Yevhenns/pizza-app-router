@@ -11,7 +11,9 @@ type Product = {
   vegan: boolean;
 };
 
-type ProductDto = Omit<Product, '_id' | 'price' | 'promPrice' | 'photo'> & {
+type ProductSchema = Omit<Product, '_id'>;
+
+type ProductDto = Omit<ProductSchema, 'price' | 'promPrice' | 'photo'> & {
   price: number | null;
   promPrice: number | null;
   photo: string | null;
@@ -26,6 +28,8 @@ type Supplement = {
   for_category: 'Піца' | 'Закуски';
 };
 
+type SupplementSchema = Omit<Supplement, '_id'>;
+
 type SupplementDto = Omit<Supplement, '_id' | 'price'> & {
   price: number | null;
 };
@@ -37,3 +41,5 @@ type UserOrders = {
   orderSum: number;
   createdAt: string;
 };
+
+type UserOrdersSchema = Omit<UserOrders, '_id'>;

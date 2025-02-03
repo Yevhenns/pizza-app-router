@@ -1,13 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-export interface Supplement extends mongoose.Document {
-  price: number;
-  title: string;
-  vegan: boolean;
-  for_category: string;
-}
+interface SupplementDocument extends SupplementSchema, Document {}
 
-const supplementSchema = new mongoose.Schema<Supplement>(
+const supplementSchema = new Schema<SupplementDocument>(
   {
     title: { type: String, required: [true, 'Введіть назву'] },
     price: { type: Number, required: [true, 'Введіть ціну'] },
@@ -24,4 +19,4 @@ const supplementSchema = new mongoose.Schema<Supplement>(
 );
 
 export default mongoose.models.Supplement ||
-  mongoose.model<Supplement>('Supplement', supplementSchema);
+  mongoose.model<SupplementDocument>('Supplement', supplementSchema);

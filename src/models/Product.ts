@@ -1,18 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-export interface Product extends mongoose.Document {
-  title: string;
-  description: string;
-  dimension: string;
-  price: number;
-  photo: string;
-  category: string;
-  promotion: boolean;
-  promPrice: number;
-  vegan: boolean;
-}
+interface ProductDocument extends ProductSchema, Document {}
 
-const productSchema = new mongoose.Schema<Product>(
+const productSchema = new Schema<ProductDocument>(
   {
     title: { type: String, required: [true, 'Введіть назву продукту'] },
     description: { type: String, required: [true, 'Введіть опис продукту'] },
@@ -36,4 +26,4 @@ const productSchema = new mongoose.Schema<Product>(
 );
 
 export default mongoose.models.Product ||
-  mongoose.model<Product>('Product', productSchema);
+  mongoose.model<ProductDocument>('Product', productSchema);

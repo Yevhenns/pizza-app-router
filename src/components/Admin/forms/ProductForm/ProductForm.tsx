@@ -108,9 +108,15 @@ export function ProductForm({ products }: ProductFormProps) {
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.imageWrapper}>
         {photo ? (
-          <Image src={photo} alt="Preview" width={200} height={200} />
+          <Image src={photo} alt="Preview" width={200} height={200} priority />
         ) : (
-          <Image src="/200.svg" alt="Preview" width={200} height={200} />
+          <Image
+            src="/200.svg"
+            alt="Preview"
+            width={200}
+            height={200}
+            priority
+          />
         )}
 
         <CldUploadWidget
@@ -210,44 +216,48 @@ export function ProductForm({ products }: ProductFormProps) {
         type="text"
       />
 
-      <div>
-        <h3>Категорія</h3>
-        {categories.map((item, idx) => {
-          return (
-            <div key={idx}>
-              <Checkbox
-                {...register('category')}
-                type="radio"
-                htmlFor={item}
-                name="category"
-                id={item}
-                label={item}
-                value={item}
-              />
-            </div>
-          );
-        })}
+      <div className={css.wrapper}>
+        <div className={css.checkboxWrapper}>
+          <p>Категорія</p>
+          {categories.map((item, idx) => {
+            return (
+              <div key={idx}>
+                <Checkbox
+                  {...register('category')}
+                  type="radio"
+                  htmlFor={item}
+                  name="category"
+                  id={item}
+                  label={item}
+                  value={item}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        <div className={css.checkboxWrapper}>
+          <p>Веганська</p>
+          <Checkbox
+            {...register('vegan')}
+            id="vegan"
+            htmlFor="vegan"
+            label={veganText}
+          />
+        </div>
+
+        <div className={css.checkboxWrapper}>
+          <p>Знижка</p>
+          <Checkbox
+            {...register('promotion')}
+            id="promotion"
+            htmlFor="promotion"
+            label={promotionText}
+          />
+        </div>
       </div>
 
-      <div>
-        <h3>Знижка</h3>
-        <Checkbox
-          {...register('promotion')}
-          id="promotion"
-          htmlFor="promotion"
-          label={promotionText}
-        />
-      </div>
-
-      <div>
-        <h3>Веганська</h3>
-        <Checkbox
-          {...register('vegan')}
-          id="vegan"
-          htmlFor="vegan"
-          label={veganText}
-        />
-      </div>
+      <hr />
 
       <span>* обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>

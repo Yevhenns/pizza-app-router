@@ -47,6 +47,7 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isValid },
   } = useForm<SupplementDto>({ mode: 'onChange', defaultValues });
 
@@ -83,6 +84,9 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
 
   const categories = ['Піца', 'Закуски'];
 
+  const vegan = watch('vegan');
+  const veganText = vegan ? 'Так' : 'Ні';
+
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -100,6 +104,7 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
         inputMode="text"
         type="text"
       />
+
       <Input
         {...register('price', {
           required: "Це обов'язкове поле!",
@@ -116,34 +121,38 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
         type="text"
       />
 
-      <div>
-        <h3>Для категорії</h3>
-        {categories.map((item, idx) => {
-          return (
-            <div key={idx}>
-              <Checkbox
-                {...register('for_category')}
-                type="radio"
-                htmlFor={item}
-                name="for_category"
-                id={item}
-                label={item}
-                value={item}
-              />
-            </div>
-          );
-        })}
+      <div className={css.wrapper}>
+        <div className={css.checkboxWrapper}>
+          <p>Для категорії</p>
+          {categories.map((item, idx) => {
+            return (
+              <div key={idx}>
+                <Checkbox
+                  {...register('for_category')}
+                  type="radio"
+                  htmlFor={item}
+                  name="for_category"
+                  id={item}
+                  label={item}
+                  value={item}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        <div className={css.checkboxWrapper}>
+          <p>Веганська</p>
+          <Checkbox
+            {...register('vegan')}
+            id="vegan"
+            htmlFor="vegan"
+            label={veganText}
+          />
+        </div>
       </div>
 
-      <div>
-        <h3>Тип</h3>
-        <Checkbox
-          {...register('vegan')}
-          id="vegan"
-          htmlFor="vegan"
-          label="Веганська"
-        />
-      </div>
+      <hr />
 
       <span>* обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>

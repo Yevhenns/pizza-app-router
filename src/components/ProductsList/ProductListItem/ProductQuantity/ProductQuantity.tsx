@@ -12,6 +12,7 @@ type ProductQuantityProps = {
   supplements: Supplement[] | [];
   category: string;
   _id: string;
+  filteredSupplements: Supplement[];
 };
 
 export function ProductQuantity({
@@ -20,6 +21,7 @@ export function ProductQuantity({
   supplements = [],
   category,
   _id,
+  filteredSupplements,
 }: ProductQuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
@@ -31,7 +33,7 @@ export function ProductQuantity({
     setQuantity(quantity - 1);
   };
 
-  const isSupplementsShown = supplements.some(
+  const isSupplementsShown = filteredSupplements.some(
     item => item.for_category === category
   );
 

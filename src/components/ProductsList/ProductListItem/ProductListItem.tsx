@@ -3,6 +3,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
+import { useFilterSupplements } from '@/hooks/useFilterSupplements';
 import { addItem } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
@@ -83,10 +84,11 @@ export function ProductListItem({
     }
   };
 
-  // const IsTheSameCategory = () => {
-  //   return supplements.some(item => item.for_category.includes(category));
-  // };
-  // console.log(IsTheSameCategory());
+  const { filteredSupplements } = useFilterSupplements({
+    supplements,
+    category,
+    vegan,
+  });
 
   useEffect(() => {
     !optionsShown && setOptionsArray([]);
@@ -97,6 +99,7 @@ export function ProductListItem({
     <article className={css.listItem}>
       <ProductDescription item={item} preview={preview} />
       <ProductQuantity
+        filteredSupplements={filteredSupplements}
         getTotalQuantity={getTotalQuantity}
         handleChange={handleShowOptions}
         supplements={supplements}
@@ -105,10 +108,8 @@ export function ProductListItem({
       />
       {optionsShown && (
         <ProductOptionsList
-          supplements={supplements}
+          filteredSupplements={filteredSupplements}
           handleChange={handleChooseOptions}
-          vegan={vegan}
-          category={category}
         />
       )}
       <ProductFooter

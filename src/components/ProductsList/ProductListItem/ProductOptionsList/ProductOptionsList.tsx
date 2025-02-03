@@ -5,37 +5,17 @@ import { Checkbox } from '@/components/shared/Checkbox';
 import css from './ProductOptionsList.module.scss';
 
 type ProductOptionsListProps = {
-  supplements: Supplement[];
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  vegan: boolean;
-  category: string;
+  filteredSupplements: Supplement[];
 };
 
 export function ProductOptionsList({
-  supplements,
   handleChange,
-  vegan,
-  category,
+  filteredSupplements,
 }: ProductOptionsListProps) {
-  const [filteredByVegan, setFilteredByVegan] = useState<Supplement[]>([]);
-
-  useEffect(() => {
-    const filteredByCAtegory = supplements.filter(
-      item => item.for_category === category
-    );
-    if (!vegan) {
-      setFilteredByVegan(filteredByCAtegory);
-    } else {
-      const filteredArray = filteredByCAtegory.filter(
-        item => item.vegan === vegan
-      );
-      setFilteredByVegan(filteredArray);
-    }
-  }, [category, supplements, vegan]);
-
   return (
     <div className={css.wrapper}>
-      {filteredByVegan.map(item => {
+      {filteredSupplements.map(item => {
         return (
           <div key={item._id} className={css.item}>
             <Checkbox

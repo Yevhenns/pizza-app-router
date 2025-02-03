@@ -17,7 +17,6 @@ type ProductDto = Omit<ProductSchema, 'price' | 'promPrice' | 'photo'> & {
   price: number | null;
   promPrice: number | null;
   photo: string | null;
-  upLoadedPhoto?: File | null;
 };
 
 type Supplement = {

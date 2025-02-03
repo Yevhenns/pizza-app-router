@@ -1,9 +1,9 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
+import { CldUploadWidget } from 'next-cloudinary';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -20,16 +20,13 @@ import { Checkbox } from '@/components/shared/Checkbox';
 import { Input } from '@/components/shared/Input';
 import { TextArea } from '@/components/shared/TextArea';
 
-import css from '../SupplementForm/SupplementForm.module.scss';
+import css from './ProductForm.module.scss';
 
 type ProductFormProps = {
   products?: Product[];
 };
 
 export function ProductForm({ products }: ProductFormProps) {
-  const [selectedFile, setSelectedFile] = useState<null | File>(null);
-  console.log(selectedFile);
-
   const { _id: productId } = useParams<{ _id: string }>();
   const router = useRouter();
   useHideAdmin();
@@ -58,13 +55,13 @@ export function ProductForm({ products }: ProductFormProps) {
         price: null,
         vegan: false,
         photo: null,
-        upLoadedPhoto: null,
       };
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors, isValid },
   } = useForm<ProductDto>({ mode: 'onChange', defaultValues });
 
@@ -104,42 +101,33 @@ export function ProductForm({ products }: ProductFormProps) {
   const veganText = vegan ? 'Так' : 'Ні';
   const promotion = watch('promotion');
   const promotionText = promotion ? 'Так' : 'Ні';
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const file = e.target.files[0];
-      if (file && file.type !== 'image/png') {
-        return toast.error('Додайте зображення .png');
-      }
-      setSelectedFile(file);
-    }
-  };
-  console.log(errors);
+  const photo = watch('photo');
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      {selectedFile && (
-        <Image
-          src={URL.createObjectURL(selectedFile)}
-          alt="Preview"
-          width={200}
-          height={200}
-        />
-      )}
-      {!selectedFile && product && product?.photo && (
-        <Image src={product?.photo} alt="Preview" width={200} height={200} />
-      )}
-      <label htmlFor="upLoadedPhoto">Завантажити фото:</label>
-      <input
-        {...register('upLoadedPhoto', {
-          validate: {
-            required: value => value !== null || product?.photo,
-          },
-        })}
-        type="file"
-        onChange={handleFileChange}
-        id="fileInput"
-      />
+      <div className={css.imageWrapper}>
+        {photo ? (
+          <Image src={photo} alt="Preview" width={200} height={200} />
+        ) : (
+          <Image src="/200.svg" alt="Preview" width={200} height={200} />
+        )}
+
+        <CldUploadWidget
+          uploadPreset="nostra"
+          options={{ clientAllowedFormats: ['png'] }}
+          onError={() => {
+            toast.error('Додайте файл png');
+          }}
+          onSuccess={result => {
+            typeof result.info === 'object' &&
+              setValue('photo', result.info.secure_url);
+          }}
+        >
+          {({ open }) => {
+            return <Button onClick={() => open()}>Завантажити фото</Button>;
+          }}
+        </CldUploadWidget>
+      </div>
 
       <Input
         {...register('title', {
@@ -244,8 +232,8 @@ export function ProductForm({ products }: ProductFormProps) {
         <h3>Знижка</h3>
         <Checkbox
           {...register('promotion')}
-          id="vegan"
-          htmlFor="vegan"
+          id="promotion"
+          htmlFor="promotion"
           label={promotionText}
         />
       </div>

@@ -85,8 +85,9 @@ export function ProductForm({ products }: ProductFormProps) {
       createProduct(data, userId)
         .then(() => {
           toast.success('Товар оновлено');
-          deleteProductById(productId, userId);
-          router.refresh();
+          deleteProductById(productId, userId).then(() => {
+            router.refresh();
+          });
         })
         .catch(error => {
           console.log(error);

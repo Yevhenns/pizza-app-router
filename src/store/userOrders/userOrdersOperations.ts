@@ -13,7 +13,7 @@ export const getUserProducts = createAsyncThunk<
   }
 >('userProducts/getUserProductsAll', async (userId, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/user_orders/${userId}`, {
+    const res = await fetch(`${BASE_URL}/api/v1/user_orders/${userId}`, {
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',

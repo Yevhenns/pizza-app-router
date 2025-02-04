@@ -13,7 +13,7 @@ export const sendOrder = createAsyncThunk<
   }
 >('basket/sendOrder', async (order, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/send_email`, {
+    const res = await fetch(`${BASE_URL}/api/v1/send_email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

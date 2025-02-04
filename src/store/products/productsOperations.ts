@@ -4,7 +4,7 @@ const BASE_URL =
     : process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getProducts = async () => {
-  const response = await fetch(`${BASE_URL}/api/prodducts`, {
+  const response = await fetch(`${BASE_URL}/api/v1/prodducts`, {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export const getProducts = async () => {
 };
 
 export const getSupplements = async () => {
-  const response = await fetch(`${BASE_URL}/api/supplements`, {
+  const response = await fetch(`${BASE_URL}/api/v1/supplements`, {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export const getSupplements = async () => {
 export const deleteProductById = async (productId: string, userId: string) => {
   try {
     const res = await fetch(
-      `${BASE_URL}/api/products/${productId}?userId=${userId}`,
+      `${BASE_URL}/api/v1/products/${productId}?userId=${userId}`,
       {
         method: 'DELETE',
         cache: 'no-store',
@@ -61,7 +61,7 @@ export const deleteSupplementById = async (
 ) => {
   try {
     const res = await fetch(
-      `${BASE_URL}/api/supplements/${supplementId}?userId=${userId}`,
+      `${BASE_URL}/api/v1/supplements/${supplementId}?userId=${userId}`,
       {
         method: 'DELETE',
         cache: 'no-store',
@@ -88,14 +88,17 @@ export const deleteSupplementById = async (
 
 export const createProduct = async (body: ProductDto, userId: string) => {
   try {
-    const response = await fetch(`${BASE_URL}/api/products/?userId=${userId}`, {
-      method: 'POST',
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(
+      `${BASE_URL}/api/v1/products/?userId=${userId}`,
+      {
+        method: 'POST',
+        cache: 'no-store',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Помилка ${response.status}: ${await response.text()}`);
@@ -115,7 +118,7 @@ export const updateProduct = async (
 ) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/products/${productId}?userId=${userId}`,
+      `${BASE_URL}/api/v1/products/${productId}?userId=${userId}`,
       {
         method: 'PATCH',
         cache: 'no-store',
@@ -144,7 +147,7 @@ export const updateSupplement = async (
 ) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/supplements/${supplementId}?userId=${userId}`,
+      `${BASE_URL}/api/v1/supplements/${supplementId}?userId=${userId}`,
       {
         method: 'PATCH',
         cache: 'no-store',
@@ -169,7 +172,7 @@ export const updateSupplement = async (
 export const createSupplement = async (body: SupplementDto, userId: string) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/supplements/?userId=${userId}`,
+      `${BASE_URL}/api/v1/supplements/?userId=${userId}`,
       {
         method: 'POST',
         cache: 'no-store',

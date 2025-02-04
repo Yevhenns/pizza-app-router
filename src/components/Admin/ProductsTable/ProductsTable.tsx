@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import Image from 'next/image';
@@ -18,19 +19,25 @@ type ProductsTableProps = {
 };
 
 export function ProductsTable({ products }: ProductsTableProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const user = useAppSelector(getUserInfo);
 
   const router = useRouter();
 
   const deleteProduct = async (id: string) => {
+    setIsLoading(true);
     try {
       if (id && user && user.sub) {
         await deleteProductById(id, user.sub);
         toast.success('Видалено');
         router.refresh();
+        setIsLoading(false);
       }
     } catch (e) {
       console.log(e);
+      toast.error('Сталася помилка');
+      setIsLoading(false);
     }
   };
 

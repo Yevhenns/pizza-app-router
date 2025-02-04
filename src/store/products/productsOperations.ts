@@ -137,6 +137,35 @@ export const updateProduct = async (
   }
 };
 
+export const updateSupplement = async (
+  supplementId: string,
+  body: SupplementDto,
+  userId: string
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/supplements/${supplementId}?userId=${userId}`,
+      {
+        method: 'PATCH',
+        cache: 'no-store',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
+    }
+
+    return response.status;
+  } catch (error: any) {
+    console.error('Помилка:', error);
+    throw error;
+  }
+};
+
 export const createSupplement = async (body: SupplementDto, userId: string) => {
   try {
     const res = await fetch(`${BASE_URL}/api/supplements/?userId=${userId}`, {

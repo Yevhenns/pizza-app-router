@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -10,12 +11,13 @@ import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import {
   createSupplement,
-  deleteSupplementById,
+  updateSupplement,
 } from '@/store/products/productsOperations';
 
 import { Button } from '@/components/shared/Button';
 import { Checkbox } from '@/components/shared/Checkbox';
 import { Input } from '@/components/shared/Input';
+import { LoaderModal } from '@/components/shared/LoaderModal';
 
 import css from './SupplementForm.module.scss';
 
@@ -24,6 +26,8 @@ type SupplementFormProps = {
 };
 
 export function SupplementForm({ supplements }: SupplementFormProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { _id: supplementId } = useParams<{ _id: string }>();
   const router = useRouter();
   useHideAdmin();
@@ -55,31 +59,38 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
   const userId = user?.sub;
 
   const onSubmit: SubmitHandler<SupplementDto> = data => {
-    console.log(data);
     if (!supplementId && user && userId) {
+      setIsLoading(true);
       createSupplement(data, userId)
         .then(() => {
           toast.success('Товар додано');
           router.refresh();
+          router.push('/admin');
         })
         .catch(error => {
           console.log(error);
           toast.error('Сталася помилка');
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
     if (supplementId && user && userId) {
-      createSupplement(data, userId)
+      setIsLoading(true);
+      updateSupplement(supplementId, data, userId)
         .then(() => {
           toast.success('Товар оновлено');
-          deleteSupplementById(supplementId, userId);
           router.refresh();
+          router.push('/admin');
         })
         .catch(error => {
           console.log(error);
           toast.error('Сталася помилка');
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
-    router.push('/admin');
   };
 
   const categories = ['Піца', 'Закуски'];
@@ -89,6 +100,7 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+      {isLoading && <LoaderModal />}
       <Input
         {...register('title', {
           required: "Це обов'язкове поле!",

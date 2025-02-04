@@ -5,7 +5,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 import { CldUploadWidget } from 'next-cloudinary';
-import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';

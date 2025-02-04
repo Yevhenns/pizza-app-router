@@ -5,7 +5,7 @@ import { getProducts } from './productsOperations';
 
 const initialState = {
   productsAll: [] as Product[],
-  favoriteProducts: [] as Product[],
+  favoriteProducts: [''],
   error: null as any,
   isLoading: false,
 };
@@ -15,7 +15,7 @@ export const productsSlice = createAppSlice({
   initialState,
   reducers: create => ({
     addToFavoriteAction: create.reducer(
-      (state, action: PayloadAction<Product>) => {
+      (state, action: PayloadAction<string>) => {
         state.favoriteProducts = [...state.favoriteProducts, action.payload];
       }
     ),
@@ -23,15 +23,15 @@ export const productsSlice = createAppSlice({
     removeFromFavoriteAction: create.reducer(
       (state, action: PayloadAction<string>) => {
         state.favoriteProducts = state.favoriteProducts.filter(
-          item => item._id !== action.payload
+          item => item !== action.payload
         );
       }
     ),
 
     checkFavorites: create.reducer(
       (state, action: PayloadAction<Product[]>) => {
-        state.favoriteProducts = state.favoriteProducts.filter(({ _id: id1 }) =>
-          action.payload.some(({ _id: id2 }) => id1 === id2)
+        state.favoriteProducts = state.favoriteProducts.filter(item =>
+          action.payload.some(({ _id: id2 }) => item === id2)
         );
       }
     ),

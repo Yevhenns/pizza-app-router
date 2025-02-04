@@ -7,16 +7,23 @@ import { FavoriteList } from '@/components/ProductsList';
 import { Empty } from '@/components/shared/Empty';
 
 type FavoriteProps = {
+  products: Product[];
   supplements: Supplement[];
 };
 
-export default function Favorite({ supplements }: FavoriteProps) {
-  const favoriteProducts = useAppSelector(getFavorites);
+export default function Favorite({ products, supplements }: FavoriteProps) {
+  const favoriteProductsId = useAppSelector(getFavorites);
+  const favoriteProducts = products.filter(product =>
+    favoriteProductsId.includes(product._id)
+  );
 
   return (
     <>
       {favoriteProducts.length > 0 ? (
-        <FavoriteList supplements={supplements} />
+        <FavoriteList
+          favoriteProducts={favoriteProducts}
+          supplements={supplements}
+        />
       ) : (
         <Empty text={'В улюбленому нічого немає!'} />
       )}

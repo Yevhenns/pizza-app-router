@@ -28,7 +28,7 @@ export function ProductDescription({
 
   const { _id, photo, title, description, dimension, promotion } = item;
 
-  const favoriteProducts = useAppSelector(getFavorites);
+  const favoriteProductsId = useAppSelector(getFavorites);
 
   const dispatch = useAppDispatch();
 
@@ -42,7 +42,7 @@ export function ProductDescription({
         hideProgressBar: true,
       });
     } else {
-      dispatch(addToFavoriteAction(item));
+      dispatch(addToFavoriteAction(_id));
       toast.success('Додано в улюблені', {
         position: 'top-center',
         autoClose: 1500,
@@ -53,12 +53,12 @@ export function ProductDescription({
 
   useEffect(() => {
     const checkIsFavoriteProducts = () => {
-      return favoriteProducts.some(
-        favoriteProduct => favoriteProduct._id === _id
+      return favoriteProductsId.some(
+        favoriteProductId => favoriteProductId === _id
       );
     };
     setIsFavorite(checkIsFavoriteProducts);
-  }, [_id, favoriteProducts]);
+  }, [_id, favoriteProductsId]);
 
   return (
     <div className={css.descriprionWrapper}>

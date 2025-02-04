@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 
-import { getSupplements } from '@/store/products/productsOperations';
+import {
+  getProducts,
+  getSupplements,
+} from '@/store/products/productsOperations';
 
 import Favorite from '@/components/Favorite/Favorite';
 
@@ -9,7 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default async function FavoritePage() {
+  const products = await getProducts();
   const supplements = await getSupplements();
 
-  return <Favorite supplements={supplements} />;
+  return <Favorite products={products} supplements={supplements} />;
 }

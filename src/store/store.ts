@@ -20,7 +20,7 @@ const cartPersistConfig = {
 };
 
 const favoritePersistConfig = {
-  key: 'favoriteProducts',
+  key: 'favoriteProducts-v1',
   storage,
   whitelist: ['favoriteProducts'],
 };

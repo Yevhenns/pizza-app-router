@@ -1,19 +1,18 @@
-import { useAppSelector } from '@/store/hooks';
-import { getFavorites } from '@/store/products/productsSlice';
-
 import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
 
 type FavoriteListProps = {
+  favoriteProducts: Product[];
   supplements: Supplement[];
 };
 
-export function FavoriteList({ supplements }: FavoriteListProps) {
-  const data = useAppSelector(getFavorites);
-
+export function FavoriteList({
+  favoriteProducts,
+  supplements,
+}: FavoriteListProps) {
   return (
     <div className={css.list}>
-      {data.map(item => {
+      {favoriteProducts.map(item => {
         return (
           <ProductListItem
             key={item._id}

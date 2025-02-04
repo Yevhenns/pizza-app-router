@@ -88,7 +88,7 @@ export const deleteSupplementById = async (
 
 export const createProduct = async (body: ProductDto, userId: string) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/products/?userId=${userId}`, {
+    const response = await fetch(`${BASE_URL}/api/products/?userId=${userId}`, {
       method: 'POST',
       cache: 'no-store',
       headers: {
@@ -96,7 +96,12 @@ export const createProduct = async (body: ProductDto, userId: string) => {
       },
       body: JSON.stringify(body),
     });
-    return res.status;
+
+    if (!response.ok) {
+      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
+    }
+
+    return response.status;
   } catch (error: any) {
     console.error('Помилка:', error);
     throw error;

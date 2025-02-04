@@ -76,14 +76,19 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
 
   const onSubmit: SubmitHandler<ProductDto> = data => {
     if (!productId && user && userId) {
+      setIsLoading(true);
       createProduct(data, userId)
         .then(() => {
           toast.success('Товар додано');
           router.refresh();
+          router.push('/admin');
         })
         .catch(error => {
           console.log(error);
           toast.error('Сталася помилка');
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
     if (productId && user && userId) {
@@ -99,7 +104,6 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
           toast.error('Сталася помилка');
         })
         .finally(() => {
-          console.log('ok');
           setIsLoading(false);
         });
     }

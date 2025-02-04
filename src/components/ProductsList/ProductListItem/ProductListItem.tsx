@@ -62,6 +62,8 @@ export function ProductListItem({
   };
 
   const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
+    if (preview) return;
+
     const checked = e.target.checked;
 
     const optionData = supplements.find(item => item.title === e.target.value);

@@ -7,12 +7,12 @@ import { sendOrder } from './cartOperations';
 interface QuantityAndPrice {
   cart_id: string;
   quantity: number;
-  totalPrice: number;
 }
 
 const initialState = {
-  filteredBasket: [] as CartItem[],
+  filteredBasket: [] as CartItem1[],
   customerInfo: {} as OrderSubmit,
+  cartItems: [] as CartItem2[],
   orderSum: 0,
   error: null as any,
   isLoading: false,
@@ -22,7 +22,10 @@ export const cartSlice = createAppSlice({
   name: 'basket',
   initialState,
   reducers: create => ({
-    addItem: create.reducer((state, action: PayloadAction<AddtoCartItem>) => {
+    addCartItem: create.reducer((state, action: PayloadAction<CartItem2[]>) => {
+      state.cartItems = action.payload;
+    }),
+    addItem: create.reducer((state, action: PayloadAction<AddtoCartItem1>) => {
       function areOptionsEqual(
         options1: string[],
         options2: string[]
@@ -41,14 +44,13 @@ export const cartSlice = createAppSlice({
       const existingItemIndex = state.filteredBasket.findIndex(
         item =>
           item._id === action.payload._id &&
-          areOptionsEqual(item.optionsTitles, action.payload.optionsTitles)
+          areOptionsEqual(item.optionsId, action.payload.optionsId)
       );
 
       if (existingItemIndex !== -1) {
         state.filteredBasket[existingItemIndex].quantity +=
           action.payload.quantity;
-        state.filteredBasket[existingItemIndex].totalPrice +=
-          action.payload.totalPrice;
+        state.cartItems;
       } else {
         const newCartItem = {
           ...action.payload,
@@ -60,7 +62,10 @@ export const cartSlice = createAppSlice({
 
     deleteItem: create.reducer((state, action: PayloadAction<string>) => {
       state.filteredBasket = state.filteredBasket.filter(
-        (item: CartItem) => item.cart_id !== action.payload
+        item => item.cart_id !== action.payload
+      );
+      state.cartItems = state.cartItems.filter(
+        item => item.cart_id !== action.payload
       );
     }),
 
@@ -76,6 +81,7 @@ export const cartSlice = createAppSlice({
 
     deleteAllItems: create.reducer(state => {
       state.filteredBasket = [];
+      state.cartItems = [];
       state.customerInfo = {} as OrderSubmit;
     }),
 
@@ -90,8 +96,6 @@ export const cartSlice = createAppSlice({
         );
         state.filteredBasket[existingItemIndex].quantity =
           action.payload.quantity;
-        state.filteredBasket[existingItemIndex].totalPrice =
-          action.payload.totalPrice;
       }
     ),
   }),
@@ -118,6 +122,7 @@ export const cartSlice = createAppSlice({
         state.error = action.payload;
       }),
   selectors: {
+    getCartItem: basket => basket.cartItems,
     getFilteredCart: basket => basket.filteredBasket,
     getCustomerInfo: basket => basket.customerInfo,
     getOrderSum: basket => basket.orderSum,
@@ -127,6 +132,7 @@ export const cartSlice = createAppSlice({
 });
 
 export const {
+  getCartItem,
   getFilteredCart,
   getCustomerInfo,
   getError,
@@ -135,6 +141,7 @@ export const {
 } = cartSlice.selectors;
 
 export const {
+  addCartItem,
   addItem,
   deleteItem,
   checkCart,

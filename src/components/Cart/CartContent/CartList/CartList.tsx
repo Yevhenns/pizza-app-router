@@ -1,11 +1,6 @@
-import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import {
-  addOrderSum,
-  deleteAllItems,
-  getFilteredCart,
-} from '@/store/cart/cartSlice';
+import { deleteAllItems, getOrderSum } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import { Button } from '@/components/shared/Button';
@@ -13,14 +8,14 @@ import { Button } from '@/components/shared/Button';
 import css from './CartList.module.scss';
 import { CartListItem } from './CartListItem';
 
-type CartListProps = {};
+type CartListProps = {
+  cartProducts: CartItem2[];
+};
 
-export function CartList({}: CartListProps) {
-  const [sum, setSum] = useState(0);
-
-  const filteredCart = useAppSelector(getFilteredCart);
-
+export function CartList({ cartProducts }: CartListProps) {
   const dispatch = useAppDispatch();
+
+  const sum = useAppSelector(getOrderSum);
 
   const deleteAllProducts = () => {
     dispatch(deleteAllItems());
@@ -31,19 +26,10 @@ export function CartList({}: CartListProps) {
     });
   };
 
-  useEffect(() => {
-    const totalSum = filteredCart.reduce(
-      (acc, item) => acc + item.totalPrice,
-      0
-    );
-    setSum(totalSum);
-    dispatch(addOrderSum(sum));
-  }, [dispatch, sum, filteredCart]);
-
   return (
     <div className={css.cartList}>
-      {filteredCart.map(data => {
-        return <CartListItem key={data._id} data={data} />;
+      {cartProducts.map(data => {
+        return <CartListItem key={data.cart_id} data={data} />;
       })}
       <p className={css.totalPayment}>До cплати: {sum} грн</p>
       <Button onClick={deleteAllProducts} type="button">

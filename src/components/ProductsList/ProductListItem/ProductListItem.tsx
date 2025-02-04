@@ -7,7 +7,6 @@ import { useFilterSupplements } from '@/hooks/useFilterSupplements';
 import { addItem } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-// import { options } from '../../../assets/options';
 import { ProductDescription } from './ProductDescription';
 import { ProductFooter } from './ProductFooter';
 import css from './ProductListItem.module.scss';
@@ -42,17 +41,13 @@ export function ProductListItem({
     setTotalPromPrice((promPrice + optionsSum) * quantity);
   };
 
-  const optionsTitles = optionsArray.map(option => option.title);
+  const optionsId = optionsArray.map(option => option._id);
 
   const addToCart = () => {
-    const { photo, title, _id } = item;
     const cartItem = {
-      _id,
-      photo,
-      title,
+      _id: item._id,
       quantity: totalQuantity,
-      optionsTitles,
-      totalPrice: promotion ? totalPromPrice : totalPrice,
+      optionsId,
     };
     dispatch(addItem(cartItem));
     toast.success('Додано до кошика', {

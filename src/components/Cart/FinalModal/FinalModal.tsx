@@ -1,7 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import { createPortal } from 'react-dom';
 
+import { calculateItemPrice } from '@/helpers/calculateItemPrice';
 import {
+  getCartItem,
   getError,
   getFilteredCart,
   getIsLoading,
@@ -20,7 +22,7 @@ type FinalModalProps = {
 };
 
 export function FinalModal({ finalAction }: FinalModalProps) {
-  const filteredCart = useAppSelector(getFilteredCart);
+  const cartProducts = useAppSelector(getCartItem);
   const sum = useAppSelector(getOrderSum);
   const isLoading = useAppSelector(getIsLoading);
   const err = useAppSelector(getError);
@@ -45,15 +47,20 @@ export function FinalModal({ finalAction }: FinalModalProps) {
             </p>
             <p>Інформація про замовлення:</p>
             <ul>
-              {filteredCart.map(
-                ({ _id, title, quantity, totalPrice, optionsTitles }) => {
+              {cartProducts.map(
+                ({ cart_id, title, quantity, price, options }) => {
+                  const itemPrice = calculateItemPrice({
+                    options,
+                    price,
+                    quantity,
+                  });
                   return (
-                    <li key={_id}>
+                    <li key={cart_id}>
                       <p>
-                        {title} - {quantity} шт. - {totalPrice} грн.
+                        {title} - {quantity} шт. - {itemPrice} грн.
                       </p>
-                      {optionsTitles.map(item => {
-                        return <p key={item}>{item}</p>;
+                      {options.map(item => {
+                        return <p key={item._id}>{item.title}</p>;
                       })}
                     </li>
                   );

@@ -1,15 +1,41 @@
-type AddtoCartItem = {
+// type AddtoCartItem = {
+//   _id: string;
+//   photo: string;
+//   quantity: number;
+//   title: string;
+//   totalPrice: number;
+//   optionsTitles: string[];
+// };
+
+// type CartItem = {
+//   cart_id: string;
+// } & AddtoCartItem;
+
+type AddtoCartItem1 = {
   _id: string;
-  photo: string;
   quantity: number;
-  title: string;
-  totalPrice: number;
-  optionsTitles: string[];
+  optionsId: string[];
 };
 
-type CartItem = {
+type CartItem1 = {
   cart_id: string;
-} & AddtoCartItem;
+} & AddtoCartItem1;
+
+type CartItem2 = {
+  cart_id: string;
+  quantity: number;
+  options: Supplement[];
+  _id: string;
+  title: string;
+  // description: string;
+  // dimension: string;
+  price: number;
+  photo: string;
+  // category: string;
+  // promotion: boolean;
+  // promPrice: number;
+  // vegan: boolean;
+};
 
 interface Info {
   address?: {

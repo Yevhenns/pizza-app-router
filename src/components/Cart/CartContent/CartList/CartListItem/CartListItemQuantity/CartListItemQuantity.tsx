@@ -31,11 +31,10 @@ export function CartListItemQuantity({
     setQuantity(quantity - 1);
   };
 
-  const pricePerItem = price / chosenQuantity;
+  const pricePerItem = price / quantity;
 
   useEffect(() => {
-    const totalPrice = quantity * pricePerItem;
-    dispatch(setQuantityAndPrice({ cart_id, quantity, totalPrice }));
+    dispatch(setQuantityAndPrice({ cart_id, quantity }));
   }, [cart_id, dispatch, price, pricePerItem, quantity]);
 
   return (

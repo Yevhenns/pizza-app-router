@@ -2,8 +2,9 @@ import { toast } from 'react-toastify';
 
 import Image from 'next/image';
 
-import { deleteItem } from '@/store/cart/cartSlice';
-import { useAppDispatch } from '@/store/hooks';
+import { calculateItemPrice } from '@/helpers/calculateItemPrice';
+import { deleteItem, getFilteredCart } from '@/store/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import { Icon } from '@/components/shared/Icon';
 import { RoundButton } from '@/components/shared/RoundButton';
@@ -12,11 +13,15 @@ import css from './CartListItem.module.scss';
 import { CartListItemQuantity } from './CartListItemQuantity';
 
 type CartListItemProps = {
-  data: CartItem;
+  data: CartItem2;
 };
 
 export function CartListItem({ data }: CartListItemProps) {
-  const { cart_id, photo, title, quantity, totalPrice, optionsTitles } = data;
+  const { cart_id, photo, title, price, options } = data;
+
+  const filteredCart = useAppSelector(getFilteredCart);
+  const quantity =
+    filteredCart.find(item => item.cart_id === cart_id)?.quantity || 0;
 
   const dispatch = useAppDispatch();
 
@@ -28,6 +33,8 @@ export function CartListItem({ data }: CartListItemProps) {
       hideProgressBar: true,
     });
   };
+
+  const itemPrice = calculateItemPrice({ options, price, quantity });
 
   return (
     <div className={css.wrapper}>
@@ -43,19 +50,19 @@ export function CartListItem({ data }: CartListItemProps) {
         <CartListItemQuantity
           chosenQuantity={quantity}
           cart_id={cart_id}
-          price={totalPrice}
+          price={itemPrice}
         />
-        <p>{totalPrice} грн</p>
+        <p>{itemPrice} грн</p>
         <RoundButton onClick={deleteCartItem}>
           <Icon svg="remove" iconWidth={24} iconHeight={24} color="accent" />
         </RoundButton>
       </div>
-      {optionsTitles.length > 0 && (
+      {options.length > 0 && (
         <div>
           <span>Додаткові опції:</span>
           <ul>
-            {optionsTitles.map(item => {
-              return <li key={item}>{item}</li>;
+            {options.map(item => {
+              return <li key={item._id}>{item.title}</li>;
             })}
           </ul>
         </div>

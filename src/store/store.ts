@@ -14,7 +14,7 @@ const rootPersistConfig = {
 };
 
 const cartPersistConfig = {
-  key: 'filteredBasket',
+  key: 'filteredBasket-v1',
   storage,
   whitelist: ['filteredBasket'],
 };

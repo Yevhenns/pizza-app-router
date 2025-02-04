@@ -17,7 +17,7 @@ export const TextArea = forwardRef<Ref, TextAreaProps>(function TextArea(
     <fieldset className={css.fieldset}>
       <label htmlFor={props.htmlFor}>{label}</label>
       <textarea rows={5} autoComplete="true" ref={ref} {...props} />
-      {error && <span className={css.errorMessage}>{error}</span>}
+      <div>{error && <span>{error}</span>}</div>
     </fieldset>
   );
 });

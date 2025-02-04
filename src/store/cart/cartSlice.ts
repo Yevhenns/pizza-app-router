@@ -94,8 +94,9 @@ export const cartSlice = createAppSlice({
         const existingItemIndex = state.filteredBasket.findIndex(
           item => item.cart_id === action.payload.cart_id
         );
-        state.filteredBasket[existingItemIndex].quantity =
-          action.payload.quantity;
+        if (existingItemIndex)
+          state.filteredBasket[existingItemIndex].quantity =
+            action.payload.quantity;
       }
     ),
   }),

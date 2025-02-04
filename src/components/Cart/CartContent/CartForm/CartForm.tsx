@@ -180,8 +180,8 @@ export function CartForm({ openModal, order }: CartFormProps) {
           label="Коментар"
           htmlFor="comment"
         />
+        <span className={css.requiredFieldsText}>* обов&apos;язкові поля</span>
       </div>
-      <span className={css.requiredFieldsText}>* обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>
         Підтвердити
       </Button>

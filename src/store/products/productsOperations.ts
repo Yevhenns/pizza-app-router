@@ -98,7 +98,37 @@ export const createProduct = async (body: ProductDto, userId: string) => {
     });
     return res.status;
   } catch (error: any) {
-    return error.message;
+    console.error('Помилка:', error);
+    throw error;
+  }
+};
+
+export const updateProduct = async (
+  productId: string,
+  body: ProductDto,
+  userId: string
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/products/${productId}?userId=${userId}`,
+      {
+        method: 'PATCH',
+        cache: 'no-store',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
+    }
+
+    return response.status;
+  } catch (error: any) {
+    console.error('Помилка:', error);
+    throw error;
   }
 };
 
@@ -114,6 +144,7 @@ export const createSupplement = async (body: SupplementDto, userId: string) => {
     });
     return res.status;
   } catch (error: any) {
-    return error.message;
+    console.error('Помилка:', error);
+    throw error;
   }
 };

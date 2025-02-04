@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -12,13 +13,14 @@ import { getUserInfo } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import {
   createProduct,
-  deleteProductById,
+  updateProduct,
 } from '@/store/products/productsOperations';
 
 import { ProductListItem } from '@/components/ProductsList/ProductListItem';
 import { Button } from '@/components/shared/Button';
 import { Checkbox } from '@/components/shared/Checkbox';
 import { Input } from '@/components/shared/Input';
+import { LoaderModal } from '@/components/shared/LoaderModal';
 import { TextArea } from '@/components/shared/TextArea';
 
 import css from './ProductForm.module.scss';
@@ -29,6 +31,8 @@ type ProductFormProps = {
 };
 
 export function ProductForm({ products, supplements }: ProductFormProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { _id: productId } = useParams<{ _id: string }>();
   const router = useRouter();
   useHideAdmin();
@@ -71,7 +75,6 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
   const userId = user?.sub;
 
   const onSubmit: SubmitHandler<ProductDto> = data => {
-    console.log(data);
     if (!productId && user && userId) {
       createProduct(data, userId)
         .then(() => {
@@ -84,19 +87,22 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         });
     }
     if (productId && user && userId) {
-      createProduct(data, userId)
+      setIsLoading(true);
+      updateProduct(productId, data, userId)
         .then(() => {
           toast.success('Товар оновлено');
-          deleteProductById(productId, userId).then(() => {
-            router.refresh();
-          });
+          router.refresh();
+          router.push('/admin');
         })
         .catch(error => {
           console.log(error);
           toast.error('Сталася помилка');
+        })
+        .finally(() => {
+          console.log('ok');
+          setIsLoading(false);
         });
     }
-    router.push('/admin');
   };
 
   const categories = ['Піца', 'Закуски', 'Напої'];
@@ -127,6 +133,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
 
   return (
     <div className={css.formWrapper}>
+      {isLoading && <LoaderModal />}
       <div className={css.cardWrapper}>
         <ProductListItem item={item} supplements={supplements} preview />
       </div>

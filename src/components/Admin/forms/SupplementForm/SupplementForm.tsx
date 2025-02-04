@@ -64,6 +64,8 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
       createSupplement(data, userId)
         .then(() => {
           toast.success('Товар додано');
+          router.push('/admin');
+          router.refresh();
         })
         .catch(error => {
           console.log(error);
@@ -71,8 +73,6 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
         })
         .finally(() => {
           setIsLoading(false);
-          router.push('/admin');
-          router.refresh();
         });
     }
     if (supplementId && user && userId) {
@@ -80,6 +80,8 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
       updateSupplement(supplementId, data, userId)
         .then(() => {
           toast.success('Товар оновлено');
+          router.push('/admin');
+          router.refresh();
         })
         .catch(error => {
           console.log(error);
@@ -87,8 +89,6 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
         })
         .finally(() => {
           setIsLoading(false);
-          router.push('/admin');
-          router.refresh();
         });
     }
   };

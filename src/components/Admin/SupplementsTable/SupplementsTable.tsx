@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import Link from 'next/link';
@@ -8,6 +9,7 @@ import { useAppSelector } from '@/store/hooks';
 import { deleteSupplementById } from '@/store/products/productsOperations';
 
 import { Icon } from '@/components/shared/Icon';
+import { LoaderModal } from '@/components/shared/LoaderModal';
 import { RoundButton } from '@/components/shared/RoundButton';
 
 import css from '../ProductsTable/ProductsTable.module.scss';
@@ -17,11 +19,14 @@ type SupplementsTableProps = {
 };
 
 export function SupplementsTable({ supplements }: SupplementsTableProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const user = useAppSelector(getUserInfo);
 
   const router = useRouter();
 
   const deleteSupplement = async (id: string) => {
+    setIsLoading(true);
     try {
       if (id && user && user.sub) {
         await deleteSupplementById(id, user.sub);
@@ -30,11 +35,14 @@ export function SupplementsTable({ supplements }: SupplementsTableProps) {
       }
     } catch (e) {
       console.log(e);
+      toast.error('Сталася помилка');
     }
+    setIsLoading(false);
   };
 
   return (
     <div className={css.tableWrapper}>
+      {isLoading && <LoaderModal />}
       <h2>Опції</h2>
       <table className={css.table}>
         <thead>

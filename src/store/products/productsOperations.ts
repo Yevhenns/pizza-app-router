@@ -4,7 +4,7 @@ const BASE_URL =
     : process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getProducts = async () => {
-  const response = await fetch(`${BASE_URL}/api/v1/prodducts`, {
+  const response = await fetch(`${BASE_URL}/api/v1/products`, {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',

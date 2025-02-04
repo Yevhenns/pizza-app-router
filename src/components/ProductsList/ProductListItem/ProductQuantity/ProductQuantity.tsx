@@ -13,6 +13,7 @@ type ProductQuantityProps = {
   category: string;
   _id: string;
   filteredSupplements: Supplement[];
+  optionsShown: boolean;
 };
 
 export function ProductQuantity({
@@ -22,6 +23,7 @@ export function ProductQuantity({
   category,
   _id,
   filteredSupplements,
+  optionsShown,
 }: ProductQuantityProps) {
   const [quantity, setQuantity] = useState(1);
 
@@ -59,6 +61,7 @@ export function ProductQuantity({
       {isSupplementsShown && supplements.length > 0 && (
         <div className={css.quantity}>
           <Checkbox
+            checked={optionsShown}
             htmlFor={_id}
             name="options"
             id={_id}

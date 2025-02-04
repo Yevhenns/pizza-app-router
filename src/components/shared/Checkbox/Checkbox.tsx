@@ -8,15 +8,16 @@ type CheckboxProps = {
   label?: string;
   posRight?: boolean;
   type?: 'checkbox' | 'radio';
+  checked?: boolean;
 } & HTMLProps<HTMLInputElement>;
 
 type Ref = HTMLInputElement;
 
 export const Checkbox = forwardRef<Ref, CheckboxProps>(
-  ({ label, posRight = false, type = 'checkbox', ...props }, ref) => {
+  ({ label, posRight = false, checked, type = 'checkbox', ...props }, ref) => {
     return (
       <fieldset className={cn(css.fieldset, posRight && css.right)}>
-        <input type={type} ref={ref} {...props} />
+        <input type={type} checked={checked} ref={ref} {...props} />
         <label htmlFor={props.htmlFor}>{label}</label>
       </fieldset>
     );

@@ -100,6 +100,7 @@ export function ProductListItem({
         supplements={supplements}
         category={category}
         _id={_id}
+        optionsShown={optionsShown}
       />
       {optionsShown && (
         <ProductOptionsList

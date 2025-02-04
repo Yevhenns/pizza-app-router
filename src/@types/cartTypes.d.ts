@@ -1,16 +1,3 @@
-// type AddtoCartItem = {
-//   _id: string;
-//   photo: string;
-//   quantity: number;
-//   title: string;
-//   totalPrice: number;
-//   optionsTitles: string[];
-// };
-
-// type CartItem = {
-//   cart_id: string;
-// } & AddtoCartItem;
-
 type AddtoCartItem1 = {
   _id: string;
   quantity: number;
@@ -27,14 +14,8 @@ type CartItem2 = {
   options: Supplement[];
   _id: string;
   title: string;
-  // description: string;
-  // dimension: string;
   price: number;
   photo: string;
-  // category: string;
-  // promotion: boolean;
-  // promPrice: number;
-  // vegan: boolean;
 };
 
 interface Info {
@@ -61,7 +42,9 @@ interface OrderSubmit {
   userId?: string;
 }
 
-type Ordered = Pick<CartItem, 'title' | 'quantity' | 'optionsTitles'>;
+type Ordered = Pick<CartItem2, 'title' | 'quantity'> & {
+  optionsTitles: string[];
+};
 
 type SummaryOrder = {
   customerInfo: OrderSubmit;

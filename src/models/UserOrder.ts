@@ -6,10 +6,8 @@ const customerInfoSchema = new mongoose.Schema<Info>(
   {
     address: { type: String, required: false },
     comment: { type: String, required: false },
-    delivery: { type: Boolean, required: false },
     name: { type: String, required: true },
     number: { type: String, required: true },
-    userId: { type: String, required: true },
   },
   {
     versionKey: false,
@@ -20,7 +18,7 @@ const orderedSchema = new mongoose.Schema<Ordered>(
   {
     title: { type: String, required: true },
     quantity: { type: Number, required: true },
-    optionsTitles: { type: [String], required: false },
+    optionsTitles: { type: [String], default: [], required: false },
   },
   {
     versionKey: false,

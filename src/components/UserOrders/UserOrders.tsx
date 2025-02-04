@@ -46,12 +46,12 @@ export function UserOrders({ logoutHandler, userInfo }: UserOrdersProps) {
                     <span>{item.title}</span>
                     <span>{item.quantity} шт.</span>
                   </div>
-                  {/* <div className={css.optionsWrapper}>
+                  <div className={css.optionsWrapper}>
                     {item.optionsTitles.length > 0 &&
                       item.optionsTitles.map(opt => (
                         <span key={opt}>{opt}</span>
                       ))}
-                  </div> */}
+                  </div>
                 </li>
               ))}
               <span>Загальна сума: {item.orderSum} грн.</span>

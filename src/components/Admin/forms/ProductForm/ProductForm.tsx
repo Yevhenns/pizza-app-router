@@ -79,8 +79,6 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
       createProduct(data, userId)
         .then(() => {
           toast.success('Товар додано');
-          router.refresh();
-          router.push('/admin');
         })
         .catch(error => {
           console.log(error);
@@ -88,6 +86,8 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         })
         .finally(() => {
           setIsLoading(false);
+          router.push('/admin');
+          router.refresh();
         });
     }
     if (productId && user && userId) {
@@ -95,8 +95,6 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
       updateProduct(productId, data, userId)
         .then(() => {
           toast.success('Товар оновлено');
-          router.refresh();
-          router.push('/admin');
         })
         .catch(error => {
           console.log(error);
@@ -104,6 +102,8 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         })
         .finally(() => {
           setIsLoading(false);
+          router.push('/admin');
+          router.refresh();
         });
     }
   };

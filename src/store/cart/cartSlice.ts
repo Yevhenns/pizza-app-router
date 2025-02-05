@@ -10,9 +10,9 @@ interface QuantityAndPrice {
 }
 
 const initialState = {
-  filteredBasket: [] as CartItem1[],
+  filteredBasket: [] as CartItem[],
   customerInfo: {} as CustomerInfo,
-  cartItems: [] as CartItem2[],
+  cartItems: [] as UpdatedCartItem[],
   orderSum: 0,
   error: null as any,
   isLoading: false,
@@ -22,10 +22,12 @@ export const cartSlice = createAppSlice({
   name: 'basket',
   initialState,
   reducers: create => ({
-    addCartItem: create.reducer((state, action: PayloadAction<CartItem2[]>) => {
-      state.cartItems = action.payload;
-    }),
-    addItem: create.reducer((state, action: PayloadAction<AddtoCartItem1>) => {
+    addCartItem: create.reducer(
+      (state, action: PayloadAction<UpdatedCartItem[]>) => {
+        state.cartItems = action.payload;
+      }
+    ),
+    addItem: create.reducer((state, action: PayloadAction<CartAddItem>) => {
       function areOptionsEqual(
         options1: string[],
         options2: string[]

@@ -1,18 +1,18 @@
-type AddtoCartItem1 = {
+type CartAddItem = {
   _id: string;
   quantity: number;
   optionsId: string[];
 };
 
-type CartItem1 = {
+type CartItem = {
   cart_id: string;
-} & AddtoCartItem1;
+} & CartAddItem;
 
-type CartItem2 = {
-  cart_id: string;
-  quantity: number;
+type UpdatedCartItem = Pick<CartItem, 'cart_id' | 'quantity' | '_id'> & {
+  // cart_id: string;
+  // quantity: number;
   options: Supplement[];
-  _id: string;
+  // _id: string;
   title: string;
   price: number;
   photo: string;

@@ -54,7 +54,7 @@ export default function Cart({ products, supplements }: CartProps) {
       }
 
       return [];
-    }) as CartItem2[];
+    }) as UpdatedCartItem[];
 
     dispatch(addCartItem(cartProducts));
   }, [dispatch, filteredCart, products, supplements]);

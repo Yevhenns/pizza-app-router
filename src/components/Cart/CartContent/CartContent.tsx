@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 
 import { calculateItemPrice } from '@/helpers/calculateItemPrice';
-import {
-  addOrderSum,
-  getCartItem,
-  getFilteredCart,
-} from '@/store/cart/cartSlice';
+import { addOrderSum, getCartItem } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getIsLoading } from '@/store/products/productsSlice';
 

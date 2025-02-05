@@ -9,7 +9,7 @@ import css from './CartList.module.scss';
 import { CartListItem } from './CartListItem';
 
 type CartListProps = {
-  cartProducts: CartItem2[];
+  cartProducts: UpdatedCartItem[];
 };
 
 export function CartList({ cartProducts }: CartListProps) {

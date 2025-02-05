@@ -13,7 +13,7 @@ import css from './CartListItem.module.scss';
 import { CartListItemQuantity } from './CartListItemQuantity';
 
 type CartListItemProps = {
-  data: CartItem2;
+  data: UpdatedCartItem;
 };
 
 export function CartListItem({ data }: CartListItemProps) {

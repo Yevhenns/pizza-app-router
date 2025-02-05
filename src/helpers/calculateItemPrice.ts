@@ -13,6 +13,11 @@ export function calculateItemPrice({
     return price * quantity;
   }
 
-  const optionsSum = options.reduce((acc, item) => acc + item.price, 0);
+  const optionsSum = options.reduce((acc, item) => {
+    if (item.price != null) {
+      acc += item.price;
+    }
+    return acc;
+  }, 0);
   return (price + optionsSum) * quantity;
 }

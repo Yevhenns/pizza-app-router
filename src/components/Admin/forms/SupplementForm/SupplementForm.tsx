@@ -63,13 +63,21 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
       setIsLoading(true);
       createSupplement(data, userId)
         .then(() => {
-          toast.success('Товар додано');
+          toast.success('Товар додано', {
+            position: 'top-center',
+            autoClose: 1500,
+            hideProgressBar: true,
+          });
           router.push('/admin');
           router.refresh();
         })
         .catch(error => {
           console.log(error);
-          toast.error('Сталася помилка');
+          toast.error('Сталася помилка', {
+            position: 'top-center',
+            autoClose: 1500,
+            hideProgressBar: true,
+          });
         })
         .finally(() => {
           setIsLoading(false);
@@ -79,13 +87,21 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
       setIsLoading(true);
       updateSupplement(supplementId, data, userId)
         .then(() => {
-          toast.success('Товар оновлено');
+          toast.success('Товар оновлено', {
+            position: 'top-center',
+            autoClose: 1500,
+            hideProgressBar: true,
+          });
           router.push('/admin');
           router.refresh();
         })
         .catch(error => {
           console.log(error);
-          toast.error('Сталася помилка');
+          toast.error('Сталася помилка', {
+            position: 'top-center',
+            autoClose: 1500,
+            hideProgressBar: true,
+          });
         })
         .finally(() => {
           setIsLoading(false);

@@ -31,12 +31,20 @@ export function ProductsTable({ products }: ProductsTableProps) {
     try {
       if (id && user && user.sub) {
         await deleteProductById(id, user.sub);
-        toast.success('Видалено');
+        toast.success('Видалено', {
+          position: 'top-center',
+          autoClose: 1500,
+          hideProgressBar: true,
+        });
         router.refresh();
       }
     } catch (e) {
       console.log(e);
-      toast.error('Сталася помилка');
+      toast.error('Сталася помилка', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
     }
     setIsLoading(false);
   };

@@ -11,7 +11,7 @@ interface QuantityAndPrice {
 
 const initialState = {
   filteredBasket: [] as CartItem1[],
-  customerInfo: {} as OrderSubmit,
+  customerInfo: {} as CustomerInfo,
   cartItems: [] as CartItem2[],
   orderSum: 0,
   error: null as any,
@@ -75,14 +75,14 @@ export const cartSlice = createAppSlice({
       );
     }),
 
-    addInfo: create.reducer((state, action: PayloadAction<OrderSubmit>) => {
+    addInfo: create.reducer((state, action: PayloadAction<CustomerInfo>) => {
       state.customerInfo = action.payload;
     }),
 
     deleteAllItems: create.reducer(state => {
       state.filteredBasket = [];
       state.cartItems = [];
-      state.customerInfo = {} as OrderSubmit;
+      state.customerInfo = {} as CustomerInfo;
     }),
 
     addOrderSum: create.reducer((state, action: PayloadAction<number>) => {

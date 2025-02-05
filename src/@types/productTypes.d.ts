@@ -34,7 +34,7 @@ type SupplementDto = Omit<Supplement, '_id' | 'price'> & {
 
 type UserOrders = {
   _id: string;
-  customerInfo: Info;
+  customerInfo: CustomerInfoWithGps;
   order: ({ _id: string } & Ordered)[];
   orderSum: number;
   createdAt: string;

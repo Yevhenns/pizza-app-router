@@ -18,7 +18,7 @@ type CartItem2 = {
   photo: string;
 };
 
-interface Info {
+interface CustomerInfoWithGps {
   address?: {
     formatted: string;
     lat: number;
@@ -33,21 +33,16 @@ interface Info {
   userId?: string;
 }
 
-interface OrderSubmit {
+type CustomerInfo = Omit<CustomerInfoWithGps, 'address'> & {
   address?: string;
-  comment?: string;
-  delivery?: boolean;
-  name: string;
-  number: string;
-  userId?: string;
-}
+};
 
 type Ordered = Pick<CartItem2, 'title' | 'quantity'> & {
   optionsTitles: string[];
 };
 
 type SummaryOrder = {
-  customerInfo: OrderSubmit;
+  customerInfo: CustomerInfo;
   order: Ordered[];
   orderSum: number;
 };

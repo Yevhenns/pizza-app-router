@@ -28,7 +28,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
     watch,
     setValue,
     control,
-  } = useForm<Info>({ mode: 'onChange' });
+  } = useForm<CustomerInfoWithGps>({ mode: 'onChange' });
 
   const orderSum = useAppSelector(getOrderSum);
   const userId = useAppSelector(getUserInfo)?.sub;
@@ -39,14 +39,14 @@ export function CartForm({ openModal, order }: CartFormProps) {
     replacement: { _: /\d/ },
   });
 
-  const onSubmit: SubmitHandler<Info> = ({
+  const onSubmit: SubmitHandler<CustomerInfoWithGps> = ({
     address,
     comment,
     name,
     number,
   }) => {
     openModal();
-    const customerInfo: OrderSubmit = {
+    const customerInfo: CustomerInfo = {
       address: address?.formatted,
       comment,
       name,

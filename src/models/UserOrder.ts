@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export interface UserOrder extends mongoose.Document, SummaryOrder {}
 
-const customerInfoSchema = new mongoose.Schema<Info>(
+const customerInfoSchema = new mongoose.Schema<CustomerInfo>(
   {
     address: { type: String, required: false },
     comment: { type: String, required: false },

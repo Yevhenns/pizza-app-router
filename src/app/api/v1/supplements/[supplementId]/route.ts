@@ -63,7 +63,7 @@ export async function PATCH(
   request: Request,
   { params }: { params: { supplementId: string } }
 ) {
-  const body: ProductDto = await request.json();
+  const body: SupplementCreateDto = await request.json();
   const ADMIN_ID = process.env.ADMIN_ID;
   const { supplementId } = params;
   const url = new URL(request.url);

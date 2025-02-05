@@ -19,7 +19,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const body: SupplementDto = await request.json();
+    const body: SupplementCreateDto = await request.json();
     const ADMIN_ID = process.env.ADMIN_ID;
     const url = new URL(request.url);
     const userId = url.searchParams.get('userId');

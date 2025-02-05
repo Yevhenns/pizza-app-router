@@ -1,97 +1,79 @@
 const BASE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
+    ? 'http://localhost:3000/api/v1'
     : process.env.NEXT_PUBLIC_BASE_URL;
 
-export const getProducts = async () => {
-  const response = await fetch(`${BASE_URL}/api/v1/products`, {
+// get items
+export const fetchData = async <T>(endpoint: string): Promise<T> => {
+  const response = await fetch(`${BASE_URL}/${endpoint}`, {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  const result: { data: Product[] } = await response.json();
 
+  const result: { data: T } = await response.json();
   return result.data;
+};
+
+export const getProducts = async () => {
+  return fetchData<Product[]>('products');
 };
 
 export const getSupplements = async () => {
-  const response = await fetch(`${BASE_URL}/api/v1/supplements`, {
-    cache: 'no-store',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const result: { data: Supplement[] } = await response.json();
-
-  return result.data;
+  return fetchData<Supplement[]>('supplements');
 };
 
-export const deleteProductById = async (productId: string, userId: string) => {
+// post item
+const addItem = async <T, B extends object>(
+  endpoint: string,
+  body: B,
+  userId: string
+): Promise<T> => {
   try {
-    const res = await fetch(
-      `${BASE_URL}/api/v1/products/${productId}?userId=${userId}`,
-      {
-        method: 'DELETE',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const response = await fetch(`${BASE_URL}/${endpoint}/?userId=${userId}`, {
+      method: 'POST',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
 
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.log('Помилка на сервері:', errorData);
-      throw new Error(errorData.error || 'Не вдалося видалити товар');
+    if (!response.ok) {
+      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
     }
 
-    const data = await res.json();
-    console.log('Видалений товар:', data);
-    return data;
-  } catch (error) {
-    console.log('Помилка при видаленні товару:', error);
+    return response.status as T;
+  } catch (error: any) {
+    console.error('Помилка:', error);
     throw error;
   }
 };
 
-export const deleteSupplementById = async (
-  supplementId: string,
+export const createProduct = async (body: ProductCreateDto, userId: string) => {
+  return addItem('products', body, userId);
+};
+
+export const createSupplement = async (
+  body: SupplementCreateDto,
   userId: string
 ) => {
-  try {
-    const res = await fetch(
-      `${BASE_URL}/api/v1/supplements/${supplementId}?userId=${userId}`,
-      {
-        method: 'DELETE',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    if (!res.ok) {
-      const errorData = await res.json();
-      console.log('Помилка на сервері:', errorData);
-      throw new Error(errorData.error || 'Не вдалося видалити товар');
-    }
-
-    const data = await res.json();
-    console.log('Видалений товар:', data);
-    return data;
-  } catch (error) {
-    console.log('Помилка при видаленні товару:', error);
-    throw error;
-  }
+  return addItem('supplements', body, userId);
 };
 
-export const createProduct = async (body: ProductDto, userId: string) => {
+// patch item
+const patchItem = async <T extends object>(
+  endpoint: string,
+  id: string,
+  body: T,
+  userId: string
+): Promise<number> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/api/v1/products/?userId=${userId}`,
+      `${BASE_URL}/${endpoint}/${id}?userId=${userId}`,
       {
-        method: 'POST',
+        method: 'PATCH',
         cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
@@ -111,85 +93,46 @@ export const createProduct = async (body: ProductDto, userId: string) => {
   }
 };
 
-export const updateProduct = async (
+export const updateProduct = (
   productId: string,
-  body: ProductDto,
+  body: ProductCreateDto,
   userId: string
-) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/api/v1/products/${productId}?userId=${userId}`,
-      {
-        method: 'PATCH',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      }
-    );
+) => patchItem('products', productId, body, userId);
 
-    if (!response.ok) {
-      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
-    }
-
-    return response.status;
-  } catch (error: any) {
-    console.error('Помилка:', error);
-    throw error;
-  }
-};
-
-export const updateSupplement = async (
+export const updateSupplement = (
   supplementId: string,
-  body: SupplementDto,
+  body: SupplementCreateDto,
   userId: string
-) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/api/v1/supplements/${supplementId}?userId=${userId}`,
-      {
-        method: 'PATCH',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      }
-    );
+) => patchItem('supplements', supplementId, body, userId);
 
-    if (!response.ok) {
-      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
+// delete item
+const deleteItem = async (endpoint: string, id: string, userId: string) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${endpoint}/${id}?userId=${userId}`, {
+      method: 'DELETE',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.log('Помилка на сервері:', errorData);
+      throw new Error(errorData.error || `Не вдалося видалити ${endpoint}`);
     }
 
-    return response.status;
-  } catch (error: any) {
-    console.error('Помилка:', error);
+    const data = await res.json();
+    console.log(`Видалений елемент з ${endpoint}:`, data);
+    return data;
+  } catch (error) {
+    console.log(`Помилка при видаленні з ${endpoint}:`, error);
     throw error;
   }
 };
 
-export const createSupplement = async (body: SupplementDto, userId: string) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/api/v1/supplements/?userId=${userId}`,
-      {
-        method: 'POST',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      }
-    );
+export const deleteProductById = (productId: string, userId: string) =>
+  deleteItem('products', productId, userId);
 
-    if (!response.ok) {
-      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
-    }
-
-    return response.status;
-  } catch (error: any) {
-    console.error('Помилка:', error);
-    throw error;
-  }
-};
+export const deleteSupplementById = (supplementId: string, userId: string) =>
+  deleteItem('supplements', supplementId, userId);

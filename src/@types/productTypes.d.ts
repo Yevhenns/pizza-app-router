@@ -3,34 +3,25 @@ type Product = {
   title: string;
   description: string;
   dimension: string;
-  price: number;
+  price: null | number;
   photo: string;
   category: string;
   promotion: boolean;
-  promPrice: number;
+  promPrice: null | number;
   vegan: boolean;
 };
 
-type ProductSchema = Omit<Product, '_id'>;
-
-type ProductDto = Omit<ProductSchema, 'price' | 'promPrice'> & {
-  price: number | null;
-  promPrice: number | null;
-};
+type ProductCreateDto = Omit<Product, '_id'>;
 
 type Supplement = {
   _id: string;
-  price: number;
+  price: number | null;
   title: string;
   vegan: boolean;
   for_category: 'Піца' | 'Закуски';
 };
 
-type SupplementSchema = Omit<Supplement, '_id'>;
-
-type SupplementDto = Omit<Supplement, '_id' | 'price'> & {
-  price: number | null;
-};
+type SupplementCreateDto = Omit<Supplement, '_id'>;
 
 type UserOrders = {
   _id: string;

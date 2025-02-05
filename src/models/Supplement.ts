@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface SupplementDocument extends SupplementSchema, Document {}
+interface SupplementDocument extends SupplementCreateDto, Document {}
 
 const supplementSchema = new Schema<SupplementDocument>(
   {

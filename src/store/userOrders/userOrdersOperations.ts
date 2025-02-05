@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
+    ? 'http://localhost:3000/api/v1'
     : process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getUserProducts = createAsyncThunk<
@@ -13,7 +13,7 @@ export const getUserProducts = createAsyncThunk<
   }
 >('userProducts/getUserProductsAll', async (userId, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${BASE_URL}/api/v1/user_orders/${userId}`, {
+    const res = await fetch(`${BASE_URL}/user_orders/${userId}`, {
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',

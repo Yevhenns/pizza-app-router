@@ -6,8 +6,8 @@ import css from './ProductFooter.module.scss';
 type ProductFooterProps = {
   addToCart: () => void;
   promotion: boolean;
-  totalPrice: number;
-  totalPromPrice: number;
+  totalPrice: number | null;
+  totalPromPrice: number | null;
   preview: boolean;
 };
 

@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface ProductDocument extends ProductSchema, Document {}
+interface ProductDocument extends ProductCreateDto, Document {}
 
 const productSchema = new Schema<ProductDocument>(
   {

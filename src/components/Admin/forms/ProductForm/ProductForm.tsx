@@ -38,7 +38,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
 
   const product = products?.find(item => item._id === productId);
 
-  const defaultValues: ProductDto = product
+  const defaultValues: ProductCreateDto = product
     ? {
         title: product.title,
         category: product.category,
@@ -68,12 +68,15 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
     watch,
     setValue,
     formState: { errors, isValid },
-  } = useForm<ProductDto>({ mode: 'onChange', defaultValues });
+  } = useForm<ProductCreateDto>({
+    mode: 'onChange',
+    defaultValues,
+  });
 
   const user = useAppSelector(getUserInfo);
   const userId = user?.sub;
 
-  const onSubmit: SubmitHandler<ProductDto> = data => {
+  const onSubmit: SubmitHandler<ProductCreateDto> = data => {
     if (!productId && user && userId) {
       setIsLoading(true);
       createProduct(data, userId)

@@ -34,7 +34,7 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
 
   const supplement = supplements?.find(item => item._id === supplementId);
 
-  const defaultValues: SupplementDto = supplement
+  const defaultValues: SupplementCreateDto = supplement
     ? {
         title: supplement.title,
         price: supplement.price,
@@ -53,12 +53,12 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
     handleSubmit,
     watch,
     formState: { errors, isValid },
-  } = useForm<SupplementDto>({ mode: 'onChange', defaultValues });
+  } = useForm<SupplementCreateDto>({ mode: 'onChange', defaultValues });
 
   const user = useAppSelector(getUserInfo);
   const userId = user?.sub;
 
-  const onSubmit: SubmitHandler<SupplementDto> = data => {
+  const onSubmit: SubmitHandler<SupplementCreateDto> = data => {
     if (!supplementId && user && userId) {
       setIsLoading(true);
       createSupplement(data, userId)

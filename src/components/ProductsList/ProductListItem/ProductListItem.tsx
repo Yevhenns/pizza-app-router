@@ -37,8 +37,8 @@ export function ProductListItem({
 
   const getTotalQuantity = (quantity: number) => {
     setTotalQuantity(quantity);
-    setTotalPrice((price + optionsSum) * quantity);
-    setTotalPromPrice((promPrice + optionsSum) * quantity);
+    price && setTotalPrice((price + optionsSum) * quantity);
+    promPrice && setTotalPromPrice((promPrice + optionsSum) * quantity);
   };
 
   const optionsId = optionsArray.map(option => option._id);

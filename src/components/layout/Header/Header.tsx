@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/helpers/combineClasses';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { getUserInfo } from '@/store/auth/authSlice';
-import { getFilteredCart } from '@/store/cart/cartSlice';
+import { getCartItems } from '@/store/cart/cartSlice';
 import { useAppSelector } from '@/store/hooks';
 import { getFavorites } from '@/store/products/productsSlice';
 
@@ -22,7 +22,7 @@ import { Navigation } from './Navigation';
 export function Header() {
   const pathname = usePathname();
 
-  const cartLength = useAppSelector(getFilteredCart).length;
+  const cartLength = useAppSelector(getCartItems).length;
   const favoriteLength = useAppSelector(getFavorites).length;
   const userInfo = useAppSelector(getUserInfo);
 

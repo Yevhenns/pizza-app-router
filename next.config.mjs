@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+import withPWA from 'next-pwa';
+
 const nextConfig = {
   env: {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
@@ -33,4 +35,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const nextConfigWithPWA = withPWA({
+  dest: 'public',
+})(nextConfig);
+
+export default nextConfigWithPWA;

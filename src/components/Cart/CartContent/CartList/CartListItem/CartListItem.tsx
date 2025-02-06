@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 
 import { calculateItemPrice } from '@/helpers/calculateItemPrice';
-import { deleteItem, getFilteredCart } from '@/store/cart/cartSlice';
+import { deleteItem, getCartItems } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 import { Icon } from '@/components/shared/Icon';
@@ -19,7 +19,7 @@ type CartListItemProps = {
 export function CartListItem({ data }: CartListItemProps) {
   const { cart_id, photo, title, price, options } = data;
 
-  const filteredCart = useAppSelector(getFilteredCart);
+  const filteredCart = useAppSelector(getCartItems);
   const quantity =
     filteredCart.find(item => item.cart_id === cart_id)?.quantity || 0;
 

@@ -27,6 +27,7 @@ export const roboto_mono = Comfortaa({
 });
 
 export const metadata: Metadata = {
+  manifest: './manifest.ts',
   description:
     'Піца в місті Дніпро: Nostra-Pizza – швидка доставка смачної піци в Дніпрі.',
   openGraph: {

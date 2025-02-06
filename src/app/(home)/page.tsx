@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <>
-      <PushNotificationManager />
+      {/* <PushNotificationManager /> */}
       <InstallPrompt />
       <CarouselComponent />
       <h1>Новинки</h1>

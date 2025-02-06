@@ -1,6 +1,6 @@
 ## Description
 
-Full-stack app with Google auth for ordering food and receiving order via email. The user can view the order history.
+Full-stack PWA app with Google auth for ordering food and receiving order via email. The user can view the order history.
 
 ## Installation
 

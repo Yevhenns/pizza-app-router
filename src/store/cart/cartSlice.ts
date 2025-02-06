@@ -10,7 +10,7 @@ interface QuantityAndPrice {
 }
 
 const initialState = {
-  filteredBasket: [] as CartItem[],
+  cartItems: [] as CartItem[],
   updatedCartItems: [] as UpdatedCartItem[],
   customerInfo: {} as CustomerInfo,
   orderSum: 0,
@@ -43,27 +43,26 @@ export const cartSlice = createAppSlice({
         );
       }
 
-      const existingItemIndex = state.filteredBasket.findIndex(
+      const existingItemIndex = state.cartItems.findIndex(
         item =>
           item._id === action.payload._id &&
           areOptionsEqual(item.optionsId, action.payload.optionsId)
       );
 
       if (existingItemIndex !== -1) {
-        state.filteredBasket[existingItemIndex].quantity +=
-          action.payload.quantity;
+        state.cartItems[existingItemIndex].quantity += action.payload.quantity;
         state.updatedCartItems;
       } else {
         const newCartItem = {
           ...action.payload,
           cart_id: uuidv4(),
         };
-        state.filteredBasket = [...state.filteredBasket, newCartItem];
+        state.cartItems = [...state.cartItems, newCartItem];
       }
     }),
 
     deleteItem: create.reducer((state, action: PayloadAction<string>) => {
-      state.filteredBasket = state.filteredBasket.filter(
+      state.cartItems = state.cartItems.filter(
         item => item.cart_id !== action.payload
       );
       state.updatedCartItems = state.updatedCartItems.filter(
@@ -72,7 +71,7 @@ export const cartSlice = createAppSlice({
     }),
 
     checkCart: create.reducer((state, action: PayloadAction<Product[]>) => {
-      state.filteredBasket = state.filteredBasket.filter(({ _id: id1 }) =>
+      state.cartItems = state.cartItems.filter(({ _id: id1 }) =>
         action.payload.some(({ _id: id2 }) => id1 === id2)
       );
     }),
@@ -82,7 +81,7 @@ export const cartSlice = createAppSlice({
     }),
 
     deleteAllItems: create.reducer(state => {
-      state.filteredBasket = [];
+      state.cartItems = [];
       state.updatedCartItems = [];
       state.customerInfo = {} as CustomerInfo;
     }),
@@ -93,12 +92,11 @@ export const cartSlice = createAppSlice({
 
     setQuantityAndPrice: create.reducer(
       (state, action: PayloadAction<QuantityAndPrice>) => {
-        const existingItemIndex = state.filteredBasket.findIndex(
+        const existingItemIndex = state.cartItems.findIndex(
           item => item.cart_id === action.payload.cart_id
         );
         if (existingItemIndex)
-          state.filteredBasket[existingItemIndex].quantity =
-            action.payload.quantity;
+          state.cartItems[existingItemIndex].quantity = action.payload.quantity;
       }
     ),
   }),
@@ -126,7 +124,7 @@ export const cartSlice = createAppSlice({
       }),
   selectors: {
     getUpdatedCartItems: basket => basket.updatedCartItems,
-    getFilteredCart: basket => basket.filteredBasket,
+    getCartItems: basket => basket.cartItems,
     getCustomerInfo: basket => basket.customerInfo,
     getOrderSum: basket => basket.orderSum,
     getIsLoading: basket => basket.isLoading,
@@ -136,7 +134,7 @@ export const cartSlice = createAppSlice({
 
 export const {
   getUpdatedCartItems,
-  getFilteredCart,
+  getCartItems,
   getCustomerInfo,
   getError,
   getIsLoading,

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import {
   addCartItem,
   deleteAllItems,
-  getFilteredCart,
+  getCartItems,
 } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
@@ -22,7 +22,7 @@ type CartProps = {
 export default function Cart({ products, supplements }: CartProps) {
   const [open, setOpen] = useState(false);
 
-  const filteredCart = useAppSelector(getFilteredCart);
+  const filteredCart = useAppSelector(getCartItems);
 
   const dispatch = useAppDispatch();
 

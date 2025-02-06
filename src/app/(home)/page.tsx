@@ -5,8 +5,6 @@ import { ProductsList } from '@/components/ProductsList';
 import { QRCode } from '@/components/QRCode';
 import { Weather } from '@/components/Weather';
 
-import { InstallPrompt } from '../InstallPrompt';
-import { PushNotificationManager } from '../PushNotificationManager';
 import css from './page.module.scss';
 
 export const metadata: Metadata = {
@@ -16,8 +14,6 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <>
-      {/* <PushNotificationManager /> */}
-      <InstallPrompt />
       <CarouselComponent />
       <h1>Новинки</h1>
       <h2 className={css.heading}>Акційні пропозиції</h2>

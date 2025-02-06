@@ -11,8 +11,8 @@ interface QuantityAndPrice {
 
 const initialState = {
   filteredBasket: [] as CartItem[],
+  updatedCartItems: [] as UpdatedCartItem[],
   customerInfo: {} as CustomerInfo,
-  cartItems: [] as UpdatedCartItem[],
   orderSum: 0,
   error: null as any,
   isLoading: false,
@@ -24,7 +24,7 @@ export const cartSlice = createAppSlice({
   reducers: create => ({
     addCartItem: create.reducer(
       (state, action: PayloadAction<UpdatedCartItem[]>) => {
-        state.cartItems = action.payload;
+        state.updatedCartItems = action.payload;
       }
     ),
     addItem: create.reducer((state, action: PayloadAction<CartAddItem>) => {
@@ -52,7 +52,7 @@ export const cartSlice = createAppSlice({
       if (existingItemIndex !== -1) {
         state.filteredBasket[existingItemIndex].quantity +=
           action.payload.quantity;
-        state.cartItems;
+        state.updatedCartItems;
       } else {
         const newCartItem = {
           ...action.payload,
@@ -66,7 +66,7 @@ export const cartSlice = createAppSlice({
       state.filteredBasket = state.filteredBasket.filter(
         item => item.cart_id !== action.payload
       );
-      state.cartItems = state.cartItems.filter(
+      state.updatedCartItems = state.updatedCartItems.filter(
         item => item.cart_id !== action.payload
       );
     }),
@@ -83,7 +83,7 @@ export const cartSlice = createAppSlice({
 
     deleteAllItems: create.reducer(state => {
       state.filteredBasket = [];
-      state.cartItems = [];
+      state.updatedCartItems = [];
       state.customerInfo = {} as CustomerInfo;
     }),
 
@@ -125,7 +125,7 @@ export const cartSlice = createAppSlice({
         state.error = action.payload;
       }),
   selectors: {
-    getCartItem: basket => basket.cartItems,
+    getUpdatedCartItems: basket => basket.updatedCartItems,
     getFilteredCart: basket => basket.filteredBasket,
     getCustomerInfo: basket => basket.customerInfo,
     getOrderSum: basket => basket.orderSum,
@@ -135,7 +135,7 @@ export const cartSlice = createAppSlice({
 });
 
 export const {
-  getCartItem,
+  getUpdatedCartItems,
   getFilteredCart,
   getCustomerInfo,
   getError,

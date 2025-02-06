@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { calculateItemPrice } from '@/helpers/calculateItemPrice';
-import { addOrderSum, getCartItem } from '@/store/cart/cartSlice';
+import { addOrderSum, getUpdatedCartItems } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getIsLoading } from '@/store/products/productsSlice';
 
@@ -19,11 +19,11 @@ type CartContentProps = {
 export function CartContent({ openModal }: CartContentProps) {
   const isLoading = useAppSelector(getIsLoading);
 
-  const cartProducts = useAppSelector(getCartItem);
+  const updatedCartItems = useAppSelector(getUpdatedCartItems);
 
   const dispatch = useAppDispatch();
 
-  const order = cartProducts.map(({ title, quantity, options }) => {
+  const order = updatedCartItems.map(({ title, quantity, options }) => {
     return {
       title,
       quantity,
@@ -32,25 +32,25 @@ export function CartContent({ openModal }: CartContentProps) {
   });
 
   useEffect(() => {
-    const totalSum = cartProducts.reduce(
+    const totalSum = updatedCartItems.reduce(
       (acc, { options, price, quantity }) =>
         acc + calculateItemPrice({ options, price, quantity }),
       0
     );
     dispatch(addOrderSum(totalSum));
-  }, [cartProducts, dispatch]);
+  }, [updatedCartItems, dispatch]);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  if (cartProducts.length === 0 && !isLoading) {
+  if (updatedCartItems.length === 0 && !isLoading) {
     return <Empty text={'Кошик порожній!'} />;
   }
 
   return (
     <div className={css.layout}>
-      <CartList cartProducts={cartProducts} />
+      <CartList updatedCartItems={updatedCartItems} />
       <CartForm openModal={openModal} order={order} />
     </div>
   );

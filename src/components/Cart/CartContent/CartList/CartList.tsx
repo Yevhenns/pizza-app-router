@@ -9,10 +9,10 @@ import css from './CartList.module.scss';
 import { CartListItem } from './CartListItem';
 
 type CartListProps = {
-  cartProducts: UpdatedCartItem[];
+  updatedCartItems: UpdatedCartItem[];
 };
 
-export function CartList({ cartProducts }: CartListProps) {
+export function CartList({ updatedCartItems }: CartListProps) {
   const dispatch = useAppDispatch();
 
   const sum = useAppSelector(getOrderSum);
@@ -28,7 +28,7 @@ export function CartList({ cartProducts }: CartListProps) {
 
   return (
     <div className={css.cartList}>
-      {cartProducts.map(data => {
+      {updatedCartItems.map(data => {
         return <CartListItem key={data.cart_id} data={data} />;
       })}
       <p className={css.totalPayment}>До cплати: {sum} грн</p>

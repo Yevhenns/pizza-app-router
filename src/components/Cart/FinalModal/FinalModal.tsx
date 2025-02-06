@@ -3,11 +3,10 @@ import { createPortal } from 'react-dom';
 
 import { calculateItemPrice } from '@/helpers/calculateItemPrice';
 import {
-  getCartItem,
   getError,
-  getFilteredCart,
   getIsLoading,
   getOrderSum,
+  getUpdatedCartItems,
 } from '@/store/cart/cartSlice';
 import { useAppSelector } from '@/store/hooks';
 
@@ -22,7 +21,7 @@ type FinalModalProps = {
 };
 
 export function FinalModal({ finalAction }: FinalModalProps) {
-  const cartProducts = useAppSelector(getCartItem);
+  const updatedCartItems = useAppSelector(getUpdatedCartItems);
   const sum = useAppSelector(getOrderSum);
   const isLoading = useAppSelector(getIsLoading);
   const err = useAppSelector(getError);
@@ -47,7 +46,7 @@ export function FinalModal({ finalAction }: FinalModalProps) {
             </p>
             <p>Інформація про замовлення:</p>
             <ul>
-              {cartProducts.map(
+              {updatedCartItems.map(
                 ({ cart_id, title, quantity, price, options }) => {
                   const itemPrice = calculateItemPrice({
                     options,

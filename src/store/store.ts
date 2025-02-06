@@ -14,9 +14,9 @@ const rootPersistConfig = {
 };
 
 const cartPersistConfig = {
-  key: 'filteredBasket-v1',
+  key: 'cartItems-v1',
   storage,
-  whitelist: ['filteredBasket'],
+  whitelist: ['cartItems'],
 };
 
 const favoritePersistConfig = {

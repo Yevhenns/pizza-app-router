@@ -40,6 +40,7 @@ export function ProductDescription({
         position: 'top-center',
         autoClose: 1500,
         hideProgressBar: true,
+        closeButton: false,
       });
     } else {
       dispatch(addToFavoriteAction(_id));
@@ -47,6 +48,7 @@ export function ProductDescription({
         position: 'top-center',
         autoClose: 1500,
         hideProgressBar: true,
+        closeButton: false,
       });
     }
   };

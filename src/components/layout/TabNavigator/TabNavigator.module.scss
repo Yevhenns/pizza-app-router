@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-around;
   width: 100vw;
+  z-index: 2;
 
   @include not-mobile {
     display: none;

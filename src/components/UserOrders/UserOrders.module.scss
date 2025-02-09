@@ -10,6 +10,9 @@
     border: 1px solid var(--accent-color);
     border-radius: 10px;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .heading {

@@ -20,8 +20,8 @@ export default async function Home() {
       <h2 className={css.heading}>Акційні пропозиції</h2>
       <ProductsList category="promotions" />
       <Weather />
-      <Addresses />
       <QRCode />
+      <Addresses />
     </>
   );
 }

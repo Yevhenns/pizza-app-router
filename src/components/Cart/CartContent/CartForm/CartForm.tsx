@@ -63,6 +63,8 @@ export function CartForm({ openModal, order }: CartFormProps) {
   };
 
   const delivery = watch('delivery');
+  const address = watch('address');
+  console.log(address);
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -142,13 +144,15 @@ export function CartForm({ openModal, order }: CartFormProps) {
             }}
             rules={{
               validate: value =>
-                value?.formatted?.trim() ? true : "Це обов'язкове поле!",
+                value && value?.formatted?.trim().length > 0
+                  ? true
+                  : 'Введіть адресу',
             }}
             render={({ field }) => (
               <GoogleMapsInput
                 id="address"
                 placeholder="Введіть адресу"
-                label="* Введіть адресу"
+                label="* Введіть адресу і оберіть зі"
                 htmlFor="address"
                 error={errors?.address?.message}
                 onPlaceSelect={place => {

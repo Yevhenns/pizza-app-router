@@ -152,7 +152,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
               <GoogleMapsInput
                 id="address"
                 placeholder="Введіть адресу"
-                label="* Введіть адресу і оберіть зі"
+                label="* Введіть адресу і оберіть зі списку"
                 htmlFor="address"
                 error={errors?.address?.message}
                 onPlaceSelect={place => {

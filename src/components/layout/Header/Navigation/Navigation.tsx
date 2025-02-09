@@ -18,7 +18,7 @@ export function Navigation() {
         )}
         href={'/'}
       >
-        Новинки
+        Головна
       </Link>
       <Link
         className={cn(css.link, pathname === '/pizzas' && css.active)}

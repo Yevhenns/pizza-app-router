@@ -1,4 +1,3 @@
-import { Addresses } from '@/components/Addresses';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { TabNavigator } from '@/components/layout/TabNavigator';
@@ -19,7 +18,6 @@ export default function SSRLayout({
         <Section>
           <Container>{children}</Container>
         </Section>
-        <Addresses />
         <TabNavigator />
       </main>
       <Footer />

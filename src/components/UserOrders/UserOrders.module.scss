@@ -1,3 +1,13 @@
+.loadingWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  span {
+    font-family: var(--secondary-font);
+  }
+}
+
 .userInfoWrapper {
   display: flex;
   flex-direction: column;

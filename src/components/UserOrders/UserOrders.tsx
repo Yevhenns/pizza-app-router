@@ -21,7 +21,7 @@ export function UserOrders({ logoutHandler, userInfo }: UserOrdersProps) {
 
   if (isLoading) {
     return (
-      <div className={css.userInfoWrapper}>
+      <div className={css.loadingWrapper}>
         <Loader />
         <span>Будь ласка зачекайте</span>
       </div>

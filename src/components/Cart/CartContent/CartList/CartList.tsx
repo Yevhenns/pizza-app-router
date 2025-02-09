@@ -23,6 +23,7 @@ export function CartList({ updatedCartItems }: CartListProps) {
       position: 'top-center',
       autoClose: 1500,
       hideProgressBar: true,
+      closeButton: false,
     });
   };
 

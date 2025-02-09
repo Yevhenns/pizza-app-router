@@ -8,6 +8,7 @@ const customerInfoSchema = new mongoose.Schema<CustomerInfo>(
     comment: { type: String, required: false },
     name: { type: String, required: true },
     number: { type: String, required: true },
+    userId: { type: String, required: false },
   },
   {
     versionKey: false,

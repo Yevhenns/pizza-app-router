@@ -54,6 +54,7 @@ export function ProductListItem({
       position: 'top-center',
       autoClose: 1500,
       hideProgressBar: true,
+      closeButton: false,
     });
   };
 

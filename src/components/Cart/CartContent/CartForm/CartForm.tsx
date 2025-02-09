@@ -34,13 +34,15 @@ export function CartForm({ openModal, order }: CartFormProps) {
   const customerInfo = useAppSelector(getCustomerInfo);
   const orderSum = useAppSelector(getOrderSum);
   const userId = useAppSelector(getUserInfo)?.sub;
+
   const dispatch = useAppDispatch();
-  console.log(customerInfo);
 
   const phoneInputRef = useMask({
     mask: '+38(___) ___-__-__',
     replacement: { _: /\d/ },
   });
+
+  const phoneNumberLength = 18;
 
   const onSubmit: SubmitHandler<CustomerInfoWithGps> = ({
     address,
@@ -80,6 +82,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
                 field.onChange(e);
                 dispatch(addInfo({ ...customerInfo, name: e.target.value }));
               }}
+              maxLength={50}
               placeholder="Введіть ім'я"
               id="customer-name"
               label="* Ім'я"
@@ -95,6 +98,11 @@ export function CartForm({ openModal, order }: CartFormProps) {
           name="number"
           control={control}
           defaultValue={customerInfo.number || ''}
+          rules={{
+            required: "Це обов'язкове поле!",
+            validate: value =>
+              value.length === phoneNumberLength || 'Введіть номер телефону',
+          }}
           render={({ field }) => (
             <Input
               {...field}
@@ -111,10 +119,6 @@ export function CartForm({ openModal, order }: CartFormProps) {
               error={errors?.number?.message}
             />
           )}
-          rules={{
-            required: false,
-            validate: value => value.length === 18 || 'Введіть номер телефону',
-          }}
         />
         <Checkbox
           {...register('delivery')}
@@ -123,6 +127,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
           label="Доставка"
         />
       </div>
+
       <div>
         {delivery && (
           <Controller
@@ -186,15 +191,18 @@ export function CartForm({ openModal, order }: CartFormProps) {
             )}
           />
         )}
+
         <TextArea
           {...register('comment')}
           id="comment"
+          maxLength={200}
           placeholder="Введіть коментар"
           label="Коментар"
           htmlFor="comment"
         />
         <span className={css.requiredFieldsText}>* обов&apos;язкові поля</span>
       </div>
+
       <Button type="submit" disabled={!isValid}>
         Підтвердити
       </Button>

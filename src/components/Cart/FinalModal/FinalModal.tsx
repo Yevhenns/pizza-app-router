@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { createPortal } from 'react-dom';
 
+import Link from 'next/link';
+
 import { calculateItemPrice } from '@/helpers/calculateItemPrice';
 import {
   getError,
@@ -67,9 +69,11 @@ export function FinalModal({ finalAction }: FinalModalProps) {
               )}
             </ul>
             <p>Загальна сума: {sum} грн.</p>
-            <Button type="button" onClick={finalAction}>
-              Вийти
-            </Button>
+            <Link href={'/'}>
+              <Button type="button" onClick={finalAction}>
+                Вийти
+              </Button>
+            </Link>
           </>
         </div>
       )}

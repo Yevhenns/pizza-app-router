@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { Addresses } from '@/components/Addresses';
 import { CarouselComponent } from '@/components/CarouselComponent';
 import { ProductsList } from '@/components/ProductsList';
-// import { QRCode } from '@/components/QRCode';
+import { QRCode } from '@/components/QRCode';
 import { Weather } from '@/components/Weather';
 
 import css from './page.module.scss';
@@ -21,7 +21,7 @@ export default async function Home() {
       <ProductsList category="promotions" />
       <Weather />
       <Addresses />
-      {/* <QRCode /> */}
+      <QRCode />
     </>
   );
 }

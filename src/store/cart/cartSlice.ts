@@ -83,7 +83,6 @@ export const cartSlice = createAppSlice({
     deleteAllItems: create.reducer(state => {
       state.cartItems = [];
       state.updatedCartItems = [];
-      state.customerInfo = {} as CustomerInfo;
     }),
 
     addOrderSum: create.reducer((state, action: PayloadAction<number>) => {

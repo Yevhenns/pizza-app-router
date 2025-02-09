@@ -1,9 +1,10 @@
 import { HTMLProps } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
+import { formatPhoneNumber } from '@/helpers/formatPhoneNumber';
 import { getUserInfo } from '@/store/auth/authSlice';
 import { sendOrder } from '@/store/cart/cartOperations';
-import { addInfo, getOrderSum } from '@/store/cart/cartSlice';
+import { addInfo, getCustomerInfo, getOrderSum } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useMask } from '@react-input/mask';
 
@@ -30,12 +31,14 @@ export function CartForm({ openModal, order }: CartFormProps) {
     control,
   } = useForm<CustomerInfoWithGps>({ mode: 'onChange' });
 
+  const customerInfo = useAppSelector(getCustomerInfo);
   const orderSum = useAppSelector(getOrderSum);
   const userId = useAppSelector(getUserInfo)?.sub;
   const dispatch = useAppDispatch();
+  console.log(customerInfo);
 
   const phoneInputRef = useMask({
-    mask: '+38(___)___-__-__',
+    mask: '+38(___) ___-__-__',
     replacement: { _: /\d/ },
   });
 
@@ -50,10 +53,9 @@ export function CartForm({ openModal, order }: CartFormProps) {
       address: address?.formatted,
       comment,
       name,
-      number,
+      number: formatPhoneNumber(number),
       userId,
     };
-    dispatch(addInfo(customerInfo));
     const reqBody: SummaryOrder = { customerInfo, order, orderSum };
     dispatch(sendOrder(reqBody));
   };
@@ -63,29 +65,43 @@ export function CartForm({ openModal, order }: CartFormProps) {
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <Input
-          {...register('name', {
+        <Controller
+          name="name"
+          control={control}
+          defaultValue={customerInfo.name || ''}
+          rules={{
             required: "Це обов'язкове поле!",
-            validate: {
-              required: value => value.trim().length > 1 || "Введіть ім'я",
-            },
-          })}
-          placeholder="Введіть ім'я"
-          id="customer-name"
-          label="* Ім'я"
-          htmlFor="customer-name"
-          error={errors?.name?.message}
-          inputMode="text"
-          type="text"
+            validate: value => value.trim().length > 1 || "Введіть ім'я",
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                field.onChange(e);
+                dispatch(addInfo({ ...customerInfo, name: e.target.value }));
+              }}
+              placeholder="Введіть ім'я"
+              id="customer-name"
+              label="* Ім'я"
+              htmlFor="customer-name"
+              error={errors?.name?.message}
+              inputMode="text"
+              type="text"
+            />
+          )}
         />
 
         <Controller
           name="number"
           control={control}
-          defaultValue=""
+          defaultValue={customerInfo.number || ''}
           render={({ field }) => (
             <Input
               {...field}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                field.onChange(e);
+                dispatch(addInfo({ ...customerInfo, number: e.target.value }));
+              }}
               ref={phoneInputRef}
               placeholder="099 999 99 99"
               id="number"
@@ -97,10 +113,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
           )}
           rules={{
             required: false,
-            validate: value =>
-              value.length === 0 ||
-              value.length === 17 ||
-              'Введіть номер телефону',
+            validate: value => value.length === 18 || 'Введіть номер телефону',
           }}
         />
         <Checkbox

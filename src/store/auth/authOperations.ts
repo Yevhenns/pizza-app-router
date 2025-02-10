@@ -3,7 +3,7 @@ const BASE_URL =
     ? 'http://localhost:3000/api/v1'
     : process.env.NEXT_PUBLIC_BASE_URL;
 
-export const googleSignIn = async (body: string): Promise<any> => {
+export const googleSignIn = async (body: string): Promise<UserResponse> => {
   try {
     const response = await fetch(`${BASE_URL}/auth/google-sign_in`, {
       method: 'POST',
@@ -18,9 +18,9 @@ export const googleSignIn = async (body: string): Promise<any> => {
       throw new Error(`Помилка ${response.status}: ${await response.text()}`);
     }
 
-    console.log(response);
+    const data = await response.json();
 
-    return response;
+    return data;
   } catch (error: any) {
     console.error('Помилка:', error);
     throw error;

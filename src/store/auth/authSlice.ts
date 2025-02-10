@@ -1,11 +1,10 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { CustomJwtPayload } from '@/components/Login';
-
 import { createAppSlice } from '../createAppSlice';
 
 const initialState = {
-  userInfo: null as null | CustomJwtPayload,
+  userInfo: null as null | User,
+  token: null as null | string,
   error: null as any,
   isLoading: false,
 };
@@ -15,8 +14,9 @@ export const authSlice = createAppSlice({
   initialState,
   reducers: create => ({
     addUserInfo: create.reducer(
-      (state, action: PayloadAction<CustomJwtPayload>) => {
-        state.userInfo = action.payload;
+      (state, action: PayloadAction<UserResponse>) => {
+        state.userInfo = action.payload.user;
+        state.token = action.payload.token;
       }
     ),
 

@@ -21,3 +21,8 @@ type UserOrders = {
 };
 
 type UserOrdersSchema = Omit<UserOrders, '_id'>;
+
+type UserResponse = {
+  token: string;
+  user: User;
+};

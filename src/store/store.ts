@@ -26,7 +26,7 @@ const favoritePersistConfig = {
 };
 
 const authPersistConfig = {
-  key: 'auth',
+  key: 'auth-v1',
   storage,
 };
 

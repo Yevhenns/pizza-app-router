@@ -8,16 +8,10 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getUserProducts } from '@/store/userOrders/userOrdersOperations';
 import { setUserId } from '@/store/userOrders/userOrdersSlice';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
-import { JwtPayload, jwtDecode } from 'jwt-decode';
 
 import { UserOrders } from '@/components/UserOrders';
 
 import css from './Login.module.scss';
-
-export interface CustomJwtPayload extends JwtPayload {
-  name: string;
-  picture: string;
-}
 
 export default function Login() {
   const userInfo = useAppSelector(getUserInfo);
@@ -32,19 +26,19 @@ export default function Login() {
 
   const sendGoogleToken = async (token: string) => {
     try {
-      const response = googleSignIn(token);
-      console.log(response);
+      const response = await googleSignIn(token);
+      dispatch(addUserInfo(response));
     } catch (e) {
       console.log(e);
     }
   };
 
   useEffect(() => {
-    if (userInfo?.sub) {
-      dispatch(setUserId(userInfo?.sub));
-      dispatch(getUserProducts(userInfo?.sub));
+    if (userInfo?._id) {
+      dispatch(setUserId(userInfo._id));
+      // dispatch(getUserProducts(userInfo?.sub));
     }
-  }, [dispatch, userInfo?.sub]);
+  }, [dispatch, userInfo?._id]);
 
   return (
     <div className={css.layout}>
@@ -52,16 +46,7 @@ export default function Login() {
         <GoogleLogin
           onSuccess={credentialResponse => {
             if (credentialResponse.credential) {
-              const decoded: CustomJwtPayload = jwtDecode(
-                credentialResponse.credential
-              );
-
               sendGoogleToken(credentialResponse.credential);
-
-              // console.log('decoded', decoded);
-              // console.log('credentialResponse', credentialResponse);
-
-              dispatch(addUserInfo(decoded));
             }
           }}
           onError={() => {

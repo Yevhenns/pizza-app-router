@@ -64,8 +64,9 @@ export async function POST(request: Request) {
 
     const user = await createUser(payload);
 
-    const userId = { userId: user._id };
-    const token = jwt.sign(userId, jwtSecret, { expiresIn: '7d' });
+    const userInfo = { userId: user._id, role: user.role };
+
+    const token = jwt.sign(userInfo, jwtSecret, { expiresIn: '7d' });
 
     return NextResponse.json({ message: 'Token received', token, user });
   } catch (e) {

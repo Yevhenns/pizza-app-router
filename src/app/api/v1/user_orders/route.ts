@@ -19,8 +19,6 @@ export async function GET(request: Request) {
   try {
     const decoded = jwt.verify(token, jwtSecret) as JwtPayload;
 
-    console.log(decoded);
-
     if (!decoded.userId) {
       return new Response(
         JSON.stringify({ error: 'Невірний токен або доступ заборонено' }),

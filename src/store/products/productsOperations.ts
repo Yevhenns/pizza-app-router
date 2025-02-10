@@ -27,11 +27,10 @@ export const getSupplements = async () => {
 // post item
 const addItem = async <T, B extends object>(
   endpoint: string,
-  body: B,
-  userId: string
+  body: B
 ): Promise<T> => {
   try {
-    const response = await fetch(`${BASE_URL}/${endpoint}/?userId=${userId}`, {
+    const response = await fetch(`${BASE_URL}/${endpoint}`, {
       method: 'POST',
       cache: 'no-store',
       headers: {
@@ -51,36 +50,29 @@ const addItem = async <T, B extends object>(
   }
 };
 
-export const createProduct = async (body: ProductCreateDto, userId: string) => {
-  return addItem('products', body, userId);
+export const createProduct = async (body: ProductCreateDto) => {
+  return addItem('products', body);
 };
 
-export const createSupplement = async (
-  body: SupplementCreateDto,
-  userId: string
-) => {
-  return addItem('supplements', body, userId);
+export const createSupplement = async (body: SupplementCreateDto) => {
+  return addItem('supplements', body);
 };
 
 // patch item
 const patchItem = async <T extends object>(
   endpoint: string,
   id: string,
-  body: T,
-  userId: string
+  body: T
 ): Promise<number> => {
   try {
-    const response = await fetch(
-      `${BASE_URL}/${endpoint}/${id}?userId=${userId}`,
-      {
-        method: 'PATCH',
-        cache: 'no-store',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
+      method: 'PATCH',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
 
     if (!response.ok) {
       throw new Error(`Помилка ${response.status}: ${await response.text()}`);
@@ -93,22 +85,18 @@ const patchItem = async <T extends object>(
   }
 };
 
-export const updateProduct = (
-  productId: string,
-  body: ProductCreateDto,
-  userId: string
-) => patchItem('products', productId, body, userId);
+export const updateProduct = (productId: string, body: ProductCreateDto) =>
+  patchItem('products', productId, body);
 
 export const updateSupplement = (
   supplementId: string,
-  body: SupplementCreateDto,
-  userId: string
-) => patchItem('supplements', supplementId, body, userId);
+  body: SupplementCreateDto
+) => patchItem('supplements', supplementId, body);
 
 // delete item
-const deleteItem = async (endpoint: string, id: string, userId: string) => {
+const deleteItem = async (endpoint: string, id: string) => {
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}/${id}?userId=${userId}`, {
+    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: 'DELETE',
       cache: 'no-store',
       headers: {
@@ -131,8 +119,8 @@ const deleteItem = async (endpoint: string, id: string, userId: string) => {
   }
 };
 
-export const deleteProductById = (productId: string, userId: string) =>
-  deleteItem('products', productId, userId);
+export const deleteProductById = (productId: string) =>
+  deleteItem('products', productId);
 
-export const deleteSupplementById = (supplementId: string, userId: string) =>
-  deleteItem('supplements', supplementId, userId);
+export const deleteSupplementById = (supplementId: string) =>
+  deleteItem('supplements', supplementId);

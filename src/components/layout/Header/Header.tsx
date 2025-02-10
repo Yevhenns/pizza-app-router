@@ -28,10 +28,8 @@ export function Header() {
 
   const width = useWindowWidth();
 
-  const ADMIN_ID = process.env.ADMIN_ID;
-
   const isUserAdmin = () => {
-    return userInfo?.sub === ADMIN_ID;
+    return userInfo?.role === 'Admin';
   };
 
   return (

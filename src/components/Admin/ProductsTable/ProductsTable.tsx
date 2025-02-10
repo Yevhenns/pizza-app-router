@@ -5,8 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { getUserInfo } from '@/store/auth/authSlice';
-import { useAppSelector } from '@/store/hooks';
 import { deleteProductById } from '@/store/products/productsOperations';
 
 import { Icon } from '@/components/shared/Icon';
@@ -22,22 +20,18 @@ type ProductsTableProps = {
 export function ProductsTable({ products }: ProductsTableProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const user = useAppSelector(getUserInfo);
-
   const router = useRouter();
 
   const deleteProduct = async (id: string) => {
     setIsLoading(true);
     try {
-      if (id && user && user.sub) {
-        await deleteProductById(id, user.sub);
-        toast.success('Видалено', {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: true,
-        });
-        router.refresh();
-      }
+      await deleteProductById(id);
+      toast.success('Видалено', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+      router.refresh();
     } catch (e) {
       console.log(e);
       toast.error('Сталася помилка', {

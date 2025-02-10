@@ -8,8 +8,6 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';
-import { getUserInfo } from '@/store/auth/authSlice';
-import { useAppSelector } from '@/store/hooks';
 import {
   createProduct,
   updateProduct,
@@ -73,13 +71,10 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
     defaultValues,
   });
 
-  const user = useAppSelector(getUserInfo);
-  const userId = user?.sub;
-
   const onSubmit: SubmitHandler<ProductCreateDto> = data => {
-    if (!productId && user && userId) {
+    if (!productId) {
       setIsLoading(true);
-      createProduct(data, userId)
+      createProduct(data)
         .then(() => {
           toast.success('Товар додано', {
             position: 'top-center',
@@ -101,9 +96,9 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
           setIsLoading(false);
         });
     }
-    if (productId && user && userId) {
+    if (productId) {
       setIsLoading(true);
-      updateProduct(productId, data, userId)
+      updateProduct(productId, data)
         .then(() => {
           toast.success('Товар оновлено', {
             position: 'top-center',

@@ -4,8 +4,6 @@ import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import { getUserInfo } from '@/store/auth/authSlice';
-import { useAppSelector } from '@/store/hooks';
 import { deleteSupplementById } from '@/store/products/productsOperations';
 
 import { Icon } from '@/components/shared/Icon';
@@ -21,22 +19,18 @@ type SupplementsTableProps = {
 export function SupplementsTable({ supplements }: SupplementsTableProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const user = useAppSelector(getUserInfo);
-
   const router = useRouter();
 
   const deleteSupplement = async (id: string) => {
     setIsLoading(true);
     try {
-      if (id && user && user.sub) {
-        await deleteSupplementById(id, user.sub);
-        toast.success('Видалено', {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: true,
-        });
-        router.refresh();
-      }
+      await deleteSupplementById(id);
+      toast.success('Видалено', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+      router.refresh();
     } catch (e) {
       console.log(e);
       toast.error('Сталася помилка', {

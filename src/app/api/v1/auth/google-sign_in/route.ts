@@ -62,11 +62,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 400 });
     }
 
-    const user = await createUser(payload);
+    const createdUser = await createUser(payload);
 
-    const userInfo = { userId: user._id, role: user.role };
+    const { _id, picture, name, email, phoneNumber, role } = createdUser;
+
+    const userInfo = { userId: _id, role: role };
 
     const token = jwt.sign(userInfo, jwtSecret, { expiresIn: '7d' });
+
+    const user = {
+      _id,
+      picture,
+      name,
+      email,
+      phoneNumber,
+      role,
+    };
 
     return NextResponse.json({ message: 'Token received', token, user });
   } catch (e) {

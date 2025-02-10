@@ -10,6 +10,12 @@ type User = {
   role: Role;
 };
 
+type UserData = Omit<User, 'password'>;
+
+type UserResponse = {
+  token: string;
+  user: UserData;
+};
 type UserCreateDto = Omit<User, '_id' | 'role'> & { role: 'Visitor' };
 
 type UserOrders = {
@@ -22,7 +28,7 @@ type UserOrders = {
 
 type UserOrdersSchema = Omit<UserOrders, '_id'>;
 
-type UserResponse = {
-  token: string;
-  user: User;
+type Auth = {
+  email: string;
+  password: string;
 };

@@ -26,3 +26,27 @@ export const googleSignIn = async (body: string): Promise<UserResponse> => {
     throw error;
   }
 };
+
+export const signUp = async (body: Auth): Promise<UserResponse> => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/sign_up`, {
+      method: 'POST',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    console.error('Помилка:', error);
+    throw error;
+  }
+};

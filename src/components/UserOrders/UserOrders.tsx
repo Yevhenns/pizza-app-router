@@ -11,7 +11,7 @@ import css from './UserOrders.module.scss';
 
 type UserOrdersProps = {
   logoutHandler: () => void;
-  userInfo: User;
+  userInfo: UserData;
 };
 
 export function UserOrders({ logoutHandler, userInfo }: UserOrdersProps) {

@@ -16,6 +16,7 @@ import { GoogleLogin, googleLogout } from '@react-oauth/google';
 
 import { UserOrders } from '@/components/UserOrders';
 
+import { AuthForm } from './AuthForm';
 import css from './Login.module.scss';
 
 export default function Login() {
@@ -48,16 +49,20 @@ export default function Login() {
   return (
     <div className={css.layout}>
       {!userInfo ? (
-        <GoogleLogin
-          onSuccess={credentialResponse => {
-            if (credentialResponse.credential) {
-              sendGoogleToken(credentialResponse.credential);
-            }
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
+        <div className={css.authWrapper}>
+          {/* <AuthForm />
+          <p>або за допомогою Google</p> */}
+          <GoogleLogin
+            onSuccess={credentialResponse => {
+              if (credentialResponse.credential) {
+                sendGoogleToken(credentialResponse.credential);
+              }
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
+        </div>
       ) : (
         <UserOrders logoutHandler={logoutHandler} userInfo={userInfo} />
       )}

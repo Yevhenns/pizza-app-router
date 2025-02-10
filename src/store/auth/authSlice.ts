@@ -3,7 +3,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createAppSlice } from '../createAppSlice';
 
 const initialState = {
-  userInfo: null as null | User,
+  userInfo: null as null | UserData,
   token: null as null | string,
   error: null as any,
   isLoading: false,

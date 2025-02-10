@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { getUserToken } from '@/store/auth/authSlice';
+import { useAppSelector } from '@/store/hooks';
 import { deleteSupplementById } from '@/store/products/productsOperations';
 
 import { Icon } from '@/components/shared/Icon';
@@ -21,10 +23,12 @@ export function SupplementsTable({ supplements }: SupplementsTableProps) {
 
   const router = useRouter();
 
+  const token = useAppSelector(getUserToken) as string;
+
   const deleteSupplement = async (id: string) => {
     setIsLoading(true);
     try {
-      await deleteSupplementById(id);
+      await deleteSupplementById(id, token);
       toast.success('Видалено', {
         position: 'top-center',
         autoClose: 1500,

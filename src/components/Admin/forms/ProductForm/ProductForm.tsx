@@ -8,6 +8,8 @@ import { CldUploadWidget } from 'next-cloudinary';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';
+import { getUserToken } from '@/store/auth/authSlice';
+import { useAppSelector } from '@/store/hooks';
 import {
   createProduct,
   updateProduct,
@@ -32,6 +34,9 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
 
   const { _id: productId } = useParams<{ _id: string }>();
   const router = useRouter();
+
+  const token = useAppSelector(getUserToken) as string;
+
   useHideAdmin();
 
   const product = products?.find(item => item._id === productId);
@@ -57,7 +62,8 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         promPrice: null,
         price: null,
         vegan: false,
-        photo: '/200.svg',
+        photo:
+          'https://res.cloudinary.com/dyka4vajb/image/upload/v1698576734/hatamagnata/pizzas/oc1fji52ggplw65qc4rh.png',
       };
 
   const {
@@ -74,7 +80,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
   const onSubmit: SubmitHandler<ProductCreateDto> = data => {
     if (!productId) {
       setIsLoading(true);
-      createProduct(data)
+      createProduct(data, token)
         .then(() => {
           toast.success('Товар додано', {
             position: 'top-center',
@@ -98,7 +104,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
     }
     if (productId) {
       setIsLoading(true);
-      updateProduct(productId, data)
+      updateProduct(productId, data, token)
         .then(() => {
           toast.success('Товар оновлено', {
             position: 'top-center',

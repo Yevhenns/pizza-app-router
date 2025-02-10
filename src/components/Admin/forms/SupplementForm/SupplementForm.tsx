@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';
+import { getUserToken } from '@/store/auth/authSlice';
+import { useAppSelector } from '@/store/hooks';
 import {
   createSupplement,
   updateSupplement,
@@ -28,6 +30,9 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
 
   const { _id: supplementId } = useParams<{ _id: string }>();
   const router = useRouter();
+
+  const token = useAppSelector(getUserToken) as string;
+
   useHideAdmin();
 
   const supplement = supplements?.find(item => item._id === supplementId);
@@ -56,7 +61,7 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
   const onSubmit: SubmitHandler<SupplementCreateDto> = data => {
     if (!supplementId) {
       setIsLoading(true);
-      createSupplement(data)
+      createSupplement(data, token)
         .then(() => {
           toast.success('Товар додано', {
             position: 'top-center',
@@ -80,7 +85,7 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
     }
     if (supplementId) {
       setIsLoading(true);
-      updateSupplement(supplementId, data)
+      updateSupplement(supplementId, data, token)
         .then(() => {
           toast.success('Товар оновлено', {
             position: 'top-center',

@@ -27,7 +27,8 @@ export const getSupplements = async () => {
 // post item
 const addItem = async <T, B extends object>(
   endpoint: string,
-  body: B
+  body: B,
+  token: string
 ): Promise<T> => {
   try {
     const response = await fetch(`${BASE_URL}/${endpoint}`, {
@@ -35,6 +36,7 @@ const addItem = async <T, B extends object>(
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -50,19 +52,23 @@ const addItem = async <T, B extends object>(
   }
 };
 
-export const createProduct = async (body: ProductCreateDto) => {
-  return addItem('products', body);
+export const createProduct = async (body: ProductCreateDto, token: string) => {
+  return addItem('products', body, token);
 };
 
-export const createSupplement = async (body: SupplementCreateDto) => {
-  return addItem('supplements', body);
+export const createSupplement = async (
+  body: SupplementCreateDto,
+  token: string
+) => {
+  return addItem('supplements', body, token);
 };
 
 // patch item
 const patchItem = async <T extends object>(
   endpoint: string,
   id: string,
-  body: T
+  body: T,
+  token: string
 ): Promise<number> => {
   try {
     const response = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
@@ -70,6 +76,7 @@ const patchItem = async <T extends object>(
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -85,22 +92,27 @@ const patchItem = async <T extends object>(
   }
 };
 
-export const updateProduct = (productId: string, body: ProductCreateDto) =>
-  patchItem('products', productId, body);
+export const updateProduct = (
+  productId: string,
+  body: ProductCreateDto,
+  token: string
+) => patchItem('products', productId, body, token);
 
 export const updateSupplement = (
   supplementId: string,
-  body: SupplementCreateDto
-) => patchItem('supplements', supplementId, body);
+  body: SupplementCreateDto,
+  token: string
+) => patchItem('supplements', supplementId, body, token);
 
 // delete item
-const deleteItem = async (endpoint: string, id: string) => {
+const deleteItem = async (endpoint: string, id: string, token: string) => {
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: 'DELETE',
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -119,8 +131,8 @@ const deleteItem = async (endpoint: string, id: string) => {
   }
 };
 
-export const deleteProductById = (productId: string) =>
-  deleteItem('products', productId);
+export const deleteProductById = (productId: string, token: string) =>
+  deleteItem('products', productId, token);
 
-export const deleteSupplementById = (supplementId: string) =>
-  deleteItem('supplements', supplementId);
+export const deleteSupplementById = (supplementId: string, token: string) =>
+  deleteItem('supplements', supplementId, token);

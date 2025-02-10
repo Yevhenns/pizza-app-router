@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { getUserToken } from '@/store/auth/authSlice';
+import { useAppSelector } from '@/store/hooks';
 import { deleteProductById } from '@/store/products/productsOperations';
 
 import { Icon } from '@/components/shared/Icon';
@@ -22,10 +24,12 @@ export function ProductsTable({ products }: ProductsTableProps) {
 
   const router = useRouter();
 
+  const token = useAppSelector(getUserToken) as string;
+
   const deleteProduct = async (id: string) => {
     setIsLoading(true);
     try {
-      await deleteProductById(id);
+      await deleteProductById(id, token);
       toast.success('Видалено', {
         position: 'top-center',
         autoClose: 1500,

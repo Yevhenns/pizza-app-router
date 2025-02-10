@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 
+import { googleSignIn } from '@/store/auth/authOperations';
 import { addUserInfo, getUserInfo, logout } from '@/store/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getUserProducts } from '@/store/userOrders/userOrdersOperations';
@@ -29,6 +30,15 @@ export default function Login() {
     googleLogout();
   };
 
+  const sendGoogleToken = async (token: string) => {
+    try {
+      const response = googleSignIn(token);
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     if (userInfo?.sub) {
       dispatch(setUserId(userInfo?.sub));
@@ -45,6 +55,12 @@ export default function Login() {
               const decoded: CustomJwtPayload = jwtDecode(
                 credentialResponse.credential
               );
+
+              sendGoogleToken(credentialResponse.credential);
+
+              // console.log('decoded', decoded);
+              // console.log('credentialResponse', credentialResponse);
+
               dispatch(addUserInfo(decoded));
             }
           }}

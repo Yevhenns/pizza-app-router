@@ -8,6 +8,8 @@ type User = {
   phoneNumber: string;
   password: string;
   role: Role;
+  verify?: boolean;
+  verificationToken?: null | string;
 };
 
 type UserData = Omit<User, 'password'>;

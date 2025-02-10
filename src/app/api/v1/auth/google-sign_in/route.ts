@@ -32,6 +32,8 @@ async function createUser(payload: TokenPayload): Promise<User> {
     phoneNumber: '',
     password: '',
     role: 'Visitor',
+    verify: true,
+    verificationToken: null,
   };
 
   const created = new User(newUser);
@@ -68,7 +70,7 @@ export async function POST(request: Request) {
 
     const userInfo = { userId: _id, role: role };
 
-    const token = jwt.sign(userInfo, jwtSecret, { expiresIn: '7d' });
+    const token = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
 
     const user = {
       _id,

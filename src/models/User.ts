@@ -15,9 +15,12 @@ const userSchema = new Schema<UserDocument>(
     phoneNumber: { type: String, maxlength: 200, required: false },
     email: { type: String, maxlength: 200, required: false },
     password: { type: String, maxlength: 200, required: false },
+    verify: { type: Boolean, default: false },
+    verificationToken: { type: String, default: null },
   },
   {
     versionKey: false,
+    timestamps: true,
   }
 );
 

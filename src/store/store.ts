@@ -33,6 +33,7 @@ const authPersistConfig = {
 const userOrdersPersistConfig = {
   key: 'userOrders-v1',
   storage,
+  whiteList: ['userProductsAll'],
 };
 
 const basketReducer = persistReducer(cartPersistConfig, cartSlice.reducer);

@@ -5,7 +5,7 @@ import { getProducts } from './productsOperations';
 
 const initialState = {
   productsAll: [] as Product[],
-  favoriteProducts: [''],
+  favoriteProducts: [] as string[],
   error: null as any,
   isLoading: false,
 };

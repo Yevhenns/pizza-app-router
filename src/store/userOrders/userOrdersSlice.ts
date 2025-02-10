@@ -1,11 +1,10 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
 import { getUserProducts } from './userOrdersOperations';
 
 const initialState = {
   userProductsAll: [] as UserOrders[],
-  userId: '',
   error: null as any,
   isLoading: false,
 };
@@ -13,11 +12,12 @@ const initialState = {
 export const userOrdersSlice = createSlice({
   name: 'userAllProducts',
   initialState,
-  reducers: {
-    setUserId(state, action: PayloadAction<string>) {
-      state.userId = action.payload;
-    },
-  },
+  reducers: create => ({
+    clearOrderHistory: create.reducer(state => {
+      state.userProductsAll = [];
+    }),
+  }),
+
   extraReducers: builder =>
     builder
       .addCase(getUserProducts.pending, state => {
@@ -32,7 +32,7 @@ export const userOrdersSlice = createSlice({
         }
         if (action.payload) {
           const newArr = action.payload.filter(
-            item => item.customerInfo.userId === state.userId
+            item => item.customerInfo.userId === action.meta.arg
           );
           state.userProductsAll = newArr;
           state.isLoading = false;
@@ -50,4 +50,4 @@ export const getUserProductsAll = (state: RootState) =>
 export const getIsLoading = (state: RootState) => state.userOrders.isLoading;
 export const getError = (state: RootState) => state.userOrders.error;
 
-export const { setUserId } = userOrdersSlice.actions;
+export const { clearOrderHistory } = userOrdersSlice.actions;

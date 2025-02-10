@@ -31,10 +31,7 @@ export const userOrdersSlice = createSlice({
           return;
         }
         if (action.payload) {
-          const newArr = action.payload.filter(
-            item => item.customerInfo.userId === action.meta.arg
-          );
-          state.userProductsAll = newArr;
+          state.userProductsAll = action.payload;
           state.isLoading = false;
         }
       })

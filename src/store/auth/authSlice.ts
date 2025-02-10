@@ -28,11 +28,13 @@ export const authSlice = createAppSlice({
 
   selectors: {
     getUserInfo: auth => auth.userInfo,
+    getUserToken: auth => auth.token,
     getIsLoading: auth => auth.isLoading,
     getError: auth => auth.error,
   },
 });
 
-export const { getUserInfo, getIsLoading, getError } = authSlice.selectors;
+export const { getUserInfo, getIsLoading, getError, getUserToken } =
+  authSlice.selectors;
 
 export const { addUserInfo, logout } = authSlice.actions;

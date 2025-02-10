@@ -11,12 +11,13 @@ export const getUserProducts = createAsyncThunk<
   {
     rejectValue: string;
   }
->('userProducts/getUserProductsAll', async (userId, { rejectWithValue }) => {
+>('userProducts/getUserProductsAll', async (token, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${BASE_URL}/user_orders/${userId}`, {
+    const res = await fetch(`${BASE_URL}/user_orders`, {
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
     });
     const data = await res.json();

@@ -3,7 +3,12 @@
 import { useEffect } from 'react';
 
 import { googleSignIn } from '@/store/auth/authOperations';
-import { addUserInfo, getUserInfo, logout } from '@/store/auth/authSlice';
+import {
+  addUserInfo,
+  getUserInfo,
+  getUserToken,
+  logout,
+} from '@/store/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getUserProducts } from '@/store/userOrders/userOrdersOperations';
 import { clearOrderHistory } from '@/store/userOrders/userOrdersSlice';
@@ -15,6 +20,7 @@ import css from './Login.module.scss';
 
 export default function Login() {
   const userInfo = useAppSelector(getUserInfo);
+  const token = useAppSelector(getUserToken);
 
   const dispatch = useAppDispatch();
 
@@ -34,10 +40,10 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (userInfo?._id) {
-      dispatch(getUserProducts(userInfo?._id));
+    if (userInfo?._id && token) {
+      dispatch(getUserProducts(token));
     }
-  }, [dispatch, userInfo?._id]);
+  }, [dispatch, token, userInfo?._id]);
 
   return (
     <div className={css.layout}>

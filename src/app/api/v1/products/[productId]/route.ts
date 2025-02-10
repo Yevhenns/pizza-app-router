@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/models/Product';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const jwtSecret = process.env.JWT_SECRET as string;
 
@@ -26,7 +26,7 @@ export async function DELETE(
   try {
     const decoded = jwt.verify(token, jwtSecret) as JwtPayloadCustom;
 
-    if (!decoded.userId && decoded.role !== 'Admin') {
+    if (!decoded.userId || decoded.role !== 'Admin') {
       return new Response(
         JSON.stringify({ error: 'Невірний токен або доступ заборонено' }),
         { status: 403, headers: { 'Content-Type': 'application/json' } }
@@ -87,7 +87,7 @@ export async function PATCH(
   try {
     const decoded = jwt.verify(token, jwtSecret) as JwtPayloadCustom;
 
-    if (!decoded.userId && decoded.role !== 'Admin') {
+    if (!decoded.userId || decoded.role !== 'Admin') {
       return new Response(
         JSON.stringify({ error: 'Невірний токен або доступ заборонено' }),
         { status: 403, headers: { 'Content-Type': 'application/json' } }

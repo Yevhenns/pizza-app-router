@@ -2,61 +2,71 @@ import { NextResponse } from 'next/server';
 
 import dbConnect from '@/lib/dbConnect';
 import Supplement from '@/models/Supplement';
+import jwt from 'jsonwebtoken';
+
+const jwtSecret = process.env.JWT_SECRET as string;
 
 export const dynamic = 'force-dynamic';
 
 export async function DELETE(
-  req: Request,
+  request: Request,
   { params }: { params: { supplementId: string } }
 ) {
-  const ADMIN_ID = process.env.ADMIN_ID;
+  const token = request.headers.get('Authorization')?.split(' ')[1];
 
   const { supplementId } = params;
-  const url = new URL(req.url);
-  const userId = url.searchParams.get('userId');
 
-  if (ADMIN_ID === userId)
-    try {
-      await dbConnect();
+  if (!token) {
+    return new Response(JSON.stringify({ error: 'Токен не надано' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
-      const deletedProduct = await Supplement.findByIdAndDelete(supplementId);
+  try {
+    const decoded = jwt.verify(token, jwtSecret) as JwtPayloadCustom;
 
-      if (!userId) {
-        return new Response(JSON.stringify({ error: 'userId не передано' }), {
-          status: 400,
-        });
-      }
+    if (!decoded.userId || decoded.role !== 'Admin') {
+      return new Response(
+        JSON.stringify({ error: 'Невірний токен або доступ заборонено' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
-      if (!deletedProduct) {
-        return new Response(
-          JSON.stringify({
-            error: 'Товар не знайдено',
-          }),
-          {
-            status: 404,
-          }
-        );
-      }
+    await dbConnect();
 
+    const deletedProduct = await Supplement.findByIdAndDelete(supplementId);
+
+    if (!deletedProduct) {
       return new Response(
         JSON.stringify({
-          message: 'Товар видалено',
-          product: deletedProduct,
+          error: 'Товар не знайдено',
         }),
         {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    } catch (error) {
-      console.error('Помилка видалення товару:', error);
-      return new NextResponse(
-        JSON.stringify({ message: 'Помилка видалення товару' }),
-        {
-          status: 500,
+          status: 404,
         }
       );
     }
+
+    return new Response(
+      JSON.stringify({
+        message: 'Товар видалено',
+        product: deletedProduct,
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  } catch (error) {
+    console.error('Помилка видалення товару:', error);
+    return new NextResponse(
+      JSON.stringify({ message: 'Помилка видалення товару' }),
+      {
+        status: 500,
+      }
+    );
+  }
 }
 
 export async function PATCH(
@@ -64,57 +74,65 @@ export async function PATCH(
   { params }: { params: { supplementId: string } }
 ) {
   const body: SupplementCreateDto = await request.json();
-  const ADMIN_ID = process.env.ADMIN_ID;
   const { supplementId } = params;
-  const url = new URL(request.url);
-  const userId = url.searchParams.get('userId');
 
-  if (ADMIN_ID === userId)
-    try {
-      await dbConnect();
+  const token = request.headers.get('Authorization')?.split(' ')[1];
 
-      const editedProduct = await Supplement.findByIdAndUpdate(
-        supplementId,
-        body,
-        {
-          new: true,
-        }
+  if (!token) {
+    return new Response(JSON.stringify({ error: 'Токен не надано' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, jwtSecret) as JwtPayloadCustom;
+
+    if (!decoded.userId || decoded.role !== 'Admin') {
+      return new Response(
+        JSON.stringify({ error: 'Невірний токен або доступ заборонено' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
       );
+    }
 
-      if (!userId) {
-        return new Response(JSON.stringify({ error: 'userId не передано' }), {
-          status: 400,
-        });
+    await dbConnect();
+
+    const editedProduct = await Supplement.findByIdAndUpdate(
+      supplementId,
+      body,
+      {
+        new: true,
       }
+    );
 
-      if (!editedProduct) {
-        return new Response(
-          JSON.stringify({
-            error: 'Товар не знайдено',
-          }),
-          {
-            status: 404,
-          }
-        );
-      }
-
+    if (!editedProduct) {
       return new Response(
         JSON.stringify({
-          message: 'Товар оновлено',
-          product: editedProduct,
+          error: 'Товар не знайдено',
         }),
         {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-    } catch (error) {
-      console.error('Помилка оновлення товару:', error);
-      return new NextResponse(
-        JSON.stringify({ message: 'Помилка оновлення товару' }),
-        {
-          status: 500,
+          status: 404,
         }
       );
     }
+
+    return new Response(
+      JSON.stringify({
+        message: 'Товар оновлено',
+        product: editedProduct,
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  } catch (error) {
+    console.error('Помилка оновлення товару:', error);
+    return new NextResponse(
+      JSON.stringify({ message: 'Помилка оновлення товару' }),
+      {
+        status: 500,
+      }
+    );
+  }
 }

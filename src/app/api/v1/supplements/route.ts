@@ -1,7 +1,8 @@
-import { NextResponse } from 'next/server';
-
 import dbConnect from '@/lib/dbConnect';
 import Supplement from '@/models/Supplement';
+import jwt from 'jsonwebtoken';
+
+const jwtSecret = process.env.JWT_SECRET as string;
 
 export const dynamic = 'force-dynamic';
 
@@ -18,22 +19,25 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const body: SupplementCreateDto = await request.json();
+
+  const token = request.headers.get('Authorization')?.split(' ')[1];
+
+  if (!token) {
+    return new Response(JSON.stringify({ error: 'Токен не надано' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
-    const body: SupplementCreateDto = await request.json();
-    const ADMIN_ID = process.env.ADMIN_ID;
-    const url = new URL(request.url);
-    const userId = url.searchParams.get('userId');
+    const decoded = jwt.verify(token, jwtSecret) as JwtPayloadCustom;
 
-    if (!userId) {
-      return new Response(JSON.stringify({ error: 'userId не передано' }), {
-        status: 400,
-      });
-    }
-
-    if (ADMIN_ID !== userId) {
-      return new Response(JSON.stringify({ error: 'Доступ заборонено' }), {
-        status: 403,
-      });
+    if (!decoded.userId || decoded.role !== 'Admin') {
+      return new Response(
+        JSON.stringify({ error: 'Невірний токен або доступ заборонено' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
+      );
     }
 
     await dbConnect();

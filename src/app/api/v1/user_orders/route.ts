@@ -1,6 +1,6 @@
 import dbConnect from '@/lib/dbConnect';
 import UserOrder from '@/models/UserOrder';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const jwtSecret = process.env.JWT_SECRET as string;
 
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const decoded = jwt.verify(token, jwtSecret) as JwtPayload;
+    const decoded = jwt.verify(token, jwtSecret) as JwtPayloadCustom;
 
     if (!decoded.userId) {
       return new Response(

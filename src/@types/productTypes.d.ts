@@ -22,13 +22,3 @@ type Supplement = {
 };
 
 type SupplementCreateDto = Omit<Supplement, '_id'>;
-
-type UserOrders = {
-  _id: string;
-  customerInfo: CustomerInfoWithGps;
-  order: ({ _id: string } & Ordered)[];
-  orderSum: number;
-  createdAt: string;
-};
-
-type UserOrdersSchema = Omit<UserOrders, '_id'>;

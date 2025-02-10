@@ -22,6 +22,7 @@ export const authSlice = createAppSlice({
 
     logout: create.reducer(state => {
       state.userInfo = null;
+      state.token = null;
     }),
   }),
 

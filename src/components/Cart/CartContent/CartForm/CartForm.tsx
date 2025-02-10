@@ -33,7 +33,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
 
   const customerInfo = useAppSelector(getCustomerInfo);
   const orderSum = useAppSelector(getOrderSum);
-  const userId = useAppSelector(getUserInfo)?.sub;
+  const userId = useAppSelector(getUserInfo)?._id;
 
   const dispatch = useAppDispatch();
 

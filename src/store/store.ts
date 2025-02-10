@@ -8,7 +8,7 @@ import { productsSlice } from './products/productsSlice';
 import { userOrdersSlice } from './userOrders/userOrdersSlice';
 
 const rootPersistConfig = {
-  key: 'root',
+  key: 'root-v1',
   storage,
   blacklist: ['basket', 'allProducts', 'auth', 'userAllProducts'],
 };
@@ -31,7 +31,7 @@ const authPersistConfig = {
 };
 
 const userOrdersPersistConfig = {
-  key: 'userOrders',
+  key: 'userOrders-v1',
   storage,
 };
 

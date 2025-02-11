@@ -39,7 +39,8 @@ export const signUp = async (body: Auth): Promise<UserResponse> => {
     });
 
     if (!response.ok) {
-      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
+      const errorMessage = await response.text();
+      throw { status: response.status, message: errorMessage };
     }
 
     const data = await response.json();

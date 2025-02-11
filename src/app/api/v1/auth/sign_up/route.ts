@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { isValidEmail, isValidPassword } from '@/helpers/validation';
 import dbConnect from '@/lib/dbConnect';
 import User from '@/models/User';
 import bcrypt from 'bcrypt';
@@ -10,13 +11,29 @@ const jwtSecret = process.env.JWT_SECRET as string;
 async function createUser(payload: Auth): Promise<User | Response> {
   await dbConnect();
 
+  if (!isValidPassword(payload.password) || !isValidEmail(payload.email)) {
+    return new Response(
+      JSON.stringify({
+        status: 400,
+        error: 'Невірний email або пароль',
+      }),
+      {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
+
   const existingUser: User | null = await User.findOne({
     email: payload.email,
   });
 
   if (existingUser) {
     return new Response(
-      JSON.stringify({ error: 'Email вже використовується' }),
+      JSON.stringify({
+        status: 409,
+        error: 'Email вже використовується',
+      }),
       {
         status: 409,
         headers: { 'Content-Type': 'application/json' },

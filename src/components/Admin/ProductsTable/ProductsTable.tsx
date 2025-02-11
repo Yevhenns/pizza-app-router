@@ -50,7 +50,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
   return (
     <div className={css.tableWrapper}>
       {isLoading && <LoaderModal />}
-      <h2>Продукти</h2>
+      <h2 className="sectionTitle">Продукти</h2>
       <table className={css.table}>
         <thead>
           <tr>

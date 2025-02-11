@@ -13,7 +13,7 @@ export default async function EditSupplement() {
 
   return (
     <>
-      <h2 className="adminPageTitle">Редагувати</h2>
+      <h2 className="sectionTitle">Редагувати</h2>
       <SupplementForm supplements={supplements} />
     </>
   );

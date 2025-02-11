@@ -11,7 +11,7 @@ export function Addresses() {
   return (
     <Section>
       <Container>
-        <h2 className={css.heading}>Наші адреси</h2>
+        <h2 className={'sectionTitle'}>Наші адреси</h2>
         <div className={css.wrapper}>
           <AddressesLinks />
           <GoogleMap />

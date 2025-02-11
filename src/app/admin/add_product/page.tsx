@@ -13,7 +13,7 @@ export default async function AddProduct() {
 
   return (
     <div>
-      <h2 className="adminPageTitle">Створити</h2>
+      <h2 className="sectionTitle">Створити</h2>
       <ProductForm supplements={supplements} />
     </div>
   );

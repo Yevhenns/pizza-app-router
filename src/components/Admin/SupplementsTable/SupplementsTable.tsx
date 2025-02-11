@@ -49,7 +49,7 @@ export function SupplementsTable({ supplements }: SupplementsTableProps) {
   return (
     <div className={css.tableWrapper}>
       {isLoading && <LoaderModal />}
-      <h2>Опції</h2>
+      <h2 className="sectionTitle">Опції</h2>
       <table className={css.table}>
         <thead>
           <tr>

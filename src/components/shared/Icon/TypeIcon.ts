@@ -11,4 +11,5 @@ type TypeIcon =
   | 'heart-filled'
   | 'home'
   | 'settings'
-  | 'edit';
+  | 'edit'
+  | 'eye';

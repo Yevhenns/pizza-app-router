@@ -1,22 +1,46 @@
-import { HTMLProps, forwardRef } from 'react';
+import { HTMLProps, forwardRef, useState } from 'react';
 
+import { cn } from '@/helpers/combineClasses';
+
+import { Icon } from '../Icon';
+import { RoundButton } from '../RoundButton';
 import css from './Input.module.scss';
 
 type InputProps = {
   label?: string;
   error?: string;
+  forPassword?: boolean;
 } & HTMLProps<HTMLInputElement>;
 
 type Ref = HTMLInputElement;
 
 export const Input = forwardRef<Ref, InputProps>(function Input(
-  { label, error, ...props },
+  { label, error, forPassword, ...props },
   ref
 ) {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   return (
     <fieldset className={css.fieldset}>
       <label htmlFor={props.htmlFor}>{label}</label>
-      <input autoComplete="true" ref={ref} {...props} />
+      <div className={css.inputWrapper}>
+        <input
+          className={cn(css.input, forPassword && css.password)}
+          autoComplete="true"
+          ref={ref}
+          type={
+            forPassword ? (passwordVisible ? 'text' : 'password') : props.type
+          }
+          {...props}
+        />
+        {forPassword && (
+          <div className={css.iconWrapper}>
+            <RoundButton onClick={() => setPasswordVisible(!passwordVisible)}>
+              <Icon svg="eye" iconWidth={24} iconHeight={24} color="main" />
+            </RoundButton>
+          </div>
+        )}
+      </div>
       <div>{error && <span>{error}</span>}</div>
     </fieldset>
   );

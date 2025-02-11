@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { googleSignIn } from '@/store/auth/authOperations';
 import {
@@ -20,6 +20,8 @@ import { AuthForm } from './AuthForm';
 import css from './Login.module.scss';
 
 export default function Login() {
+  const [login, setLogin] = useState(true);
+
   const userInfo = useAppSelector(getUserInfo);
   const token = useAppSelector(getUserToken);
 
@@ -50,7 +52,11 @@ export default function Login() {
     <div className={css.layout}>
       {!userInfo ? (
         <div className={css.authWrapper}>
-          <AuthForm />
+          {login ? <AuthForm type="login" /> : <AuthForm type="register" />}
+
+          <button className={css.toggleBtn} onClick={() => setLogin(!login)}>
+            {!login ? 'Логін' : 'Реєстрація'}
+          </button>
           <p>або за допомогою Google</p>
           <GoogleLogin
             onSuccess={credentialResponse => {

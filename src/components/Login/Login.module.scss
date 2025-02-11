@@ -19,4 +19,12 @@
       font-size: 16px;
     }
   }
+
+  .toggleBtn {
+    background-color: transparent;
+    border: none;
+    text-decoration-line: underline;
+    cursor: pointer;
+    font-family: var(--main-font);
+  }
 }

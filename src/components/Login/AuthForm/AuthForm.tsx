@@ -10,7 +10,12 @@ import { useAppDispatch } from '@/store/hooks';
 import { Button } from '@/components/shared/Button';
 import { Input } from '@/components/shared/Input';
 
-export function AuthForm() {
+import css from './AuthForm.module.scss';
+
+type AuthFormProps = {
+  type: 'login' | 'register';
+};
+export function AuthForm({ type }: AuthFormProps) {
   const dispatch = useAppDispatch();
 
   const {
@@ -21,8 +26,10 @@ export function AuthForm() {
 
   const onSubmit: SubmitHandler<Auth> = async data => {
     try {
-      const response = await signUp(data);
-      dispatch(addUserInfo(response));
+      if (type === 'register') {
+        const response = await signUp(data);
+        dispatch(addUserInfo(response));
+      }
     } catch (error: any) {
       console.error('Помилка при реєстрації:', error);
 
@@ -35,8 +42,9 @@ export function AuthForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Реєстрація (тест)</h2>
+    <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      {type === 'login' ? <h2>Логін</h2> : <h2>Реєстрація</h2>}
+
       <Input
         {...register('email', {
           required: "Це обов'язкове поле!",
@@ -63,11 +71,11 @@ export function AuthForm() {
         htmlFor="password"
         error={errors?.password?.message}
         inputMode="text"
-        type="text"
+        forPassword
       />
 
       <Button type="submit" disabled={!isValid}>
-        Зареєструватись
+        {type === 'login' ? 'Увійти' : 'Зареєструватиь'}
       </Button>
     </form>
   );

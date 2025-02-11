@@ -69,7 +69,7 @@ export default function Login() {
           <GoogleLogin
             onSuccess={credentialResponse => {
               if (credentialResponse.credential) {
-                const a = sendGoogleToken(credentialResponse.credential);
+                sendGoogleToken(credentialResponse.credential);
               }
             }}
             onError={() => {

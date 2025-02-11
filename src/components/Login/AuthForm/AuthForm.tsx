@@ -111,7 +111,7 @@ export function AuthForm({ type }: AuthFormProps) {
           forPassword
         />
       )}
-
+      <span>* - обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>
         {type === 'login' ? 'Увійти' : 'Зареєструватиь'}
       </Button>

@@ -302,7 +302,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
 
         <hr />
 
-        <span>* обов&apos;язкові поля</span>
+        <span>* - обов&apos;язкові поля</span>
         <Button type="submit" disabled={!isValid}>
           Підтвердити
         </Button>

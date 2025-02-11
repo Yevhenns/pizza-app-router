@@ -182,7 +182,7 @@ export function SupplementForm({ supplements }: SupplementFormProps) {
 
       <hr />
 
-      <span>* обов&apos;язкові поля</span>
+      <span>* - обов&apos;язкові поля</span>
       <Button type="submit" disabled={!isValid}>
         Підтвердити
       </Button>

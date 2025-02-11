@@ -15,7 +15,6 @@
     padding: 6px 12px;
     border-radius: 12px;
     color: var(--white-color);
-    font-family: var(--main-font);
   }
 
   .favorite {
@@ -35,12 +34,10 @@
     gap: 12px;
 
     h2 {
-      font-family: var(--main-font);
       font-size: 18px;
     }
 
     p {
-      font-family: var(--secondary-font);
       color: var(--secondary-text-color);
     }
   }

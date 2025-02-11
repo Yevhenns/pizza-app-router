@@ -12,7 +12,6 @@
   transition: var(--transition);
   cursor: pointer;
   font-size: 18px;
-  font-family: var(--main-font);
 
   &:hover:not(:disabled) {
     background: linear-gradient(276deg, #eb3535 -3.09%, #ffd163 95.38%);

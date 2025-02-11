@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: var(--main-font);
 
   .authWrapper {
     display: flex;
@@ -25,6 +24,5 @@
     border: none;
     text-decoration-line: underline;
     cursor: pointer;
-    font-family: var(--main-font);
   }
 }

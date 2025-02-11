@@ -4,7 +4,6 @@
   justify-content: space-between;
 
   .price {
-    font-family: var(--main-font);
     font-size: 18px;
     color: var(--black-color);
     font-weight: 700;
@@ -14,14 +13,12 @@
     flex-direction: column;
 
     .promPrice {
-      font-family: var(--main-font);
       font-size: 18px;
       color: var(--accent-color);
       font-weight: 700;
     }
 
     .oldPrice {
-      font-family: var(--main-font);
       font-size: 16px;
       color: var(--black-color);
       font-weight: 700;

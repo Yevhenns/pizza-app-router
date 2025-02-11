@@ -1,5 +1,4 @@
 .fieldset {
-  font-family: var(--secondary-font);
   border: none;
   display: flex;
   flex-direction: column;
@@ -13,7 +12,6 @@
     transition: var(--transition);
     border: 1px solid var(--accent-color);
     outline: none;
-    font-family: var(--main-font);
 
     &:hover {
       box-shadow: var(--box-shadow);

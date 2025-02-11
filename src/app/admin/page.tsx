@@ -20,7 +20,7 @@ export default async function AdminPage() {
   const supplements = await getSupplements();
 
   return (
-    <>
+    <div className={css.admin}>
       <h2 className="adminPageTitle">Адмінка</h2>
       <div className={css.btnWrapper}>
         <Link href={'admin/add_product'}>
@@ -31,6 +31,6 @@ export default async function AdminPage() {
         </Link>
       </div>
       <Admin products={products} supplements={supplements} />
-    </>
+    </div>
   );
 }

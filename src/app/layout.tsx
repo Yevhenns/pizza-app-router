@@ -2,7 +2,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import type { Metadata } from 'next';
-import { Comfortaa, Inter } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 
 import { getProducts } from '@/store/products/productsOperations';
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -12,18 +12,11 @@ import { GoogleProvider } from '../providers/GoogleProvider';
 import ReduxProvider from '../providers/ReduxProvider';
 import './globals.scss';
 
-export const inter = Inter({
-  subsets: ['latin'],
-  variable: '--secondary-font',
-  display: 'swap',
-  weight: '400',
-});
-
-export const roboto_mono = Comfortaa({
+export const nunito = Nunito({
   subsets: ['latin'],
   variable: '--main-font',
   display: 'swap',
-  weight: '600',
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -56,7 +49,7 @@ export default async function RootLayout({
   const products = await getProducts();
 
   return (
-    <html lang="uk" className={`${inter.variable} ${roboto_mono.variable}`}>
+    <html lang="uk">
       <head>
         <meta
           name="google-site-verification"
@@ -64,7 +57,7 @@ export default async function RootLayout({
         />
         <meta name="keywords" content="Піца, Закуски, Напої, Дніпро" />
       </head>
-      <body>
+      <body className={nunito.className}>
         <GoogleOAuthProvider clientId={CLIENTID}>
           <ReduxProvider>
             <GoogleProvider products={products}>

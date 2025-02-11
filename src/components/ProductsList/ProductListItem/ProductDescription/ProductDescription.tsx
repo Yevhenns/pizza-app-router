@@ -26,7 +26,7 @@ export function ProductDescription({
 }: ProductDescriptionProps) {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const { _id, photo, title, description, dimension, promotion } = item;
+  const { _id, photo, title, description, dimension, promotion, vegan } = item;
 
   const favoriteProductsId = useAppSelector(getFavorites);
 
@@ -72,6 +72,16 @@ export function ProductDescription({
           height={200}
           priority={true}
         />
+        {vegan && (
+          <Image
+            className={css.vegan}
+            src={'/leave.png'}
+            alt="vegan photo"
+            width={40}
+            height={40}
+            priority={true}
+          />
+        )}
         {promotion && <div className={css.promotion}>Акція</div>}
         <div className={css.favorite}>
           <RoundButton aria-label="add to favorite" onClick={addToFavorite}>

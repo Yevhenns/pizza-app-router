@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { parseError } from '@/helpers/parseError';
 import { isValidEmail, isValidPassword } from '@/helpers/validation';
-import { signUp } from '@/store/auth/authOperations';
+import { signIn, signUp } from '@/store/auth/authOperations';
 import { addUserInfo } from '@/store/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
 
@@ -31,6 +31,24 @@ export function AuthForm({ type }: AuthFormProps) {
       if (type === 'register') {
         const response = await signUp(data);
         dispatch(addUserInfo(response));
+
+        return toast.success('Реєстрація виконана успішно', {
+          position: 'top-center',
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeButton: false,
+        });
+      }
+      if (type === 'login') {
+        const response = await signIn(data);
+        dispatch(addUserInfo(response));
+
+        return toast.success('Вхід виконано успішно', {
+          position: 'top-center',
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeButton: false,
+        });
       }
     } catch (error: any) {
       console.error('Помилка при реєстрації:', error);
@@ -39,6 +57,7 @@ export function AuthForm({ type }: AuthFormProps) {
         position: 'top-center',
         autoClose: 1500,
         hideProgressBar: true,
+        closeButton: false,
       });
     }
   };

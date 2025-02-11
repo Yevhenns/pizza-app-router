@@ -76,7 +76,7 @@ export async function POST(request: Request) {
 
     const tokenData = { userId: _id, role: role };
 
-    const token = jwt.sign(tokenData, jwtSecret, { expiresIn: '7d' });
+    const token = jwt.sign(tokenData, jwtSecret, { expiresIn: '1h' });
 
     const user = {
       _id,

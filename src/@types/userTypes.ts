@@ -18,6 +18,7 @@ type UserResponse = {
   token: string;
   user: UserData;
 };
+
 type UserCreateDto = Omit<User, '_id' | 'role'> & { role: 'Visitor' };
 
 type UserOrders = {

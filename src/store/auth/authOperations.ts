@@ -15,7 +15,8 @@ export const googleSignIn = async (body: string): Promise<UserResponse> => {
     });
 
     if (!response.ok) {
-      throw new Error(`Помилка ${response.status}: ${await response.text()}`);
+      const errorMessage = await response.text();
+      throw { status: response.status, message: errorMessage };
     }
 
     const data = await response.json();
@@ -30,6 +31,31 @@ export const googleSignIn = async (body: string): Promise<UserResponse> => {
 export const signUp = async (body: Auth): Promise<UserResponse> => {
   try {
     const response = await fetch(`${BASE_URL}/auth/sign_up`, {
+      method: 'POST',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw { status: response.status, message: errorMessage };
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    console.error('Помилка:', error);
+    throw error;
+  }
+};
+
+export const signIn = async (body: Auth): Promise<UserResponse> => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/sign_in`, {
       method: 'POST',
       cache: 'no-store',
       headers: {

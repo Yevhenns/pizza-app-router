@@ -50,8 +50,8 @@ export default function Login() {
     <div className={css.layout}>
       {!userInfo ? (
         <div className={css.authWrapper}>
-          {/* <AuthForm />
-          <p>або за допомогою Google</p> */}
+          <AuthForm />
+          <p>або за допомогою Google</p>
           <GoogleLogin
             onSuccess={credentialResponse => {
               if (credentialResponse.credential) {

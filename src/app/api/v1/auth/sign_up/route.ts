@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 
 const jwtSecret = process.env.JWT_SECRET as string;
 
-async function createUser(payload: Auth): Promise<User> {
+async function createUser(payload: Auth): Promise<User | Response> {
   await dbConnect();
 
   const existingUser: User | null = await User.findOne({
@@ -15,7 +15,13 @@ async function createUser(payload: Auth): Promise<User> {
   });
 
   if (existingUser) {
-    return existingUser;
+    return new Response(
+      JSON.stringify({ error: 'Email вже використовується' }),
+      {
+        status: 409,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
   }
 
   const hashPassword = bcrypt.hashSync(
@@ -44,6 +50,10 @@ export async function POST(request: Request) {
 
   try {
     const createdUser = await createUser(body);
+
+    if (createdUser instanceof Response) {
+      return createdUser;
+    }
 
     const { _id, picture, name, email, phoneNumber, role } = createdUser;
 

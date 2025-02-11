@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import { signUp } from '@/store/auth/authOperations';
 import { addUserInfo } from '@/store/auth/authSlice';
@@ -22,6 +23,11 @@ export function AuthForm() {
       dispatch(addUserInfo(response));
     } catch (error) {
       console.error('Помилка при реєстрації:', error);
+      return toast.error('Email вже використовується', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
     }
   };
 

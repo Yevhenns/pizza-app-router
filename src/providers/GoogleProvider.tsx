@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 
+import { useLogOutAfterTokenExpires } from '@/hooks/useLogOutAfterTokenExpires';
 import { checkCart } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 import { checkFavorites } from '@/store/products/productsSlice';
@@ -17,6 +18,8 @@ export function GoogleProvider({
   const API_KEY = process.env.GOOGLE_MAPS_API_KEY as string;
 
   const dispatch = useAppDispatch();
+
+  useLogOutAfterTokenExpires();
 
   useEffect(() => {
     if (products.length > 0) {

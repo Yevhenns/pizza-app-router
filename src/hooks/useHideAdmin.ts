@@ -15,7 +15,10 @@ export function useHideAdmin() {
   const minimalScreenWidth = 768;
 
   useLayoutEffect(() => {
-    if (userInfo?.role !== 'Admin' || width <= minimalScreenWidth) {
+    if (
+      (userInfo?.role !== 'Admin' && userInfo?.role !== 'Viewer') ||
+      width <= minimalScreenWidth
+    ) {
       redirect('/');
     }
   }, [userInfo?.role, width]);

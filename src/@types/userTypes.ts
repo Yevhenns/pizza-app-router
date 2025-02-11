@@ -1,4 +1,4 @@
-type Role = 'Visitor' | 'Admin';
+type Role = 'Visitor' | 'Admin' | 'Viewer';
 
 type User = {
   _id: string;

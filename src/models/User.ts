@@ -8,7 +8,7 @@ const userSchema = new Schema<UserDocument>(
     name: { type: String, maxlength: 200, required: true },
     role: {
       type: String,
-      enum: ['Visitor', 'Admin'],
+      enum: ['Visitor', 'Admin', 'Viewer'],
       default: 'Visitor',
       required: true,
     },

@@ -29,7 +29,7 @@ export function Header() {
   const width = useWindowWidth();
 
   const isUserAdmin = () => {
-    return userInfo?.role === 'Admin';
+    return userInfo?.role === 'Admin' || userInfo?.role === 'Viewer';
   };
 
   return (

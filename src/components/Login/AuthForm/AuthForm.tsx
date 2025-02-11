@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+
+import Image from 'next/image';
 
 import { parseError } from '@/helpers/parseError';
 import { isValidEmail, isValidPassword } from '@/helpers/validation';
@@ -17,6 +20,8 @@ type AuthFormProps = {
 };
 
 export function AuthForm({ type }: AuthFormProps) {
+  const [idiShown, setIdiShown] = useState(false);
+
   const dispatch = useAppDispatch();
 
   const {
@@ -27,6 +32,13 @@ export function AuthForm({ type }: AuthFormProps) {
   } = useForm<Auth>({ mode: 'onChange' });
 
   const onSubmit: SubmitHandler<Auth> = async data => {
+    const lastThreeChars = data.email.slice(-3) === '.ru';
+
+    if (lastThreeChars) {
+      setIdiShown(true);
+      return;
+    }
+
     try {
       if (type === 'register') {
         const response = await signUp(data);
@@ -61,6 +73,9 @@ export function AuthForm({ type }: AuthFormProps) {
       });
     }
   };
+
+  if (idiShown)
+    return <Image src={'/idi.webp'} alt="idi" width={523} height={356} />;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>

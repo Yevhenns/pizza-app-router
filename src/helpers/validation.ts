@@ -3,5 +3,5 @@ export function isValidEmail(email: string): boolean {
 }
 
 export function isValidPassword(password: string): boolean {
-  return /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/.test(password);
+  return /^(?=.*[a-zA-Zа-яА-Я])(?=.*\d).{8,}$/.test(password);
 }

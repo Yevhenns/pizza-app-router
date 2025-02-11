@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 import { parseError } from '@/helpers/parseError';
+import { isValidEmail, isValidPassword } from '@/helpers/validation';
 import { signUp } from '@/store/auth/authOperations';
 import { addUserInfo } from '@/store/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
@@ -39,25 +40,22 @@ export function AuthForm() {
       <Input
         {...register('email', {
           required: "Це обов'язкове поле!",
-          validate: {
-            required: value => value.trim().length > 1 || 'Введіть Email',
-          },
+          validate: value => isValidEmail(value.trim()) || 'Введіть Email',
         })}
         placeholder="Введіть Email"
         id="email"
         label="* Email"
         htmlFor="email"
         error={errors?.email?.message}
-        inputMode="text"
-        type="text"
+        inputMode="email"
+        type="email"
       />
 
       <Input
         {...register('password', {
           required: "Це обов'язкове поле!",
-          validate: {
-            required: value => value.trim().length > 1 || 'Введіть пароль',
-          },
+          validate: value =>
+            isValidPassword(value.trim()) || '8 символів, літери і цифри',
         })}
         placeholder="Введіть пароль"
         id="password"

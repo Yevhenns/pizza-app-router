@@ -12,4 +12,12 @@
   @include desktop {
     width: 628px;
   }
+
+  .link {
+    color: #1a73e8;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

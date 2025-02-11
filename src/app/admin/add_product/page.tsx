@@ -12,9 +12,9 @@ export default async function AddProduct() {
   const supplements = await getSupplements();
 
   return (
-    <>
+    <div>
       <h2 className="adminPageTitle">Створити</h2>
       <ProductForm supplements={supplements} />
-    </>
+    </div>
   );
 }

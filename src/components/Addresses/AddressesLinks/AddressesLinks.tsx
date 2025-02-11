@@ -3,7 +3,6 @@ import css from './AddressesLinks.module.scss';
 export function AddressesLinks() {
   return (
     <address className={css.address}>
-      <p>Наші адреси:</p>
       <a
         href="https://maps.app.goo.gl/uXvE1tN8KBKD2eVKA"
         target="_blank"

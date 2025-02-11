@@ -2,6 +2,7 @@
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';
 
+import css from './Admin.module.scss';
 import { ProductsTable } from './ProductsTable';
 import { SupplementsTable } from './SupplementsTable';
 
@@ -14,11 +15,9 @@ export default function Admin({ products, supplements }: AdminProps) {
   useHideAdmin();
 
   return (
-    <>
-      <div>{products.length > 0 && <ProductsTable products={products} />}</div>
-      <div>
-        {products.length > 0 && <SupplementsTable supplements={supplements} />}
-      </div>
-    </>
+    <div className={css.admin}>
+      {products.length > 0 && <ProductsTable products={products} />}
+      {products.length > 0 && <SupplementsTable supplements={supplements} />}
+    </div>
   );
 }

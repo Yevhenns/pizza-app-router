@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { googleSignIn } from '@/store/auth/authOperations';
 import {
@@ -37,6 +38,13 @@ export default function Login() {
     try {
       const response = await googleSignIn(token);
       dispatch(addUserInfo(response));
+
+      return toast.success('Вхід виконано успішно', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeButton: false,
+      });
     } catch (e) {
       console.log(e);
     }
@@ -61,11 +69,18 @@ export default function Login() {
           <GoogleLogin
             onSuccess={credentialResponse => {
               if (credentialResponse.credential) {
-                sendGoogleToken(credentialResponse.credential);
+                const a = sendGoogleToken(credentialResponse.credential);
               }
             }}
             onError={() => {
               console.log('Login Failed');
+
+              return toast.error('Сталася помилка', {
+                position: 'top-center',
+                autoClose: 1500,
+                hideProgressBar: true,
+                closeButton: false,
+              });
             }}
           />
         </div>

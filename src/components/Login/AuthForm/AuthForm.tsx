@@ -15,12 +15,14 @@ import css from './AuthForm.module.scss';
 type AuthFormProps = {
   type: 'login' | 'register';
 };
+
 export function AuthForm({ type }: AuthFormProps) {
   const dispatch = useAppDispatch();
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors, isValid },
   } = useForm<Auth>({ mode: 'onChange' });
 
@@ -73,6 +75,23 @@ export function AuthForm({ type }: AuthFormProps) {
         inputMode="text"
         forPassword
       />
+
+      {type === 'register' && (
+        <Input
+          {...register('repeatPassword', {
+            required: "Це обов'язкове поле!",
+            validate: value =>
+              value === getValues('password') || 'Паролі не співпадають',
+          })}
+          placeholder="Введіть пароль"
+          id="repeatPassword"
+          label="* Повторіть пароль"
+          htmlFor="repeatPassword"
+          error={errors?.repeatPassword?.message}
+          inputMode="text"
+          forPassword
+        />
+      )}
 
       <Button type="submit" disabled={!isValid}>
         {type === 'login' ? 'Увійти' : 'Зареєструватиь'}

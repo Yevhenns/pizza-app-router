@@ -33,4 +33,5 @@ type UserOrdersSchema = Omit<UserOrders, '_id'>;
 type Auth = {
   email: string;
   password: string;
+  repeatPassword?: string;
 };

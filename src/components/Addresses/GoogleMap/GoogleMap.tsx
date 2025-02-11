@@ -85,8 +85,11 @@ export function GoogleMap() {
             onCloseClick={handleInfowindowCloseClick}
             headerContent={<h3>{selectedPlace.title}</h3>}
           >
-            <p>{selectedPlace.description}</p>
-            <p>Україна</p>
+            <ul className={css.list}>
+              <li>
+                <p>{selectedPlace.description}</p>
+              </li>
+            </ul>
             <a
               href={`https://www.google.com/maps?q=${selectedPlace.lat},${selectedPlace.lng}`}
               target="_blank"

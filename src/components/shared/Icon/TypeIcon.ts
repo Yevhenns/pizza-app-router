@@ -12,4 +12,5 @@ type TypeIcon =
   | 'home'
   | 'settings'
   | 'edit'
-  | 'eye';
+  | 'eye'
+  | 'eye-closed';

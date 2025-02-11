@@ -36,7 +36,16 @@ export const Input = forwardRef<Ref, InputProps>(function Input(
         {forPassword && (
           <div className={css.iconWrapper}>
             <RoundButton onClick={() => setPasswordVisible(!passwordVisible)}>
-              <Icon svg="eye" iconWidth={24} iconHeight={24} color="main" />
+              {passwordVisible ? (
+                <Icon svg={'eye'} iconWidth={24} iconHeight={24} color="main" />
+              ) : (
+                <Icon
+                  svg={'eye-closed'}
+                  iconWidth={24}
+                  iconHeight={24}
+                  color="main"
+                />
+              )}
             </RoundButton>
           </div>
         )}

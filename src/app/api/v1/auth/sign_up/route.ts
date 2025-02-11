@@ -8,20 +8,11 @@ import jwt from 'jsonwebtoken';
 
 const jwtSecret = process.env.JWT_SECRET as string;
 
-async function createUser(payload: Auth): Promise<User | Response> {
+async function createUser(payload: Auth): Promise<User> {
   await dbConnect();
 
   if (!isValidPassword(payload.password) || !isValidEmail(payload.email)) {
-    return new Response(
-      JSON.stringify({
-        status: 400,
-        error: 'Невірний email або пароль',
-      }),
-      {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    throw { status: 400, error: 'Невірний email або пароль' };
   }
 
   const existingUser: User | null = await User.findOne({
@@ -29,16 +20,7 @@ async function createUser(payload: Auth): Promise<User | Response> {
   });
 
   if (existingUser) {
-    return new Response(
-      JSON.stringify({
-        status: 409,
-        error: 'Email вже використовується',
-      }),
-      {
-        status: 409,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    throw { status: 409, error: 'Email вже використовується' };
   }
 
   const hashPassword = bcrypt.hashSync(
@@ -68,10 +50,6 @@ export async function POST(request: Request) {
   try {
     const createdUser = await createUser(body);
 
-    if (createdUser instanceof Response) {
-      return createdUser;
-    }
-
     const { _id, picture, name, email, phoneNumber, role } = createdUser;
 
     const tokenData = { userId: _id, role: role };
@@ -88,8 +66,12 @@ export async function POST(request: Request) {
     };
 
     return NextResponse.json({ message: 'Token received', token, user });
-  } catch (e) {
-    console.log(e);
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+  } catch (e: any) {
+    console.error(e);
+
+    return NextResponse.json(
+      { error: e.error || 'Invalid request' },
+      { status: e.status || 400 }
+    );
   }
 }

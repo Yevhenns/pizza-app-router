@@ -82,8 +82,12 @@ export async function POST(request: Request) {
     };
 
     return NextResponse.json({ message: 'Token received', token, user });
-  } catch (e) {
+  } catch (e: any) {
     console.log(e);
-    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+
+    return NextResponse.json(
+      { error: e.error || 'Invalid request' },
+      { status: e.status || 400 }
+    );
   }
 }

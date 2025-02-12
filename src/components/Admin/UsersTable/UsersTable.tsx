@@ -22,7 +22,7 @@ export function UsersTable() {
 
   return (
     <div className={css.tableWrapper}>
-      <h2>Користувачі</h2>
+      <h2 className="sectionTitle">Користувачі</h2>
       <table className={css.table}>
         <thead>
           <tr>

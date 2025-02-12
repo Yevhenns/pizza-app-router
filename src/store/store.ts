@@ -7,12 +7,6 @@ import { cartSlice } from './cart/cartSlice';
 import { productsSlice } from './products/productsSlice';
 import { userOrdersSlice } from './userOrders/userOrdersSlice';
 
-const rootPersistConfig = {
-  key: 'root-v1',
-  storage,
-  blacklist: ['basket', 'allProducts', 'auth', 'userAllProducts'],
-};
-
 const cartPersistConfig = {
   key: 'cartItems-v1',
   storage,
@@ -28,37 +22,25 @@ const favoritePersistConfig = {
 const authPersistConfig = {
   key: 'auth-v1',
   storage,
+  whitelist: ['userInfo', 'token'],
 };
 
 const userOrdersPersistConfig = {
   key: 'userOrders-v1',
   storage,
-  whiteList: ['userProductsAll'],
+  whitelist: ['userProductsAll'],
 };
 
-const basketReducer = persistReducer(cartPersistConfig, cartSlice.reducer);
-const productsReducer = persistReducer(
-  favoritePersistConfig,
-  productsSlice.reducer
-);
-const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
-const userOrdersReducer = persistReducer(
-  userOrdersPersistConfig,
-  userOrdersSlice.reducer
-);
-
 const rootReducer = combineSlices({
-  basket: basketReducer,
-  allProducts: productsReducer,
-  auth: authReducer,
-  userOrders: userOrdersReducer,
+  basket: persistReducer(cartPersistConfig, cartSlice.reducer),
+  allProducts: persistReducer(favoritePersistConfig, productsSlice.reducer),
+  auth: persistReducer(authPersistConfig, authSlice.reducer),
+  userOrders: persistReducer(userOrdersPersistConfig, userOrdersSlice.reducer),
 });
-
-const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const makeStore = () =>
   configureStore({
-    reducer: persistedReducer,
+    reducer: rootReducer,
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware({
         serializableCheck: {

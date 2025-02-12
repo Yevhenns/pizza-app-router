@@ -1,9 +1,7 @@
 import { formattedDate } from '@/helpers/formattedDate';
+import { getIsLoading } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
-import {
-  getIsLoading,
-  getUserProductsAll,
-} from '@/store/userOrders/userOrdersSlice';
+import { getUserProductsAll } from '@/store/userOrders/userOrdersSlice';
 
 import { Button } from '../shared/Button';
 import { Loader } from '../shared/Loader';
@@ -15,8 +13,8 @@ type UserOrdersProps = {
 };
 
 export function UserOrders({ logoutHandler, userInfo }: UserOrdersProps) {
-  const userOrders = useAppSelector(getUserProductsAll);
   const isLoading = useAppSelector(getIsLoading);
+  const userOrders = useAppSelector(getUserProductsAll);
 
   if (isLoading) {
     return (

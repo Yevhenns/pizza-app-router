@@ -1,7 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-import { RootState } from '../store';
-import { getUserProducts } from './userOrdersOperations';
+import { createAppSlice } from '../createAppSlice';
+import { getUserProductsList } from './userOrdersOperations';
 
 const initialState = {
   userProductsAll: [] as UserOrders[],
@@ -9,42 +7,53 @@ const initialState = {
   isLoading: false,
 };
 
-export const userOrdersSlice = createSlice({
-  name: 'userAllProducts',
+export const userOrdersSlice = createAppSlice({
+  name: 'userOrders',
   initialState,
   reducers: create => ({
     clearOrderHistory: create.reducer(state => {
       state.userProductsAll = [];
     }),
+
+    getUserProducts: create.asyncThunk(
+      async (token: string) => {
+        const response = await getUserProductsList(token);
+
+        return response;
+      },
+      {
+        pending: state => {
+          state.isLoading = true;
+          state.error = false;
+        },
+        fulfilled: (state, action) => {
+          if (!action.payload) {
+            state.error = true;
+            state.isLoading = false;
+            return;
+          }
+          if (action.payload) {
+            state.userProductsAll = action.payload;
+            state.isLoading = false;
+          }
+        },
+        rejected: (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+          return;
+        },
+      }
+    ),
   }),
 
-  extraReducers: builder =>
-    builder
-      .addCase(getUserProducts.pending, state => {
-        state.isLoading = true;
-        state.error = false;
-      })
-      .addCase(getUserProducts.fulfilled, (state, action) => {
-        if (!action.payload) {
-          state.error = true;
-          state.isLoading = false;
-          return;
-        }
-        if (action.payload) {
-          state.userProductsAll = action.payload;
-          state.isLoading = false;
-        }
-      })
-      .addCase(getUserProducts.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-        return;
-      }),
+  selectors: {
+    getUserProductsAll: userOrders => userOrders.userProductsAll,
+    getIsLoading: userOrders => userOrders.isLoading,
+    getError: userOrders => userOrders.error,
+  },
 });
 
-export const getUserProductsAll = (state: RootState) =>
-  state.userOrders.userProductsAll;
-export const getIsLoading = (state: RootState) => state.userOrders.isLoading;
-export const getError = (state: RootState) => state.userOrders.error;
+export const { getUserProductsAll, getIsLoading, getError } =
+  userOrdersSlice.selectors;
 
-export const { clearOrderHistory } = userOrdersSlice.actions;
+export const { clearOrderHistory, getUserProducts } = userOrdersSlice.actions;

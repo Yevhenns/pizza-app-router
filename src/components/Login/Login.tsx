@@ -11,8 +11,10 @@ import {
   logout,
 } from '@/store/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { getUserProducts } from '@/store/userOrders/userOrdersOperations';
-import { clearOrderHistory } from '@/store/userOrders/userOrdersSlice';
+import {
+  clearOrderHistory,
+  getUserProducts,
+} from '@/store/userOrders/userOrdersSlice';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 
 import { UserOrders } from '@/components/UserOrders';
@@ -51,10 +53,10 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (userInfo?._id && token) {
+    if (token) {
       dispatch(getUserProducts(token));
     }
-  }, [dispatch, token, userInfo?._id]);
+  }, [dispatch, token]);
 
   return (
     <div className={css.layout}>

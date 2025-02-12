@@ -27,7 +27,7 @@ export function UsersTable() {
         <thead>
           <tr>
             <th>№</th>
-            <th>Ім'я</th>
+            <th>Ім&apos;я</th>
             <th>Email</th>
             <th>Номер телефону</th>
             <th>Роль</th>

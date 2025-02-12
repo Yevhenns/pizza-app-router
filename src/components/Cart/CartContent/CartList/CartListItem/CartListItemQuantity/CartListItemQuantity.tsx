@@ -47,7 +47,11 @@ export function CartListItemQuantity({
         <Icon svg="left" iconWidth={24} iconHeight={24} color="accent" />
       </RoundButton>
       <span>{quantity}</span>
-      <RoundButton onClick={increment} aria-label="plus">
+      <RoundButton
+        onClick={increment}
+        disabled={quantity >= 20}
+        aria-label="plus"
+      >
         <Icon svg="right" iconWidth={24} iconHeight={24} color="accent" />
       </RoundButton>
     </div>

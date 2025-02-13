@@ -3,6 +3,8 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from '@/helpers/combineClasses';
 
+import { Logo } from '@/components/shared/Logo';
+
 import css from './Navigation.module.scss';
 
 export function Navigation() {
@@ -10,6 +12,9 @@ export function Navigation() {
 
   return (
     <nav className={css.nav}>
+      <div className={css.logoWrapper}>
+        <Logo />
+      </div>
       <Link
         className={cn(
           css.link,

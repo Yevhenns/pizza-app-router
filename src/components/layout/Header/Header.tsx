@@ -33,7 +33,7 @@ export function Header() {
   };
 
   return (
-    <header className={css.wrapper}>
+    <header className={css.header}>
       <Container>
         <div className={css.headerItem}>
           <Logo />

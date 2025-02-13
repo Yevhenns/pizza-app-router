@@ -1,5 +1,12 @@
-.wrapper {
-  background-color: var(--secondary-background);
+.header {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background-color: var(--main-bg-color);
+
   .headerItem {
     padding: 20px 0;
     display: flex;

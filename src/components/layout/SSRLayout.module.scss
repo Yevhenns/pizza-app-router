@@ -5,5 +5,17 @@
 
   .main {
     flex: auto;
+
+    @include mobile {
+      padding-top: 51px;
+    }
+
+    @include tablet {
+      padding-top: 179px;
+    }
+
+    @include desktop {
+      padding-top: 184px;
+    }
   }
 }

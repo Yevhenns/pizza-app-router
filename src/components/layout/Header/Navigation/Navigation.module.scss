@@ -4,14 +4,27 @@
   flex-wrap: wrap;
   background: linear-gradient(90deg, #f94c25 -0.8%, #ffd465 99.28%);
   gap: 30px;
+  flex-wrap: nowrap;
 
   @include mobile {
     padding-left: 16px;
     padding-right: 16px;
+    justify-content: flex-start;
+    overflow-x: scroll;
+
+    svg {
+      transform: scale(0.8);
+    }
   }
 
   @include desktop {
     gap: 80px;
+  }
+
+  .logoWrapper {
+    @include not-mobile {
+      display: none;
+    }
   }
 
   .link {

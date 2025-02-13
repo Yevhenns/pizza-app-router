@@ -5,6 +5,7 @@ import { CarouselComponent } from '@/components/CarouselComponent';
 import { ProductsList } from '@/components/ProductsList';
 import { QRCode } from '@/components/QRCode';
 import { Weather } from '@/components/Weather';
+import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 import css from './page.module.scss';
 
@@ -15,13 +16,27 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <>
-      <CarouselComponent />
-      <h1>Головна</h1>
-      <h2 className={css.heading}>Акційні пропозиції</h2>
-      <ProductsList category="promotions" />
-      <Weather />
-      <QRCode />
-      <Addresses />
+      <SectionContainer>
+        <CarouselComponent />
+      </SectionContainer>
+
+      <SectionContainer>
+        <h1>Головна</h1>
+        <h2 className={css.heading}>Акційні пропозиції</h2>
+        <ProductsList category="promotions" />
+      </SectionContainer>
+
+      <SectionContainer>
+        <Weather />
+      </SectionContainer>
+
+      <SectionContainer>
+        <QRCode />
+      </SectionContainer>
+
+      <SectionContainer>
+        <Addresses />
+      </SectionContainer>
     </>
   );
 }

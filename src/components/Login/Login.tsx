@@ -19,11 +19,13 @@ import { GoogleLogin, googleLogout } from '@react-oauth/google';
 
 import { UserOrders } from '@/components/UserOrders';
 
+import { LoaderModal } from '../shared/LoaderModal';
 import { AuthForm } from './AuthForm';
 import css from './Login.module.scss';
 
 export default function Login() {
   const [login, setLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const userInfo = useAppSelector(getUserInfo);
   const token = useAppSelector(getUserToken);
@@ -37,10 +39,11 @@ export default function Login() {
   };
 
   const sendGoogleToken = async (token: string) => {
+    setIsLoading(true);
     try {
       const response = await googleSignIn(token);
       dispatch(addUserInfo(response));
-
+      setIsLoading(false);
       return toast.success('Вхід виконано успішно', {
         position: 'top-center',
         autoClose: 1500,
@@ -49,6 +52,13 @@ export default function Login() {
       });
     } catch (e) {
       console.log(e);
+      setIsLoading(false);
+      return toast.error('Сталася помилка', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeButton: false,
+      });
     }
   };
 
@@ -60,6 +70,7 @@ export default function Login() {
 
   return (
     <div className={css.layout}>
+      {isLoading && <LoaderModal />}
       {!userInfo ? (
         <div className={css.authWrapper}>
           {login ? <h2>Вхід</h2> : <h2>Реєстрація</h2>}

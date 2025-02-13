@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 
 import { SupplementForm } from '@/components/Admin/forms/SupplementForm';
+import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 export const metadata: Metadata = {
   title: 'Nostra Pizza | Адмінка | Створити',
@@ -8,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function AddSupplement() {
   return (
-    <>
+    <SectionContainer>
       <h2 className="sectionTitle">Створити</h2>
       <SupplementForm />
-    </>
+    </SectionContainer>
   );
 }

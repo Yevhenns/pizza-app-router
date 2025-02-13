@@ -9,7 +9,7 @@ export function QRCode() {
 
   return (
     <div className={css.layout}>
-      <span className={css.text}>З мобільного?</span>
+      <h2 className={css.text}>З мобільного?</h2>
       <span className={css.text}>Скануйте QR-код і переходьте на сайт</span>
       <Canvas
         text={'https://nostrra-pizzza.vercel.app/'}

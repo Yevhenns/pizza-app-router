@@ -8,6 +8,7 @@ import {
 
 import Admin from '@/components/Admin/Admin';
 import { Button } from '@/components/shared/Button';
+import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 import css from './page.module.scss';
 
@@ -20,16 +21,18 @@ export default async function AdminPage() {
   const supplements = await getSupplements();
 
   return (
-    <div className={css.admin}>
-      <div className={css.btnWrapper}>
-        <Link href={'admin/add_product'}>
-          <Button>+ Продукт</Button>
-        </Link>
-        <Link href={'admin/add_supplement'}>
-          <Button>+ Опція</Button>
-        </Link>
+    <SectionContainer>
+      <div className={css.admin}>
+        <div className={css.btnWrapper}>
+          <Link href={'admin/add_product'}>
+            <Button>+ Продукт</Button>
+          </Link>
+          <Link href={'admin/add_supplement'}>
+            <Button>+ Опція</Button>
+          </Link>
+        </div>
+        <Admin products={products} supplements={supplements} />
       </div>
-      <Admin products={products} supplements={supplements} />
-    </div>
+    </SectionContainer>
   );
 }

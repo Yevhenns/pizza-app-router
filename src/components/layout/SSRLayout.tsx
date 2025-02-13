@@ -15,9 +15,7 @@ export default function SSRLayout({
     <div className={css.wrapper}>
       <Header />
       <main className={css.main}>
-        <Section>
-          <Container>{children}</Container>
-        </Section>
+        {children}
         <TabNavigator />
       </main>
       <Footer />

@@ -43,7 +43,7 @@ export const GoogleMapsInput = ({
   return (
     <fieldset className={css.fieldset}>
       <label htmlFor={props.htmlFor}>{label}</label>
-      <input ref={inputRef} {...props} />
+      <input className={css.input} ref={inputRef} {...props} />
       <div>{error && <span>{error}</span>}</div>
     </fieldset>
   );

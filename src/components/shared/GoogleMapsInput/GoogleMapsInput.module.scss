@@ -1,0 +1,27 @@
+.fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    transition: var(--transition);
+    border: 1px solid var(--accent-color);
+    outline: none;
+
+    &:hover {
+      box-shadow: var(--box-shadow);
+    }
+  }
+
+  div {
+    height: 25px;
+
+    span {
+      color: red;
+    }
+  }
+}

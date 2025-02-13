@@ -2,7 +2,7 @@ import { HTMLProps, useEffect, useRef, useState } from 'react';
 
 import { useMapsLibrary } from '@vis.gl/react-google-maps';
 
-import css from '../Input/Input.module.scss';
+import css from './GoogleMapsInput.module.scss';
 
 type PlaceAutocompleteProps = {
   label?: string;

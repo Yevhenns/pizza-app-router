@@ -1,9 +1,10 @@
 .wrapper {
   position: fixed;
+  border-radius: 32px;
   bottom: 0;
   background: linear-gradient(90deg, #f94c25 -0.8%, #ffd465 99.28%);
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-between;
   width: 100vw;
   z-index: 2;
 
@@ -11,18 +12,30 @@
     display: none;
   }
 
+  .iconWrapper {
+    position: relative;
+  }
   .link {
     padding: 15px;
-    position: relative;
+    width: 25%;
 
     span {
       position: absolute;
-      top: 5px;
+      bottom: 24px;
       right: 5px;
+    }
+
+    svg,
+    img {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
   .active {
+    border: 1px white solid;
+    border-radius: 32px;
+
     svg {
       fill: var(--main-hover-color);
     }

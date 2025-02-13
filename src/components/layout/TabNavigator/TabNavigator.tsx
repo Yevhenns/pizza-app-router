@@ -46,16 +46,20 @@ export function TabNavigator() {
         href={'/cart'}
         aria-label="cart page"
       >
-        <Icon svg="basket" iconWidth={34} iconHeight={34} />
-        {cartLength !== 0 && <span>{cartLength}</span>}
+        <div className={css.iconWrapper}>
+          <Icon svg="basket" iconWidth={34} iconHeight={34} />
+          {cartLength !== 0 && <span>{cartLength}</span>}
+        </div>
       </Link>
       <Link
         className={cn(css.link, pathname === '/favorite' && css.active)}
         href={'/favorite'}
         aria-label="favorite page"
       >
-        <Icon svg="heart" iconWidth={34} iconHeight={34} />
-        {favoriteLength !== 0 && <span>{favoriteLength}</span>}
+        <div className={css.iconWrapper}>
+          <Icon svg="heart" iconWidth={34} iconHeight={34} />
+          {favoriteLength !== 0 && <span>{favoriteLength}</span>}
+        </div>
       </Link>
     </nav>
   );

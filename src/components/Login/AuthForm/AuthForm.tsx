@@ -79,8 +79,6 @@ export function AuthForm({ type }: AuthFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-      {type === 'login' ? <h2>Логін</h2> : <h2>Реєстрація</h2>}
-
       <Input
         {...register('email', {
           required: "Це обов'язкове поле!",
@@ -128,7 +126,7 @@ export function AuthForm({ type }: AuthFormProps) {
       )}
 
       <Button type="submit" disabled={!isValid}>
-        {type === 'login' ? 'Увійти' : 'Зареєструватись'}
+        {type === 'login' ? 'Увійти' : 'Зареєструватися'}
       </Button>
     </form>
   );

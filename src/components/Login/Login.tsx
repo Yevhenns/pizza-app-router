@@ -62,16 +62,7 @@ export default function Login() {
     <div className={css.layout}>
       {!userInfo ? (
         <div className={css.authWrapper}>
-          {login ? (
-            <AuthForm key="login" type="login" />
-          ) : (
-            <AuthForm key="register" type="register" />
-          )}
-
-          <button className={css.toggleBtn} onClick={() => setLogin(!login)}>
-            {!login ? 'Логін' : 'Реєстрація'}
-          </button>
-          <p>або за допомогою Google</p>
+          {login ? <h2>Вхід</h2> : <h2>Реєстрація</h2>}
           <GoogleLogin
             onSuccess={credentialResponse => {
               if (credentialResponse.credential) {
@@ -89,6 +80,16 @@ export default function Login() {
               });
             }}
           />
+          <p>або за допомогою Email</p>
+          {login ? (
+            <AuthForm key="login" type="login" />
+          ) : (
+            <AuthForm key="register" type="register" />
+          )}
+
+          <button className={css.toggleBtn} onClick={() => setLogin(!login)}>
+            {!login ? 'Вже є акаунт? Увійдіть' : 'Немає акаунта? Зареєструйся'}
+          </button>
         </div>
       ) : (
         <UserOrders logoutHandler={logoutHandler} userInfo={userInfo} />

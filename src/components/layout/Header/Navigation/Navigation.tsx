@@ -13,7 +13,7 @@ export function Navigation() {
   return (
     <nav className={css.nav}>
       <div className={css.logoWrapper}>
-        <Logo />
+        <Logo isLight />
       </div>
       <Link
         className={cn(

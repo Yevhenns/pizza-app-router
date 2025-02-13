@@ -62,7 +62,11 @@ export default function Login() {
     <div className={css.layout}>
       {!userInfo ? (
         <div className={css.authWrapper}>
-          {login ? <AuthForm type="login" /> : <AuthForm type="register" />}
+          {login ? (
+            <AuthForm key="login" type="login" />
+          ) : (
+            <AuthForm key="register" type="register" />
+          )}
 
           <button className={css.toggleBtn} onClick={() => setLogin(!login)}>
             {!login ? 'Логін' : 'Реєстрація'}

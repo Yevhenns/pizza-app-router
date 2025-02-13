@@ -88,7 +88,7 @@ export function AuthForm({ type }: AuthFormProps) {
         })}
         placeholder="Введіть Email"
         id="email"
-        label="* Email"
+        label="Email"
         htmlFor="email"
         error={errors?.email?.message}
         inputMode="email"
@@ -103,7 +103,7 @@ export function AuthForm({ type }: AuthFormProps) {
         })}
         placeholder="Введіть пароль"
         id="password"
-        label="* Пароль"
+        label="Пароль"
         htmlFor="password"
         error={errors?.password?.message}
         inputMode="text"
@@ -119,16 +119,16 @@ export function AuthForm({ type }: AuthFormProps) {
           })}
           placeholder="Введіть пароль"
           id="repeatPassword"
-          label="* Повторіть пароль"
+          label="Повторіть пароль"
           htmlFor="repeatPassword"
           error={errors?.repeatPassword?.message}
           inputMode="text"
           forPassword
         />
       )}
-      <span>* - обов&apos;язкові поля</span>
+
       <Button type="submit" disabled={!isValid}>
-        {type === 'login' ? 'Увійти' : 'Зареєструватиь'}
+        {type === 'login' ? 'Увійти' : 'Зареєструватись'}
       </Button>
     </form>
   );

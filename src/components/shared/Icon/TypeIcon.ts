@@ -1,6 +1,7 @@
 type TypeIcon =
   | 'basket'
-  | 'logo'
+  | 'logo-dark'
+  | 'logo-light'
   | 'user'
   | 'facebook'
   | 'instagram'

@@ -128,7 +128,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
     }
   };
 
-  const categories = ['Піца', 'Закуски', 'Напої'];
+  const categories = ['Піца', 'Закуски', 'Напої', 'Суші'];
   const vegan = watch('vegan');
   const veganText = vegan ? 'Так' : 'Ні';
   const promotion = watch('promotion');

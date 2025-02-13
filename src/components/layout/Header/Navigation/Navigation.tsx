@@ -43,6 +43,12 @@ export function Navigation() {
       >
         Напої
       </Link>
+      <Link
+        className={cn(css.link, pathname === '/sushi' && css.active)}
+        href={'/sushi'}
+      >
+        Суші
+      </Link>
     </nav>
   );
 }

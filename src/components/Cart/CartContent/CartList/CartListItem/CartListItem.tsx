@@ -48,11 +48,7 @@ export function CartListItem({ data }: CartListItemProps) {
           priority={true}
         />
         <p>{title}</p>
-        <CartListItemQuantity
-          chosenQuantity={quantity}
-          cart_id={cart_id}
-          price={itemPrice}
-        />
+        <CartListItemQuantity chosenQuantity={quantity} cart_id={cart_id} />
         <p>{itemPrice} грн</p>
         <RoundButton onClick={deleteCartItem}>
           <Icon svg="remove" iconWidth={24} iconHeight={24} color="accent" />

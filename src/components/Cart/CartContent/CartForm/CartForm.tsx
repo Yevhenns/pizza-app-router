@@ -63,8 +63,6 @@ export function CartForm({ openModal, order }: CartFormProps) {
   };
 
   const delivery = watch('delivery');
-  const address = watch('address');
-  console.log(address);
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>

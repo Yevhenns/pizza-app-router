@@ -51,7 +51,6 @@ export const cartSlice = createAppSlice({
 
       if (existingItemIndex !== -1) {
         state.cartItems[existingItemIndex].quantity += action.payload.quantity;
-        state.updatedCartItems;
       } else {
         const newCartItem = {
           ...action.payload,
@@ -94,8 +93,7 @@ export const cartSlice = createAppSlice({
         const existingItemIndex = state.cartItems.findIndex(
           item => item.cart_id === action.payload.cart_id
         );
-        if (existingItemIndex)
-          state.cartItems[existingItemIndex].quantity = action.payload.quantity;
+        state.cartItems[existingItemIndex].quantity = action.payload.quantity;
       }
     ),
   }),

@@ -11,13 +11,11 @@ import css from './CartListItemQuantity.module.scss';
 type CartListItemQuantityProps = {
   chosenQuantity: number;
   cart_id: string;
-  price: number;
 };
 
 export function CartListItemQuantity({
   chosenQuantity,
   cart_id,
-  price,
 }: CartListItemQuantityProps) {
   const [quantity, setQuantity] = useState(chosenQuantity);
 
@@ -31,11 +29,9 @@ export function CartListItemQuantity({
     setQuantity(quantity - 1);
   };
 
-  const pricePerItem = price / quantity;
-
   useEffect(() => {
     dispatch(setQuantityAndPrice({ cart_id, quantity }));
-  }, [cart_id, dispatch, price, pricePerItem, quantity]);
+  }, [cart_id, dispatch, quantity]);
 
   return (
     <div className={css.quantity}>

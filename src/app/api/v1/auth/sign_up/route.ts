@@ -1,14 +1,20 @@
 import { NextResponse } from 'next/server';
 
+import { sendConfirmEmail } from '@/helpers/sendConfirmEmail';
 import { isValidEmail, isValidPassword } from '@/helpers/validation';
 import dbConnect from '@/lib/dbConnect';
 import User from '@/models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { v4 as uuidv4 } from 'uuid';
 
 const jwtSecret = process.env.JWT_SECRET as string;
+const OWNER_EMAIL = process.env.OWNER_EMAIL as string;
 
-async function createUser(payload: Auth): Promise<User> {
+async function createUser(
+  payload: Auth,
+  verificationToken: string
+): Promise<User> {
   await dbConnect();
 
   if (!isValidPassword(payload.password) || !isValidEmail(payload.email)) {
@@ -36,6 +42,8 @@ async function createUser(payload: Auth): Promise<User> {
     phoneNumber: '',
     password: hashPassword,
     role: 'Visitor',
+    verificationToken,
+    verify: false,
   };
 
   const created = new User(newUser);
@@ -48,7 +56,9 @@ export async function POST(request: Request) {
   const body: Auth = await request.json();
 
   try {
-    const createdUser = await createUser(body);
+    const verificationToken = uuidv4();
+
+    const createdUser = await createUser(body, verificationToken);
 
     const { _id, picture, name, email, phoneNumber, role } = createdUser;
 
@@ -64,6 +74,14 @@ export async function POST(request: Request) {
       phoneNumber,
       role,
     };
+
+    const mail = {
+      to: email,
+      subject: 'Verify email',
+      from: OWNER_EMAIL,
+      html: `<a href="http://localhost:3000/api/users/verify/${verificationToken}" target="_blank">Verify email</a>`,
+    };
+    await sendConfirmEmail(mail);
 
     return NextResponse.json({ message: 'Token received', token, user });
   } catch (e: any) {

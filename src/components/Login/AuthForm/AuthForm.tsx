@@ -12,6 +12,7 @@ import { useAppDispatch } from '@/store/hooks';
 
 import { Button } from '@/components/shared/Button';
 import { Input } from '@/components/shared/Input';
+import { LoaderModal } from '@/components/shared/LoaderModal';
 
 import css from './AuthForm.module.scss';
 
@@ -21,6 +22,7 @@ type AuthFormProps = {
 
 export function AuthForm({ type }: AuthFormProps) {
   const [idiShown, setIdiShown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -39,10 +41,12 @@ export function AuthForm({ type }: AuthFormProps) {
       return;
     }
 
+    setIsLoading(true);
     try {
       if (type === 'register') {
         const response = await signUp(data);
         dispatch(addUserInfo(response));
+        setIsLoading(false);
 
         return toast.success('Реєстрація виконана успішно', {
           position: 'top-center',
@@ -54,6 +58,7 @@ export function AuthForm({ type }: AuthFormProps) {
       if (type === 'login') {
         const response = await signIn(data);
         dispatch(addUserInfo(response));
+        setIsLoading(false);
 
         return toast.success('Вхід виконано успішно', {
           position: 'top-center',
@@ -64,6 +69,7 @@ export function AuthForm({ type }: AuthFormProps) {
       }
     } catch (error: any) {
       console.error('Помилка при реєстрації:', error);
+      setIsLoading(false);
 
       return toast.error(parseError(error), {
         position: 'top-center',
@@ -79,6 +85,7 @@ export function AuthForm({ type }: AuthFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      {isLoading && <LoaderModal />}
       <Input
         {...register('email', {
           required: "Це обов'язкове поле!",

@@ -1,46 +1,16 @@
 import { NextResponse } from 'next/server';
 
-import dbConnect from '@/lib/dbConnect';
-import User from '@/models/User';
-import { OAuth2Client, TokenPayload } from 'google-auth-library';
-import jwt from 'jsonwebtoken';
+import { createJwt } from '@/helpers/auth/createJwt';
+import { createUserWithGoogle } from '@/lib/createUserWithGoogle';
+import { OAuth2Client } from 'google-auth-library';
 
 const clientId = process.env.CLIENTID;
-const jwtSecret = process.env.JWT_SECRET as string;
 
 if (!clientId) {
   throw new Error('Google Client ID is not defined in environment variables');
 }
 
 const client = new OAuth2Client(clientId);
-
-async function createUser(payload: TokenPayload): Promise<User> {
-  await dbConnect();
-
-  const existingUser: User | null = await User.findOne({
-    email: payload.email,
-  });
-
-  if (existingUser) {
-    return existingUser;
-  }
-
-  const newUser: UserCreateDto = {
-    picture: payload.picture || '',
-    name: payload.name || '',
-    email: payload.email || '',
-    phoneNumber: '',
-    password: '',
-    role: 'Visitor',
-    verify: true,
-    verificationToken: null,
-  };
-
-  const created = new User(newUser);
-  await created.save();
-
-  return created;
-}
 
 export async function POST(request: Request) {
   try {
@@ -64,13 +34,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 400 });
     }
 
-    const createdUser = await createUser(payload);
+    const createdUser = await createUserWithGoogle(payload);
 
     const { _id, picture, name, email, phoneNumber, role } = createdUser;
 
     const userInfo = { userId: _id, role: role };
 
-    const token = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
+    const token = createJwt(userInfo);
 
     const user = {
       _id,

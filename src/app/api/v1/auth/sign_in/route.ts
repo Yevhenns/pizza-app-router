@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server';
 
+import { createJwt } from '@/helpers/auth/createJwt';
 import { isValidEmail, isValidPassword } from '@/helpers/validation';
 import dbConnect from '@/lib/dbConnect';
 import User from '@/models/User';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-
-const jwtSecret = process.env.JWT_SECRET as string;
 
 async function findUser(payload: Auth): Promise<User> {
   await dbConnect();
@@ -45,7 +43,7 @@ export async function POST(request: Request) {
 
     const userInfo = { userId: _id, role: role };
 
-    const token = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
+    const token = createJwt(userInfo);
 
     const user = {
       _id,

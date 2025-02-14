@@ -10,7 +10,6 @@ import { useMask } from '@react-input/mask';
 
 import { Button } from '@/components/shared/Button';
 import { Checkbox } from '@/components/shared/Checkbox';
-import { GoogleMapsInput } from '@/components/shared/GoogleMapsInput';
 import { Input } from '@/components/shared/Input';
 import { TextArea } from '@/components/shared/TextArea';
 
@@ -27,9 +26,8 @@ export function CartForm({ openModal, order }: CartFormProps) {
     handleSubmit,
     formState: { errors, isValid },
     watch,
-    setValue,
     control,
-  } = useForm<CustomerInfoWithGps>({ mode: 'onChange' });
+  } = useForm<CustomerInfo>({ mode: 'onChange' });
 
   const customerInfo = useAppSelector(getCustomerInfo);
   const orderSum = useAppSelector(getOrderSum);
@@ -38,13 +36,13 @@ export function CartForm({ openModal, order }: CartFormProps) {
   const dispatch = useAppDispatch();
 
   const phoneInputRef = useMask({
-    mask: '+38(___) ___-__-__',
+    mask: '+38(0__) ___-__-__',
     replacement: { _: /\d/ },
   });
 
   const phoneNumberLength = 18;
 
-  const onSubmit: SubmitHandler<CustomerInfoWithGps> = ({
+  const onSubmit: SubmitHandler<CustomerInfo> = ({
     address,
     comment,
     name,
@@ -52,7 +50,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
   }) => {
     openModal();
     const customerInfo: CustomerInfo = {
-      address: address?.formatted,
+      address,
       comment,
       name,
       number: formatPhoneNumber(number),
@@ -97,7 +95,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
         <Controller
           name="number"
           control={control}
-          defaultValue={customerInfo.number || ''}
+          defaultValue={customerInfo.number || '+38(0'}
           rules={{
             required: "Це обов'язкове поле!",
             validate: value =>
@@ -111,7 +109,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
                 dispatch(addInfo({ ...customerInfo, number: e.target.value }));
               }}
               ref={phoneInputRef}
-              placeholder="099 999 99 99"
+              placeholder="+380"
               id="number"
               htmlFor="number"
               type="tel"
@@ -120,6 +118,7 @@ export function CartForm({ openModal, order }: CartFormProps) {
             />
           )}
         />
+
         <Checkbox
           {...register('delivery')}
           id="delivery"
@@ -133,75 +132,54 @@ export function CartForm({ openModal, order }: CartFormProps) {
           <Controller
             name="address"
             control={control}
-            defaultValue={{
-              formatted: '',
-              lat: 0,
-              lng: 0,
-              name: '',
-              city: 'Дніпро',
-            }}
+            defaultValue={customerInfo.address || ''}
             rules={{
+              required: "Це обов'язкове поле!",
               validate: value =>
-                value && value?.formatted?.trim().length > 0
-                  ? true
-                  : 'Введіть адресу',
+                (value && value.length >= 5) || 'Введіть адресу',
             }}
             render={({ field }) => (
-              <GoogleMapsInput
-                id="address"
-                placeholder="Введіть адресу"
-                label="* Введіть адресу і оберіть зі списку"
-                htmlFor="address"
-                error={errors?.address?.message}
-                onPlaceSelect={place => {
-                  if (!place || !place.geometry) {
-                    const emptyValue = {
-                      formatted: '',
-                      lat: 0,
-                      lng: 0,
-                      name: '',
-                      city: 'Дніпро',
-                    };
-                    setValue('address', emptyValue);
-                    field.onChange(emptyValue);
-                    return;
-                  }
-                  const formattedPlace = {
-                    formatted: place.formatted_address || '',
-                    lat: place.geometry.location?.lat() || 0,
-                    lng: place.geometry.location?.lng() || 0,
-                    name: place.name || '',
-                    city: 'Дніпро',
-                  };
-                  setValue('address', formattedPlace);
-                  field.onChange(formattedPlace);
-                }}
+              <Input
+                {...field}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  if (!e.target.value) {
-                    const emptyValue = {
-                      formatted: '',
-                      lat: 0,
-                      lng: 0,
-                      name: '',
-                      city: 'Дніпро',
-                    };
-                    setValue('address', emptyValue);
-                    field.onChange(emptyValue);
-                  }
+                  field.onChange(e);
+                  dispatch(
+                    addInfo({ ...customerInfo, address: e.target.value })
+                  );
                 }}
+                placeholder="Калинова 70/12"
+                id="address"
+                htmlFor="address"
+                type="text"
+                label="* Адреса"
+                error={errors?.address?.message}
               />
             )}
           />
         )}
 
-        <TextArea
-          {...register('comment')}
-          id="comment"
-          maxLength={200}
-          placeholder="Введіть коментар"
-          label="Коментар"
-          htmlFor="comment"
+        <Controller
+          name="comment"
+          control={control}
+          defaultValue={customerInfo.comment || ''}
+          render={({ field }) => (
+            <TextArea
+              {...field}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                field.onChange(e);
+                dispatch(addInfo({ ...customerInfo, comment: e.target.value }));
+              }}
+              placeholder="Введіть коментар"
+              maxLength={200}
+              id="comment"
+              htmlFor="comment"
+              type="text"
+              label="Коментар"
+              error={errors?.comment?.message}
+            />
+          )}
         />
+
         <span>* - обов&apos;язкові поля</span>
       </div>
 

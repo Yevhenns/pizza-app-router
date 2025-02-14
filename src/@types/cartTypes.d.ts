@@ -15,24 +15,14 @@ type UpdatedCartItem = Pick<CartItem, 'cart_id' | 'quantity' | '_id'> & {
   photo: string;
 };
 
-interface CustomerInfoWithGps {
-  address?: {
-    formatted: string;
-    lat: number;
-    lng: number;
-    name: string;
-    city: string;
-  };
+interface CustomerInfo {
+  address?: string;
   comment?: string;
   delivery?: boolean;
   name: string;
   number: string;
   userId?: string;
 }
-
-type CustomerInfo = Omit<CustomerInfoWithGps, 'address'> & {
-  address?: string;
-};
 
 type Ordered = Pick<CartItem2, 'title' | 'quantity'> & {
   optionsTitles: string[];

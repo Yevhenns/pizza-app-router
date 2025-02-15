@@ -64,6 +64,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
             <th>Знижка</th>
             <th>Знижка</th>
             <th>Веган.</th>
+            <th>Гостра</th>
             <th>Дії</th>
           </tr>
         </thead>
@@ -82,6 +83,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
                   promPrice,
                   promotion,
                   vegan,
+                  spicy,
                 },
                 index
               ) => {
@@ -118,6 +120,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
                     </td>
                     <td>{promotion ? <p>Так</p> : <p>Ні</p>}</td>
                     <td>{vegan ? <p>Так</p> : <p>Ні</p>}</td>
+                    <td>{spicy ? <p>Так</p> : <p>Ні</p>}</td>
                     <td>
                       <div className={css.buttonsWrapper}>
                         <Link href={`/admin/edit_product/${_id}`}>

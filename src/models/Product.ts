@@ -19,6 +19,7 @@ const productSchema = new Schema<ProductDocument>(
       required: [true, 'Введіть акційну ціну продукту'],
     },
     vegan: { type: Boolean, required: false },
+    spicy: { type: Boolean, required: false },
   },
   {
     versionKey: false,

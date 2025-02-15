@@ -16,7 +16,7 @@ type Product = {
   promotion: boolean;
   promPrice: null | number;
   vegan: boolean;
-  spicy?: boolean;
+  spicy: boolean;
 };
 
 type ProductCreateDto = Omit<Product, '_id'>;

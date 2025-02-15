@@ -52,6 +52,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         price: product.price,
         vegan: product.vegan,
         photo: product.photo,
+        spicy: product.spicy,
       }
     : {
         title: '',
@@ -64,6 +65,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         vegan: false,
         photo:
           'https://res.cloudinary.com/dyka4vajb/image/upload/v1698576734/hatamagnata/pizzas/oc1fji52ggplw65qc4rh.png',
+        spicy: false,
       };
 
   const {
@@ -133,6 +135,8 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
   const veganText = vegan ? 'Так' : 'Ні';
   const promotion = watch('promotion');
   const promotionText = promotion ? 'Так' : 'Ні';
+  const spicy = watch('spicy');
+  const spicyText = spicy ? 'Так' : 'Ні';
   const photo = watch('photo');
   const title = watch('title');
   const description = watch('description');
@@ -152,6 +156,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
     price: (price && +price) || 0,
     vegan,
     photo,
+    spicy,
   } as Product;
 
   return (
@@ -296,6 +301,16 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
               id="promotion"
               htmlFor="promotion"
               label={promotionText}
+            />
+          </div>
+
+          <div className={css.checkboxWrapper}>
+            <p>Гостра</p>
+            <Checkbox
+              {...register('spicy')}
+              id="spicy"
+              htmlFor="spicy"
+              label={spicyText}
             />
           </div>
         </div>

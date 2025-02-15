@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
 import { parseError } from '@/helpers/parseError';
@@ -10,11 +10,13 @@ import { verifyEmail } from '@/store/auth/authOperations';
 import { addUserInfo } from '@/store/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
 
+import { Button } from '@/components/shared/Button';
 import { LoaderModal } from '@/components/shared/LoaderModal';
 import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 export default function Verify() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<any>(false);
 
   const { verificationToken } = useParams<{ verificationToken: string }>();
 
@@ -26,28 +28,32 @@ export default function Verify() {
       try {
         const response = await verifyEmail(verificationToken);
         dispatch(addUserInfo(response));
-        toast.success('Email підтверджено', {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: true,
-          closeButton: false,
-        });
-
-        setIsLoading(false);
       } catch (error) {
+        setError(error);
         console.log(error);
         setIsLoading(false);
-        return toast.error(parseError(error), {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: true,
-          closeButton: false,
-        });
+      } finally {
+        setIsLoading(false);
       }
     };
 
     verify();
   }, [dispatch, verificationToken]);
 
-  return <SectionContainer>{isLoading && <LoaderModal />}</SectionContainer>;
+  return (
+    <SectionContainer>
+      {isLoading && <LoaderModal />}
+      {!isLoading && (
+        <Link href={'/'}>
+          <Button>На головну</Button>
+        </Link>
+      )}
+      {error && <p>{parseError(error)}</p>}
+      {!isLoading && !error && (
+        <div>
+          <p>Email підтверджено</p>
+        </div>
+      )}
+    </SectionContainer>
+  );
 }

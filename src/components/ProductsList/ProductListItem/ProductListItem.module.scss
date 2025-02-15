@@ -6,6 +6,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 350px;
   gap: 10px;
@@ -16,7 +17,7 @@
   animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
 
   &:hover {
-    box-shadow: 4px 4px 14px 0px rgba(59, 50, 50, 0.4);
+    box-shadow: 4px 4px 14px 0px rgba(59, 50, 50, 0.6);
   }
   @keyframes animate-pop {
     0% {

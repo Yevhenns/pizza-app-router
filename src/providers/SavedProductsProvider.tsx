@@ -11,7 +11,7 @@ export default function SavedProductsProvider({
   allproductsId,
   children,
 }: Readonly<{
-  allproductsId: { _id: string }[];
+  allproductsId: string[];
   children: React.ReactNode;
 }>) {
   const dispatch = useAppDispatch();

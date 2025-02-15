@@ -28,13 +28,11 @@ export const productsSlice = createAppSlice({
       }
     ),
 
-    checkFavorites: create.reducer(
-      (state, action: PayloadAction<{ _id: string }[]>) => {
-        state.favoriteProducts = state.favoriteProducts.filter(item =>
-          action.payload.some(({ _id: id2 }) => item === id2)
-        );
-      }
-    ),
+    checkFavorites: create.reducer((state, action: PayloadAction<string[]>) => {
+      state.favoriteProducts = state.favoriteProducts.filter(favoriteProduct =>
+        action.payload.some(item => favoriteProduct === item)
+      );
+    }),
 
     getAllProducts: create.asyncThunk(
       async () => {

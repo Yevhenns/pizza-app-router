@@ -69,13 +69,11 @@ export const cartSlice = createAppSlice({
       );
     }),
 
-    checkCart: create.reducer(
-      (state, action: PayloadAction<{ _id: string }[]>) => {
-        state.cartItems = state.cartItems.filter(({ _id: id1 }) =>
-          action.payload.some(({ _id: id2 }) => id1 === id2)
-        );
-      }
-    ),
+    checkCart: create.reducer((state, action: PayloadAction<string[]>) => {
+      state.cartItems = state.cartItems.filter(({ _id: id1 }) =>
+        action.payload.some(item => id1 === item)
+      );
+    }),
 
     addInfo: create.reducer((state, action: PayloadAction<CustomerInfo>) => {
       state.customerInfo = action.payload;

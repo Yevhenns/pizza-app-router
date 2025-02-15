@@ -24,7 +24,7 @@ export const getSupplements = async () => {
   return fetchData<Supplement[]>('supplements');
 };
 
-export const fetchProductsId = async (): Promise<{ _id: string }[]> => {
+export const fetchProductsId = async (): Promise<string[]> => {
   const response = await fetch(`${BASE_URL}/products/id-list`, {
     cache: 'no-store',
     headers: {
@@ -32,7 +32,7 @@ export const fetchProductsId = async (): Promise<{ _id: string }[]> => {
     },
   });
 
-  const result: { _id: string }[] = await response.json();
+  const result: string[] = await response.json();
   return result;
 };
 

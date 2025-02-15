@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   await dbConnect();
 
-  const products = await Product.find({}).select('_id');
+  const products = await Product.find({}).distinct('_id');
 
   return new Response(JSON.stringify(products), {
     headers: {

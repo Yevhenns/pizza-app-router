@@ -5,6 +5,8 @@
 
   .main {
     flex: auto;
+    background-image: url("/bg.png");
+    background-repeat: repeat;
 
     @include mobile {
       padding-top: 51px;

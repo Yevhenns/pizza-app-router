@@ -9,11 +9,15 @@
   width: 100%;
   max-width: 350px;
   gap: 10px;
+  transition: var(--transition);
 
   animation-duration: 0.5s;
   animation-name: animate-pop;
   animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
 
+  &:hover {
+    box-shadow: 4px 4px 14px 0px rgba(59, 50, 50, 0.4);
+  }
   @keyframes animate-pop {
     0% {
       opacity: 0;

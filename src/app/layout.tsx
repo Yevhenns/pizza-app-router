@@ -4,7 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 
-import { getProducts } from '@/store/products/productsOperations';
+import SavedProductsProvider from '@/providers/SavedProductsProvider';
+import { fetchProductsId } from '@/store/products/productsOperations';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import SSRLayout from '../components/layout/SSRLayout';
@@ -46,7 +47,7 @@ export default async function RootLayout({
 }>) {
   const CLIENTID = process.env.CLIENTID as string;
 
-  const products = await getProducts();
+  const allproductsId = await fetchProductsId();
 
   return (
     <html lang="uk">
@@ -60,11 +61,13 @@ export default async function RootLayout({
       <body className={nunito.className}>
         <GoogleOAuthProvider clientId={CLIENTID}>
           <ReduxProvider>
-            <GoogleProvider products={products}>
-              <SSRLayout>
-                {children}
-                <ToastContainer />
-              </SSRLayout>
+            <GoogleProvider>
+              <SavedProductsProvider allproductsId={allproductsId}>
+                <SSRLayout>
+                  {children}
+                  <ToastContainer />
+                </SSRLayout>
+              </SavedProductsProvider>
             </GoogleProvider>
           </ReduxProvider>
         </GoogleOAuthProvider>

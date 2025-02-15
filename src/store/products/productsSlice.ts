@@ -29,7 +29,7 @@ export const productsSlice = createAppSlice({
     ),
 
     checkFavorites: create.reducer(
-      (state, action: PayloadAction<Product[]>) => {
+      (state, action: PayloadAction<{ _id: string }[]>) => {
         state.favoriteProducts = state.favoriteProducts.filter(item =>
           action.payload.some(({ _id: id2 }) => item === id2)
         );

@@ -24,6 +24,18 @@ export const getSupplements = async () => {
   return fetchData<Supplement[]>('supplements');
 };
 
+export const fetchProductsId = async (): Promise<{ _id: string }[]> => {
+  const response = await fetch(`${BASE_URL}/products/id-list`, {
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const result: { _id: string }[] = await response.json();
+  return result;
+};
+
 // get items by promotion
 export const fetchProductsByPromotion = async (): Promise<Product[]> => {
   const response = await fetch(`${BASE_URL}/products/promotion`, {

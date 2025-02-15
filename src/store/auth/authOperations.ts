@@ -77,3 +77,30 @@ export const signIn = async (body: Auth): Promise<UserResponse> => {
     throw error;
   }
 };
+
+export const verifyEmail = async (
+  verifyToken: string
+): Promise<UserResponse> => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/verify`, {
+      method: 'PATCH',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${verifyToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw { status: response.status, message: errorMessage };
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    console.error('Помилка:', error);
+    throw error;
+  }
+};

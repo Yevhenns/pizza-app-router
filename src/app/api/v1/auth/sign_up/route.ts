@@ -45,7 +45,7 @@ export async function POST(request: Request) {
       from: EMAIL,
       to: email,
       subject: 'Verify your email',
-      html: `<p>Please veryfy your email by <a href=${BASE_URL}/verify/${verificationToken}>clicking here</a>.</p>`,
+      html: `<p>Please veryfy your email by <a href=http://localhost:3000/verify/${verificationToken}>clicking here</a>.</p>`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

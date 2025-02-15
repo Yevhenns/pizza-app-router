@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+import { fetchProductsByPromotion } from '@/store/products/productsOperations';
+
 import { Addresses } from '@/components/Addresses';
 import { CarouselComponent } from '@/components/CarouselComponent';
 import { ProductsList } from '@/components/ProductsList';
@@ -9,13 +11,15 @@ import { SectionContainer } from '@/components/shared/SectionContainer/SectionCo
 
 import css from './page.module.scss';
 
-const title = 'Новинки';
+const title = 'Головна';
 
 export const metadata: Metadata = {
   title: `Nostra Pizza | ${title}`,
 };
 
 export default async function Home() {
+  const products = await fetchProductsByPromotion();
+
   return (
     <>
       <SectionContainer>
@@ -25,7 +29,7 @@ export default async function Home() {
       <SectionContainer>
         <h1>{title}</h1>
         <h2 className={css.heading}>Акційні пропозиції</h2>
-        <ProductsList category="promotions" />
+        <ProductsList products={products} />
       </SectionContainer>
 
       <SectionContainer>

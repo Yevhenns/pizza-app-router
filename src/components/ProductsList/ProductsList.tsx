@@ -11,27 +11,26 @@ import { ProductListItem } from './ProductListItem';
 import css from './ProductsList.module.scss';
 
 type ProductsListProps = {
-  category: string;
+  products: Product[];
 };
 
-export async function ProductsList({ category }: ProductsListProps) {
-  const products = await getProducts();
+export async function ProductsList({ products }: ProductsListProps) {
   const supplements = await getSupplements();
 
-  const data = (() => {
-    if (products && products.length > 0) {
-      if (category === 'promotions') {
-        return filterByPromotion(products);
-      } else {
-        return filterByCategory(products, category);
-      }
-    }
-  })();
+  // const data = (() => {
+  //   if (products && products.length > 0) {
+  //     if (category === 'promotions') {
+  //       return filterByPromotion(products);
+  //     } else {
+  //       return filterByCategory(products, category);
+  //     }
+  //   }
+  // })();
 
   return (
     <div className={css.list}>
-      {data &&
-        data.map(item => {
+      {products &&
+        products.map(item => {
           return (
             <ProductListItem
               key={item._id}

@@ -24,6 +24,34 @@ export const getSupplements = async () => {
   return fetchData<Supplement[]>('supplements');
 };
 
+// get items by promotion
+export const fetchProductsByPromotion = async (): Promise<Product[]> => {
+  const response = await fetch(`${BASE_URL}/products/promotion`, {
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const result: { data: Product[] } = await response.json();
+  return result.data;
+};
+
+// get items by category
+export const fetchProductsByCategory = async (
+  category: string
+): Promise<Product[]> => {
+  const response = await fetch(`${BASE_URL}/products/category/${category}`, {
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const result: { data: Product[] } = await response.json();
+  return result.data;
+};
+
 // post item
 const addItem = async <T, B extends object>(
   endpoint: string,

@@ -1,3 +1,10 @@
+enum Categories {
+  'pizza' = 'Піца',
+  'appetizers' = 'Закуски',
+  'drinks' = 'Напої',
+  'sushi' = 'Суші',
+}
+
 type Product = {
   _id: string;
   title: string;

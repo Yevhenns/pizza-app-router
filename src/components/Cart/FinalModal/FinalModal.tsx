@@ -13,6 +13,7 @@ import {
 import { useAppSelector } from '@/store/hooks';
 
 import { Button } from '@/components/shared/Button';
+import { ConfettiComponent } from '@/components/shared/ConfettiComponent';
 import { LoaderModal } from '@/components/shared/LoaderModal';
 
 import { Error500 } from '../../Error500/Error500';
@@ -38,6 +39,7 @@ export function FinalModal({ finalAction }: FinalModalProps) {
         <LoaderModal />
       ) : (
         <div className={css.modal}>
+          <ConfettiComponent />
           <>
             <p className={css.resultText}>
               Дякуємо!

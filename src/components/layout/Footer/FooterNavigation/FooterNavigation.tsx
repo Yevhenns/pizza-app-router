@@ -7,8 +7,8 @@ export function FooterNavigation() {
   return (
     <div className={css.wrapper}>
       <div className={css.item}>
-        <Link href="/underDevelopment">Про нас</Link>
         <p>Працюємо з 10:00 до 22:00</p>
+        <Link href="/underDevelopment">Про нас</Link>
       </div>
       <div className={css.item}>
         <Link href="/underDevelopment">Оплата онлайн</Link>

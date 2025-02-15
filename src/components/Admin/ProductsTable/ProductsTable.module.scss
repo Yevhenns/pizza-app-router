@@ -11,11 +11,9 @@
       background-color: #ffd465;
     }
 
-    border: 1px solid #ccc;
-
     td,
     th {
-      border: 1px solid #ccc;
+      border: 1px solid var(--black-color);
       padding: 4px;
     }
 

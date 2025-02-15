@@ -30,8 +30,8 @@ export async function POST(request: Request) {
 
     const mail = {
       to: email,
-      subject: 'Verify email',
       from: OWNER_EMAIL,
+      subject: 'Verify email',
       html: `<a href="http://localhost:3000/api/users/verify/${verificationToken}" target="_blank">Verify email</a>`,
     };
     await sendConfirmEmail(mail);

@@ -9,8 +9,10 @@ import { SectionContainer } from '@/components/shared/SectionContainer/SectionCo
 
 import css from './page.module.scss';
 
+const title = 'Новинки';
+
 export const metadata: Metadata = {
-  title: 'Nostra Pizza | Новинки',
+  title: `Nostra Pizza | ${title}`,
 };
 
 export default async function Home() {
@@ -21,7 +23,7 @@ export default async function Home() {
       </SectionContainer>
 
       <SectionContainer>
-        <h1>Головна</h1>
+        <h1>{title}</h1>
         <h2 className={css.heading}>Акційні пропозиції</h2>
         <ProductsList category="promotions" />
       </SectionContainer>

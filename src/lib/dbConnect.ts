@@ -26,9 +26,20 @@ async function dbConnect() {
     const opts = {
       bufferCommands: false,
     };
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then(mongoose => {
-      return mongoose;
-    });
+    cached.promise = (async () => {
+      const mongooseInstance = await mongoose.connect(MONGODB_URI, opts);
+
+      const db = mongooseInstance.connection.db;
+      if (!db) {
+        throw new Error('Database connection is not available.');
+      }
+
+      await db.collection('products').createIndex({ category: 1 });
+      await db.collection('products').createIndex({ promotion: 1 });
+      await db.collection('users').createIndex({ email: 1 });
+
+      return mongooseInstance;
+    })();
   }
   try {
     cached.conn = await cached.promise;

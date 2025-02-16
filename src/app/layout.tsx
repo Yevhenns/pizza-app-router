@@ -56,10 +56,7 @@ export default async function RootLayout({
           name="google-site-verification"
           content="7ThJ8TZQqdaICo-gIgrqtzRaxDg5yHsr4Xi0LgGaHDM"
         />
-        <meta
-          httpEquiv="Cross-Origin-Opener-Policy"
-          content="same-origin-allow-popups"
-        />
+        <meta httpEquiv="Cross-Origin-Opener-Policy" content="same-origin" />
         <meta name="keywords" content="Піца, Закуски, Напої, Дніпро" />
       </head>
       <body className={nunito.className}>

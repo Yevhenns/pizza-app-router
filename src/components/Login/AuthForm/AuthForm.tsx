@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import { parseError } from '@/helpers/parseError';
 import { isValidEmail, isValidPassword } from '@/helpers/validation';
-import { signIn, signUp } from '@/store/auth/authOperations';
+import { repeatVerifyEmail, signIn, signUp } from '@/store/auth/authOperations';
 import { addUserInfo } from '@/store/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
 
@@ -23,6 +23,7 @@ type AuthFormProps = {
 export function AuthForm({ type }: AuthFormProps) {
   const [idiShown, setIdiShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [notVerified, setNotVerified] = useState(false);
 
   const dispatch = useAppDispatch();
 
@@ -30,8 +31,41 @@ export function AuthForm({ type }: AuthFormProps) {
     register,
     handleSubmit,
     getValues,
+    watch,
     formState: { errors, isValid },
   } = useForm<Auth>({ mode: 'onChange' });
+
+  const email = watch('email');
+  const password = watch('password');
+
+  const repeatSendVerifyEmail = async () => {
+    setIsLoading(true);
+    const body = {
+      email,
+      password,
+    };
+    try {
+      await repeatVerifyEmail(body);
+
+      setIsLoading(false);
+      setNotVerified(false);
+
+      return toast.success('Перевірте пошту', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeButton: false,
+      });
+    } catch (error) {
+      setIsLoading(false);
+      return toast.error(parseError(error), {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeButton: false,
+      });
+    }
+  };
 
   const onSubmit: SubmitHandler<Auth> = async data => {
     const lastThreeChars = data.email.slice(-3) === '.ru';
@@ -70,6 +104,11 @@ export function AuthForm({ type }: AuthFormProps) {
     } catch (error: any) {
       console.error('Помилка при реєстрації:', error);
       setIsLoading(false);
+      console.log('status', error.status);
+
+      if (error.status) {
+        setNotVerified(true);
+      }
 
       return toast.error(parseError(error), {
         position: 'top-center',
@@ -130,6 +169,16 @@ export function AuthForm({ type }: AuthFormProps) {
           inputMode="text"
           forPassword
         />
+      )}
+
+      {notVerified && (
+        <Button
+          type="button"
+          disabled={!isValid}
+          onClick={repeatSendVerifyEmail}
+        >
+          Надіслати підтвердження
+        </Button>
       )}
 
       <Button type="submit" disabled={!isValid}>

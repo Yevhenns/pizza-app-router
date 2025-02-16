@@ -104,3 +104,28 @@ export const verifyEmail = async (
     throw error;
   }
 };
+
+export const repeatVerifyEmail = async (body: Auth): Promise<UserResponse> => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/repeat-verify`, {
+      method: 'PATCH',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw { status: response.status, message: errorMessage };
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    console.error('Помилка:', error);
+    throw error;
+  }
+};

@@ -22,15 +22,28 @@ import { UserOrders } from '@/components/UserOrders';
 import { LoaderModal } from '../shared/LoaderModal';
 import { AuthForm } from './AuthForm';
 import css from './Login.module.scss';
+import { PasswordRecoweryForm } from './PasswordRecoweryForm';
 
 export default function Login() {
-  const [login, setLogin] = useState(true);
+  const [action, setAction] = useState<AuthActions>('login');
   const [isLoading, setIsLoading] = useState(false);
 
   const userInfo = useAppSelector(getUserInfo);
   const token = useAppSelector(getUserToken);
 
   const dispatch = useAppDispatch();
+
+  const showRecoveryForm = () => {
+    setAction('recovery');
+  };
+
+  const showLoginForm = () => {
+    setAction('login');
+  };
+
+  const showRegisterForm = () => {
+    setAction('register');
+  };
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -72,36 +85,58 @@ export default function Login() {
     <div className={css.layout}>
       {isLoading && <LoaderModal />}
       {!userInfo ? (
-        <div className={css.authWrapper}>
-          {login ? <h2>Вхід</h2> : <h2>Реєстрація</h2>}
-          <GoogleLogin
-            onSuccess={credentialResponse => {
-              if (credentialResponse.credential) {
-                sendGoogleToken(credentialResponse.credential);
-              }
-            }}
-            onError={() => {
-              console.log('Login Failed');
+        <>
+          {action !== 'recovery' ? (
+            <div className={css.authWrapper}>
+              {action === 'login' && <h2>Вхід</h2>}
+              {action === 'register' && <h2>Реєстрація</h2>}
+              <GoogleLogin
+                onSuccess={credentialResponse => {
+                  if (credentialResponse.credential) {
+                    sendGoogleToken(credentialResponse.credential);
+                  }
+                }}
+                onError={() => {
+                  console.log('Login Failed');
 
-              return toast.error('Сталася помилка', {
-                position: 'top-center',
-                autoClose: 1500,
-                hideProgressBar: true,
-                closeButton: false,
-              });
-            }}
-          />
-          <p>або за допомогою Email</p>
-          {login ? (
-            <AuthForm key="login" type="login" />
+                  return toast.error('Сталася помилка', {
+                    position: 'top-center',
+                    autoClose: 1500,
+                    hideProgressBar: true,
+                    closeButton: false,
+                  });
+                }}
+              />
+              <p>або за допомогою Email</p>
+              {action === 'login' && (
+                <>
+                  <AuthForm
+                    key="login"
+                    type="login"
+                    showRecoveryForm={showRecoveryForm}
+                  />
+                  <button className={css.toggleBtn} onClick={showRegisterForm}>
+                    Немає акаунта? Зареєструйся
+                  </button>
+                </>
+              )}
+
+              {action === 'register' && (
+                <>
+                  <AuthForm key="register" type="register" />
+                  <button className={css.toggleBtn} onClick={showLoginForm}>
+                    Вже є акаунт? Увійдіть
+                  </button>
+                </>
+              )}
+            </div>
           ) : (
-            <AuthForm key="register" type="register" />
+            <div className={css.authWrapper}>
+              <h2>Відновлення паролю</h2>
+              <PasswordRecoweryForm showLoginForm={showLoginForm} />
+            </div>
           )}
-
-          <button className={css.toggleBtn} onClick={() => setLogin(!login)}>
-            {!login ? 'Вже є акаунт? Увійдіть' : 'Немає акаунта? Зареєструйся'}
-          </button>
-        </div>
+        </>
       ) : (
         <UserOrders logoutHandler={logoutHandler} userInfo={userInfo} />
       )}

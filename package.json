@@ -17,6 +17,7 @@
     "@sendgrid/mail": "^8.1.4",
     "@vis.gl/react-google-maps": "^1.4.2",
     "bcrypt": "^5.1.1",
+    "generate-password": "^1.7.1",
     "google-auth-library": "^9.15.1",
     "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",

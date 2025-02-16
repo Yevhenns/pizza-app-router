@@ -8,3 +8,5 @@ type Auth = {
   password: string;
   repeatPassword?: string;
 };
+
+type AuthActions = 'login' | 'register' | 'recovery';

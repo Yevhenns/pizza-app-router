@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -18,13 +18,17 @@ import css from './AuthForm.module.scss';
 
 type AuthFormProps = {
   type: 'login' | 'register';
+  showRecoveryForm?: () => void;
 };
 
-export function AuthForm({ type }: AuthFormProps) {
+export function AuthForm({ type, showRecoveryForm }: AuthFormProps) {
   const [idiShown, setIdiShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [notVerified, setNotVerified] = useState(false);
-
+  const [showRecovery, setShowRecovery] = useState(false);
+  useEffect(() => {
+    showRecovery && showRecoveryForm && showRecoveryForm();
+  }, [showRecovery, showRecoveryForm]);
   const dispatch = useAppDispatch();
 
   const {
@@ -159,7 +163,7 @@ export function AuthForm({ type }: AuthFormProps) {
         forPassword
       />
 
-      {type === 'register' && (
+      {type === 'register' ? (
         <Input
           {...register('repeatPassword', {
             required: "Це обов'язкове поле!",
@@ -174,6 +178,14 @@ export function AuthForm({ type }: AuthFormProps) {
           inputMode="text"
           forPassword
         />
+      ) : (
+        <button
+          type="button"
+          className={css.showRecoveryBtn}
+          onClick={showRecoveryForm}
+        >
+          Забули пароль?
+        </button>
       )}
 
       {notVerified && (

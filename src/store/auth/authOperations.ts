@@ -129,3 +129,28 @@ export const repeatVerifyEmail = async (body: Auth): Promise<UserResponse> => {
     throw error;
   }
 };
+
+export const passwordRecovery = async (body: string): Promise<string> => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/password-recovery`, {
+      method: 'PATCH',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: body }),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw { status: response.status, message: errorMessage };
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    console.error('Помилка:', error);
+    throw error;
+  }
+};

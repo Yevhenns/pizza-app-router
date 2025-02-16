@@ -2,14 +2,10 @@ import nodemailer from 'nodemailer';
 
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://nostrra-pizzza.vercel.app';
 
-export async function sendVerifyEmail(
+export async function sendPasswordRecoveryEmail(
   email: string,
-  verificationToken: string
+  password: string
 ) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -22,8 +18,8 @@ export async function sendVerifyEmail(
   const mailOptions = {
     from: EMAIL,
     to: email,
-    subject: 'Підтвердження email',
-    html: `<p>Для підтвердження email <a href=${BASE_URL}/verify/${verificationToken}>клікніть тут</a>.</p>`,
+    subject: 'Відновлення паролю',
+    html: `<p>Ваш новий пароль ${password}</p>`,
   };
 
   try {

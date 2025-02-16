@@ -43,7 +43,7 @@ export async function PATCH(request: Request) {
       verificationToken: null,
     };
 
-    const editedUser = await User.findByIdAndUpdate(_id, body, {
+    await User.findByIdAndUpdate(_id, body, {
       new: true,
     });
 

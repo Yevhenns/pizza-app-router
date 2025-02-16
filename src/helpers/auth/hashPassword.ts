@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
 
-export function hashPasswordFn(payload: Auth) {
-  return bcrypt.hashSync(payload.password, bcrypt.genSaltSync(10));
+export function hashPasswordFn(password: string) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }

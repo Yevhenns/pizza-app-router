@@ -6,7 +6,12 @@ const nextConfig = {
     return [
       {
         source: '/(.*)',
-        headers: [{ key: 'Cross-Origin-Opener-Policy', value: 'same-origin' }],
+        headers: [
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin-allow-popups',
+          },
+        ],
       },
     ];
   },

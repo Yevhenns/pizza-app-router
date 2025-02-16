@@ -3,6 +3,9 @@ import { NextResponse } from 'next/server';
 import { createJwt } from '@/helpers/auth/createJwt';
 import dbConnect from '@/lib/dbConnect';
 import User from '@/models/User';
+import jwt from 'jsonwebtoken';
+
+const jwtSecret = process.env.JWT_SECRET as string;
 
 export async function PATCH(request: Request) {
   const verifyToken = request.headers.get('Authorization')?.split(' ')[1];
@@ -13,6 +16,16 @@ export async function PATCH(request: Request) {
 
   try {
     await dbConnect();
+
+    try {
+      const decoded = jwt.verify(verifyToken, jwtSecret);
+      console.log(decoded);
+    } catch (err: any) {
+      if (err.name === 'TokenExpiredError') {
+        throw { status: 401, error: 'Токен протермінований' };
+      }
+      throw { status: 401, error: 'Невірний токен' };
+    }
 
     const editingUser = await User.findOne({ verificationToken: verifyToken });
     console.log(editingUser);

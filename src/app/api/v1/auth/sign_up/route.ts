@@ -1,18 +1,22 @@
 import { NextResponse } from 'next/server';
 
-import { createJwt } from '@/helpers/auth/createJwt';
+import { createJwt, createVerifyJwt } from '@/helpers/auth/createJwt';
 // import { sendConfirmEmail } from '@/helpers/auth/sendConfirmEmail';
-import { verificationToken } from '@/helpers/auth/verificationToken';
 import { createUserWithEmail } from '@/lib/createUserWithEmail';
 import nodemailer from 'nodemailer';
 
 // const OWNER_EMAIL = process.env.OWNER_EMAIL as string;
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
-const BASE_URL = 'https://nostrra-pizzza.vercel.app';
+const BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://nostrra-pizzza.vercel.app';
 
 export async function POST(request: Request) {
   const body: Auth = await request.json();
+
+  const verificationToken = createVerifyJwt();
 
   try {
     const createdUser = await createUserWithEmail(body, verificationToken);
@@ -45,7 +49,7 @@ export async function POST(request: Request) {
       from: EMAIL,
       to: email,
       subject: 'Verify your email',
-      html: `<p>Please veryfy your email by <a href=http://localhost:3000/verify/${verificationToken}>clicking here</a>.</p>`,
+      html: `<p>Для підтвердження email <a href=${BASE_URL}/verify/${verificationToken}>клікніть тут</a>.</p>`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

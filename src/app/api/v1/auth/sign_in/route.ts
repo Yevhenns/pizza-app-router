@@ -39,7 +39,11 @@ export async function POST(request: Request) {
   try {
     const foundUser = await findUser(body);
 
-    const { _id, picture, name, email, phoneNumber, role } = foundUser;
+    const { _id, picture, name, email, phoneNumber, role, verify } = foundUser;
+
+    if (!verify) {
+      throw { status: 403, error: 'Email не підтверджено' };
+    }
 
     const userInfo = { userId: _id, role: role };
 

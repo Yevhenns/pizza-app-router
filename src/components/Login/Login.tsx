@@ -133,6 +133,13 @@ export default function Login() {
           ) : (
             <div className={css.authWrapper}>
               <h2>Відновлення паролю</h2>
+              <button
+                type="button"
+                className={css.backBtn}
+                onClick={showLoginForm}
+              >
+                Назад
+              </button>
               <PasswordRecoweryForm showLoginForm={showLoginForm} />
             </div>
           )}

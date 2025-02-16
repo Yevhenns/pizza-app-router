@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -25,10 +25,7 @@ export function AuthForm({ type, showRecoveryForm }: AuthFormProps) {
   const [idiShown, setIdiShown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [notVerified, setNotVerified] = useState(false);
-  const [showRecovery, setShowRecovery] = useState(false);
-  useEffect(() => {
-    showRecovery && showRecoveryForm && showRecoveryForm();
-  }, [showRecovery, showRecoveryForm]);
+
   const dispatch = useAppDispatch();
 
   const {

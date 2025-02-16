@@ -22,7 +22,7 @@ export async function createUserWithEmail(
     throw { status: 409, error: 'Email вже використовується' };
   }
 
-  const hashPassword = hashPasswordFn(payload);
+  const hashPassword = hashPasswordFn(payload.password);
 
   const newUser: UserCreateDto = {
     picture:

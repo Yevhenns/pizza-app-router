@@ -3,15 +3,10 @@ import { NextResponse } from 'next/server';
 import { createJwt, createVerifyJwt } from '@/helpers/auth/createJwt';
 // import { sendConfirmEmail } from '@/helpers/auth/sendConfirmEmail';
 import { createUserWithEmail } from '@/lib/createUserWithEmail';
+import { sendVerifyEmail } from '@/lib/sendVerifyEmail';
 import nodemailer from 'nodemailer';
 
 // const OWNER_EMAIL = process.env.OWNER_EMAIL as string;
-const EMAIL = process.env.EMAIL;
-const PASSWORD = process.env.PASSWORD;
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://nostrra-pizzza.vercel.app';
 
 export async function POST(request: Request) {
   const body: Auth = await request.json();
@@ -36,38 +31,11 @@ export async function POST(request: Request) {
       role,
     };
 
-    // nodemailer
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: EMAIL,
-        pass: PASSWORD,
-      },
-    });
-
-    const mailOptions = {
-      from: EMAIL,
-      to: email,
-      subject: 'Verify your email',
-      html: `<p>Для підтвердження email <a href=${BASE_URL}/verify/${verificationToken}>клікніть тут</a>.</p>`,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log('Error:', error);
-      } else {
-        console.log('Email sent:', info.response);
-      }
-    });
-    // nodemailer
-
-    // const mail = {
-    //   to: email,
-    //   from: OWNER_EMAIL,
-    //   subject: 'Verify email',
-    //   html: `<a href="http://localhost:3000/api/users/verify/${verificationToken}" target="_blank">Verify email</a>`,
-    // };
-    // await sendConfirmEmail(mail);
+    try {
+      await sendVerifyEmail(email, verificationToken);
+    } catch (e: any) {
+      throw { status: 500, error: 'Не вдалося надіслати лист' };
+    }
 
     return NextResponse.json({ message: 'Token received', token, user });
   } catch (e: any) {

@@ -166,11 +166,8 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         <div>
           <UploadImage setValue={setValue} />
         </div>
-
         <Description register={register} errors={errors} />
-
         <Prices register={register} errors={errors} />
-
         <CheckBoxes
           categories={categories}
           register={register}
@@ -178,9 +175,7 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
           promotion={promotion}
           vegan={vegan}
         />
-
         <hr />
-
         <span>* - обов&apos;язкові поля</span>
         <Button type="submit" disabled={!isValid}>
           Підтвердити

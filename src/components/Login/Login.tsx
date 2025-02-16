@@ -106,6 +106,7 @@ export default function Login() {
                     closeButton: false,
                   });
                 }}
+                useOneTap
               />
               <p>або за допомогою Email</p>
               {action === 'login' && (

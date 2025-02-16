@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { createJwt, createVerifyJwt } from '@/helpers/auth/createJwt';
+import { createVerifyJwt } from '@/helpers/auth/createJwt';
 import { isValidEmail, isValidPassword } from '@/helpers/validation';
 import dbConnect from '@/lib/dbConnect';
 import { sendVerifyEmail } from '@/lib/sendVerifyEmail';

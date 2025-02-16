@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  gap: 24px;
+
+  .checkboxWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

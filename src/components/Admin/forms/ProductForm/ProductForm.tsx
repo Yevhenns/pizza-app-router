@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import { CldUploadWidget } from 'next-cloudinary';
 import { useParams, useRouter } from 'next/navigation';
 
 import { useHideAdmin } from '@/hooks/useHideAdmin';
@@ -17,12 +16,13 @@ import {
 
 import { ProductListItem } from '@/components/ProductsList/ProductListItem';
 import { Button } from '@/components/shared/Button';
-import { Checkbox } from '@/components/shared/Checkbox';
-import { Input } from '@/components/shared/Input';
 import { LoaderModal } from '@/components/shared/LoaderModal';
-import { TextArea } from '@/components/shared/TextArea';
 
+import { CheckBoxes } from './CheckBoxes/CheckBoxes';
+import { Description } from './Description/Description';
+import { Prices } from './Prices/Prices';
 import css from './ProductForm.module.scss';
+import { UploadImage } from './UploadImage/UploadImage';
 
 type ProductFormProps = {
   products?: Product[];
@@ -132,11 +132,8 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
 
   const categories = ['Піца', 'Закуски', 'Напої', 'Суші'];
   const vegan = watch('vegan');
-  const veganText = vegan ? 'Так' : 'Ні';
   const promotion = watch('promotion');
-  const promotionText = promotion ? 'Так' : 'Ні';
   const spicy = watch('spicy');
-  const spicyText = spicy ? 'Так' : 'Ні';
   const photo = watch('photo');
   const title = watch('title');
   const description = watch('description');
@@ -167,159 +164,20 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
       </div>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <CldUploadWidget
-            uploadPreset="nostra"
-            options={{
-              cropping: true,
-              croppingCoordinatesMode: 'custom',
-              showSkipCropButton: false,
-              croppingAspectRatio: 1,
-              multiple: false,
-            }}
-            onError={() => {
-              toast.error('Додайте файл png');
-            }}
-            onSuccess={result => {
-              typeof result.info === 'object' &&
-                setValue('photo', result.info.secure_url);
-            }}
-          >
-            {({ open }) => {
-              return <Button onClick={() => open()}>Завантажити фото</Button>;
-            }}
-          </CldUploadWidget>
+          <UploadImage setValue={setValue} />
         </div>
 
-        <Input
-          {...register('title', {
-            required: "Це обов'язкове поле!",
-            validate: {
-              required: value => value.trim().length > 1 || 'Введіть назву',
-            },
-          })}
-          placeholder="Введіть назву"
-          id="title"
-          label="* Назва"
-          htmlFor="title"
-          error={errors?.title?.message}
-          inputMode="text"
-          type="text"
+        <Description register={register} errors={errors} />
+
+        <Prices register={register} errors={errors} />
+
+        <CheckBoxes
+          categories={categories}
+          register={register}
+          spicy={spicy}
+          promotion={promotion}
+          vegan={vegan}
         />
-
-        <TextArea
-          {...register('description', {
-            required: "Це обов'язкове поле!",
-            validate: {
-              required: value => value.trim().length > 1 || 'Введіть опис',
-            },
-          })}
-          placeholder="Введіть опис"
-          id="description"
-          label="* Опис"
-          htmlFor="description"
-          error={errors?.description?.message}
-          inputMode="text"
-          type="text"
-        />
-
-        <Input
-          {...register('dimension', {
-            required: "Це обов'язкове поле!",
-            validate: {
-              required: value => value.trim().length > 1 || 'Введіть назву',
-            },
-          })}
-          placeholder="Введіть розміри/об'єм"
-          id="dimension"
-          label="* Розміри/об'єм"
-          htmlFor="dimension"
-          error={errors?.dimension?.message}
-          inputMode="text"
-          type="text"
-        />
-
-        <Input
-          {...register('price', {
-            required: "Це обов'язкове поле!",
-            validate: {
-              required: value => (value && value > 0) || 'Введіть ціну',
-            },
-          })}
-          placeholder="Введіть ціну"
-          id="price"
-          label="* Ціна"
-          htmlFor="price"
-          error={errors?.price?.message}
-          inputMode="text"
-          type="text"
-        />
-
-        <Input
-          {...register('promPrice', {
-            required: "Це обов'язкове поле!",
-            validate: {
-              required: value => (value && value > 0) || 'Введіть ціну',
-            },
-          })}
-          placeholder="Введіть ціну зі знижкою"
-          id="promPrice"
-          label="* Ціна зі знижкою"
-          htmlFor="promPrice"
-          error={errors?.promPrice?.message}
-          inputMode="text"
-          type="text"
-        />
-
-        <div className={css.wrapper}>
-          <div className={css.checkboxWrapper}>
-            <p>Категорія</p>
-            {categories.map((item, idx) => {
-              return (
-                <div key={idx}>
-                  <Checkbox
-                    {...register('category')}
-                    type="radio"
-                    htmlFor={item}
-                    name="category"
-                    id={item}
-                    label={item}
-                    value={item}
-                  />
-                </div>
-              );
-            })}
-          </div>
-
-          <div className={css.checkboxWrapper}>
-            <p>Веганська</p>
-            <Checkbox
-              {...register('vegan')}
-              id="vegan"
-              htmlFor="vegan"
-              label={veganText}
-            />
-          </div>
-
-          <div className={css.checkboxWrapper}>
-            <p>Знижка</p>
-            <Checkbox
-              {...register('promotion')}
-              id="promotion"
-              htmlFor="promotion"
-              label={promotionText}
-            />
-          </div>
-
-          <div className={css.checkboxWrapper}>
-            <p>Гостра</p>
-            <Checkbox
-              {...register('spicy')}
-              id="spicy"
-              htmlFor="spicy"
-              label={spicyText}
-            />
-          </div>
-        </div>
 
         <hr />
 

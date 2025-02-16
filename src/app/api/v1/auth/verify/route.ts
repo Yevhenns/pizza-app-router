@@ -18,8 +18,7 @@ export async function PATCH(request: Request) {
     await dbConnect();
 
     try {
-      const decoded = jwt.verify(verifyToken, jwtSecret);
-      console.log(decoded);
+      jwt.verify(verifyToken, jwtSecret);
     } catch (err: any) {
       if (err.name === 'TokenExpiredError') {
         throw { status: 401, error: 'Токен протермінований' };
@@ -28,18 +27,16 @@ export async function PATCH(request: Request) {
     }
 
     const editingUser = await User.findOne({ verificationToken: verifyToken });
-    console.log(editingUser);
 
     if (!editingUser) {
       throw { status: 404, error: 'Не знайдено' };
     }
 
-    const { _id, role } = editingUser;
+    const { _id, role, name, phoneNumber, email, picture } = editingUser;
 
     const userInfo = { userId: _id, role: role };
 
     const token = createJwt(userInfo);
-    console.log('token', token);
 
     const body = {
       verify: true,
@@ -50,7 +47,16 @@ export async function PATCH(request: Request) {
       new: true,
     });
 
-    return NextResponse.json({ message: 'Token received', token, editedUser });
+    const user = {
+      _id,
+      picture,
+      name,
+      email,
+      phoneNumber,
+      role,
+    };
+
+    return NextResponse.json({ message: 'Token received', token, user });
   } catch (error: any) {
     console.error(error);
 

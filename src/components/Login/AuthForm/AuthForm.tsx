@@ -32,6 +32,7 @@ export function AuthForm({ type }: AuthFormProps) {
     handleSubmit,
     getValues,
     watch,
+    reset,
     formState: { errors, isValid },
   } = useForm<Auth>({ mode: 'onChange' });
 
@@ -45,7 +46,8 @@ export function AuthForm({ type }: AuthFormProps) {
       password,
     };
     try {
-      await repeatVerifyEmail(body);
+      const response = await repeatVerifyEmail(body);
+      dispatch(addUserInfo(response));
 
       setIsLoading(false);
       setNotVerified(false);
@@ -79,10 +81,13 @@ export function AuthForm({ type }: AuthFormProps) {
     try {
       if (type === 'register') {
         const response = await signUp(data);
-        dispatch(addUserInfo(response));
+        console.log(response);
+
         setIsLoading(false);
 
-        return toast.success('Реєстрація виконана успішно', {
+        reset();
+
+        return toast.success('Реєстрація успішна. Перевірте пошту', {
           position: 'top-center',
           autoClose: 1500,
           hideProgressBar: true,
@@ -106,7 +111,7 @@ export function AuthForm({ type }: AuthFormProps) {
       setIsLoading(false);
       console.log('status', error.status);
 
-      if (error.status) {
+      if (error.status === 403) {
         setNotVerified(true);
       }
 
@@ -177,13 +182,15 @@ export function AuthForm({ type }: AuthFormProps) {
           disabled={!isValid}
           onClick={repeatSendVerifyEmail}
         >
-          Надіслати підтвердження
+          Надіслати повторно
         </Button>
       )}
 
-      <Button type="submit" disabled={!isValid}>
-        {type === 'login' ? 'Увійти' : 'Зареєструватися'}
-      </Button>
+      {!notVerified && (
+        <Button type="submit" disabled={!isValid}>
+          {type === 'login' ? 'Увійти' : 'Зареєструватися'}
+        </Button>
+      )}
     </form>
   );
 }

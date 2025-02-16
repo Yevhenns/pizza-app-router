@@ -52,11 +52,9 @@ export async function PATCH(request: Request) {
       verificationToken: verificationToken,
     };
 
-    const editedUser = await User.findByIdAndUpdate(_id, verificationBody, {
+    await User.findByIdAndUpdate(_id, verificationBody, {
       new: true,
     });
-
-    console.log(editedUser);
 
     try {
       await sendVerifyEmail(email, verificationToken);

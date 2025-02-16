@@ -9,13 +9,17 @@ export function Avatar() {
   const userInfo = useAppSelector(getUserInfo);
 
   return (
-    <Image
-      className={css.image}
-      src={userInfo?.picture || 'https://placehold.co/34'}
-      alt="user photo"
-      width={34}
-      height={34}
-      priority={true}
-    />
+    <>
+      {userInfo?.picture && (
+        <Image
+          className={css.image}
+          src={userInfo?.picture}
+          alt="user photo"
+          width={34}
+          height={34}
+          priority={true}
+        />
+      )}
+    </>
   );
 }

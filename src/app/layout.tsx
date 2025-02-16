@@ -57,7 +57,7 @@ export default async function RootLayout({
           content="7ThJ8TZQqdaICo-gIgrqtzRaxDg5yHsr4Xi0LgGaHDM"
         />
         <meta
-          http-equiv="Cross-Origin-Opener-Policy"
+          httpEquiv="Cross-Origin-Opener-Policy"
           content="same-origin-allow-popups"
         />
         <meta name="keywords" content="Піца, Закуски, Напої, Дніпро" />

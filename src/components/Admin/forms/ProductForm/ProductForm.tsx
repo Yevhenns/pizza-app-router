@@ -169,7 +169,13 @@ export function ProductForm({ products, supplements }: ProductFormProps) {
         <div>
           <CldUploadWidget
             uploadPreset="nostra"
-            options={{ clientAllowedFormats: ['png'] }}
+            options={{
+              cropping: true,
+              croppingCoordinatesMode: 'custom',
+              showSkipCropButton: false,
+              croppingAspectRatio: 1,
+              multiple: false,
+            }}
             onError={() => {
               toast.error('Додайте файл png');
             }}

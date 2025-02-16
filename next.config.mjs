@@ -2,6 +2,14 @@
 import withPWA from 'next-pwa';
 
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [{ key: 'Cross-Origin-Opener-Policy', value: 'same-origin' }],
+      },
+    ];
+  },
   env: {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,

@@ -2,8 +2,8 @@ import { HTMLProps, forwardRef, useState } from 'react';
 
 import { cn } from '@/helpers/combineClasses';
 
-import { Icon } from '../Icon';
-import { RoundButton } from '../RoundButton';
+import { Icon } from '../Icon/Icon';
+import { RoundButton } from '../RoundButton/RoundButton';
 import css from './Input.module.scss';
 
 type InputProps = {

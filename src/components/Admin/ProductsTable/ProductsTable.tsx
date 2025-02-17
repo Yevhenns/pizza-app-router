@@ -9,9 +9,9 @@ import { getUserToken } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import { deleteProductById } from '@/store/products/productsOperations';
 
-import { Icon } from '@/components/shared/Icon';
-import { LoaderModal } from '@/components/shared/LoaderModal';
-import { RoundButton } from '@/components/shared/RoundButton';
+import { Icon } from '@/components/shared/Icon/Icon';
+import { LoaderModal } from '@/components/shared/LoaderModal/LoaderModal';
+import { RoundButton } from '@/components/shared/RoundButton/RoundButton';
 
 import css from './ProductsTable.module.scss';
 

@@ -1,27 +1,11 @@
-.modalWrapper {
-  position: fixed;
-  box-sizing: border-box;
-  z-index: 9;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--modal-background-color);
+.modal {
+  background-color: var(--white-color);
+  color: var(--black-color);
+  padding: 20px;
+  border-radius: 20px;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 50px 0;
-  overflow: scroll;
-
-  .modal {
-    background-color: var(--white-color);
-    color: var(--black-color);
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  flex-direction: column;
+  gap: 10px;
 
   .resultText {
     text-align: center;

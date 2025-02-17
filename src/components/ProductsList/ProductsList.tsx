@@ -1,13 +1,6 @@
-import {
-  filterByCategory,
-  filterByPromotion,
-} from '@/helpers/filterByCategory';
-import {
-  getProducts,
-  getSupplements,
-} from '@/store/products/productsOperations';
+import { getSupplements } from '@/store/products/productsOperations';
 
-import { ProductListItem } from './ProductListItem';
+import { ProductListItem } from './ProductListItem/ProductListItem';
 import css from './ProductsList.module.scss';
 
 type ProductsListProps = {
@@ -16,16 +9,6 @@ type ProductsListProps = {
 
 export async function ProductsList({ products }: ProductsListProps) {
   const supplements = await getSupplements();
-
-  // const data = (() => {
-  //   if (products && products.length > 0) {
-  //     if (category === 'promotions') {
-  //       return filterByPromotion(products);
-  //     } else {
-  //       return filterByCategory(products, category);
-  //     }
-  //   }
-  // })();
 
   return (
     <div className={css.list}>

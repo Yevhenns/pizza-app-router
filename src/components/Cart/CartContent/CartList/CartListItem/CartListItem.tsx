@@ -6,8 +6,8 @@ import { calculateItemPrice } from '@/helpers/calculateItemPrice';
 import { deleteItem, getCartItems } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
-import { Icon } from '@/components/shared/Icon';
-import { RoundButton } from '@/components/shared/RoundButton';
+import { Icon } from '@/components/shared/Icon/Icon';
+import { RoundButton } from '@/components/shared/RoundButton/RoundButton';
 
 import css from './CartListItem.module.scss';
 import { CartListItemQuantity } from './CartListItemQuantity/CartListItemQuantity';

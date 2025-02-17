@@ -3,8 +3,8 @@
 import { useAppSelector } from '@/store/hooks';
 import { getFavorites } from '@/store/products/productsSlice';
 
-import { FavoriteList } from '@/components/ProductsList';
-import { Empty } from '@/components/shared/Empty';
+import { FavoriteList } from '../ProductsList/FavoriteList';
+import { Empty } from '../shared/Empty/Empty';
 
 type FavoriteProps = {
   products: Product[];

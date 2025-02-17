@@ -5,8 +5,8 @@ import { addOrderSum, getUpdatedCartItems } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getIsLoading } from '@/store/products/productsSlice';
 
-import { Empty } from '@/components/shared/Empty';
-import { Loader } from '@/components/shared/Loader';
+import { Empty } from '@/components/shared/Empty/Empty';
+import { Loader } from '@/components/shared/Loader/Loader';
 
 import css from './CartContent.module.scss';
 import { CartForm } from './CartForm/CartForm';

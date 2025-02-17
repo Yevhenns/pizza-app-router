@@ -7,7 +7,7 @@ import { createPersistor, makeStore } from '@/store/store';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { WelcomeLogo } from '@/components/WelcomeLogo';
+import { WelcomeLogo } from '@/components/WelcomeLogo/WelcomeLogo';
 
 export default function ReduxProvider({
   children,

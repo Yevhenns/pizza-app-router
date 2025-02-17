@@ -10,14 +10,14 @@ import { getCartItems } from '@/store/cart/cartSlice';
 import { useAppSelector } from '@/store/hooks';
 import { getFavorites } from '@/store/products/productsSlice';
 
-import { Container } from '@/components/shared/Container';
-import { Icon } from '@/components/shared/Icon';
-import { Logo } from '@/components/shared/Logo';
+import { Container } from '@/components/shared/Container/Container';
+import { Icon } from '@/components/shared/Icon/Icon';
+import { Logo } from '@/components/shared/Logo/Logo';
 
-import { PhoneNumbersSet } from '../PhoneNumbersSet';
-import { Avatar } from './Avatar';
+import { PhoneNumbersSet } from '../PhoneNumbersSet/PhoneNumbersSet';
+import { Avatar } from './Avatar/Avatar';
 import css from './Header.module.scss';
-import { Navigation } from './Navigation';
+import { Navigation } from './Navigation/Navigation';
 
 export function Header() {
   const pathname = usePathname();

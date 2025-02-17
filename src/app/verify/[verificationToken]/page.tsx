@@ -10,8 +10,8 @@ import { verifyEmail } from '@/store/auth/authOperations';
 import { addUserInfo } from '@/store/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-import { Button } from '@/components/shared/Button';
-import { LoaderModal } from '@/components/shared/LoaderModal';
+import { Button } from '@/components/shared/Button/Button';
+import { LoaderModal } from '@/components/shared/LoaderModal/LoaderModal';
 import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 export default function Verify() {

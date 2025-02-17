@@ -10,9 +10,9 @@ import { repeatVerifyEmail, signIn, signUp } from '@/store/auth/authOperations';
 import { addUserInfo } from '@/store/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-import { Button } from '@/components/shared/Button';
-import { Input } from '@/components/shared/Input';
-import { LoaderModal } from '@/components/shared/LoaderModal';
+import { Button } from '@/components/shared/Button/Button';
+import { Input } from '@/components/shared/Input/Input';
+import { LoaderModal } from '@/components/shared/LoaderModal/LoaderModal';
 
 import css from './AuthForm.module.scss';
 

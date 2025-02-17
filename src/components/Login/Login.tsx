@@ -17,12 +17,11 @@ import {
 } from '@/store/userOrders/userOrdersSlice';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 
-import { UserOrders } from '@/components/UserOrders';
-
-import { LoaderModal } from '../shared/LoaderModal';
-import { AuthForm } from './AuthForm';
+import { UserOrders } from '../UserOrders/UserOrders';
+import { LoaderModal } from '../shared/LoaderModal/LoaderModal';
+import { AuthForm } from './AuthForm/AuthForm';
 import css from './Login.module.scss';
-import { PasswordRecoweryForm } from './PasswordRecoweryForm';
+import { PasswordRecoweryForm } from './PasswordRecoweryForm/PasswordRecoweryForm';
 
 export default function Login() {
   const [action, setAction] = useState<AuthActions>('login');

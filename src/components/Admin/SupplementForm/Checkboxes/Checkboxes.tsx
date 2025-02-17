@@ -1,6 +1,6 @@
 import { UseFormRegister, UseFormWatch } from 'react-hook-form';
 
-import { Checkbox } from '@/components/shared/Checkbox';
+import { Checkbox } from '@/components/shared/Checkbox/Checkbox';
 
 import css from './Checkboxes.module.scss';
 

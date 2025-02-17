@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { deleteAllItems, getOrderSum } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/shared/Button/Button';
 
 import css from './CartList.module.scss';
 import { CartListItem } from './CartListItem/CartListItem';

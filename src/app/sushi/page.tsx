@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { fetchProductsByCategory } from '@/store/products/productsOperations';
 
-import { ProductsList } from '@/components/ProductsList';
+import { ProductsList } from '@/components/ProductsList/ProductsList';
 import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 const title = 'Суші';

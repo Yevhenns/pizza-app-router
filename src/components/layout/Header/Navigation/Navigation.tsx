@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from '@/helpers/combineClasses';
 
-import { Logo } from '@/components/shared/Logo';
+import { Logo } from '@/components/shared/Logo/Logo';
 
 import css from './Navigation.module.scss';
 

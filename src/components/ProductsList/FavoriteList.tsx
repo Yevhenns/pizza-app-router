@@ -1,4 +1,4 @@
-import { ProductListItem } from './ProductListItem';
+import { ProductListItem } from './ProductListItem/ProductListItem';
 import css from './ProductsList.module.scss';
 
 type FavoriteListProps = {

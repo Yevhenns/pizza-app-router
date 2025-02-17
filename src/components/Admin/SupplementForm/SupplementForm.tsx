@@ -14,8 +14,8 @@ import {
   updateSupplement,
 } from '@/store/products/productsOperations';
 
-import { Button } from '@/components/shared/Button';
-import { LoaderModal } from '@/components/shared/LoaderModal';
+import { Button } from '@/components/shared/Button/Button';
+import { LoaderModal } from '@/components/shared/LoaderModal/LoaderModal';
 
 import { Checkboxes } from './Checkboxes/Checkboxes';
 import { Inputs } from './Inputs/Inputs';

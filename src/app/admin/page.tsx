@@ -7,7 +7,7 @@ import {
 } from '@/store/products/productsOperations';
 
 import Admin from '@/components/Admin/Admin';
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/shared/Button/Button';
 import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 import css from './page.module.scss';

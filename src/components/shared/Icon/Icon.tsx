@@ -4,7 +4,7 @@ import css from './Icon.module.scss';
 type IconProps = {
   iconWidth: number | undefined;
   iconHeight: number | undefined;
-  svg: TypeIcon | undefined;
+  svg: IconsType | undefined;
   color?: 'main' | 'white' | 'accent' | 'red' | 'green';
 };
 

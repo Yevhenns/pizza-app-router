@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { CldUploadWidget } from 'next-cloudinary';
 
-import { Button } from '@/components/shared/Button';
+import { Button } from '@/components/shared/Button/Button';
 
 type UploadImageProps = {
   setValue: UseFormSetValue<ProductCreateDto>;

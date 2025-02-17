@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { PhoneNumbersSet } from '../../PhoneNumbersSet';
+import { PhoneNumbersSet } from '../../PhoneNumbersSet/PhoneNumbersSet';
 import css from './FooterNavigation.module.scss';
 
 export function FooterNavigation() {

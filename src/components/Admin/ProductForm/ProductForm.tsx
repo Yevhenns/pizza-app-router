@@ -14,9 +14,9 @@ import {
   updateProduct,
 } from '@/store/products/productsOperations';
 
-import { ProductListItem } from '@/components/ProductsList/ProductListItem';
-import { Button } from '@/components/shared/Button';
-import { LoaderModal } from '@/components/shared/LoaderModal';
+import { ProductListItem } from '@/components/ProductsList/ProductListItem/ProductListItem';
+import { Button } from '@/components/shared/Button/Button';
+import { LoaderModal } from '@/components/shared/LoaderModal/LoaderModal';
 
 import { CheckBoxes } from './CheckBoxes/CheckBoxes';
 import { Description } from './Description/Description';

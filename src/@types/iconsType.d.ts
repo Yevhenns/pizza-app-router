@@ -1,4 +1,4 @@
-type TypeIcon =
+type IconsType =
   | 'basket'
   | 'logo-dark'
   | 'logo-light'

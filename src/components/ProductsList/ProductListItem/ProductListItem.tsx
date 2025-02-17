@@ -7,11 +7,11 @@ import { useFilterSupplements } from '@/hooks/useFilterSupplements';
 import { addItem } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
-import { ProductDescription } from './ProductDescription';
-import { ProductFooter } from './ProductFooter';
+import { ProductDescription } from './ProductDescription/ProductDescription';
+import { ProductFooter } from './ProductFooter/ProductFooter';
 import css from './ProductListItem.module.scss';
-import { ProductOptionsList } from './ProductOptionsList';
-import { ProductQuantity } from './ProductQuantity';
+import { ProductOptionsList } from './ProductOptionsList/ProductOptionsList';
+import { ProductQuantity } from './ProductQuantity/ProductQuantity';
 
 type ProductListItemProps = {
   item: Product;

@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import { Icon } from '../Icon';
+import { Icon } from '../Icon/Icon';
 import css from './Logo.module.scss';
 
 type LogoProps = {
-  isLight: boolean;
+  isLight?: boolean;
 };
 
-export function Logo({ isLight = false }) {
+export function Logo({ isLight = false }: LogoProps) {
   return (
     <Link href={'/'} className={css.logo} aria-label="logo home page">
       <Icon

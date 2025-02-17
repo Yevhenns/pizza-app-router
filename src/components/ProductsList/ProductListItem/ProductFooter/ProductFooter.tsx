@@ -1,5 +1,5 @@
-import { Button } from '@/components/shared/Button';
-import { Icon } from '@/components/shared/Icon';
+import { Button } from '@/components/shared/Button/Button';
+import { Icon } from '@/components/shared/Icon/Icon';
 
 import css from './ProductFooter.module.scss';
 

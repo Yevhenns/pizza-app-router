@@ -8,9 +8,9 @@ import { parseError } from '@/helpers/parseError';
 import { isValidEmail } from '@/helpers/validation';
 import { passwordRecovery } from '@/store/auth/authOperations';
 
-import { Button } from '@/components/shared/Button';
-import { Input } from '@/components/shared/Input';
-import { LoaderModal } from '@/components/shared/LoaderModal';
+import { Button } from '@/components/shared/Button/Button';
+import { Input } from '@/components/shared/Input/Input';
+import { LoaderModal } from '@/components/shared/LoaderModal/LoaderModal';
 
 import css from './PasswordRecoweryForm.module.scss';
 

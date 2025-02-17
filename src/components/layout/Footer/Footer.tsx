@@ -1,8 +1,8 @@
-import { Container } from '@/components/shared/Container';
-import { Icon } from '@/components/shared/Icon';
+import { Container } from '@/components/shared/Container/Container';
+import { Icon } from '@/components/shared/Icon/Icon';
 
 import css from './Footer.module.scss';
-import { FooterNavigation } from './FooterNavigation';
+import { FooterNavigation } from './FooterNavigation/FooterNavigation';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();

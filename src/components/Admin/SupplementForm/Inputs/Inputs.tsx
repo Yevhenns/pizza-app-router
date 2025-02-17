@@ -1,6 +1,6 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { Input } from '@/components/shared/Input';
+import { Input } from '@/components/shared/Input/Input';
 
 type InputsProps = {
   register: UseFormRegister<SupplementCreateDto>;

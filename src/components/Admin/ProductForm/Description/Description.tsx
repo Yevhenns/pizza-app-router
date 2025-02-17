@@ -1,7 +1,7 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import { Input } from '@/components/shared/Input';
-import { TextArea } from '@/components/shared/TextArea';
+import { Input } from '@/components/shared/Input/Input';
+import { TextArea } from '@/components/shared/TextArea/TextArea';
 
 type DescriptionProps = {
   register: UseFormRegister<ProductCreateDto>;

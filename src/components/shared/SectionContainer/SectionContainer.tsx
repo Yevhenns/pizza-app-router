@@ -1,6 +1,6 @@
 import { HTMLProps, PropsWithChildren } from 'react';
 
-import { Container } from '../Container';
+import { Container } from '../Container/Container';
 import { Section } from '../Section/Section';
 
 type SectionContainerProps = {} & HTMLProps<PropsWithChildren<HTMLDivElement>>;

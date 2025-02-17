@@ -3,8 +3,8 @@ import { getIsLoading } from '@/store/auth/authSlice';
 import { useAppSelector } from '@/store/hooks';
 import { getUserProductsAll } from '@/store/userOrders/userOrdersSlice';
 
-import { Button } from '../shared/Button';
-import { Loader } from '../shared/Loader';
+import { Button } from '../shared/Button/Button';
+import { Loader } from '../shared/Loader/Loader';
 import css from './UserOrders.module.scss';
 
 type UserOrdersProps = {

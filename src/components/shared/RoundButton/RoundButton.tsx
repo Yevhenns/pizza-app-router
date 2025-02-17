@@ -1,4 +1,4 @@
-import { HTMLProps, PropsWithChildren, ReactNode } from 'react';
+import { HTMLProps, PropsWithChildren } from 'react';
 
 import css from './RoundButton.module.scss';
 

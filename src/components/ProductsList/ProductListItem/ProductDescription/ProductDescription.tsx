@@ -10,8 +10,8 @@ import {
   removeFromFavoriteAction,
 } from '@/store/products/productsSlice';
 
-import { Icon } from '@/components/shared/Icon';
-import { RoundButton } from '@/components/shared/RoundButton';
+import { Icon } from '@/components/shared/Icon/Icon';
+import { RoundButton } from '@/components/shared/RoundButton/RoundButton';
 
 import css from './ProductDescription.module.scss';
 

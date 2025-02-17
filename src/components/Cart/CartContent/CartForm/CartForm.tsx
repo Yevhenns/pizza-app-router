@@ -8,10 +8,10 @@ import { addInfo, getCustomerInfo, getOrderSum } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useMask } from '@react-input/mask';
 
-import { Button } from '@/components/shared/Button';
-import { Checkbox } from '@/components/shared/Checkbox';
-import { Input } from '@/components/shared/Input';
-import { TextArea } from '@/components/shared/TextArea';
+import { Button } from '@/components/shared/Button/Button';
+import { Checkbox } from '@/components/shared/Checkbox/Checkbox';
+import { Input } from '@/components/shared/Input/Input';
+import { TextArea } from '@/components/shared/TextArea/TextArea';
 
 import css from './CartForm.module.scss';
 

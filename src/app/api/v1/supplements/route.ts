@@ -6,6 +6,17 @@ const jwtSecret = process.env.JWT_SECRET as string;
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * @swagger
+ * /api/v1/supplements:
+ *   get:
+ *     tags:
+ *     - Supplements
+ *     description: Returns all supplements
+ *     responses:
+ *       200:
+ *         description: supplements
+ */
 export async function GET() {
   await dbConnect();
 

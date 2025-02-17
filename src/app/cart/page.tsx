@@ -5,7 +5,7 @@ import {
   getSupplements,
 } from '@/store/products/productsOperations';
 
-import Cart from '@/components/Cart/Cart';
+import { Cart } from '@/components/Cart/Cart';
 import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 export const metadata: Metadata = {

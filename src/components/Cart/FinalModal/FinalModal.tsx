@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { createPortal } from 'react-dom';
 
 import Link from 'next/link';

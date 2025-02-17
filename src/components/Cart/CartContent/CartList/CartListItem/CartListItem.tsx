@@ -10,7 +10,7 @@ import { Icon } from '@/components/shared/Icon';
 import { RoundButton } from '@/components/shared/RoundButton';
 
 import css from './CartListItem.module.scss';
-import { CartListItemQuantity } from './CartListItemQuantity';
+import { CartListItemQuantity } from './CartListItemQuantity/CartListItemQuantity';
 
 type CartListItemProps = {
   data: UpdatedCartItem;

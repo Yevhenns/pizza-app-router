@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { fetchProductsByPromotion } from '@/store/products/productsOperations';
 
 import { Addresses } from '@/components/Addresses/Addresses';
-import { CarouselComponent } from '@/components/CarouselComponent';
+import { CarouselComponent } from '@/components/CarouselComponent/CarouselComponent';
 import { ProductsList } from '@/components/ProductsList';
 import { QRCode } from '@/components/QRCode';
 import { Weather } from '@/components/Weather';

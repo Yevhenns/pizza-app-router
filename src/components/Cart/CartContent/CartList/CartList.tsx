@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { Button } from '@/components/shared/Button';
 
 import css from './CartList.module.scss';
-import { CartListItem } from './CartListItem';
+import { CartListItem } from './CartListItem/CartListItem';
 
 type CartListProps = {
   updatedCartItems: UpdatedCartItem[];

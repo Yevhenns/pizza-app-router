@@ -9,8 +9,8 @@ import { Empty } from '@/components/shared/Empty';
 import { Loader } from '@/components/shared/Loader';
 
 import css from './CartContent.module.scss';
-import { CartForm } from './CartForm';
-import { CartList } from './CartList';
+import { CartForm } from './CartForm/CartForm';
+import { CartList } from './CartList/CartList';
 
 type CartContentProps = {
   openModal: () => void;

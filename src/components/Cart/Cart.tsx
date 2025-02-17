@@ -9,17 +9,16 @@ import {
 } from '@/store/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
-import { CartContent } from '@/components/Cart/CartContent';
-import { FinalModal } from '@/components/Cart/FinalModal';
-
 import css from './Cart.module.scss';
+import { CartContent } from './CartContent/CartContent';
+import { FinalModal } from './FinalModal/FinalModal';
 
 type CartProps = {
   products: Product[];
   supplements: Supplement[];
 };
 
-export default function Cart({ products, supplements }: CartProps) {
+export function Cart({ products, supplements }: CartProps) {
   const [open, setOpen] = useState(false);
 
   const filteredCart = useAppSelector(getCartItems);

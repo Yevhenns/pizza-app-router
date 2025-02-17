@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { SupplementForm } from '@/components/Admin/forms/SupplementForm';
+import { SupplementForm } from '@/components/Admin/SupplementForm/SupplementForm';
 import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 export const metadata: Metadata = {

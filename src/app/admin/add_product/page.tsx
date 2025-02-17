@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import { getSupplements } from '@/store/products/productsOperations';
 
-import { ProductForm } from '@/components/Admin/forms/ProductForm';
+import { ProductForm } from '@/components/Admin/ProductForm/ProductForm';
 import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
 
 export const metadata: Metadata = {

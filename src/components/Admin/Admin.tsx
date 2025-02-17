@@ -3,9 +3,9 @@
 import { useHideAdmin } from '@/hooks/useHideAdmin';
 
 import css from './Admin.module.scss';
-import { ProductsTable } from './ProductsTable';
-import { SupplementsTable } from './SupplementsTable';
-import { UsersTable } from './UsersTable';
+import { ProductsTable } from './ProductsTable/ProductsTable';
+import { SupplementsTable } from './SupplementsTable/SupplementsTable';
+import { UsersTable } from './UsersTable/UsersTable';
 
 type AdminProps = {
   products: Product[];

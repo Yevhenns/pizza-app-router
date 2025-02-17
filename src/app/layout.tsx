@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 
 import SavedProductsProvider from '@/providers/SavedProductsProvider';
-import { fetchProductsId } from '@/store/products/productsOperations';
+import { fetchProductsIdList } from '@/store/products/productsOperations';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import SSRLayout from '../components/layout/SSRLayout';
@@ -47,7 +47,7 @@ export default async function RootLayout({
 }>) {
   const CLIENTID = process.env.CLIENTID as string;
 
-  const allproductsId = await fetchProductsId();
+  const allproductsIdList = await fetchProductsIdList();
 
   return (
     <html lang="uk">
@@ -66,7 +66,7 @@ export default async function RootLayout({
         <GoogleOAuthProvider clientId={CLIENTID}>
           <ReduxProvider>
             <GoogleProvider>
-              <SavedProductsProvider allproductsId={allproductsId}>
+              <SavedProductsProvider allproductsIdList={allproductsIdList}>
                 <SSRLayout>
                   {children}
                   <ToastContainer />

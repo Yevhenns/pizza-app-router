@@ -1,11 +1,8 @@
+import { BASE_URL } from '@/assets/variables';
 import nodemailer from 'nodemailer';
 
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'https://nostrra-pizzza.vercel.app';
 
 export async function sendVerifyEmail(
   email: string,

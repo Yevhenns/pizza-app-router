@@ -1,13 +1,10 @@
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000/api/v1'
-    : process.env.NEXT_PUBLIC_BASE_URL;
+import { BASE_URL_API } from '@/assets/variables';
 
 export const getUserProductsList = async (
   token: string
 ): Promise<UserOrders[]> => {
   try {
-    const res = await fetch(`${BASE_URL}/users/orders`, {
+    const res = await fetch(`${BASE_URL_API}/users/orders`, {
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +23,7 @@ export const getUserProductsList = async (
 
 export const getUsers = async (token: string): Promise<User[]> => {
   try {
-    const res = await fetch(`${BASE_URL}/users`, {
+    const res = await fetch(`${BASE_URL_API}/users`, {
       cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',

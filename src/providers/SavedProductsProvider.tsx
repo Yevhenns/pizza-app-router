@@ -8,10 +8,10 @@ import { useAppDispatch } from '@/store/hooks';
 import { checkFavorites } from '@/store/products/productsSlice';
 
 export default function SavedProductsProvider({
-  allproductsId,
+  allproductsIdList,
   children,
 }: Readonly<{
-  allproductsId: string[];
+  allproductsIdList: string[];
   children: React.ReactNode;
 }>) {
   const dispatch = useAppDispatch();
@@ -19,11 +19,11 @@ export default function SavedProductsProvider({
   useLogOutAfterTokenExpires();
 
   useEffect(() => {
-    if (allproductsId.length > 0) {
-      dispatch(checkFavorites(allproductsId));
-      dispatch(checkCart(allproductsId));
+    if (allproductsIdList.length > 0) {
+      dispatch(checkFavorites(allproductsIdList));
+      dispatch(checkCart(allproductsIdList));
     }
-  }, [dispatch, allproductsId]);
+  }, [dispatch, allproductsIdList]);
 
   return <>{children}</>;
 }

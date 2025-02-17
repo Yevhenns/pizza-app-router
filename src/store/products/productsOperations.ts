@@ -1,11 +1,8 @@
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000/api/v1'
-    : process.env.NEXT_PUBLIC_BASE_URL;
+import { BASE_URL_API } from '@/assets/variables';
 
 // get items
 export const fetchData = async <T>(endpoint: string): Promise<T> => {
-  const response = await fetch(`${BASE_URL}/${endpoint}`, {
+  const response = await fetch(`${BASE_URL_API}/${endpoint}`, {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
@@ -24,8 +21,8 @@ export const getSupplements = async () => {
   return fetchData<Supplement[]>('supplements');
 };
 
-export const fetchProductsId = async (): Promise<string[]> => {
-  const response = await fetch(`${BASE_URL}/products/id-list`, {
+export const fetchProductsIdList = async (): Promise<string[]> => {
+  const response = await fetch(`${BASE_URL_API}/products/id-list`, {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +35,7 @@ export const fetchProductsId = async (): Promise<string[]> => {
 
 // get items by promotion
 export const fetchProductsByPromotion = async (): Promise<Product[]> => {
-  const response = await fetch(`${BASE_URL}/products/promotion`, {
+  const response = await fetch(`${BASE_URL_API}/products/promotion`, {
     cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
@@ -53,12 +50,15 @@ export const fetchProductsByPromotion = async (): Promise<Product[]> => {
 export const fetchProductsByCategory = async (
   category: string
 ): Promise<Product[]> => {
-  const response = await fetch(`${BASE_URL}/products/category/${category}`, {
-    cache: 'no-store',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const response = await fetch(
+    `${BASE_URL_API}/products/category/${category}`,
+    {
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 
   const result: { data: Product[] } = await response.json();
   return result.data;
@@ -71,7 +71,7 @@ const addItem = async <T, B extends object>(
   token: string
 ): Promise<T> => {
   try {
-    const response = await fetch(`${BASE_URL}/${endpoint}`, {
+    const response = await fetch(`${BASE_URL_API}/${endpoint}`, {
       method: 'POST',
       cache: 'no-store',
       headers: {
@@ -111,7 +111,7 @@ const patchItem = async <T extends object>(
   token: string
 ): Promise<number> => {
   try {
-    const response = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
+    const response = await fetch(`${BASE_URL_API}/${endpoint}/${id}`, {
       method: 'PATCH',
       cache: 'no-store',
       headers: {
@@ -147,7 +147,7 @@ export const updateSupplement = (
 // delete item
 const deleteItem = async (endpoint: string, id: string, token: string) => {
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
+    const res = await fetch(`${BASE_URL_API}/${endpoint}/${id}`, {
       method: 'DELETE',
       cache: 'no-store',
       headers: {

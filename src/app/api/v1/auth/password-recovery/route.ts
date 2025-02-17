@@ -23,6 +23,7 @@ export async function PATCH(request: Request) {
     const password = generator.generate({
       length: 8,
       numbers: true,
+      strict: true,
     });
 
     const hashPassword = hashPasswordFn(password);

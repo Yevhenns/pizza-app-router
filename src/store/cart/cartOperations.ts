@@ -1,9 +1,5 @@
+import { BASE_URL_API } from '@/assets/variables';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000/api/v1'
-    : process.env.NEXT_PUBLIC_BASE_URL;
 
 export const sendOrder = createAsyncThunk<
   number,
@@ -13,7 +9,7 @@ export const sendOrder = createAsyncThunk<
   }
 >('basket/sendOrder', async (order, { rejectWithValue }) => {
   try {
-    const res = await fetch(`${BASE_URL}/send_email`, {
+    const res = await fetch(`${BASE_URL_API}/send_email`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,11 +1,8 @@
-const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000/api/v1'
-    : process.env.NEXT_PUBLIC_BASE_URL;
+import { BASE_URL_API } from '@/assets/variables';
 
 export const googleSignIn = async (body: string): Promise<UserResponse> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/google-sign_in`, {
+    const response = await fetch(`${BASE_URL_API}/auth/google-sign_in`, {
       method: 'POST',
       cache: 'no-store',
       headers: {
@@ -30,7 +27,7 @@ export const googleSignIn = async (body: string): Promise<UserResponse> => {
 
 export const signUp = async (body: Auth): Promise<UserResponse> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/sign_up`, {
+    const response = await fetch(`${BASE_URL_API}/auth/sign_up`, {
       method: 'POST',
       cache: 'no-store',
       headers: {
@@ -55,7 +52,7 @@ export const signUp = async (body: Auth): Promise<UserResponse> => {
 
 export const signIn = async (body: Auth): Promise<UserResponse> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/sign_in`, {
+    const response = await fetch(`${BASE_URL_API}/auth/sign_in`, {
       method: 'POST',
       cache: 'no-store',
       headers: {
@@ -82,7 +79,7 @@ export const verifyEmail = async (
   verifyToken: string
 ): Promise<UserResponse> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/verify`, {
+    const response = await fetch(`${BASE_URL_API}/auth/verify`, {
       method: 'PATCH',
       cache: 'no-store',
       headers: {
@@ -107,7 +104,7 @@ export const verifyEmail = async (
 
 export const repeatVerifyEmail = async (body: Auth): Promise<UserResponse> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/repeat-verify`, {
+    const response = await fetch(`${BASE_URL_API}/auth/repeat-verify`, {
       method: 'PATCH',
       cache: 'no-store',
       headers: {
@@ -132,7 +129,7 @@ export const repeatVerifyEmail = async (body: Auth): Promise<UserResponse> => {
 
 export const passwordRecovery = async (body: string): Promise<string> => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/password-recovery`, {
+    const response = await fetch(`${BASE_URL_API}/auth/password-recovery`, {
       method: 'PATCH',
       cache: 'no-store',
       headers: {

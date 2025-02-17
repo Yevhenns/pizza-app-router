@@ -1,8 +1,8 @@
 'use client';
 
 import css from './Addresses.module.scss';
-import { AddressesLinks } from './AddressesLinks';
-import { GoogleMap } from './GoogleMap';
+import { AddressesLinks } from './AddressesLinks/AddressesLinks';
+import { GoogleMap } from './GoogleMap/GoogleMap';
 
 export function Addresses() {
   return (

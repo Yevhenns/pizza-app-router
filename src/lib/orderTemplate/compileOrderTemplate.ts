@@ -1,6 +1,12 @@
+import fs from 'fs';
 import Handlebars from 'handlebars';
+import path from 'path';
 
-import { orderTemplate } from './orderTemplate';
+const templatePath = path.join(
+  process.cwd(),
+  'src/lib/orderTemplate/orderTemplate.handlebars'
+);
+const templateSource = fs.readFileSync(templatePath, 'utf-8');
 
 interface compileOrderTemplateProps {
   name: string;
@@ -20,7 +26,7 @@ export function compileOrderTemplate({
   orderSum,
   order,
 }: compileOrderTemplateProps) {
-  const template = Handlebars.compile(orderTemplate);
+  const template = Handlebars.compile(templateSource);
   const htmlBody = template({
     name,
     number,

@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 import withPWA from 'next-pwa';
 
+import path from 'path';
+
 const nextConfig = {
   async headers() {
     return [
@@ -47,6 +49,13 @@ const nextConfig = {
   },
   sassOptions: {
     prependData: `@import "src/assets/styles/media.mixin.scss";`,
+  },
+  webpack(config) {
+    config.resolve.alias['handlebars'] = path.resolve(
+      './node_modules/handlebars/dist/handlebars.js'
+    );
+
+    return config;
   },
 };
 

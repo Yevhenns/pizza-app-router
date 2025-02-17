@@ -19,7 +19,6 @@
     "bcrypt": "^5.1.1",
     "generate-password": "^1.7.1",
     "google-auth-library": "^9.15.1",
-    "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "mongoose": "^8.10.1",
@@ -50,6 +49,8 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "handlebars": "^4.7.8",
+    "handlebars-loader": "^1.7.3",
     "sass": "^1.77.6",
     "typescript": "^5"
   }

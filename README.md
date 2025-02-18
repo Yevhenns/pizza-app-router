@@ -16,7 +16,7 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 result.
 
-Also check a [mobile application](https://github.com/Yevhenns/PizzaMobApp.git) and [back-end application](https://github.com/Yevhenns/pizza-nest.git) for this project.
+Also check a [mobile application]([https://github.com/Yevhenns/PizzaMobApp.git](https://github.com/Yevhenns/pizza_mob.git)) and [back-end application](https://github.com/Yevhenns/pizza-nest.git) for this project.
 
 Editing a product with admin panel. Available only for admin.
 

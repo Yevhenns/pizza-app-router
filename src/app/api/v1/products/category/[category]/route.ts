@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 import dbConnect from '@/lib/dbConnect';
 import Product from '@/models/Product';
 
@@ -9,7 +11,8 @@ export async function GET(
 ) {
   const { category } = params;
 
-  const translateCategory = () => {
+  const translateCategory = (): Categories | undefined => {
+    if (!category) return undefined;
     if (category === 'pizzas') return 'Піца';
     if (category === 'appetizers') return 'Закуски';
     if (category === 'drinks') return 'Напої';
@@ -18,13 +21,29 @@ export async function GET(
 
   const categoryValue = translateCategory();
 
-  await dbConnect();
+  if (!categoryValue) {
+    return new Response(JSON.stringify({ error: 'Не знайдено' }), {
+      status: 404,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
-  const products: Product[] = await Product.find({ category: categoryValue });
+  try {
+    await dbConnect();
 
-  return new Response(JSON.stringify({ data: products }), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+    const products: Product[] = await Product.find({ category: categoryValue });
+
+    return new Response(JSON.stringify({ data: products }), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error: any) {
+    console.error(error);
+
+    return NextResponse.json(
+      { error: error.error || 'Invalid request' },
+      { status: error.status || 400 }
+    );
+  }
 }

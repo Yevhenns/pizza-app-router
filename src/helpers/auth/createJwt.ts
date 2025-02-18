@@ -13,5 +13,5 @@ export function createJwt(userInfo: createJwtProps) {
 }
 
 export function createVerifyJwt() {
-  return jwt.sign({ id: uuidv4() }, jwtSecret, { expiresIn: '1m' });
+  return jwt.sign({ id: uuidv4() }, jwtSecret, { expiresIn: '15m' });
 }

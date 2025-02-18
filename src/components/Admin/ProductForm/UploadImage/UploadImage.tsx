@@ -20,7 +20,7 @@ export function UploadImage({ setValue }: UploadImageProps) {
         multiple: false,
       }}
       onError={() => {
-        toast.error('Додайте файл png');
+        toast.error('Сталася помилка');
       }}
       onSuccess={result => {
         typeof result.info === 'object' &&

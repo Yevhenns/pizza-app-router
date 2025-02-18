@@ -1,9 +1,4 @@
-enum Categories {
-  'pizza' = 'Піца',
-  'appetizers' = 'Закуски',
-  'drinks' = 'Напої',
-  'sushi' = 'Суші',
-}
+type Categories = 'Піца' | 'Закуски' | 'Напої' | 'Суші';
 
 type Product = {
   _id: string;
@@ -12,7 +7,7 @@ type Product = {
   dimension: string;
   price: null | number;
   photo: string;
-  category: string;
+  category: Categories;
   promotion: boolean;
   promPrice: null | number;
   vegan: boolean;

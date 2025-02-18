@@ -1,6 +1,8 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface ProductDocument extends ProductCreateDto, Document {}
+interface ProductDocument extends ProductCreateDto, Document {
+  category: Categories;
+}
 
 const productSchema = new Schema<ProductDocument>(
   {
@@ -12,7 +14,11 @@ const productSchema = new Schema<ProductDocument>(
       type: String,
       required: [true, 'Введіть посилання на фото продукту'],
     },
-    category: { type: String, required: [true, 'Введіть категорію продукту'] },
+    category: {
+      type: String,
+      enum: ['Піца', 'Закуски', 'Напої', 'Суші'],
+      required: [true, 'Введіть категорію продукту'],
+    },
     promotion: { type: Boolean, default: false },
     promPrice: {
       type: Number,

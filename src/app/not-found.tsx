@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { SectionContainer } from '@/components/shared/SectionContainer/SectionContainer';
+
 import css from './not-found.module.scss';
 
 export const metadata: Metadata = {
@@ -9,9 +11,11 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className={css.wrapper}>
-      <h2>404 - Page Not Found</h2>
-      <Link href={'/'}>На головну</Link>
-    </div>
+    <SectionContainer>
+      <div className={css.wrapper}>
+        <h2>404 - Не знайдено</h2>
+        <Link href={'/'}>На головну</Link>
+      </div>
+    </SectionContainer>
   );
 }

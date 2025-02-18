@@ -24,7 +24,7 @@ interface CustomerInfo {
   userId?: string;
 }
 
-type Ordered = Pick<CartItem2, 'title' | 'quantity'> & {
+type Ordered = Pick<UpdatedCartItem, 'title' | 'quantity'> & {
   optionsTitles: string[];
 };
 

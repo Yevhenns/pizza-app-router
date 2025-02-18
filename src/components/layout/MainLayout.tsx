@@ -2,9 +2,9 @@ import { Footer } from '@/components/layout/Footer/Footer';
 import { Header } from '@/components/layout/Header/Header';
 import { TabNavigator } from '@/components/layout/TabNavigator/TabNavigator';
 
-import css from './SSRLayout.module.scss';
+import css from './MainLayout.module.scss';
 
-export default function SSRLayout({
+export default function MainLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

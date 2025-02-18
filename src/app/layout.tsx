@@ -8,7 +8,7 @@ import SavedProductsProvider from '@/providers/SavedProductsProvider';
 import { fetchProductsIdList } from '@/store/products/productsOperations';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-import SSRLayout from '../components/layout/SSRLayout';
+import MainLayout from '../components/layout/MainLayout';
 import { GoogleProvider } from '../providers/GoogleProvider';
 import ReduxProvider from '../providers/ReduxProvider';
 import './globals.scss';
@@ -67,10 +67,10 @@ export default async function RootLayout({
           <ReduxProvider>
             <GoogleProvider>
               <SavedProductsProvider allproductsIdList={allproductsIdList}>
-                <SSRLayout>
+                <MainLayout>
                   {children}
                   <ToastContainer />
-                </SSRLayout>
+                </MainLayout>
               </SavedProductsProvider>
             </GoogleProvider>
           </ReduxProvider>

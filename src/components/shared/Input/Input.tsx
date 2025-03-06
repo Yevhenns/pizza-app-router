@@ -3,6 +3,7 @@ import { HTMLProps, forwardRef, useState } from 'react';
 import { cn } from '@/helpers/combineClasses';
 
 import { Icon } from '../Icon/Icon';
+import { InputErrorContainer } from '../InputErrorContainer/InputErrorContainer';
 import { RoundButton } from '../RoundButton/RoundButton';
 import css from './Input.module.scss';
 
@@ -50,7 +51,7 @@ export const Input = forwardRef<Ref, InputProps>(function Input(
           </div>
         )}
       </div>
-      <div>{error && <span>{error}</span>}</div>
+      <InputErrorContainer error={error} />
     </fieldset>
   );
 });

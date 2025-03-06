@@ -25,6 +25,6 @@
   }
 
   &:disabled svg {
-    fill: grey;
+    fill: var(--disabled-color);
   }
 }

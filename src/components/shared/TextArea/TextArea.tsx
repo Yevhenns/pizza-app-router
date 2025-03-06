@@ -1,5 +1,6 @@
 import { HTMLProps, forwardRef } from 'react';
 
+import { InputErrorContainer } from '../InputErrorContainer/InputErrorContainer';
 import css from './TextArea.module.scss';
 
 type TextAreaProps = {
@@ -17,7 +18,7 @@ export const TextArea = forwardRef<Ref, TextAreaProps>(function TextArea(
     <fieldset className={css.fieldset}>
       <label htmlFor={props.htmlFor}>{label}</label>
       <textarea rows={5} autoComplete="true" ref={ref} {...props} />
-      <div>{error && <span>{error}</span>}</div>
+      <InputErrorContainer error={error} />
     </fieldset>
   );
 });

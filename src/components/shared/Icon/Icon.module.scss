@@ -12,10 +12,10 @@
   }
 
   &.red {
-    fill: red;
+    fill: var(--error-color);
   }
 
   &.green {
-    fill: green;
+    fill: var(--success-color);
   }
 }

@@ -2,9 +2,8 @@
   position: fixed;
   border-radius: 32px;
   bottom: 0;
-  background: linear-gradient(90deg, #f94c25 -0.8%, #ffd465 99.28%);
+  background: var(--background-gradient);
   display: flex;
-  // justify-content: space-between;
   width: 100vw;
   z-index: 2;
 

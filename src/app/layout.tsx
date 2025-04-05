@@ -60,6 +60,10 @@ export default async function RootLayout({
           httpEquiv="Cross-Origin-Opener-Policy"
           content="same-origin-allow-popups"
         />
+        <meta
+          name="vudnex-verification"
+          content="fe9c3e6b136e077778d727cc7dbc093c"
+        />
         <meta name="keywords" content="Піца, Закуски, Напої, Дніпро" />
       </head>
       <body className={nunito.className}>

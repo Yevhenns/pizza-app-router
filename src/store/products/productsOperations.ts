@@ -1,12 +1,11 @@
 import { BASE_URL_API } from '@/assets/variables';
 
-// get items
 export const fetchData = async <T>(endpoint: string): Promise<T> => {
   const response = await fetch(`${BASE_URL_API}/${endpoint}`, {
-    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
     },
+    next: { revalidate: 60 },
   });
 
   const result: { data: T } = await response.json();
@@ -23,40 +22,38 @@ export const getSupplements = async () => {
 
 export const fetchProductsIdList = async (): Promise<string[]> => {
   const response = await fetch(`${BASE_URL_API}/products/id-list`, {
-    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
     },
+    next: { revalidate: 60 },
   });
 
   const result: string[] = await response.json();
   return result;
 };
 
-// get items by promotion
 export const fetchProductsByPromotion = async (): Promise<Product[]> => {
   const response = await fetch(`${BASE_URL_API}/products/promotion`, {
-    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
     },
+    next: { revalidate: 60 },
   });
 
   const result: { data: Product[] } = await response.json();
   return result.data;
 };
 
-// get items by category
 export const fetchProductsByCategory = async (
   category: string
 ): Promise<Product[]> => {
   const response = await fetch(
     `${BASE_URL_API}/products/category/${category}`,
     {
-      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
       },
+      next: { revalidate: 60 },
     }
   );
 
@@ -64,7 +61,6 @@ export const fetchProductsByCategory = async (
   return result.data;
 };
 
-// post item
 const addItem = async <T, B extends object>(
   endpoint: string,
   body: B,
@@ -73,11 +69,11 @@ const addItem = async <T, B extends object>(
   try {
     const response = await fetch(`${BASE_URL_API}/${endpoint}`, {
       method: 'POST',
-      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      next: { revalidate: 60 },
       body: JSON.stringify(body),
     });
 
@@ -103,7 +99,6 @@ export const createSupplement = async (
   return addItem('supplements', body, token);
 };
 
-// patch item
 const patchItem = async <T extends object>(
   endpoint: string,
   id: string,
@@ -113,11 +108,11 @@ const patchItem = async <T extends object>(
   try {
     const response = await fetch(`${BASE_URL_API}/${endpoint}/${id}`, {
       method: 'PATCH',
-      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      next: { revalidate: 60 },
       body: JSON.stringify(body),
     });
 
@@ -144,16 +139,15 @@ export const updateSupplement = (
   token: string
 ) => patchItem('supplements', supplementId, body, token);
 
-// delete item
 const deleteItem = async (endpoint: string, id: string, token: string) => {
   try {
     const res = await fetch(`${BASE_URL_API}/${endpoint}/${id}`, {
       method: 'DELETE',
-      cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {

@@ -3,15 +3,7 @@ import withPWAInit from "@ducanh2912/next-pwa";
 
 import path from 'path';
 
-const nextConfig = {
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [],
-      },
-    ];
-  },
+const nextConfig = {  
   env: {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     WEATHER_API_KEY: process.env.WEATHER_API_KEY,

@@ -19,13 +19,18 @@ export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] =
     useState<null | BeforeInstallPromptEvent>(null);
   const [isVisible, setIsVisible] = useState(false);
-  console.log(deferredPrompt);
 
   useEffect(() => {
-    // if (!isMobile()) return;
+    if (!isMobile()) return;
 
     function handler(e: BeforeInstallPromptEvent) {
+      if (sessionStorage.getItem('isPromptShown')) {
+        setIsVisible(false);
+        return;
+      }
+
       e.preventDefault();
+      sessionStorage.setItem('isPromptShown', 'true');
       setDeferredPrompt(e);
       setIsVisible(true);
     }
@@ -37,13 +42,17 @@ export default function InstallPrompt() {
       );
   }, []);
 
-  async function onClick() {
+  async function onAccept() {
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
-    const choiceResult = await deferredPrompt.userChoice;
+    await deferredPrompt.userChoice;
     setDeferredPrompt(null);
     setIsVisible(false);
-    console.log(choiceResult);
+  }
+
+  function onCancel() {
+    setIsVisible(false);
+    setDeferredPrompt(null);
   }
 
   if (!isVisible) return null;
@@ -52,8 +61,8 @@ export default function InstallPrompt() {
     <div className={css.layout}>
       <h3>Встановити застосунок?</h3>
       <div className={css.btnWrapper}>
-        <Button onClick={onClick}>Встановити</Button>
-        <Button onClick={() => setIsVisible(false)}>Відмінити</Button>
+        <Button onClick={onAccept}>Встановити</Button>
+        <Button onClick={onCancel}>Відмінити</Button>
       </div>
     </div>
   );

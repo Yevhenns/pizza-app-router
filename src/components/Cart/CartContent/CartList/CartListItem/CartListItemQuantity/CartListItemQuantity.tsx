@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { setQuantityAndPrice } from '@/store/cart/cartSlice';
 import { useAppDispatch } from '@/store/hooks';
 
+import { Icon } from '@/components/shared/Icon/Icon';
 import { RoundButton } from '@/components/shared/RoundButton/RoundButton';
 
 import css from './CartListItemQuantity.module.scss';
@@ -39,7 +40,9 @@ export function CartListItemQuantity({
         disabled={quantity === 1}
         aria-label="minus"
       >
-        <span className={css.quantityText}>-</span>
+        <div className={css.minus}>
+          <Icon svg="minus" iconWidth={24} iconHeight={24} color="accent" />
+        </div>
       </RoundButton>
       <span>{quantity}</span>
       <RoundButton onClick={increment} aria-label="plus">

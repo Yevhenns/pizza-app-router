@@ -48,7 +48,9 @@ export function ProductQuantity({
           disabled={quantity === 1}
           aria-label="minus"
         >
-          <span className={css.quantityText}>-</span>
+          <div className={css.minus}>
+            <Icon svg="minus" iconWidth={24} iconHeight={24} color="accent" />
+          </div>
         </RoundButton>
         <span>{quantity} шт.</span>
         <RoundButton onClick={increment} aria-label="plus">

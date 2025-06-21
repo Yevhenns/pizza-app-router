@@ -27,5 +27,6 @@
 
   &:disabled svg {
     fill: var(--disabled-color);
+    stroke: var(--disabled-color);
   }
 }

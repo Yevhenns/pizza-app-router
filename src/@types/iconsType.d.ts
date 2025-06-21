@@ -14,4 +14,6 @@ type IconsType =
   | 'settings'
   | 'edit'
   | 'eye'
-  | 'eye-closed';
+  | 'eye-closed'
+  | 'minus'
+  | 'plus';

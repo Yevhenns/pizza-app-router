@@ -2,24 +2,39 @@
 
 import { useEffect, useState } from 'react';
 
+import { Button } from '@/components/shared/Button/Button';
+
+import css from './InstallPrompt.module.scss';
+
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+}
+
 function isMobile() {
   return /Mobi|Android/i.test(navigator.userAgent);
 }
 
 export default function InstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<null | BeforeInstallPromptEvent>(null);
   const [isVisible, setIsVisible] = useState(false);
+  console.log(deferredPrompt);
 
   useEffect(() => {
-    if (!isMobile()) return; // показуємо лише на мобільних
+    // if (!isMobile()) return;
 
-    function handler(e: any) {
+    function handler(e: BeforeInstallPromptEvent) {
       e.preventDefault();
       setDeferredPrompt(e);
       setIsVisible(true);
     }
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
+    window.addEventListener('beforeinstallprompt', handler as EventListener);
+    return () =>
+      window.removeEventListener(
+        'beforeinstallprompt',
+        handler as EventListener
+      );
   }, []);
 
   async function onClick() {
@@ -34,19 +49,12 @@ export default function InstallPrompt() {
   if (!isVisible) return null;
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        bottom: 20,
-        left: 20,
-        background: '#eee',
-        padding: '1rem',
-        borderRadius: 8,
-      }}
-    >
-      <p>Встановити застосунок?</p>
-      <button onClick={onClick}>Встановити</button>
-      <button onClick={() => setIsVisible(false)}>Відмінити</button>
+    <div className={css.layout}>
+      <h3>Встановити застосунок?</h3>
+      <div className={css.btnWrapper}>
+        <Button onClick={onClick}>Встановити</Button>
+        <Button onClick={() => setIsVisible(false)}>Відмінити</Button>
+      </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-import { registerServiceWorker } from '@/register-service-worker';
+// import { registerServiceWorker } from '@/register-service-worker';
 import { APIProvider } from '@vis.gl/react-google-maps';
 
 export function GoogleProvider({
@@ -12,9 +12,9 @@ export function GoogleProvider({
 }>) {
   const API_KEY = process.env.GOOGLE_MAPS_API_KEY as string;
 
-  useEffect(() => {
-    registerServiceWorker();
-  }, []);
+  // useEffect(() => {
+  //   registerServiceWorker();
+  // }, []);
 
   return <APIProvider apiKey={API_KEY}>{children}</APIProvider>;
 }

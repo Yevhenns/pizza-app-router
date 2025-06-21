@@ -1,6 +1,5 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Checkbox } from '@/components/shared/Checkbox/Checkbox';
 import { Icon } from '@/components/shared/Icon/Icon';
 import { RoundButton } from '@/components/shared/RoundButton/RoundButton';
 
@@ -8,10 +7,9 @@ import css from './ProductQuantity.module.scss';
 
 type ProductQuantityProps = {
   getTotalQuantity: (quantity: number) => void;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: () => void;
   supplements: Supplement[] | [];
   category: string;
-  _id: string;
   filteredSupplements: Supplement[];
   optionsShown: boolean;
 };
@@ -21,7 +19,6 @@ export function ProductQuantity({
   handleChange,
   supplements = [],
   category,
-  _id,
   filteredSupplements,
   optionsShown,
 }: ProductQuantityProps) {
@@ -51,28 +48,37 @@ export function ProductQuantity({
           disabled={quantity === 1}
           aria-label="minus"
         >
-          <Icon svg="left" iconWidth={24} iconHeight={24} color="accent" />
+          <span className={css.quantityText}>-</span>
         </RoundButton>
         <span>{quantity} шт.</span>
-        <RoundButton
-          onClick={increment}
-          disabled={quantity >= 20}
-          aria-label="plus"
-        >
-          <Icon svg="right" iconWidth={24} iconHeight={24} color="accent" />
+        <RoundButton onClick={increment} aria-label="plus">
+          <span className={css.quantityText}>+</span>
         </RoundButton>
       </div>
       {isSupplementsShown && supplements.length > 0 && (
         <div className={css.quantity}>
-          <Checkbox
-            checked={optionsShown}
-            htmlFor={_id}
-            name="options"
-            id={_id}
-            label="Опції"
-            posRight
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-          />
+          <span>Опції</span>
+          <RoundButton onClick={handleChange}>
+            {!optionsShown ? (
+              <div className={css.down}>
+                <Icon
+                  svg="right"
+                  iconWidth={20}
+                  iconHeight={20}
+                  color="accent"
+                />
+              </div>
+            ) : (
+              <div className={css.up}>
+                <Icon
+                  svg="right"
+                  iconWidth={20}
+                  iconHeight={20}
+                  color="accent"
+                />
+              </div>
+            )}
+          </RoundButton>
         </div>
       )}
     </div>

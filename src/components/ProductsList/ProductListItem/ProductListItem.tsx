@@ -24,7 +24,7 @@ export function ProductListItem({
   supplements,
   preview = false,
 }: ProductListItemProps) {
-  const { _id, price, promotion, promPrice, category, vegan } = item;
+  const { price, promotion, promPrice, category, vegan } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
@@ -102,7 +102,6 @@ export function ProductListItem({
         handleChange={handleShowOptions}
         supplements={supplements}
         category={category}
-        _id={_id}
         optionsShown={optionsShown}
       />
       {optionsShown && (
